@@ -21,9 +21,9 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.febc13-final-auto-release }}
         with:
           source-directory: "output"
-          destination-github-username: Kanghyeon00
+          destination-github-username: TOKEN_KANGHYEON00
           destination-repository-name: Final-13-13tachi
-          user-email: ${{ secrets.Kang }}
+          user-email: ${{ secrets.EMAIL_KANG }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
       - name: Test get variable exported by push-to-another-repository
