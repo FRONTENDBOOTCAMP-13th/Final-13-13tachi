@@ -18,10 +18,10 @@ jobs:
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.febc13-final-auto-release }}
+          API_TOKEN_GITHUB: ${{ secrets.TOKEN_KANG }}
         with:
           source-directory: "output"
-          destination-github-username: TOKEN_Kanghyeon00
+          destination-github-username: Kanghyeon00
           destination-repository-name: Final-13-13tachi
           user-email: ${{ secrets.EMAIL_KANG }}
           commit-message: ${{ github.event.commits[0].message }}
