@@ -30,6 +30,10 @@
   /* breakpoint 설정*/
   --breakpoint-md: 39.9375rem; /* 768px */
   --breakpoint-lg: 80rem; /* 1280px */
+
+  /* shadow 설정 */
+  --btn-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  --shadow-image: 3px 4px 11px rgba(0, 0, 0, 0.25);
 }
 
 /* Pretendard 폰트 */
@@ -120,4 +124,21 @@ body {
 
   /* 기본 배경색 선언 */
   background-color: #fff;
+}
+
+/* Tailwind CSS의 커스텀 컴포넌트 클래스 정의 */
+@layer components {
+  .mypage-active {
+    @apply text-dark-green;
+    @apply font-bold;
+    @apply underline;
+    @apply underline-offset-4;
+    @apply decoration-dark-green;
+  }
+}
+
+@layer components {
+  .mypage-recipe-active {
+    @apply text-black;
+  }
 }
