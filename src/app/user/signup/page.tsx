@@ -4,7 +4,9 @@ export default async function SignupPage() {
   return (
     <main className="flex-grow flex flex-col items-center justify-center">
       <div className="flex flex-col items-center mb-6">
-        <h2 className="text-5xl font-bold text-black mb-2">회원 가입</h2>
+        <h2 className="text-5xl font-bold text-black mt-[70px] mb-2">
+          회원 가입
+        </h2>
         <div className="w-[1024px] flex flex-col items-end">
           <div className="flex mt-[12px]">
             <p className="text-dark-red text-sm">*</p>
