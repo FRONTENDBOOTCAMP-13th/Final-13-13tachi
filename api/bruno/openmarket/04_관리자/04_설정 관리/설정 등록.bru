@@ -1,0 +1,19 @@
+meta {
+  name: 설정 등록
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/admin/config
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "_id": "itemPerPage",
+    "title": "한 페이지당 보여줄 항목수",
+    "value": 10
+  }
+}
