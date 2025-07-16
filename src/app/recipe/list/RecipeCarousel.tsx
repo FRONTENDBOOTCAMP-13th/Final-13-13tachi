@@ -91,14 +91,14 @@ export default function RecipeCarousel() {
             {recipeArr.map((item, index) => (
               <figure
                 key={index}
-                className="w-[14.375rem] shadow-image rounded-4xl flex-shrink-0 overflow-hidden"
+                className="w-[14.375rem] shadow-image rounded-4xl"
               >
-                <div className="relative w-[14.375rem] h-[9.375rem]">
+                <div className="relative w-[14.375rem] h-[9.375rem] overflow-hidden rounded-t-4xl">
                   <Image
                     src={item.img}
                     alt="레시피 이미지"
                     fill
-                    className="object-cover rounded-t-4xl transition-transform duration-300 hover:scale-110 cursor-pointer"
+                    className="object-cover transition-transform duration-300 hover:scale-110 cursor-pointer"
                   />
                 </div>
                 <figcaption className="pb-[3.75rem] pt-[0.9375rem] pl-5 pr-5 text-center max-h-[9.375rem]">
