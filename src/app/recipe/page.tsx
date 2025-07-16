@@ -3,7 +3,7 @@ import RecipeCarousel from './RecipeCarousel';
 import RecipeList from './RecipeList';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import RecipeSearchInput from '../search/RecipeSearch';
+import RecipeSearchInput from './search/RecipeSearch';
 
 export default function RecipeListPage() {
   return (
