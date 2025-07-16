@@ -30,6 +30,9 @@
   /* breakpoint 설정*/
   --breakpoint-md: 39.9375rem; /* 768px */
   --breakpoint-lg: 80rem; /* 1280px */
+
+  /* 이미지 쉐도우 */
+  --shadow-image: 3px 4px 11px rgba(0, 0, 0, 0.25);
 }
 
 /* Pretendard 폰트 */
