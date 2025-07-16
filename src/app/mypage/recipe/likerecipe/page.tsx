@@ -1,6 +1,8 @@
 // import Image from 'next/image';
 
-// 임시 이미지 불러오기
+// import EmptyLikeRecipe from '@/app/mypage/recipe/likerecipe/EmptyLikeRecipe';
+
+// 북마크 불러오기
 import LikeRecipeItem from '@/app/mypage/recipe/likerecipe/LikeRecipeItem';
 import Button from '@/components/common/Button';
 
@@ -18,5 +20,9 @@ export default async function LikeRecipe() {
         </Button>
       </div>
     </form>
+
+    // <div className="h-full">
+    //   <EmptyLikeRecipe />
+    // </div>
   );
 }

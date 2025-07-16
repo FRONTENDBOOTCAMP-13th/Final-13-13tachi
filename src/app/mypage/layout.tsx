@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-[4.0625rem] mb-[6.25rem]">
         <div className="flex flex-row lg:max-w-5xl">
           <div className="flex flex-col lg:gap-[2.1875rem]">
             <div className="flex flex-col lg:gap-[1.125rem]">
@@ -61,7 +61,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/buylist"
-                      className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/buylist')} `}
+                      className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/buylist')} ${isActive('/mypage/buyinfo')}`}
                     >
                       🧾 주문내역
                     </Link>

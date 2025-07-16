@@ -14,7 +14,7 @@ export default function BuyList() {
           <span className="mr-4 text-dark-green">2025.07.10</span>
           <span className="text-gray">주문번호:20230725-0001</span>
         </p>
-        <Link href={`/`} className="text-dark-green">
+        <Link href={`/mypage/buyinfo`} className="text-dark-green">
           상세조회
         </Link>
       </div>

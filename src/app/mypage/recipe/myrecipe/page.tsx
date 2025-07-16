@@ -1,6 +1,8 @@
 // import Image from 'next/image';
 
-// 임시 이미지 불러오기
+// import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
+
+// 레시피 목록 불러오기
 import MyRecipeItem from '@/app/mypage/recipe/myrecipe/MyRecipeItem';
 import Button from '@/components/common/Button';
 
@@ -20,5 +22,8 @@ export default async function MyRecipe() {
         </Button>
       </div>
     </form>
+    // <div className="h-full">
+    //   <EmptyMyRecipe />
+    // </div>
   );
 }
