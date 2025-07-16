@@ -10,7 +10,7 @@ export default async function SignupPage() {
         </h2>
         <div className="lg:w-[64rem] flex flex-col items-end">
           <div className="flex lg:mt-[0.75rem]">
-            <p className="text-dark-red text-sm">*</p>
+            <p className="text-light-red text-sm">*</p>
             <p className="lg:text-sm text-gray">는 필수 입력</p>
           </div>
           <hr className="lg:w-[64rem] h-px lg:md-[1.875rem] bg-light-gray border-0" />
@@ -23,7 +23,7 @@ export default async function SignupPage() {
             <label className="block text-black lg:text-base" htmlFor="email">
               이메일
             </label>
-            <span className="text-dark-red lg:text-sm lg:ml-1">*</span>
+            <span className="text-light-red lg:text-sm lg:ml-1">*</span>
           </div>
           <Input
             width="md"
@@ -39,7 +39,7 @@ export default async function SignupPage() {
             <label className="block text-black lg:text-base" htmlFor="password">
               비밀번호
             </label>
-            <span className="text-dark-red lg:text-sm lg:ml-1">*</span>
+            <span className="text-light-red lg:text-sm lg:ml-1">*</span>
           </div>
           <Input
             width="md"
@@ -55,13 +55,12 @@ export default async function SignupPage() {
             <label className="block text-black lg:text-base" htmlFor="password">
               비밀번호 확인
             </label>
-            <span className="text-dark-red lg:text-sm lg:ml-1">*</span>
+            <span className="text-light-red lg:text-sm lg:ml-1">*</span>
           </div>
           <Input
             width="md"
             type="password"
             id="password"
-            autoComplete="new-password"
             placeholder="비밀번호를 한번 더 입력하세요"
             name="password"
           />
@@ -71,7 +70,7 @@ export default async function SignupPage() {
             <label className="block text-black lg:text-base" htmlFor="name">
               이름
             </label>
-            <span className="text-dark-red lg:text-sm lg:ml-1">*</span>
+            <span className="text-light-red lg:text-sm lg:ml-1">*</span>
           </div>
           <Input
             width="md"
@@ -87,7 +86,7 @@ export default async function SignupPage() {
             <label className="block text-black lg:text-base" htmlFor="phone">
               전화번호
             </label>
-            <span className="text-dark-red lg:text-sm lg:ml-1">*</span>
+            <span className="text-light-red lg:text-sm lg:ml-1">*</span>
           </div>
           <Input
             width="md"
@@ -103,7 +102,7 @@ export default async function SignupPage() {
             <label className="block text-black lg:text-base" htmlFor="address">
               주소
             </label>
-            <span className="text-dark-red lg:text-sm lg:ml-1">*</span>
+            <span className="text-light-red lg:text-sm lg:ml-1">*</span>
           </div>
 
           <div className="flex flex-col lg:gap-[0.625rem] lg:w-[20.625rem]">
