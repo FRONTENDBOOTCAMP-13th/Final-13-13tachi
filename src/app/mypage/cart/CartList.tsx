@@ -3,6 +3,7 @@ import Image from 'next/image';
 // 임시 이미지 불러오기
 import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
+import Checkbox from '@/components/common/Checkbox';
 
 export default function CartList() {
   return (
@@ -10,7 +11,7 @@ export default function CartList() {
       <div className="flex justify-between lg:w-[49.375rem] lg:my-[30px]">
         <div className="flex flex-row items-center gap-[1.5625rem]">
           <label htmlFor="inputCheckBox" className="sr-only"></label>
-          <input type="checkbox" name={`option1`} />
+          <Checkbox />
           <div className="flex flex-row lg:gap-3.5 lg:h-[6.25rem]">
             <Image
               src={profilePic}
@@ -48,8 +49,6 @@ export default function CartList() {
           <span className="lg:text-base font-semibold">3000원</span>
         </div>
       </div>
-
-      {/* <div className="border-b border-light-gray w-[49.875rem]"></div> */}
       <hr className="text-light-gray w-full" />
     </div>
   );
