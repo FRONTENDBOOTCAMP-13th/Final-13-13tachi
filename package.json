@@ -12,7 +12,7 @@
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-quill-new": "^3.4.6"
+    "react-quill-new": "^3.4.6",
     "swiper": "^11.2.10"
   },
   "devDependencies": {
