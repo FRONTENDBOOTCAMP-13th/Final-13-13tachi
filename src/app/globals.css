@@ -130,10 +130,11 @@ body {
 @layer components {
   .mypage-active {
     @apply text-dark-green;
-    @apply font-bold;
+    @apply font-semibold;
     @apply underline;
-    @apply underline-offset-4;
+    @apply underline-offset-8;
     @apply decoration-dark-green;
+    @apply decoration-2;
   }
 }
 
