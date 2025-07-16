@@ -1,5 +1,7 @@
 // import Link from 'next/link';
 
-export default async function Recipe() {
-  return <>내부 내용</>;
+import { redirect } from 'next/navigation';
+
+export default function Recipe() {
+  redirect('/mypage/recipe/myrecipe');
 }

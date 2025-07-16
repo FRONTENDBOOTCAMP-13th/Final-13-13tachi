@@ -3,8 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-// 이미지 임시 불러오기
-
 export default function RootLayout({
   children,
 }: {
@@ -16,8 +14,8 @@ export default function RootLayout({
     pathname === path ? 'mypage-recipe-active' : '';
 
   return (
-    <div className="flex flex-col justify-center lg:w-[49.875rem]">
-      <aside className="flex flex-col gap-4  h-full text-gray rounded-lg">
+    <main className="flex flex-col justify-start lg:w-[49.875rem] h-full">
+      <aside className="flex flex-col gap-4 text-gray rounded-lg">
         <div className="lg:w-[49.875rem] lg:text-sm font-semibold">
           <ul className="flex flex-row justify-evenly">
             <li>
@@ -25,7 +23,7 @@ export default function RootLayout({
                 href="/mypage/recipe/myrecipe"
                 className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myrecipe')} `}
               >
-                나의 레시피
+                <h3>나의 레시피</h3>
               </Link>
             </li>
             <li>
@@ -33,14 +31,14 @@ export default function RootLayout({
                 href="/mypage/recipe/likerecipe"
                 className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/likerecipe')} `}
               >
-                레시피 북마크
+                <h3>레시피 북마크</h3>
               </Link>
             </li>
           </ul>
         </div>
-        <div className="border-b border-light-gray"></div>
+        <hr className="text-light-gray w-full mb-5" />
       </aside>
-      <main className="">{children}</main>
-    </div>
+      <main className="h-full">{children}</main>
+    </main>
   );
 }
