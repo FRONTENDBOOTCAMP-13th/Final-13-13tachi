@@ -77,6 +77,7 @@ export default function HotItemList() {
             alt={`${item.title} 이미지`}
             width={182}
             height={170}
+            className="rounded-[1.875rem]"
           />
           <div className="text-center w-full">
             <h4 className="relative block w-full lg:pr-4 lg:text-base">
