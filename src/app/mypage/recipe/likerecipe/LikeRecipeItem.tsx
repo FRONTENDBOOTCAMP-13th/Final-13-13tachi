@@ -13,7 +13,7 @@ export default function LikeRecipeItem() {
         height={180}
         className="lg:w-[11.25rem] lg:h-[11.25rem] object-cover rounded-lg shadow-image"
       />
-      <div className="relative text-center">
+      <div className="relative text-center mt-2.5">
         <div className="absolute left-0">
           <span>🔖</span>
         </div>
