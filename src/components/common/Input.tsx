@@ -1,19 +1,29 @@
-import Image from 'next/image';
+import React from 'react';
 
-export default function Input() {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  width?: 'lg' | 'md' | 'sm' | 'xs';
+  className?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function Input({
+  width = 'md',
+  className = '',
+  onChange,
+  ...rest
+}: InputProps) {
+  const widthClasses = {
+    lg: 'lg:w-[48.75rem]',
+    md: 'lg:w-[20.625rem]',
+    sm: 'lg:w-[10.9375rem]',
+    xs: 'lg:w-[ 7.4375rem ]',
+  };
+
   return (
-    <div className="flex items-center lg:w-[285px] lg:h-[40px] border border-dark-green rounded-3xl overflow-hidden">
-      <input
-        type="text"
-        placeholder="상품명을 입력해주세요"
-        className="flex-grow px-3  text-sm outline-none"
-      />
-      <button
-        type="submit"
-        className="w-10 h-full flex justify-center items-center"
-      >
-        <Image src="/input.svg" alt="검색" width={16} height={16} />
-      </button>
-    </div>
+    <input
+      className={`lg:h-[2.8125rem] ${widthClasses[width]} lg:px-3 lg:text-sm lg:placeholder:text-sm placeholder-gray border bg-white border-light-gray rounded-lg text-black   focus:outline-gray  ${className}`}
+      onChange={onChange}
+      {...rest}
+    />
   );
 }

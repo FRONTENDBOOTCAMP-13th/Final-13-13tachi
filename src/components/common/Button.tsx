@@ -17,12 +17,12 @@ export default function Button({
   };
 
   const sizeStyle = {
-    xs: 'lg:w-[65px] lg:h-[30px] lg:text-sm',
-    sm: 'lg:w-[80px] lg:h-[30px] lg:text-sm',
-    md: 'lg:w-[100px] lg:h-[40px] lg:text-base',
-    lg: 'lg:w-[120px] lg:h-[30px] lg:text-sm',
-    xl: 'lg:w-[180px] lg:h-[50px] lg:text-base',
-    xxl: 'lg:w-[200px] lg:h-[48px] lg:text-base',
+    xs: 'lg:w-[4.0625rem] lg:h-[1.875rem] lg:text-sm',
+    sm: 'lg:w-[5rem] lg:h-[1.875rem] lg:text-sm',
+    md: 'lg:w-[6.25rem] lg:h-[2.5rem] lg:text-base',
+    lg: 'lg:w-[7.5rem] lg:h-[1.875rem] lg:text-sm',
+    xl: 'lg:w-[11.25rem] lg:h-[3.125rem] lg:text-base',
+    xxl: 'lg:w-[12.5rem] lg:h-[3rem] lg:text-base',
   };
 
   return (
