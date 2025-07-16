@@ -50,7 +50,7 @@ export default async function LoginPage() {
                 <Checkbox className="lg:w-[1.25rem] lg:h-[1.25rem]" />
                 <p>자동 로그인</p>
               </div>
-              <Link href="#">회원가입</Link>
+              <Link href="/user/signup">회원가입</Link>
             </div>
 
             <div className="flex justify-center items-center lg:mt-[3.125rem]">
