@@ -1,10 +1,10 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import Input from '@/components/common/Input';
-import AllItems from '@/components/shopping/AllItems';
-import HotItemList from '@/components/shopping/HotItems';
+import AllItems from '@/app/shopping/AllItems';
+import HotItemList from '@/app/shopping/HotItems';
 
-export default function Shopping() {
+export default function ShoppingList() {
   return (
     <>
       <Header />
