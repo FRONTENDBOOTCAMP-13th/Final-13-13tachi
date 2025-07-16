@@ -84,7 +84,7 @@ export default function RecipeList() {
           ))}
         </div>
         <Link
-          href="/recipe/create"
+          href="/recipe/write"
           className="text-orange font-semibold cursor-pointer"
         >
           + 레시피 등록

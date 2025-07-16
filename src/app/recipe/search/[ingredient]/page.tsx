@@ -95,7 +95,7 @@ export default function RecipeSearchPage() {
               <span className="text-xl font-bold text-dark-green">{`'${ingredient}'를 이용한 레시피`}</span>
             </div>
             <Link
-              href="/recipe/create"
+              href="/recipe/write"
               className="text-orange font-semibold cursor-pointer"
             >
               + 레시피 등록
