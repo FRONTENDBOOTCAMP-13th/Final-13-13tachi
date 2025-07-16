@@ -1,15 +1,18 @@
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import Link from 'next/link';
+
+interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
   variant?: 'green' | 'white';
   size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxlsm';
-  type?: 'button' | 'submit';
 }
 
-export default function Button({
+export default function CustomLink({
   children,
+  href,
   variant = 'green',
   size = 'xl',
   ...rest
-}: ButtonProps) {
+}: LinkProps) {
   const baseStyle = 'font-semibold rounded-lg shadow-[var(--btn-shadow)]';
 
   const variantStyle = {
@@ -29,11 +32,12 @@ export default function Button({
   };
 
   return (
-    <button
-      className={`${baseStyle} ${variantStyle[variant]} ${sizeStyle[size]} cursor-pointer`}
+    <Link
+      href={href}
+      className={`${baseStyle} ${variantStyle[variant]} ${sizeStyle[size]} inline-flex justify-center items-center`}
       {...rest}
     >
       {children}
-    </button>
+    </Link>
   );
 }

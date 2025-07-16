@@ -18,7 +18,7 @@ interface HotItems {
 
 const shoppingArr: HotItems[] = [
   {
-    title: '감쟈합니다',
+    title: '감쟈합니다11111111dsafsdfsfdsas',
     details: '1kg',
     price: '3,250원',
     img: '/assets/shopping/items1.png',
@@ -112,6 +112,7 @@ export default function HotItemList() {
         spaceBetween={15}
         navigation={true}
         modules={[Navigation]}
+        autoHeight={true}
         loop={true}
         className="hotitem-slide"
       >
