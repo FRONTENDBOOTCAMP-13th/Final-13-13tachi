@@ -1,5 +1,8 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import Input from '@/components/common/Input';
+import AllItems from '@/components/shopping/AllItems';
+import HotItemList from '@/components/shopping/HotItems';
 
 export default function Shopping() {
   return (
@@ -17,19 +20,21 @@ export default function Shopping() {
           {/* ED: 오늘의 못난이는? */}
 
           {/* ST: Search Bar */}
-          <div className="lg:mt-[1.5625rem]"></div>
+          <div className="w-fit lg:mt-[1.5625rem] lg:mx-auto">
+            <Input />
+          </div>
           {/* ED: Search Bar */}
 
           {/* ST: 인기상품 */}
           <div className="lg:mt-7.5">
-            <h3 className="font-bold text-dark-green lg:text-xl">인기 상품</h3>
-            <div></div>
+            <h3 className="font-bold text-dark-green lg:text-3xl">인기 상품</h3>
+            <HotItemList />
           </div>
           {/* ED: 인기상품 */}
 
           {/* ST: 전체 상품 */}
-          <div className="lg:mt-10">
-            <h3 className="font-bold text-dark-green lg:text-xl">전체 상품</h3>
+          <div className="lg:mt-7">
+            <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
             <div className="lg:mt-[1.5625rem] lg:flex lg:justify-between lg:items-center">
               <ul className="font-semibold text-dark-green lg:flex lg:gap-2.5">
                 <li>
@@ -48,6 +53,7 @@ export default function Shopping() {
                   </button>
                 </li>
               </ul>
+
               <button
                 type="button"
                 className="font-semibold text-dark-green cursor-pointer"
@@ -55,7 +61,7 @@ export default function Shopping() {
                 정렬기준
               </button>
             </div>
-            <div></div>
+            <AllItems />
           </div>
           {/* ED: 전체 상품 */}
         </div>
