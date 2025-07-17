@@ -5,7 +5,11 @@
 import CartList from '@/app/mypage/cart/CartList';
 import Button from '@/components/common/Button';
 
+import { getProducts } from '@/data/functions/post';
+import { ProductType } from '@/types';
+
 export default async function Cart() {
+  const res = await getProducts();
   return (
     <main className="flex flex-col h-full">
       <div className="lg:w-[49.875rem] flex flex-col lg:gap-2">
@@ -13,9 +17,13 @@ export default async function Cart() {
         <hr className="text-light-gray w-full" />
       </div>
       <form>
-        <CartList />
-        <CartList />
-        <CartList />
+        {res.ok ? (
+          res.item.map((product: ProductType) => (
+            <CartList key={product._id} product={product} />
+          ))
+        ) : (
+          <p>{res.message}</p>
+        )}
         <p className="text-right lg:mt-[1.875rem] lg:text-lg font-semibold">
           총 상품 금액 <span className="text-[#8B0505]">59,900</span>원
         </p>

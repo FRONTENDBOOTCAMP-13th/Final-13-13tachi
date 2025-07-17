@@ -4,8 +4,9 @@ import Image from 'next/image';
 import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
 import Checkbox from '@/components/common/Checkbox';
+import { ProductType } from '@/types';
 
-export default function CartList() {
+export default async function CartList({ product }: { product: ProductType }) {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex justify-between lg:w-[49.375rem] lg:my-[30px]">
@@ -24,11 +25,11 @@ export default function CartList() {
               <div>
                 <>
                   <span className="lg:text-base font-semibold text-dark-green mr-0.5">
-                    못난이 사과
+                    {product.name}
                   </span>
                   <span className="lg:text-sm">(350g)</span>
                 </>
-                <p className="lg:text-sm mt-1">3000원</p>
+                <p className="lg:text-sm mt-1">{product.price}</p>
               </div>
               <div className="flex flex-row justify-center items-center gap-5 border-[0.0625rem] rounded-lg lg:w-20 lg:h-[1.875rem] p-1">
                 <button className="lg:text-base font-semibold hover:cursor-pointer">
