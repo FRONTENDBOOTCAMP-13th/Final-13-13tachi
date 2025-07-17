@@ -100,6 +100,7 @@ export default function RecipeWritePage() {
             <input
               type="file"
               id="fileInput"
+              required
               onChange={e => {
                 if (e.target.files?.[0]) {
                   setFileName(e.target.files[0].name);
@@ -122,7 +123,9 @@ export default function RecipeWritePage() {
             </div>
           </div>
           <div className="flex justify-end mt-5">
-            <Button size="xxl">작성완료</Button>
+            <Button size="xxl" type="submit">
+              작성완료
+            </Button>
           </div>
         </form>
       </div>
