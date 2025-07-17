@@ -21,7 +21,7 @@ export default function RecipeSearchInput() {
   };
 
   return (
-    <div className="flex items-center lg:w-[285px] lg:h-[40px] border border-dark-green rounded-3xl overflow-hidden">
+    <div className="flex items-center lg:w-[17.8125rem] lg:h-[2.5rem] border border-dark-green rounded-3xl overflow-hidden">
       <input
         type="text"
         placeholder="상품명을 입력해주세요"
