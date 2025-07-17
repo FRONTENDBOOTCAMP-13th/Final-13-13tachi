@@ -16,7 +16,7 @@ export default function Order() {
         <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
           <Link href="/">HOME</Link>
           <span>{' > '}</span>
-          <Link href="/recipe/list">레시피</Link>
+          <Link href="/recipe/list">주문 정보 입력</Link>
         </h2>
 
         <h3 className="lg:w-full lg:text-5xl font-semibold mb-[2.1875rem]">
