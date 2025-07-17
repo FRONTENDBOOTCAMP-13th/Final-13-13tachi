@@ -8,6 +8,14 @@ import { usePathname } from 'next/navigation';
 import profilePic from '../../images/profile.jpg';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import {
+  BookOpen,
+  Heart,
+  IdCard,
+  LogOut,
+  ReceiptText,
+  ShoppingCart,
+} from 'lucide-react';
 
 export default function RootLayout({
   children,
@@ -46,49 +54,55 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/cart"
-                      className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/cart')} `}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/cart')}`}
                     >
-                      🛒 장바구니
+                      <ShoppingCart width={16} />
+                      <span>장바구니</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/mypage/likes"
-                      className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/likes')} `}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/likes')} `}
                     >
-                      🖤 내가 찜한 상품
+                      <Heart width={16} />
+                      <span>내가 찜한 상품</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/mypage/buylist"
-                      className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/buylist')} ${isActive('/mypage/buyinfo')}`}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/buylist')} ${isActive('/mypage/buyinfo')}`}
                     >
-                      🧾 주문내역
+                      <ReceiptText width={16} />
+                      <span>주문내역</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/mypage/recipe"
-                      className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myrecipe')} ${isActive('/mypage/recipe/likerecipe')}`}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myrecipe')} ${isActive('/mypage/recipe/likerecipe')}`}
                     >
-                      📖 레시피
+                      <BookOpen width={16} />
+                      <span>레시피</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/mypage/user"
-                      className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
                     >
-                      🪪 회원정보
+                      <IdCard width={16} />
+                      <span>회원정보</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href=""
-                      className="block hover:text-[var(--color-dark-green)] hover:font-semibold"
+                      className="flex flex-row gap-2 hover:text-[var(--color-dark-green)] hover:font-semibold"
                     >
-                      ⌽ 로그아웃
+                      <LogOut width={16} />
+                      <span>로그아웃</span>
                     </Link>
                   </li>
                 </ul>
