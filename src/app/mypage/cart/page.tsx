@@ -10,6 +10,7 @@ import { ProductType } from '@/types';
 
 export default async function Cart() {
   const res = await getProducts();
+
   return (
     <main className="flex flex-col h-full">
       <div className="lg:w-[49.875rem] flex flex-col lg:gap-2">
