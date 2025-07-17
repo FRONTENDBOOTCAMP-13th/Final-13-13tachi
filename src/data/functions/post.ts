@@ -1,4 +1,5 @@
-import { ApiResPromise, ProductType, CartItemType } from '@/types';
+import { ApiCartItem, ApiResPromise, ProductType } from '@/types';
+// import useUserStore from '@/zustand/useStore';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
@@ -19,14 +20,17 @@ export async function getProducts(): ApiResPromise<ProductType[]> {
   }
 }
 
-// 장바구니 목록 불러오기(비회원)
-export async function getCartProducts(): ApiResPromise<CartItemType[]> {
+// 장바구니 목록 불러오기
+export async function getCartProducts(
+  accessToken: string,
+): ApiResPromise<ApiCartItem[]> {
   try {
     const res = await fetch(`${API_URL}/carts/`, {
       headers: {
         'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
       },
-      cache: 'force-cache',
+      cache: 'no-store',
     });
     return res.json();
   } catch (error) {
