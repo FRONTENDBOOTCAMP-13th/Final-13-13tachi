@@ -1,10 +1,9 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import AllItems from '@/app/shopping/AllItems';
-import HotItems from '@/app/shopping/HotItems';
 import Search from '@/components/common/Search';
 
-export default function ShoppingList() {
+export default function ShoppingSearch() {
   return (
     <>
       <Header />
@@ -25,16 +24,11 @@ export default function ShoppingList() {
           </div>
           {/* ED: Search Bar */}
 
-          {/* ST: 인기상품 */}
-          <div className="lg:mt-7.5">
-            <h3 className="font-bold text-dark-green lg:text-3xl">인기 상품</h3>
-            <HotItems />
-          </div>
-          {/* ED: 인기상품 */}
-
           {/* ST: 전체 상품 */}
           <div className="lg:mt-7">
-            <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
+            <h3 className="font-bold text-dark-green lg:text-3xl">
+              &apos;토마토&apos; 검색 결과
+            </h3>
             <AllItems />
           </div>
           {/* ED: 전체 상품 */}

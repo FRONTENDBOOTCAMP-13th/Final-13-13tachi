@@ -13,7 +13,7 @@ export default function Search() {
       />
       <button
         type="submit"
-        className="w-10 h-full flex justify-center items-center"
+        className="w-10 h-full flex justify-center items-center cursor-pointer"
       >
         <Image src="/search.svg" alt="검색" width={16} height={16} />
       </button>
