@@ -40,6 +40,7 @@ export default function SignupForm() {
             autoComplete="email"
             placeholder="이메일을 입력하세요"
             className="w-[20rem]"
+            required
           />
           <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
             {state?.ok === 0 && state.errors?.email?.msg}
@@ -63,6 +64,7 @@ export default function SignupForm() {
             autoComplete="new-password"
             placeholder="비밀번호를 입력하세요"
             className="w-[20rem]"
+            required
           />
           <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
             {state?.ok === 0 && state.errors?.password?.msg}
@@ -89,6 +91,7 @@ export default function SignupForm() {
             type="password"
             placeholder="비밀번호를 한번 더 입력하세요"
             className="w-[20rem]"
+            required
           />
           <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400"></p>
         </div>
@@ -110,6 +113,7 @@ export default function SignupForm() {
             autoComplete="name"
             placeholder="이름을 입력하세요"
             className="w-[20rem]"
+            required
           />
           <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
             {state?.ok === 0 && state.errors?.name?.msg}
@@ -133,6 +137,7 @@ export default function SignupForm() {
             autoComplete="tel"
             placeholder="전화번호를 입력하세요"
             className="w-[20rem]"
+            required
           />
           <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
             {state?.ok === 0 && state.errors?.phone?.msg}
@@ -158,6 +163,7 @@ export default function SignupForm() {
                 name="postcode"
                 placeholder="우편번호"
                 className="w-[8rem]"
+                required
               />
               <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
                 {state?.ok === 0 && state.errors?.address?.msg}
@@ -176,6 +182,7 @@ export default function SignupForm() {
             id="address-detail1"
             name="address-detail1"
             placeholder="상세주소를 입력하세요"
+            required
           />
           <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
             {state?.ok === 0 && state.errors?.address?.msg}
@@ -185,6 +192,7 @@ export default function SignupForm() {
             type="text"
             id="address-detail2"
             name="address-detail2"
+            required
           />
         </div>
       </div>

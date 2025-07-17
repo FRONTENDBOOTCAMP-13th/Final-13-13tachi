@@ -4,9 +4,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+// const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 import './header.css'; // nav 메뉴 해당 경로에서 active 시키는 css. header 에서만 사용
+import useUserStore from '@/zustand/useStore';
 
 export default function Header() {
+  const { user, resetUser } = useUserStore();
+
+  const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    resetUser();
+    alert('로그아웃 되었습니다.');
+  };
+
   // 주소창의 path 값 추출
   const pathname = usePathname();
   const isActive = (path: string) =>
@@ -60,14 +71,46 @@ export default function Header() {
               </Link>
             </li>
             <li className="h-full">
-              <Link
-                href="/login"
-                target="_self"
-                title="로그인 페이지 바로 가기"
-                className={`${isActive('/login')} block h-full content-center hover:text-yellow transition-all duration-100`}
-              >
-                로그인
-              </Link>
+              {user ? (
+                <form onSubmit={handleLogout}>
+                  <p className="flex items-center">
+                    {/* <Image
+                      className="w-8 h-8 object-cover rounded-full mr-2"
+                      src={
+                        user.image
+                          ? `${API_URL}/${user.image}`
+                          : '/images/front-end.png'
+                      }
+                      width="32"
+                      height="32"
+                      alt={`${user.name} 프로필 이미지`}
+                    /> */}
+                    <Link
+                      href="/mypage"
+                      target="_self"
+                      title="로그인 페이지 바로 가기"
+                      className={`${isActive('/login')} block h-full content-center hover:text-yellow transition-all duration-100`}
+                    >
+                      {user.name}님
+                    </Link>
+                    <button
+                      type="submit"
+                      className="bg-gray-900 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded"
+                    >
+                      로그아웃
+                    </button>
+                  </p>
+                </form>
+              ) : (
+                <Link
+                  href="/user/login"
+                  target="_self"
+                  title="로그인 페이지 바로 가기"
+                  className={`${isActive('/login')} block h-full content-center hover:text-yellow transition-all duration-100`}
+                >
+                  로그인
+                </Link>
+              )}
             </li>
           </ul>
         </nav>

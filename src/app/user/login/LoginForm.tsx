@@ -3,6 +3,7 @@
 import Button from '@/components/common/Button';
 import Checkbox from '@/components/common/Checkbox';
 import { login } from '@/data/actions/user';
+import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useActionState, useEffect } from 'react';
@@ -11,13 +12,26 @@ export default function LoginForm() {
   const router = useRouter();
   const [userState, formAction, isLoading] = useActionState(login, null);
   console.log(isLoading, userState);
+  const { setUser } = useUserStore(state => state);
 
   const redirect = useSearchParams().get('redirect');
 
   // setUser는 상태를 변경하는 함수이므로 useEffect에서 호출해야 한다.
   useEffect(() => {
     if (userState?.ok) {
+      setUser({
+        _id: userState.item._id,
+        email: userState.item.email,
+        name: userState.item.name,
+        type: userState.item.type,
+        image: userState.item.image,
+        token: {
+          accessToken: userState.item.token?.accessToken || '',
+          refreshToken: userState.item.token?.refreshToken || '',
+        },
+      });
       alert('로그인이 완료되었습니다.');
+
       if (redirect) {
         router.replace(redirect); // 돌아갈 페이지가 있을 경우 이동한다.
       } else {
