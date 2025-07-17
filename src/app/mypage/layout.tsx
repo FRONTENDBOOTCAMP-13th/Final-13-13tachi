@@ -24,10 +24,11 @@ export default function RootLayout({
       <div className="flex justify-center mt-[4.0625rem] mb-[6.25rem]">
         <div className="flex flex-row lg:max-w-5xl">
           <div className="flex flex-col lg:gap-[2.1875rem]">
-            <div className="flex flex-col lg:gap-[1.125rem]">
-              <p className="lg:text-base text-gray">HOME &gt; 마이페이지</p>
-              <h2 className="lg:text-5xl font-semibold">마이페이지</h2>
-            </div>
+            <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
+              <Link href="/">HOME</Link>
+              <span>{' > '}</span>
+              <Link href="/mypage">마이페이지</Link>
+            </h2>
             <div className="flex flex-row">
               <aside className="flex flex-col items-center lg:gap-[2.125rem] lg:w-[12.25rem] h-full bg-bg-gray text-black lg:p-[1.875rem] lg:mr-[1.875rem] rounded-lg">
                 <div className="flex flex-col items-center lg:gap-1">
