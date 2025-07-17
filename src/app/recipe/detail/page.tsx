@@ -17,7 +17,7 @@ export default function RecipeDetailPage() {
           <Link href="/recipe/detail">레시피 상세</Link>
         </h2>
 
-        <div className='px-15'>
+        <div className="px-15">
           <div className="flex justify-center mt-[4.0625rem]">
             <div className="lg:w-[56.25rem] lg:h-[31.25rem]">
               <Image

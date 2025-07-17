@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import Input from '@/components/common/Input';
+import Search from '@/components/common/Search';
 
 export default function RecipeSearchPage() {
   const params = useParams();
@@ -87,7 +87,7 @@ export default function RecipeSearchPage() {
           </div>
 
           <div className="flex justify-center mt-5">
-            <Input />
+            <Search />
           </div>
 
           <div className="flex justify-between mt-[1.5625rem]">
