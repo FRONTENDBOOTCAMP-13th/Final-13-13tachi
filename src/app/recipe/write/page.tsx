@@ -28,15 +28,22 @@ export default function RecipeWritePage() {
   ];
 
   const handleClick = (ingredient: string) => {
+    if (!selectedIngredients.includes(ingredient)) {
+      if (selectedIngredients.length >= 3) {
+        alert('재료 선택은 3개까지만 가능합니다!');
+        return;
+      }
+    }
+
     setSelectedIngredients(prev => {
       if (prev.includes(ingredient)) {
         return prev.filter(i => i !== ingredient);
       } else {
-        if (prev.length >= 3) return prev;
         return [...prev, ingredient];
       }
     });
   };
+
   return (
     <>
       <Header />
@@ -53,7 +60,10 @@ export default function RecipeWritePage() {
             placeholder="제목을 입력 해주세요."
             className="mt-[1.875rem] w-full h-[2.8125rem] border-1 border-light-gray rounded-lg pl-4"
           />
-          <p className="mt-[1.875rem] mb-5">사용하신 재료를 선택해주세요</p>
+          <p className="mt-[1.875rem] mb-5">
+            사용하신 재료를 선택해주세요 (최대 3개 까지만)
+            <span className="text-required-red ml-1">*</span>
+          </p>
           <div className="flex justify-between items-center mb-5">
             <div className="flex gap-4 flex-wrap">
               {ingredientList.map((item, index) => (
