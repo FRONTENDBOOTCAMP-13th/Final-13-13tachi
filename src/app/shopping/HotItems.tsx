@@ -1,4 +1,5 @@
 'use client';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -7,7 +8,7 @@ import { Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import '../../app/shopping/shopping.css';
+import './shopping.css';
 
 interface HotItems {
   title: string;
@@ -18,13 +19,13 @@ interface HotItems {
 
 const shoppingArr: HotItems[] = [
   {
-    title: '감쟈합니다11111111dsafsdfsfdsas',
+    title: '감쟈합니다',
     details: '1kg',
     price: '3,250원',
     img: '/assets/shopping/items1.png',
   },
   {
-    title: '바니바니바니바니 당kjkk근당근',
+    title: '바니바니바니바니 당근당근',
     details: '2개',
     price: '1,800원',
     img: '/assets/shopping/items2.png',
@@ -61,7 +62,7 @@ const shoppingArr: HotItems[] = [
   },
 ];
 
-export default function HotItemList() {
+export default function HotItems() {
   const hotItemList = shoppingArr.map((item, index) => {
     return (
       <SwiperSlide
@@ -79,26 +80,26 @@ export default function HotItemList() {
             height={170}
             className="rounded-[1.875rem]"
           />
-          <div className="text-center w-full">
-            <h4 className="relative block w-full lg:pr-4 lg:text-base">
+          <div className="relative text-center w-full">
+            <h4 className="relative block w-full lg:px-2.5 lg:text-base truncate">
               {item.title}
-              {/* TODO 내 찜목록은 filled로 보여지도록, 클릭하면 내 찜목록에 토글 되도록, 아이콘 filled와 토글 되도록, 로그인 안 되어 있을 경우에 클릭하면 로그인 페이지 안내 모달 나오도록 */}
-              <button
-                type="button"
-                className="absolute top-[0.25rem] right-0 cursor-pointer"
-              >
-                <Image
-                  src="/ico-zzim.svg"
-                  alt="찜하기 아이콘"
-                  width={16}
-                  height={15}
-                />
-              </button>
             </h4>
             <p className="text-gray lg:text-sm">{item.details}</p>
             <strong className="text-orange font-semibold inline-block lg:mt-1 lg:text-xl">
               {item.price}
             </strong>
+            {/* TODO 내 찜목록은 filled로 보여지도록, 클릭하면 내 찜목록에 토글 되도록, 아이콘 filled와 토글 되도록, 로그인 안 되어 있을 경우에 클릭하면 로그인 페이지 안내 모달 나오도록 */}
+            <button
+              type="button"
+              className="absolute top-[0.25rem] -right-1.5 cursor-pointer"
+            >
+              <Image
+                src="/ico-zzim.svg"
+                alt="찜하기 아이콘"
+                width={16}
+                height={15}
+              />
+            </button>
           </div>
         </Link>
       </SwiperSlide>

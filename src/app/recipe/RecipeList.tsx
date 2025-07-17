@@ -99,7 +99,7 @@ export default function RecipeList() {
                 index >= 4 ? 'mt-[60px]' : index >= 0 ? 'mt-[25px]' : ''
               }`}
             >
-              <figure className="lg:w-[15rem] lg:h-[19.375rem]">
+              <figure className="lg:w-[15rem]">
                 <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg">
                   <Image
                     src={item.img}

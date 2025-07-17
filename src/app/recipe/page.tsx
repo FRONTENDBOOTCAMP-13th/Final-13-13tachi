@@ -3,17 +3,17 @@ import RecipeCarousel from './RecipeCarousel';
 import RecipeList from './RecipeList';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import RecipeSearchInput from './search/RecipeSearch';
+import Input from '@/components/common/Input';
 
 export default function RecipeListPage() {
   return (
     <>
       <Header />
-      <div className="lg:max-w-5xl m-auto">
-        <h2 className="text-gray mt-[4.0625rem]">
+      <div className="lg:max-w-5xl mx-auto pt-[4.0625rem] pb-[6.25rem]">
+        <h2 className="text-gray">
           <Link href="/">HOME</Link>
           <span>{' > '}</span>
-          <Link href="/recipe/list">레시피</Link>
+          <Link href="/recipe">레시피</Link>
         </h2>
 
         <div>
@@ -23,19 +23,17 @@ export default function RecipeListPage() {
         </div>
 
         <div className="flex justify-center mt-5">
-          <RecipeSearchInput />
+          <Input />
         </div>
-        <h2 className="text-3xl text-dark-green font-semibold mt-[1.875rem]">
+        <h2 className="text-5xl text-dark-green font-semibold mt-[1.875rem]">
           인기 레시피
         </h2>
         {/* 레시피 캐러셀 */}
 
         <RecipeCarousel />
-        <h3 className="text-xl text-dark-green font-bold">전체 레시피</h3>
+        <h3 className="text-3xl text-dark-green font-bold">전체 레시피</h3>
         <RecipeList />
       </div>
-      {/* margin div */}
-      <div className="mb-25" />
       <Footer />
     </>
   );

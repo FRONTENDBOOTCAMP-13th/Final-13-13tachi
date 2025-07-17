@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import RecipeSearchInput from '../RecipeSearch';
+import Input from '@/components/common/Input';
 
 export default function RecipeSearchPage() {
   const params = useParams();
@@ -73,11 +73,11 @@ export default function RecipeSearchPage() {
     <>
       <div>
         <Header />
-        <div className="lg:max-w-5xl m-auto">
-          <h2 className="text-gray mt-[4.0625rem]">
+        <div className="lg:max-w-5xl mx-auto pt-[4.0625rem] pb-[6.25rem]">
+          <h2 className="text-gray">
             <Link href="/">HOME</Link>
             <span>{' > '}</span>
-            <Link href="/recipe/list">레시피</Link>
+            <Link href="/recipe">레시피</Link>
           </h2>
 
           <div>
@@ -87,12 +87,12 @@ export default function RecipeSearchPage() {
           </div>
 
           <div className="flex justify-center mt-5">
-            <RecipeSearchInput />
+            <Input />
           </div>
 
           <div className="flex justify-between mt-[1.5625rem]">
             <div>
-              <span className="text-xl font-bold text-dark-green">{`'${ingredient}'를 이용한 레시피`}</span>
+              <span className="text-5xl font-bold text-dark-green">{`'${ingredient}'를 이용한 레시피`}</span>
             </div>
             <Link
               href="/recipe/write"
@@ -111,7 +111,7 @@ export default function RecipeSearchPage() {
                     index >= 4 ? 'mt-[60px]' : 'mt-[25px]'
                   }`}
                 >
-                  <figure className="lg:w-[15rem] lg:h-[19.375rem]">
+                  <figure className="lg:w-[15rem]">
                     <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg">
                       <Image
                         src={item.img}
@@ -159,7 +159,6 @@ export default function RecipeSearchPage() {
           )}
         </div>
       </div>
-      <div className="mb-25" />
       <Footer />
     </>
   );

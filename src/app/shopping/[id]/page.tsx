@@ -10,7 +10,7 @@ export default function ShoppingDetail() {
     <>
       <Header />
       <main>
-        <div className="mx-auto lg:max-w-5xl lg:pt-17.5 lg:py-25">
+        <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
           {/* ST: Title */}
           <div>
             <p className="text-gray">HOME &gt; 장보기</p>
