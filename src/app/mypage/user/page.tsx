@@ -1,3 +1,4 @@
+'use client';
 // import Link from 'next/link';
 
 import Image from 'next/image';
@@ -5,8 +6,10 @@ import Image from 'next/image';
 // 임시 이미지 불러오기
 import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
+import useUserStore from '@/zustand/useStore';
 
-export default async function User() {
+export default function User() {
+  const { user } = useUserStore();
   return (
     <div className="h-full">
       <div className="lg:w-[49.875rem] flex flex-col lg:gap-2">
@@ -26,22 +29,25 @@ export default async function User() {
             <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">이름</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
-              <span>홍길동</span>
+              <span>{user?.name ?? '홍길동'}</span>
             </p>
             <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">이메일</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
-              <span>asd123@naver.com</span>
+              <span>{user?.email ?? 'asd123@naver.com'}</span>
             </p>
             <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
-              <span className="font-semibold">아이디</span>
+              <span className="font-semibold">전화번호</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
-              <span>gildong123</span>
+              <span>{user?.phone ?? 'asd123@naver.com'}</span>
             </p>
             <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">주소</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
-              <span>123-123 서울 종로구 종로 3길 17, 광화문 D타워</span>
+              <span>
+                {user?.address ?? 'asd123@naver.com'}123-123 서울 종로구 종로
+                3길 17, 광화문 D타워
+              </span>
             </p>
           </div>
         </div>
