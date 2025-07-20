@@ -92,7 +92,6 @@ export default function LoginForm() {
           <Button size="md">로그인</Button>
         </div>
       </form>
-      ;
     </>
   );
 }
