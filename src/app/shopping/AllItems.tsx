@@ -1,6 +1,6 @@
 'use client';
 
-import ALLItemList from '@/app/shopping/AllItemList';
+import ProductCard from '@/components/ProductCard';
 import { useState } from 'react';
 
 interface AllItems {
@@ -195,7 +195,7 @@ export default function AllItems() {
           정렬기준
         </button>
       </div>
-      <ALLItemList filteredItems={filteredItems} />
+      <ProductCard filteredItems={filteredItems} />
     </>
   );
 }

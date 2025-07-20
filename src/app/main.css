@@ -1,0 +1,44 @@
+/* 메인 슬라이드 */
+.main-slide .swiper-button-prev,
+.main-slide .swiper-button-next {
+  color: white;
+}
+
+.main-slide .swiper-button-prev {
+  left: 5%;
+}
+
+.main-slide .swiper-button-next {
+  right: 5%;
+}
+
+/* 우리가 함께 만든 변화 */
+.value-slide .swiper-wrapper {
+  padding-top: 100px;
+}
+
+.value-slide .swiper-slide {
+  scale: 0.5;
+  opacity: 0.4;
+  translate: 0 -50%;
+  transition: 1s;
+}
+
+.value-slide .swiper-slide-active {
+  scale: 1;
+  opacity: 1;
+  translate: 0 0;
+}
+
+.value-slide .swiper-button-prev,
+.value-slide .swiper-button-next {
+  color: var(--color-dark-green);
+}
+
+.value-slide .swiper-button-prev {
+  left: 13%;
+}
+
+.value-slide .swiper-button-next {
+  right: 13%;
+}
