@@ -45,8 +45,8 @@ export default function User() {
               <span className="font-semibold">주소</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
               <span>
-                {user?.address ?? 'asd123@naver.com'}123-123 서울 종로구 종로
-                3길 17, 광화문 D타워
+                {user?.address ??
+                  '123-123 서울 종로구 종로 3길 17, 광화문 D타워'}
               </span>
             </p>
           </div>

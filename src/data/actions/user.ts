@@ -25,6 +25,8 @@ export async function createUser(
       name: formData.get('name'),
       email: formData.get('email'),
       password: formData.get('password'),
+      phone: formData.get('phone'),
+      address: `${formData.get('postcode') ?? ''} ${formData.get('addressDetail1') ?? ''}`,
     };
 
     // 회원가입 API 호출

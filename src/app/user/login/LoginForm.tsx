@@ -23,6 +23,8 @@ export default function LoginForm() {
         _id: userState.item._id,
         email: userState.item.email,
         name: userState.item.name,
+        phone: userState.item.phone,
+        address: userState.item.address,
         type: userState.item.type,
         image: userState.item.image,
         token: {
