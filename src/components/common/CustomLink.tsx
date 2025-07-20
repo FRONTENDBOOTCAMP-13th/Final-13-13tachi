@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
-  variant?: 'green' | 'white';
+  variant?: 'green' | 'white' | 'orange';
   size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxlsm';
 }
 
@@ -18,6 +18,7 @@ export default function CustomLink({
   const variantStyle = {
     green: 'bg-dark-green text-white',
     white: 'bg-bg-gray text-black border border-light-gray',
+    orange: 'bg-orange text-white',
   };
 
   const sizeStyle = {
