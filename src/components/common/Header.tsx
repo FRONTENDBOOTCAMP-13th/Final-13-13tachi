@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 // const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-import './header.css'; // nav 메뉴 해당 경로에서 active 시키는 css. header 에서만 사용
+import './layout.css'; // nav 메뉴 해당 경로에서 active 시키는 css. header/footer 에서만 사용
 import useUserStore from '@/zustand/useStore';
 
 export default function Header() {

@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import {
   CircleUserRound,
@@ -9,6 +12,12 @@ import {
 } from 'lucide-react';
 
 export default function Footer() {
+  // 주소창의 path 값 추출
+  const pathname = usePathname();
+  const isActive = (path: string) => (pathname === path ? 'ft-nav-active' : '');
+
+  const isFilled = (path: string) => (pathname === path ? 2 : 1);
+
   return (
     <footer className=" bg-dark-green w-full pt-7.5 pb-25 md:py-8.5">
       <div className="mx-auto flex flex-col items-center md:items-start gap-6 h-full text-white px-5 md:px-7.5 lg:px-0 lg:max-w-5xl">
@@ -71,26 +80,47 @@ export default function Footer() {
       <nav className="fixed bottom-0 left-0 right-0 px-5 py-2.5 bg-white border-t border-light-gray shadow-[var(--shadow-image)] md:hidden">
         <ul className="flex justify-around">
           <li className="w-11.5">
-            <Link href="#" className="flex flex-col items-center gap-1">
-              <House strokeWidth={1} className="w-auto h65.5" />
+            <Link
+              href="/"
+              className={`${isActive('/')} flex flex-col items-center gap-1`}
+            >
+              <House strokeWidth={isFilled('/')} className="w-auto h-6.5" />
               <span className="text-2xs">홈</span>
             </Link>
           </li>
           <li className="w-11.5">
-            <Link href="#" className="flex flex-col items-center gap-1">
-              <ShoppingBasket strokeWidth={1} className="w-auto h-6.5" />
+            <Link
+              href="/shopping"
+              className={`${isActive('/shopping')} flex flex-col items-center gap-1`}
+            >
+              <ShoppingBasket
+                strokeWidth={`${isFilled(`/shopping`)}`}
+                className="w-auto h-6.5"
+              />
               <span className="text-2xs">장보기</span>
             </Link>
           </li>
           <li className="w-11.5">
-            <Link href="#" className="flex flex-col items-center gap-1">
-              <CookingPot strokeWidth={1} className="w-auto h-6.5" />
+            <Link
+              href="/recipe"
+              className={`${isActive('/recipe')} flex flex-col items-center gap-1`}
+            >
+              <CookingPot
+                strokeWidth={`${isFilled(`/recipe`)}`}
+                className="w-auto h-6.5"
+              />
               <span className="text-2xs">레시피</span>
             </Link>
           </li>
           <li className="w-11.5">
-            <Link href="#" className="flex flex-col items-center gap-1">
-              <CircleUserRound strokeWidth={1} className="w-auto h-6.5" />
+            <Link
+              href="/mypage"
+              className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
+            >
+              <CircleUserRound
+                strokeWidth={`${isFilled(`/mypage`)}`}
+                className="w-auto h-6.5"
+              />
               <span className="text-2xs">마이페이지</span>
             </Link>
           </li>

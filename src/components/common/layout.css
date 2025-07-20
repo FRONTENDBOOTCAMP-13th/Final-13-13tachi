@@ -1,0 +1,9 @@
+.nav-active {
+  color: var(--color-yellow);
+}
+
+.ft-nav-active {
+  color: var(--color-dark-green);
+  font-weight: bold;
+  fill: green;
+}
