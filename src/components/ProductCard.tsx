@@ -1,3 +1,4 @@
+import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -40,12 +41,7 @@ export default function ProductCard({ filteredItems }: ProductCardProps) {
               type="button"
               className="absolute top-[0.25rem] right-0 cursor-pointer"
             >
-              <Image
-                src="/ico-zzim.svg"
-                alt="찜하기 아이콘"
-                width={16}
-                height={15}
-              />
+              <Heart strokeWidth={1} className="w-4.5 h-4.5" />
             </button>
           </div>
         </Link>

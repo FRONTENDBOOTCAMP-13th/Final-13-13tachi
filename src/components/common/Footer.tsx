@@ -85,7 +85,7 @@ export default function Footer() {
               className={`${isActive('/')} flex flex-col items-center gap-1`}
             >
               <House strokeWidth={isFilled('/')} className="w-auto h-6.5" />
-              <span className="text-2xs">홈</span>
+              <span className="text-2xs">홈으로</span>
             </Link>
           </li>
           <li className="w-11.5">
