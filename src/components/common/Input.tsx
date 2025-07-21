@@ -25,7 +25,7 @@ export default function Input({
       className={`lg:h-[2.8125rem] ${widthClasses[width]} lg:px-3 lg:text-sm lg:placeholder:text-sm border border-light-gray rounded-lg text-black
         ${
           readOnly
-            ? 'bg-gray-200 text-gray-500 cursor-default placeholder-gray-400 focus:outline-none'
+            ? 'bg-gray-200 text-gray-500 cursor-default placeholder-disable-gray focus:outline-none'
             : 'bg-white focus:outline-gray'
         }
         ${className}`}

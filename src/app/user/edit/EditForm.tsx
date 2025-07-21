@@ -2,10 +2,11 @@
 
 import { startTransition, useActionState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { createUser } from '@/data/actions/user';
+import { updateUser } from '@/data/actions/user';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
+import useUserStore from '@/zustand/useStore';
 
 interface SignupFormProps {
   email: string;
@@ -18,8 +19,9 @@ interface SignupFormProps {
   addressDetail2: string;
 }
 
-export default function SignupForm() {
-  const [state, formAction, isLoading] = useActionState(createUser, null);
+export default function EditForm() {
+  const { user } = useUserStore();
+  const [state, formAction, isLoading] = useActionState(updateUser, null);
   const router = useRouter();
 
   const {
@@ -28,24 +30,53 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
-  useEffect(() => {
-    if (state?.ok) {
-      alert('회원 가입이 완료되었습니다');
-      router.replace('/user/login');
-    } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
-    }
-  }, [state, router]);
-
   const onSubmit = (data: SignupFormProps) => {
+    if (!user) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    //수정한 값만 보내고 수정하지 않은 값은 보내지 않도록
     const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value as string);
-    });
+
+    formData.append('phone', data.phone || user.phone || '');
+    formData.append('postcode', data.postcode || user.postcode || '');
+    formData.append(
+      'addressDetail1',
+      data.addressDetail1 || user.addressDetail1 || '',
+    );
+    formData.append(
+      'addressDetail2',
+      data.addressDetail2 || user.addressDetail2 || '',
+    );
+    formData.append('password', data.password || '');
+
+    formData.append('userId', user._id.toString());
+    formData.append('accessToken', user.token?.accessToken ?? '');
+
     startTransition(() => {
       formAction(formData);
     });
   };
+
+  useEffect(() => {
+    if (state?.ok) {
+      const updatedUser = Array.isArray(state.item)
+        ? state.item[0]
+        : state.item;
+
+      useUserStore.setState(prev => ({
+        user: {
+          ...prev.user,
+          ...updatedUser,
+        },
+      }));
+      alert('수정이 완료되었습니다');
+      router.replace('/mypage/user');
+    } else if (state?.ok === 0 && !state?.errors) {
+      alert(state?.message);
+    }
+  }, [state, router]);
 
   return (
     <form
@@ -53,15 +84,12 @@ export default function SignupForm() {
       noValidate
       className="lg:w-[28.625rem] space-y-[0.625rem]"
     >
-      <input type="hidden" name="type" value="user" />
-
       {/* 이메일 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center w-[6rem]">
           <label htmlFor="email" className="block text-black lg:text-base">
             이메일
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
@@ -69,20 +97,10 @@ export default function SignupForm() {
             type="email"
             placeholder="이메일을 입력하세요"
             className="w-[20rem]"
-            {...register('email', {
-              required: '이메일을 입력해주세요',
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: '이메일 형식에 맞게 입력해주세요',
-              },
-            })}
+            defaultValue={user?.email ?? ''}
+            disabled
+            readOnly
           />
-          {errors.email && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-              {errors.email.message},
-              {state?.ok === 0 && state.errors?.email?.msg}
-            </p>
-          )}
         </div>
       </div>
 
@@ -154,7 +172,6 @@ export default function SignupForm() {
           <label htmlFor="name" className="block text-black lg:text-base">
             이름
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
@@ -162,15 +179,10 @@ export default function SignupForm() {
             type="text"
             autoComplete="name"
             placeholder="이름을 입력하세요"
-            {...register('name', {
-              required: '이름를 입력해주세요',
-            })}
+            defaultValue={user?.name ?? ''}
+            disabled
+            readOnly
           />
-          {errors.name && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-              {errors.name.message}
-            </p>
-          )}
         </div>
       </div>
 
@@ -180,7 +192,6 @@ export default function SignupForm() {
           <label htmlFor="phone" className="block text-black lg:text-base">
             전화번호
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
@@ -189,6 +200,7 @@ export default function SignupForm() {
             autoComplete="tel"
             placeholder="전화번호를 입력하세요"
             className="w-[20rem]"
+            defaultValue={user?.phone ?? ''}
             {...register('phone', {
               required: '전화번호를 입력해주세요',
               pattern: {
@@ -211,7 +223,6 @@ export default function SignupForm() {
           <label htmlFor="address" className="block text-black lg:text-base">
             주소
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div className="flex flex-col gap-[0.625rem] ">
           <div className="flex gap-[0.625rem] items-center">
@@ -222,6 +233,7 @@ export default function SignupForm() {
                 id="postcode"
                 placeholder="우편번호"
                 className="w-[8rem]"
+                defaultValue={user?.postcode ?? ''}
                 {...register('postcode', {
                   required: '우편번호를 입력해주세요',
                   pattern: {
@@ -250,22 +262,22 @@ export default function SignupForm() {
             type="text"
             id="addressDetail1"
             placeholder="상세주소를 입력하세요"
-            {...register('addressDetail1', {
-              required: '상세주소를 입력해주세요',
-            })}
+            defaultValue={user?.addressDetail1 ?? ''}
+            {...register('addressDetail1')}
           />
-          {errors.addressDetail1 && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-              {errors.addressDetail1.message}
-            </p>
-          )}
-          <Input type="text" id="addressDetail2" name="addressDetail2" />
+
+          <Input
+            type="text"
+            id="addressDetail2"
+            defaultValue={user?.addressDetail2 ?? ''}
+            {...register('addressDetail2')}
+          />
         </div>
       </div>
 
       <div className="flex justify-center items-center lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
-          가입하기
+          수정하기
         </Button>
       </div>
     </form>

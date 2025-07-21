@@ -26,7 +26,9 @@ export async function createUser(
       email: formData.get('email'),
       password: formData.get('password'),
       phone: formData.get('phone'),
-      address: `${formData.get('postcode') ?? ''} ${formData.get('addressDetail1') ?? ''}`,
+      postcode: formData.get('postcode'),
+      addressDetail1: formData.get('addressDetail1'),
+      addressDetail2: formData.get('addressDetail2'),
     };
 
     // 회원가입 API 호출
@@ -82,5 +84,44 @@ export async function login(
     return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
 
+  return data;
+}
+
+/**
+ * 회원정보 수정 함수
+ * @param state - 이전 상태(사용하지 않음)
+ * @param formData - 회원정보 폼 데이터(FormData 객체)
+ * @returns 회원정보 결과 응답 객체
+ */
+export async function updateUser(
+  state: ApiRes<User> | null,
+  formData: FormData,
+): ApiResPromise<User> {
+  const userId = formData.get('userId');
+  const accessToken = formData.get('accessToken');
+
+  if (!userId || !accessToken) {
+    return { ok: 0, message: '인증 정보가 없습니다.' };
+  }
+
+  const body = {
+    phone: formData.get('phone'),
+    password: formData.get('password'),
+    postcode: formData.get('postcode'),
+    addressDetail1: formData.get('addressDetail1'),
+    addressDetail2: formData.get('addressDetail2'),
+  };
+
+  const res = await fetch(`${API_URL}/users/${userId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+  const data = await res.json();
   return data;
 }
