@@ -17,15 +17,15 @@ export default function RecipeListPage() {
         </h2>
 
         <div>
-          <h1 className="text-center text-5xl font-bold mt-[1.5625rem]">
+          <h1 className="text-center text-5xl font-bold mt-5">
             오늘의 요리는?
           </h1>
         </div>
 
-        <div className="flex justify-center mt-5">
-          <SearchBar />
+        <div className="flex justify-center lg:mt-[1.5625rem]">
+          <SearchBar handleType="handleRecipeSearch" />
         </div>
-        <h2 className="text-5xl text-dark-green font-semibold mt-[1.875rem]">
+        <h2 className="text-3xl text-dark-green font-semibold mt-[1.875rem]">
           인기 레시피
         </h2>
         {/* 레시피 캐러셀 */}
