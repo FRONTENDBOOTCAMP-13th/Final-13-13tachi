@@ -39,7 +39,7 @@ export default function LoginForm() {
       if (redirect) {
         router.replace(redirect); // 돌아갈 페이지가 있을 경우 이동한다.
       } else {
-        router.back(); // 이전 페이지로 이동한다.
+        router.push('/'); // 이전 페이지로 이동한다.
       }
     } else {
       if (!userState?.errors && userState?.message) {
