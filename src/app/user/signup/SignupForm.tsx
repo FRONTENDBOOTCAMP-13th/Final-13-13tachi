@@ -119,7 +119,7 @@ export default function SignupForm() {
 
       {/* 비밀번호 확인 */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
+        <div className="flex items-center w-[7rem]">
           <label
             htmlFor="passwordConfirm"
             className="block text-black lg:text-base"
@@ -251,7 +251,7 @@ export default function SignupForm() {
               {errors.addressDetail1.message}
             </p>
           )}
-          <Input type="text" id="addressDetail2" />
+          <Input type="text" id="addressDetail2" name="addressDetail2" />
         </div>
       </div>
 
