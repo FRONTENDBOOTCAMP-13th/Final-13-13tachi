@@ -7,9 +7,11 @@ import Image from 'next/image';
 import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
+import { useRouter } from 'next/router';
 
 export default function User() {
   const { user } = useUserStore();
+  const router = useRouter();
   console.log('user in MyPage:', user);
   return (
     <div className="h-full">
@@ -52,7 +54,11 @@ export default function User() {
           </div>
         </div>
         <div className="flex justify-end">
-          <Button size="xxl" variant="green">
+          <Button
+            size="xxl"
+            variant="green"
+            onClick={() => router.push('/user/edit')}
+          >
             회원정보 수정하기
           </Button>
         </div>
