@@ -3,13 +3,13 @@ import Link from 'next/link';
 
 export default async function LoginPage() {
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative flex items-center justify-center lg:min-h-[calc(100dvh-21.625rem)]">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
         style={{ backgroundImage: "url('/login-img.svg')" }}
       />
       <div className="absolute inset-0 -z-10 bg-black opacity-50" />
-      <div className="lg:pt-[12.5rem] lg:pb-[14.0625rem] flex flex-col items-center ">
+      <div className="flex flex-col items-center ">
         <h2 className="lg:text-xl lg:font-bold text-center text-white lg:mb-[1.25rem]">
           흙내음 상점에서 <br /> 자연의 맛을 로그인하세요
         </h2>
