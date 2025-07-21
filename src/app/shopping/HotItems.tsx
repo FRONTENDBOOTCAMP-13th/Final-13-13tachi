@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import './shopping.css';
+import { Heart } from 'lucide-react';
 
 interface HotItems {
   title: string;
@@ -93,12 +94,7 @@ export default function HotItems() {
               type="button"
               className="absolute top-[0.25rem] -right-1.5 cursor-pointer"
             >
-              <Image
-                src="/ico-zzim.svg"
-                alt="찜하기 아이콘"
-                width={16}
-                height={15}
-              />
+              <Heart strokeWidth={1} className="w-4.5 h-4.5" />
             </button>
           </div>
         </Link>

@@ -4,6 +4,7 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import CustomLink from '@/components/common/CustomLink';
 import Image from 'next/image';
+import { Heart } from 'lucide-react';
 
 export default function ShoppingDetail() {
   return (
@@ -34,14 +35,8 @@ export default function ShoppingDetail() {
                     (350g)
                   </span>
                 </p>
-                <button type="button">
-                  <Image
-                    src="/ico-zzim.svg"
-                    alt="찜하기"
-                    width={18}
-                    height={17}
-                    className="cursor-pointer"
-                  />
+                <button type="button" className="cursor-pointer">
+                  <Heart strokeWidth={1} className="w-5 h-5" />
                 </button>
               </div>
               <div className="flex justify-between items-center lg:mt-3">
