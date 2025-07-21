@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import Search from '@/components/common/Search';
+import Search from '@/components/common/SearchBar';
 
 export default function RecipeSearchPage() {
   const params = useParams();

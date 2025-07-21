@@ -3,7 +3,7 @@ import RecipeCarousel from './RecipeCarousel';
 import RecipeList from './RecipeList';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import Search from '@/components/common/Search';
+import SearchBar from '@/components/common/SearchBar';
 
 export default function RecipeListPage() {
   return (
@@ -23,7 +23,7 @@ export default function RecipeListPage() {
         </div>
 
         <div className="flex justify-center mt-5">
-          <Search />
+          <SearchBar />
         </div>
         <h2 className="text-5xl text-dark-green font-semibold mt-[1.875rem]">
           인기 레시피

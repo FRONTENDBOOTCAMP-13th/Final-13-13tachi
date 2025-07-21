@@ -9,6 +9,7 @@ import Image from 'next/image';
 
 import './recipe.css';
 import Link from 'next/link';
+import { Bookmark } from 'lucide-react';
 
 interface Recipe {
   author: string;
@@ -73,13 +74,7 @@ export default function RecipeCarousel() {
             <figcaption className="pb-[3.75rem] pt-[0.9375rem] pl-5 pr-5 text-center max-h-[9.375rem]">
               <div className="relative flex items-center justify-center">
                 <p className="text-[#454545] text-xs">{item.author}</p>
-                <Image
-                  src="/imgs/ico-bookmark.png"
-                  alt="북마크"
-                  width={12}
-                  height={15}
-                  className="absolute right-0"
-                />
+                <Bookmark className="absolute right-0 w-5" />
               </div>
               <span className="text-orange text-sm mt-[0.5rem]">
                 {item.ingredients}

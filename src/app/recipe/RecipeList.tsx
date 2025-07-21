@@ -1,4 +1,5 @@
 'use client';
+import { Bookmark } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -113,13 +114,7 @@ export default function RecipeList() {
                     <span className="text-xl font-semibold max-w-[90%]">
                       {item.title}
                     </span>
-                    <Image
-                      src="/imgs/ico-bookmark.png"
-                      alt="북마크"
-                      width={15}
-                      height={20}
-                      className="absolute right-0 top-1"
-                    />
+                    <Bookmark className="absolute right-0 top-1" />
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-orange text-sm">

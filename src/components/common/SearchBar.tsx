@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Search } from 'lucide-react';
 
-export default function Search() {
+export default function SearchBar() {
   const [text, setText] = useState('');
   const router = useRouter();
 
@@ -38,7 +38,7 @@ export default function Search() {
         onClick={handleSearch}
         className="w-10 h-full flex justify-center items-center cursor-pointer"
       >
-        <Image src="/search.svg" alt="검색" width={16} height={16} />
+        <Search className="text-dark-green w-4" />
       </button>
     </div>
   );
