@@ -1,36 +1,30 @@
+import { ProductType } from '@/types';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Item = {
-  img: string;
-  title: string;
-  details: string;
-  price: string | number;
-};
-
-type ProductCardProps = {
-  filteredItems: Item[];
-};
+interface ProductCardProps {
+  filteredItems: ProductType[];
+}
 
 export default function ProductCard({ filteredItems }: ProductCardProps) {
-  const ProductCardList = filteredItems.map((item, index) => {
+  const ProductCardList = filteredItems.map((item: ProductType, index) => {
     return (
       <li key={index}>
         {/* //TODO 상세 페이지 연결 */}
         <Link href="#">
           <Image
-            src={item.img}
-            alt={`${item.title} 이미지`}
+            src={`/${item.mainImages![0].path}`}
+            alt={`${item.name} 이미지`}
             width={240}
             height={240}
             className="rounded-[0.5rem]"
           />
           <div className="relative lg:mt-4 w-full">
             <div className="flex gap-2 w-full lg:pr-6">
-              <h4 className="truncate  lg:text-base ">{item.title}</h4>
+              <h4 className="truncate  lg:text-base ">{item.name}</h4>
               <span className="text-gray lg:mt-[0.0625rem] lg:text-sm">
-                {item.details}
+                {item.extra?.details}
               </span>
             </div>
             <strong className="inlin-block text-orange lg:mt-1.5 lg:text-xl">
