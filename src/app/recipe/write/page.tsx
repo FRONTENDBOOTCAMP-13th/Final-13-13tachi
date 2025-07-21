@@ -4,10 +4,10 @@ import Link from 'next/link';
 import TextEditor from './TextEditor';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import Image from 'next/image';
 import { useState } from 'react';
 import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
+import { ChevronDown } from 'lucide-react';
 
 export default function RecipeWritePage() {
   const [fileName, setFileName] = useState('대표 이미지를 등록 해주세요');
@@ -80,11 +80,7 @@ export default function RecipeWritePage() {
               onClick={() => setToggleOpen(prev => !prev)}
               className="p-2"
             >
-              <Image
-                src="/imgs/toggle.svg"
-                alt="토글메뉴"
-                width={14}
-                height={8}
+              <ChevronDown
                 className={`${toggleOpen ? 'rotate-180' : ''} transition-transform`}
               />
             </button>

@@ -2,7 +2,7 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import AllItems from '@/app/shopping/AllItems';
 import HotItems from '@/app/shopping/HotItems';
-import Search from '@/components/common/Search';
+import SearchBar from '@/components/common/SearchBar';
 
 export default function ShoppingList() {
   return (
@@ -21,7 +21,7 @@ export default function ShoppingList() {
 
           {/* ST: Search Bar */}
           <div className="w-fit lg:mt-[1.5625rem] lg:mx-auto">
-            <Search />
+            <SearchBar />
           </div>
           {/* ED: Search Bar */}
 
