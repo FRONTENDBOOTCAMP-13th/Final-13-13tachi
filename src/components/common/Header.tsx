@@ -26,7 +26,7 @@ export default function Header() {
   //TODO isLogin 확인해서 로그인 메뉴가 아이콘으로 바뀌도록
   //TODO 로그인 상태에서 아이콘 클릭하면 마이페이지 하위 메뉴 바로가는 링크
   return (
-    <header className="sticky top-0 left-0 w-full bg-dark-green z-10 py-2.5 lg:py-[1.0938rem]">
+    <header className="w-full bg-dark-green z-10 py-2.5 lg:py-[1.0938rem]">
       <div className="mx-auto flex justify-between items-center h-full px-5 md:px-7.5 lg:px-0 lg:max-w-5xl">
         <h1 className="relative w-13.5 h-[2.3125rem] lg:w-17 lg:h-[2.9375rem] lg:-mt-0.5">
           <Link href="/" target="self" title="홈 바로 가기" className="block">

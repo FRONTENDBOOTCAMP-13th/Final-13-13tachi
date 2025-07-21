@@ -20,7 +20,7 @@ export default function ShoppingSearch() {
 
           {/* ST: Search Bar */}
           <div className="w-fit lg:mt-[1.5625rem] lg:mx-auto">
-            <SearchBar />
+            <SearchBar handleType="handleProductSearch" />
           </div>
           {/* ED: Search Bar */}
 

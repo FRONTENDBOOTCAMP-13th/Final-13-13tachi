@@ -4,19 +4,37 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
 
-export default function SearchBar() {
+interface handleTypeProp {
+  handleType: 'handleRecipeSearch' | 'handleProductSearch';
+}
+
+export default function SearchBar({ handleType }: handleTypeProp) {
   const [text, setText] = useState('');
   const router = useRouter();
 
-  const handleSearch = () => {
+  const handleRecipeSearch = () => {
     if (text.trim()) {
       router.push(`/recipe/search/${encodeURIComponent(text.trim())}`);
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleProductSearch = () => {
+    if (text.trim()) {
+      router.push(`/shopping/search/${encodeURIComponent(text.trim())}`);
+    }
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    handleType: 'handleRecipeSearch' | 'handleProductSearch',
+  ) => {
     if (e.key === 'Enter') {
-      handleSearch();
+      console.log('handleKeyDown에서 받은 handleType:', handleType);
+      if (handleType === 'handleRecipeSearch') {
+        handleRecipeSearch();
+      } else if (handleType === 'handleProductSearch') {
+        handleProductSearch();
+      }
     }
   };
 
@@ -30,12 +48,16 @@ export default function SearchBar() {
         placeholder="상품명을 입력해주세요"
         value={text}
         onChange={e => setText(e.target.value)}
-        onKeyDown={handleKeyDown}
+        onKeyDown={e => handleKeyDown(e, handleType)}
         className="flex-grow lg:px-3 lg:text-sm outline-none"
       />
       <button
         type="button"
-        onClick={handleSearch}
+        onClick={
+          handleType === 'handleRecipeSearch'
+            ? handleRecipeSearch
+            : handleProductSearch
+        }
         className="w-10 h-full flex justify-center items-center cursor-pointer"
       >
         <Search className="text-dark-green w-4" />

@@ -21,7 +21,7 @@ export default function ShoppingList() {
 
           {/* ST: Search Bar */}
           <div className="w-fit lg:mt-[1.5625rem] lg:mx-auto">
-            <SearchBar />
+            <SearchBar handleType="handleProductSearch" />
           </div>
           {/* ED: Search Bar */}
 
@@ -33,7 +33,7 @@ export default function ShoppingList() {
           {/* ED: 인기상품 */}
 
           {/* ST: 전체 상품 */}
-          <div className="lg:mt-7">
+          <div className="lg:mt-12">
             <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
             <AllItems />
           </div>
