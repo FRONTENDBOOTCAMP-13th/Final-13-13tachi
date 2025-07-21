@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import useUserStore from '@/zustand/useStore';
+import AddressForm from '@/components/common/Address';
 
 interface SignupFormProps {
   email: string;
@@ -27,8 +28,18 @@ export default function EditForm() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormProps>({ mode: 'onChange' });
+
+  useEffect(() => {
+    if (user) {
+      setValue('phone', user.phone ?? '');
+      setValue('postcode', user.postcode ?? '');
+      setValue('addressDetail1', user.addressDetail1 ?? '');
+      setValue('addressDetail2', user.addressDetail2 ?? '');
+    }
+  }, [user, setValue]);
 
   const onSubmit = (data: SignupFormProps) => {
     if (!user) {
@@ -217,63 +228,7 @@ export default function EditForm() {
         </div>
       </div>
 
-      {/* 우편번호 */}
-      <div className="flex items-start justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="address" className="block text-black lg:text-base">
-            주소
-          </label>
-        </div>
-        <div className="flex flex-col gap-[0.625rem] ">
-          <div className="flex gap-[0.625rem] items-center">
-            <div>
-              <Input
-                width="xs"
-                type="text"
-                id="postcode"
-                placeholder="우편번호"
-                className="w-[8rem]"
-                defaultValue={user?.postcode ?? ''}
-                {...register('postcode', {
-                  required: '우편번호를 입력해주세요',
-                  pattern: {
-                    value: /^[0-9-]+$/,
-                    message: '숫자와 하이픈(-)만 입력 가능합니다',
-                  },
-                })}
-              />
-              {errors.postcode && (
-                <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-                  {errors.postcode.message}
-                </p>
-              )}
-            </div>
-            <button
-              type="button"
-              className="w-[4rem] h-[1.875rem] border-[0.0938rem] border-light-gray rounded-[0.3125rem] text-xs text-light-gray hover:border-[0.125rem]"
-            >
-              우편번호
-            </button>
-          </div>
-
-          {/* 상세주소 */}
-          <Input
-            width="md"
-            type="text"
-            id="addressDetail1"
-            placeholder="상세주소를 입력하세요"
-            defaultValue={user?.addressDetail1 ?? ''}
-            {...register('addressDetail1')}
-          />
-
-          <Input
-            type="text"
-            id="addressDetail2"
-            defaultValue={user?.addressDetail2 ?? ''}
-            {...register('addressDetail2')}
-          />
-        </div>
-      </div>
+      <AddressForm register={register} setValue={setValue} errors={errors} />
 
       <div className="flex justify-center items-center lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
