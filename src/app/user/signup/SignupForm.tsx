@@ -191,6 +191,10 @@ export default function SignupForm() {
             className="w-[20rem]"
             {...register('phone', {
               required: '전화번호를 입력해주세요',
+              pattern: {
+                value: /^[0-9-]+$/,
+                message: '숫자와 하이픈(-)만 입력 가능합니다',
+              },
             })}
           />
           {errors.phone && (
@@ -220,6 +224,10 @@ export default function SignupForm() {
                 className="w-[8rem]"
                 {...register('postcode', {
                   required: '우편번호를 입력해주세요',
+                  pattern: {
+                    value: /^[0-9-]+$/,
+                    message: '숫자와 하이픈(-)만 입력 가능합니다',
+                  },
                 })}
               />
               {errors.postcode && (

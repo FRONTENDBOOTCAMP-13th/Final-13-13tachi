@@ -201,8 +201,19 @@ export default function EditForm() {
             placeholder="전화번호를 입력하세요"
             className="w-[20rem]"
             defaultValue={user?.phone ?? ''}
-            {...register('phone')}
+            {...register('phone', {
+              required: '전화번호를 입력해주세요',
+              pattern: {
+                value: /^[0-9-]+$/,
+                message: '숫자와 하이픈(-)만 입력 가능합니다',
+              },
+            })}
           />
+          {errors.phone && (
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+              {errors.phone.message}
+            </p>
+          )}
         </div>
       </div>
 
@@ -223,8 +234,19 @@ export default function EditForm() {
                 placeholder="우편번호"
                 className="w-[8rem]"
                 defaultValue={user?.postcode ?? ''}
-                {...register('postcode')}
+                {...register('postcode', {
+                  required: '우편번호를 입력해주세요',
+                  pattern: {
+                    value: /^[0-9-]+$/,
+                    message: '숫자와 하이픈(-)만 입력 가능합니다',
+                  },
+                })}
               />
+              {errors.postcode && (
+                <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+                  {errors.postcode.message}
+                </p>
+              )}
             </div>
             <button
               type="button"
