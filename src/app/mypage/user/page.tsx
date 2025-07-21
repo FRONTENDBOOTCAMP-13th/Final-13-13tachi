@@ -1,17 +1,15 @@
 'use client';
-// import Link from 'next/link';
-
+import Link from 'next/link';
 import Image from 'next/image';
 
 // 임시 이미지 불러오기
 import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
-import { useRouter } from 'next/router';
 
 export default function User() {
   const { user } = useUserStore();
-  const router = useRouter();
+
   console.log('user in MyPage:', user);
   return (
     <div className="h-full">
@@ -54,13 +52,11 @@ export default function User() {
           </div>
         </div>
         <div className="flex justify-end">
-          <Button
-            size="xxl"
-            variant="green"
-            onClick={() => router.push('/user/edit')}
-          >
-            회원정보 수정하기
-          </Button>
+          <Link href="/user/edit">
+            <Button size="xxl" variant="green">
+              회원정보 수정하기
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
