@@ -1,6 +1,5 @@
 'use client';
-// import Link from 'next/link';
-
+import Link from 'next/link';
 import Image from 'next/image';
 
 // 임시 이미지 불러오기
@@ -10,6 +9,8 @@ import useUserStore from '@/zustand/useStore';
 
 export default function User() {
   const { user } = useUserStore();
+
+  console.log('user in MyPage:', user);
   return (
     <div className="h-full">
       <div className="lg:w-[49.875rem] flex flex-col lg:gap-2">
@@ -45,16 +46,17 @@ export default function User() {
               <span className="font-semibold">주소</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
               <span>
-                {user?.address ??
-                  '123-123 서울 종로구 종로 3길 17, 광화문 D타워'}
+                {`${user?.postcode ?? ''} ${user?.addressDetail1 ?? ''} ${user?.addressDetail2 ?? ''}`}
               </span>
             </p>
           </div>
         </div>
         <div className="flex justify-end">
-          <Button size="xxl" variant="green">
-            회원정보 수정하기
-          </Button>
+          <Link href="/user/edit">
+            <Button size="xxl" variant="green">
+              회원정보 수정하기
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

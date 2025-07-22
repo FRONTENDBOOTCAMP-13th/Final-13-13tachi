@@ -24,7 +24,9 @@ export default function LoginForm() {
         email: userState.item.email,
         name: userState.item.name,
         phone: userState.item.phone,
-        address: userState.item.address,
+        postcode: userState.item.postcode,
+        addressDetail1: userState.item.addressDetail1,
+        addressDetail2: userState.item.addressDetail2,
         type: userState.item.type,
         image: userState.item.image,
         token: {
@@ -37,7 +39,7 @@ export default function LoginForm() {
       if (redirect) {
         router.replace(redirect); // 돌아갈 페이지가 있을 경우 이동한다.
       } else {
-        router.back(); // 이전 페이지로 이동한다.
+        router.push('/'); // 이전 페이지로 이동한다.
       }
     } else {
       if (!userState?.errors && userState?.message) {

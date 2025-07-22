@@ -4,6 +4,10 @@ export interface User {
   name: string; // 사용자 이름
   phone?: string; // 전화번호
   address?: string; // 주소
+  postcode?: string; //우편변호
+  addressDetail1?: string; //상세주소1
+  addressDetail2?: string; //상세주소2
+
   type: 'user' | 'seller' | 'admin'; // 사용자 유형
   loginType?: 'email' | 'kakao' | 'naver'; // 로그인 방식
   image?: string; // 프로필 이미지
