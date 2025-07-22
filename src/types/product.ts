@@ -10,7 +10,7 @@ export interface ProductType {
     originalname?: string;
   }[];
   extra?: {
-    category?: [];
+    category?: string[];
     sort?: number;
     details?: string;
   };
