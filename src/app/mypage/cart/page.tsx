@@ -2,7 +2,7 @@
 // import EmptyCart from '@/app/mypage/cart/EmptyCart';
 
 // 비지 않은 경우
-import CartForm from '@/app/mypage/cart/CartForm';
+import CartList from '@/app/mypage/cart/CartList';
 
 export default async function Cart() {
   return (
@@ -11,7 +11,7 @@ export default async function Cart() {
         <h3 className="lg:w-full lg:text-xl font-semibold">장바구니</h3>
         <hr className="text-light-gray w-full" />
       </div>
-      <CartForm />
+      <CartList />
       {/* <div className="h-full">
         <EmptyCart />
       </div> */}
