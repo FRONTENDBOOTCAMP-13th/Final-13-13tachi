@@ -69,61 +69,57 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 22800,
+        price: 1990,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '캥거루 스턴트 독 로봇완구',
+        name: '바니바니바니바니 당근당근',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `files/${clientId}/sample-dog.jpg`,
-            name: 'sample-dog.jpg',
-            originalname: '스턴트 독.jpg',
+            path: `files/${clientId}/product-1.jpeg`,
+            name: 'product-1.jpeg',
+            originalname: 'product-1.jpeg',
           },
         ],
-        content: `
-          <div class="product-detail">
-            <p>캥거루 스턴트 독 로봇완구 상세 설명</p>
-          </div>`,
+        content: ``,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           isNew: true,
           isBest: true,
           category: ['PC03', 'PC0301'],
-          sort: 5,
+          sort: 1,
+          details: '150g',
         },
       },
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17260,
-        shippingFees: 2500,
+        price: 2990,
+        shippingFees: 0,
         show: true,
         active: true,
-        name: '헬로카봇 스톰다이버',
+        name: '고구마 답답이',
         quantity: 200,
         buyQuantity: 198,
         mainImages: [
           {
-            path: `files/${clientId}/sample-diver.jpg`,
-            name: 'sample-diver.jpg',
-            originalname: '헬로카봇.jpg',
+            path: `files/${clientId}/product-2.jpeg`,
+            name: 'product-2.jpeg',
+            originalname: 'product-2.jpeg',
           },
         ],
-        content: `
-          <div class="product-detail">
-            <p>헬로카봇 스톰다이버 상세 설명</p>
-          </div>`,
+        content: ``,
         createdAt: getTime(-38, -60 * 60 * 6),
         updatedAt: getTime(-33, -60 * 55),
         extra: {
           isNew: false,
           isBest: true,
           category: ['PC01', 'PC0103'],
-          sort: 4,
+          sort: 2,
+          details: '500g',
         },
       },
     ],
@@ -224,7 +220,7 @@ export const initData = async (clientId, nextSeq) => {
     cart: [
       {
         _id: await nextSeq('cart'),
-        user_id: 4,
+        user_id: 1,
         product_id: 1,
         quantity: 2,
         createdAt: getTime(-7, -60 * 30),
@@ -232,7 +228,7 @@ export const initData = async (clientId, nextSeq) => {
       },
       {
         _id: await nextSeq('cart'),
-        user_id: 4,
+        user_id: 1,
         product_id: 2,
         quantity: 1,
         createdAt: getTime(-4, -60 * 30),
@@ -240,7 +236,7 @@ export const initData = async (clientId, nextSeq) => {
       },
       {
         _id: await nextSeq('cart'),
-        user_id: 4,
+        user_id: 1,
         product_id: 2,
         quantity: 1,
         createdAt: getTime(-4, -60 * 30),

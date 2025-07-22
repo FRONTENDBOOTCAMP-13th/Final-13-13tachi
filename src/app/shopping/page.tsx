@@ -4,7 +4,13 @@ import AllItems from '@/app/shopping/AllItems';
 import HotItems from '@/app/shopping/HotItems';
 import SearchBar from '@/components/common/SearchBar';
 
-export default function ShoppingList() {
+import { getProducts } from '@/data/functions/post';
+import { ProductType } from '@/types';
+
+export default async function ShoppingList() {
+  const res = await getProducts();
+  const products: ProductType[] = res.ok === 1 ? res.item : [];
+
   return (
     <>
       <Header />
@@ -35,7 +41,7 @@ export default function ShoppingList() {
           {/* ST: 전체 상품 */}
           <div className="lg:mt-12">
             <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
-            <AllItems />
+            <AllItems products={products} />
           </div>
           {/* ED: 전체 상품 */}
         </div>
