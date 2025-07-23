@@ -13,7 +13,14 @@ export interface ProductType {
     category?: string[];
     sort?: number;
     details?: string;
+    isBest?: boolean;
   };
+}
+
+// 상품 조회
+export interface ProductTypeRes {
+  ok: 0 | 1;
+  item: ProductType;
 }
 
 // 장바구니

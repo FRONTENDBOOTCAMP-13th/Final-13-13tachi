@@ -5,8 +5,22 @@ import Header from '@/components/common/Header';
 import CustomLink from '@/components/common/CustomLink';
 import Image from 'next/image';
 import { Heart } from 'lucide-react';
+import { getProductDetails } from '@/data/functions/post';
+import { ProductTypeRes } from '@/types';
 
-export default function ShoppingDetail() {
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export default async function ShoppingDetail({
+  params,
+}: {
+  params: { id: number };
+}) {
+  const { id } = await params;
+
+  const res = (await getProductDetails(id)) as ProductTypeRes;
+  console.log(res);
+  console.log(res.item.name);
+
   return (
     <>
       <Header />
@@ -15,24 +29,26 @@ export default function ShoppingDetail() {
           {/* ST: Title */}
           <div>
             <p className="text-gray">HOME &gt; 장보기</p>
-            <h2 className="font-bold lg:mt-5 lg:text-5xl">토맛 토마토</h2>
+            <h2 className="font-bold lg:mt-5 lg:text-5xl">{res.item.name}</h2>
           </div>
           {/* ED: Title */}
 
           {/* ST: 상단 상품 정보*/}
           <div className="mx-auto w-fit lg:mt-10">
-            <Image
-              src="/assets/shopping/details-1.jpg"
-              alt="토마토 사진"
-              width={675}
-              height={449}
-            />
+            <div className="relative w-[675px] aspect-[67.5/45] ">
+              <Image
+                src={`${API_URL}/${res.item.mainImages![0].path}`}
+                alt={`${res.item.name} 이미지`}
+                fill
+                className="rounded-lg object-cover"
+              />
+            </div>
             <div className="lg:mt-10">
               <div className="flex justify-between">
                 <p className="flex items-center font-bold lg:gap-2.5 lg:text-4xl">
-                  토맛 토마토
+                  {res.item.name}
                   <span className="text-gray font-normal lg:text-lg">
-                    (350g)
+                    ({res.item.extra?.details})
                   </span>
                 </p>
                 <button type="button" className="cursor-pointer">
@@ -41,7 +57,7 @@ export default function ShoppingDetail() {
               </div>
               <div className="flex justify-between items-center lg:mt-3">
                 <strong className="flex items-center font-semibold text-orange lg:gap-2.5 lg:text-2xl">
-                  3,500원
+                  {res.item.price?.toLocaleString()}원
                   <span className="text-gray font-normal lg:text-base">
                     무료배송
                   </span>
@@ -94,7 +110,7 @@ export default function ShoppingDetail() {
               variant="green"
               size="xxl"
               type="button"
-              href="http://localhost:3000/shopping" //TODO 나중에 링크 수정
+              href="/shopping" //TODO 나중에 링크 수정
             >
               목록으로
             </CustomLink>
