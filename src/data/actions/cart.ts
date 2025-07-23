@@ -113,7 +113,7 @@ export async function updateCartQuantity(
   const accessToken = formData.get('accessToken'); // 인증 토큰
 
   const body = {
-    quantity: formData.get('quantity'),
+    quantity: Number(formData.get('quantity')),
   };
 
   let res: Response;
