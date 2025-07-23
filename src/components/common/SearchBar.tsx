@@ -38,7 +38,7 @@ export default function SearchBar() {
         onClick={handleSearch}
         className="w-10 h-full flex justify-center items-center cursor-pointer"
       >
-        <Search className="text-dark-green w-4" />
+        <Search className="text-dark-green w-4" strokeWidth={1} />
       </button>
     </div>
   );

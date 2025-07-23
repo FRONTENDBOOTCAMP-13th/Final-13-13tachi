@@ -8,11 +8,16 @@ import { useState } from 'react';
 import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
 import { ChevronDown } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function RecipeWritePage() {
   const [fileName, setFileName] = useState('대표 이미지를 등록 해주세요');
+  const [file, setFile] = useState<File | null>(null);
   const [toggleOpen, setToggleOpen] = useState(false);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const router = useRouter();
 
   const ingredientList = [
     { ingredient: '당근' },
@@ -44,6 +49,44 @@ export default function RecipeWritePage() {
     });
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!title || selectedIngredients.length === 0 || !file || !content) {
+      alert('모든 필드를 입력해주세요.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('ingredients', JSON.stringify(selectedIngredients)); // 배열을 JSON 문자열로 전달
+    formData.append('content', content);
+    formData.append('image', file);
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+        method: 'POST',
+        headers: {
+          'Client-Id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
+          // 'Content-Type' 헤더는 FormData 쓸 땐 안 넣는 게 맞음
+        },
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (data.ok) {
+        alert('글이 성공적으로 등록되었습니다.');
+        router.push('/recipe'); // 리스트 페이지로 이동
+      } else {
+        alert('등록에 실패했습니다: ' + (data.message || ''));
+      }
+    } catch (err) {
+      console.error(err);
+      alert('에러가 발생했습니다.');
+    }
+  };
+
   return (
     <>
       <Header />
@@ -54,11 +97,13 @@ export default function RecipeWritePage() {
           <Link href="/recipe/list">레시피</Link>
         </h2>
         <h1 className="text-5xl font-bold mt-[0.9375rem]">레시피 작성</h1>
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="제목을 입력 해주세요."
-            className="mt-[1.875rem] w-full h-[2.8125rem] border-1 border-light-gray rounded-lg pl-4"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            className="mt-[1.875rem] w-full h-[2.8125rem] border border-light-gray rounded-lg pl-4"
           />
           <p className="mt-[1.875rem] mb-5">
             사용하신 재료를 선택해주세요 (최대 3개 까지만)
@@ -79,6 +124,7 @@ export default function RecipeWritePage() {
               type="button"
               onClick={() => setToggleOpen(prev => !prev)}
               className="p-2"
+              aria-label="재료 선택 토글"
             >
               <ChevronDown
                 className={`${toggleOpen ? 'rotate-180' : ''} transition-transform`}
@@ -100,7 +146,8 @@ export default function RecipeWritePage() {
             </div>
           )}
 
-          <TextEditor />
+          <TextEditor value={content} onChange={setContent} />
+
           <div className="flex justify-end mt-5">
             <span className="mr-1 text-required-red">*</span>
             <input
@@ -109,12 +156,14 @@ export default function RecipeWritePage() {
               required
               onChange={e => {
                 if (e.target.files?.[0]) {
+                  setFile(e.target.files[0]);
                   setFileName(e.target.files[0].name);
                 } else {
+                  setFile(null);
                   setFileName('대표 이미지를 등록 해주세요');
                 }
               }}
-              className="hidden"
+              className="sr-only"
             />
             <label
               htmlFor="fileInput"
@@ -122,11 +171,6 @@ export default function RecipeWritePage() {
             >
               {fileName}
             </label>
-            <div className="ml-3">
-              <Button size="md" variant="white">
-                등록
-              </Button>
-            </div>
           </div>
           <div className="flex justify-end mt-5">
             <Button size="xxl" type="submit">

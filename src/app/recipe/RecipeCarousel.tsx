@@ -74,7 +74,7 @@ export default function RecipeCarousel() {
             <figcaption className="pb-[3.75rem] pt-[0.9375rem] pl-5 pr-5 text-center max-h-[9.375rem]">
               <div className="relative flex items-center justify-center">
                 <p className="text-[#454545] text-xs">{item.author}</p>
-                <Bookmark className="absolute right-0 w-5" />
+                <Bookmark className="absolute right-0 w-5" strokeWidth={1} />
               </div>
               <span className="text-orange text-sm mt-[0.5rem]">
                 {item.ingredients}

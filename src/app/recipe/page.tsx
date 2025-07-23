@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import RecipeCarousel from './RecipeCarousel';
-import RecipeList from './RecipeList';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import SearchBar from '@/components/common/SearchBar';
+import RecipeList from './RecipeList';
 
 export default function RecipeListPage() {
   return (
