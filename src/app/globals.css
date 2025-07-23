@@ -17,11 +17,13 @@
 
   /* 색상 변수 설정 */
   --color-dark-green: #2b3d19;
+  --color-hover-green: #1d2911;
   --color-light-green: #638763;
   --color-yellow: #fbbe42;
   --color-light-yellow: #f7f4e8;
   --color-gray: #6b6b6b;
   --color-light-gray: #c7c7c7;
+  --color-hover-gray: #d6d6d6;
   --color-disable-gray: #e3e3e3;
   --color-bg-gray: #f0f0f0;
   --color-orange: #da633e;

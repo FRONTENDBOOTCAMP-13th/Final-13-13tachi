@@ -13,8 +13,8 @@ export default function Button({
   const baseStyle = 'font-semibold rounded-lg shadow-[var(--btn-shadow)]';
 
   const variantStyle = {
-    green: 'bg-dark-green text-white',
-    white: 'bg-bg-gray text-black border border-light-gray',
+    green: 'bg-dark-green text-white hover:bg-hover-green',
+    white: 'bg-bg-gray text-black border border-light-gray hover:bg-hover-gray',
   };
 
   const sizeStyle = {
