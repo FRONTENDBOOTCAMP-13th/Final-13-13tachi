@@ -60,7 +60,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                     </span>
                     <span className="lg:text-sm">(350g)</span>
                   </>
-                  <p className="lg:text-sm mt-1">{item.price}</p>
+                  <p className="lg:text-sm mt-1">{item.price}원</p>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-5 border-[0.0625rem] rounded-lg lg:w-20 lg:h-[1.875rem] p-1">
                   <form action={quantityAction}>

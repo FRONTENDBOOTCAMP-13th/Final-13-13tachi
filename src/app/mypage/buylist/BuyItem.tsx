@@ -29,7 +29,7 @@ export default function BuyItem({ item }: { item: ProductItemType }) {
             <span className="lg:text-xs">(350g)</span>
           </p>
           <p className="flex gap-2.5 items-center">
-            <span className="lg:text-base">{item.price}</span>
+            <span className="lg:text-base">{item.price}원</span>
             <span className="lg:text-xs">{item.quantity}개</span>
           </p>
         </div>
