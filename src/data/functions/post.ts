@@ -1,4 +1,10 @@
-import { CartItemType, ApiResPromise, ProductType } from '@/types';
+import {
+  CartItemType,
+  ApiResPromise,
+  ProductType,
+  LikeItemType,
+  BuyListType,
+} from '@/types';
 // import useUserStore from '@/zustand/useStore';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -30,9 +36,53 @@ export async function getCartProducts(
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
+      cache: 'force-cache',
+      next: {
+        tags: [`carts`],
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 불러오기 실패' };
+  }
+}
+
+// 찜 목록 불러오기
+export async function getLikeProducts(
+  accessToken: string,
+): ApiResPromise<LikeItemType[]> {
+  try {
+    const res = await fetch(`${API_URL}/bookmarks/product`, {
+      headers: {
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
       cache: 'no-store',
       next: {
-        tags: [`/carts`],
+        tags: [`bookmarks/product`],
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 불러오기 실패' };
+  }
+}
+
+// 주문내역 목록 불러오기
+export async function BuyProducts(
+  accessToken: string,
+): ApiResPromise<BuyListType[]> {
+  try {
+    const res = await fetch(`${API_URL}/orders`, {
+      headers: {
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      cache: 'no-store',
+      next: {
+        tags: [`orders`],
       },
     });
     return res.json();

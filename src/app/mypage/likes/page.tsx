@@ -13,8 +13,6 @@ export default async function Likes() {
       </div>
       <div className="flex flex-col gap-2.5">
         <LikeList />
-        <LikeList />
-        <LikeList />
       </div>
       {/* <div className="h-full">
         <EmptyLikes />
