@@ -32,28 +32,54 @@ export type PostReplyForm = Pick<PostReply, 'content'>;
 export interface Post {
   // 게시글의 고유 ID
   _id: number;
-  // 게시글 타입
+
+  // 게시글 타입 (예: 'recipe', 'community' 등)
   type: string;
+
   // 게시글 제목
   title: string;
+
   // 게시글 본문 내용
   content: string;
+
   // 게시글 작성자 정보 (id, 이름, 이미지)
   user: Pick<User, '_id' | 'name' | 'image'>;
+
   // 게시글 조회수
   views: number;
+
   // 댓글 개수
   repliesCount: number;
-  // 댓글 목록
+
+  // 댓글 목록 (선택사항)
   replies?: PostReply[];
+
   // 게시글 생성일
   createdAt: string;
+
   // 게시글 수정일
   updatedAt: string;
-  // 이미지 썸네일
+
+  // 이미지 썸네일 (없을 경우 빈 문자열 또는 null)
   image: string;
-  // 카테고리
+
+  // 게시글 카테고리 (예: 나의레시피, 채소, 과일 등)
   category?: string;
+
+  // 태그 목록 (쉼표로 구분된 키워드, 예: "당근,감자")
+  tag?: string;
+
+  // 좋아요 수 (옵션)
+  likesCount?: number;
+
+  // 내가 좋아요를 눌렀는지 여부 (옵션)
+  likedByMe?: boolean;
+
+  // 북마크 수 (옵션)
+  bookmarksCount?: number;
+
+  // 내가 북마크했는지 여부 (옵션)
+  bookmarkedByMe?: boolean;
 }
 
 /**

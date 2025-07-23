@@ -69,11 +69,10 @@ export interface BuyItemProps {
 }
 
 export interface Recipe {
-  _id?: string;
-  author: string;
-  ingredients: string;
+  _id: string;
   title: string;
-  img: string;
-  category: '채소' | '과일' | '나의레시피';
-  createdAt?: string;
+  author: string;
+  tag?: string;
+  image: string | null;
+  category: string;
 }
