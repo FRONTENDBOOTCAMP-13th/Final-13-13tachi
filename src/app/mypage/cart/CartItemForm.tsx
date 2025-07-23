@@ -6,7 +6,7 @@ import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
 import Checkbox from '@/components/common/Checkbox';
 import { CartListProps } from '@/types';
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import useUserStore from '@/zustand/useStore';
 
@@ -22,6 +22,17 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
     null,
   );
   console.log(quantityState, isUpdating);
+
+  const [quantity, setQuantity] = useState(item.quantity);
+
+  const handleUp = () => {
+    setQuantity(prev => prev + 1);
+  };
+  const handleDown = () => {
+    if (quantity > 1) {
+      setQuantity(prev => prev - 1);
+    }
+  };
 
   return (
     <>
@@ -64,11 +75,15 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                       name="quantity"
                       value={Number(item.quantity) - 1}
                     />
-                    <button className="lg:text-base font-semibold hover:cursor-pointer">
+                    <button
+                      type="submit"
+                      onClick={() => handleDown()}
+                      className="lg:text-base font-semibold hover:cursor-pointer"
+                    >
                       -
                     </button>
                   </form>
-                  <span className="lg:text-sm">{item.quantity}</span>
+                  <span className="lg:text-sm">{quantity}</span>
                   <form action={quantityAction}>
                     <input
                       type="hidden"
@@ -81,7 +96,11 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                       name="quantity"
                       value={Number(item.quantity) + 1}
                     />
-                    <button className="lg:text-base font-semibold hover:cursor-pointer">
+                    <button
+                      type="submit"
+                      onClick={() => handleUp()}
+                      className="lg:text-base font-semibold hover:cursor-pointer"
+                    >
                       +
                     </button>
                   </form>

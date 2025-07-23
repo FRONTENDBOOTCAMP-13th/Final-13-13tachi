@@ -142,7 +142,6 @@ export async function updateCartQuantity(
   if (data.ok) {
     revalidateTag(`carts/${_id}`); // 게시글 상세 페이지 갱신
     revalidateTag(`carts/`);
-    redirect(`/mypage/cart`);
   } else {
     return data;
   }
