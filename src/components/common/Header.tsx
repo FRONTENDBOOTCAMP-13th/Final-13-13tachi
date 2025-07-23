@@ -8,19 +8,10 @@ import { usePathname } from 'next/navigation';
 
 import './layout.css'; // nav 메뉴 해당 경로에서 active 시키는 css. header/footer 에서만 사용
 import useUserStore from '@/zustand/useStore';
+import Dropdown from '@/components/common/Dropdown';
 
 export default function Header() {
-  const { user, resetUser } = useUserStore();
-
-  const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    resetUser();
-    //로그아웃시 토큰 삭제
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('userInfo');
-    alert('로그아웃 되었습니다.');
-  };
+  const { user } = useUserStore();
 
   // 주소창의 path 값 추출
   const pathname = usePathname();
@@ -71,35 +62,7 @@ export default function Header() {
             </li>
             <li className="h-full">
               {user ? (
-                <form onSubmit={handleLogout}>
-                  <p className="flex items-center">
-                    {/* <Image
-                      className="w-8 h-8 object-cover rounded-full mr-2"
-                      src={
-                        user.image
-                          ? `${API_URL}/${user.image}`
-                          : '/images/front-end.png'
-                      }
-                      width="32"
-                      height="32"
-                      alt={`${user.name} 프로필 이미지`}
-                    /> */}
-                    <Link
-                      href="/mypage"
-                      target="_self"
-                      title="로그인 페이지 바로 가기"
-                      className={`${isActive('/login')} block h-full content-center hover:text-yellow transition-all duration-100`}
-                    >
-                      {user.name}님
-                    </Link>
-                    <button
-                      type="submit"
-                      className="bg-gray-900 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded"
-                    >
-                      로그아웃
-                    </button>
-                  </p>
-                </form>
+                <Dropdown />
               ) : (
                 <Link
                   href="/login/select"
