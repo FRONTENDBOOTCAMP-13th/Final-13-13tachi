@@ -63,12 +63,11 @@ export async function login(
 ): ApiResPromise<User> {
   const body = Object.fromEntries(formData.entries());
 
-  let res: Response;
-  let data: ApiRes<User>;
+  const autoLogin = body.autoLogin === 'true'; //자동로그인 체크했는지 확인
+  const query = autoLogin ? '?expiresIn=30d' : ''; //자동로그인일 경우 30일
 
   try {
-    // 로그인 API 호출
-    res = await fetch(`${API_URL}/users/login`, {
+    const res = await fetch(`${API_URL}/users/login${query}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,14 +76,13 @@ export async function login(
       body: JSON.stringify(body),
     });
 
-    data = await res.json();
+    const data = await res.json();
+    return data;
   } catch (error) {
     // 네트워크 오류 처리
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
-
-  return data;
 }
 
 /**

@@ -15,6 +15,10 @@ export default function Header() {
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetUser();
+    //로그아웃시 토큰 삭제
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userInfo');
     alert('로그아웃 되었습니다.');
   };
 
@@ -98,7 +102,7 @@ export default function Header() {
                 </form>
               ) : (
                 <Link
-                  href="/user/login"
+                  href="/login/select"
                   target="_self"
                   title="로그인 페이지 바로 가기"
                   className={`${isActive('/login')} block h-full px-2 py-0.5 content-center border border-yellow rounded-full text-yellow hover:text-black hover:bg-yellow transition-all duration-100 lg:px-3 lg:py-1 `}

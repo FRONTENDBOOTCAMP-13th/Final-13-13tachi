@@ -52,7 +52,7 @@ export default function User() {
           </div>
         </div>
         <div className="flex justify-end">
-          <Link href="/user/edit">
+          <Link href="/edit">
             <Button size="xxl" variant="green">
               회원정보 수정하기
             </Button>

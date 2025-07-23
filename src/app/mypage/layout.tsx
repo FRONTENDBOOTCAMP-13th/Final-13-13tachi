@@ -16,6 +16,7 @@ import {
   ReceiptText,
   ShoppingCart,
 } from 'lucide-react';
+import useUserStore from '@/zustand/useStore';
 
 export default function RootLayout({
   children,
@@ -25,7 +26,7 @@ export default function RootLayout({
   const pathname = usePathname();
   console.log(pathname);
   const isActive = (path: string) => (pathname === path ? 'mypage-active' : '');
-
+  const { user } = useUserStore();
   return (
     <>
       <Header />
@@ -47,8 +48,8 @@ export default function RootLayout({
                     height={80}
                     className="rounded-[50%] object-cover lg:w-20 lg:h-20"
                   ></Image>
-                  <p className="lg:text-base font-semibold">UserName</p>
-                  <p className="lg:text-sm">testId123@naver.com</p>
+                  <p className="lg:text-base font-semibold">{user?.name}</p>
+                  <p className="lg:text-sm">{user?.email}</p>
                 </div>
                 <ul className="flex flex-col lg:space-y-4  lg:text-base">
                   <li>
@@ -89,8 +90,8 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/user"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
+                      href="/mypage/myuser"
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/myuser')} `}
                     >
                       <IdCard width={16} />
                       <span>회원정보</span>

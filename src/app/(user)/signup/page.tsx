@@ -1,4 +1,4 @@
-import SignupForm from '@/app/user/signup/SignupForm';
+import SignupForm from '@/app/(user)/signup/SignupForm';
 
 export default async function SignupPage() {
   return (
