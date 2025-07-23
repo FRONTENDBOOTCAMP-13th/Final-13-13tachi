@@ -15,6 +15,7 @@ interface RecipeDetailData {
   category: string;
   img?: string;
   ingredients?: string;
+  tag: string;
   createdAt?: string;
 }
 
@@ -24,11 +25,10 @@ async function fetchRecipeDetail(id: string): Promise<RecipeDetailData | null> {
       headers: {
         'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
       },
-      cache: 'no-store', // 항상 최신 데이터 불러오기
+      cache: 'no-store',
     });
     if (!res.ok) throw new Error('Failed to fetch recipe detail');
     const data = await res.json();
-    // API 응답 구조에 맞게 조정 필요
     return data.item || null;
   } catch (error) {
     console.error(error);
@@ -75,7 +75,6 @@ export default async function RecipeDetailPage(props: {
 
           <div className="flex flex-col items-center justify-center mt-[-4rem]">
             <div className="lg:w-[7.5rem] lg:h-[7.5rem] overflow-hidden rounded-full ring-4 ring-white">
-              {/* 작성자 프로필 이미지가 있으면 보여주고 없으면 기본 이미지 */}
               <Image
                 src="/imgs/recipe/recipe7.png"
                 alt={recipe.author || '작성자'}
@@ -93,7 +92,23 @@ export default async function RecipeDetailPage(props: {
             <h1 className="text-5xl font-bold">{recipe.title}</h1>
 
             <div className="flex justify-between items-center mt-5">
-              <FoodBtn label={recipe.ingredients || 'null'} selected={true} />
+              <div className="flex gap-2 flex-wrap">
+                {(() => {
+                  let tag: string[] = [];
+
+                  try {
+                    const parsed = JSON.parse(recipe.tag ?? '[]');
+                    if (Array.isArray(parsed)) tag = parsed;
+                  } catch {
+                    tag = recipe.tag?.split(',') || [];
+                  }
+
+                  return tag.map((item, idx) => (
+                    <FoodBtn key={idx} label={item} selected={true} />
+                  ));
+                })()}
+              </div>
+
               <div className="flex">
                 <div className="mr-[0.625rem]">
                   <Button size="sm">수정</Button>
