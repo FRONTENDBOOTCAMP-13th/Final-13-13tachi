@@ -3,8 +3,16 @@ import Image from 'next/image';
 // 임시 이미지 불러오기
 import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
+import { BuyItemProps } from '@/types';
+import useUserStore from '@/zustand/useStore';
+import { AddCart } from '@/data/actions/cart';
+import { useActionState } from 'react';
 
-export default function BuyItem() {
+export default function BuyItem({ item }: { item: BuyItemProps }) {
+  const { user } = useUserStore();
+  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
+  console.log(addState, isAdding);
+  console.log('3번 호출');
   return (
     <div className="flex flex-row justify-between w-full">
       <div className="flex flex-row items-center lg:gap-3.5 lg:h-[6.25rem]">
@@ -16,23 +24,40 @@ export default function BuyItem() {
         <div className="flex flex-col justufy-center lg:gap-2">
           <p>
             <span className="lg:text-base font-semibold text-dark-green mr-2.5">
-              못난이 사과
+              {item.name}
             </span>
             <span className="lg:text-xs">(350g)</span>
           </p>
-          <p className="flex justify-between items-center">
-            <span className="lg:text-base">3000원</span>
-            <span className="lg:text-xs">무료배송</span>
+          <p className="flex gap-2.5 items-center">
+            <span className="lg:text-base">{item.price}</span>
+            <span className="lg:text-xs">{item.quantity}개</span>
           </p>
         </div>
       </div>
       <div className="flex flex-col justify-center items-end lg:gap-2">
-        <Button size="lg" variant="green">
-          레시피 작성하기
-        </Button>
-        <Button size="lg" variant="white">
-          장바구니 담기
-        </Button>
+        <form>
+          <input
+            type="hidden"
+            name="accessToken"
+            value={user?.token?.accessToken ?? ''}
+          />
+          <input type="hidden" name="_id" value={item._id} />
+          <Button size="lg" variant="green" type="button">
+            레시피 작성하기
+          </Button>
+        </form>
+        <form action={AddAction}>
+          <input
+            type="hidden"
+            name="accessToken"
+            value={user?.token?.accessToken ?? ''}
+          />
+          <input type="hidden" name="product_id" value={item._id} />
+          <input type="hidden" name="quantity" value={+1} />
+          <Button size="lg" variant="white">
+            장바구니 담기
+          </Button>
+        </form>
       </div>
     </div>
   );

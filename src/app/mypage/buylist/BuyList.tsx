@@ -1,29 +1,50 @@
+'use client';
 // import Image from 'next/image';
 
 // 임시 이미지 불러오기
 // import profilePic from '../../../images/profile.jpg';
 // import Button from '@/components/common/Button';
-import BuyItem from '@/app/mypage/buylist/BuyItem';
-import Link from 'next/link';
+import BuyItemList from '@/app/mypage/buylist/BuyItemList';
+import { BuyProducts } from '@/data/functions/post';
+import { ApiRes, BuyListType } from '@/types';
+import useUserStore from '@/zustand/useStore';
+import { useEffect, useState } from 'react';
 
 export default function BuyList() {
+  const { user } = useUserStore();
+  const accessToken = user?.token?.accessToken;
+
+  const [res, setRes] = useState<ApiRes<BuyListType[]> | null>(null);
+
+  useEffect(() => {
+    if (accessToken) {
+      BuyProducts(accessToken).then(setRes);
+    }
+  }, [accessToken]);
+
+  if (!accessToken) {
+    return <div>로그인이 필요합니다.</div>;
+  }
+  if (!res) {
+    return <div>로딩중...</div>;
+  }
+  console.log('1번 호출');
   return (
     <>
-      <div className="flex flex-row justify-between text-sm mb-2.5">
-        <p>
-          <span className="mr-4 text-dark-green">2025.07.10</span>
-          <span className="text-gray">주문번호:20230725-0001</span>
-        </p>
-        <Link href={`/mypage/buyinfo`} className="text-dark-green">
-          상세조회
-        </Link>
-      </div>
-      <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] p-[1.125rem]">
-        <div className="flex flex-col w-full gap-[2.125rem]">
-          <BuyItem />
-          <BuyItem />
-        </div>
-      </div>
+      {res.ok ? (
+        res.item.map((item: BuyListType) => (
+          <BuyItemList
+            key={item._id}
+            item={{
+              _id: item._id,
+              createdAt: item.createdAt,
+              products: item.products,
+            }}
+          />
+        ))
+      ) : (
+        <p>{res.message}</p>
+      )}
     </>
   );
 }
