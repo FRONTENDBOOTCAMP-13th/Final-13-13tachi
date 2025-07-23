@@ -92,7 +92,7 @@ export default function Dropdown() {
               <li>
                 <button
                   type="submit"
-                  className="w-full text-black pb-[7px] text-left hover:font-semibold "
+                  className=" text-black hover:font-semibold "
                 >
                   로그아웃
                 </button>
