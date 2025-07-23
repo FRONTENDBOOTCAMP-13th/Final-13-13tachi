@@ -5,6 +5,7 @@ import {
   LikeItemType,
   BuyListType,
 } from '@/types';
+import { LikePostType, MyPostType, Post, PostReply } from '@/types/post';
 // import useUserStore from '@/zustand/useStore';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -145,6 +146,54 @@ export async function getReplies(_id: number): ApiResPromise<PostReply[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
+    });
+    return res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
+  }
+}
+
+/**
+ * 내 레시피 목록 불러오기
+ * @param {string} boardType - 게시판 타입(예: notice, free 등)
+ * @returns {Promise<ApiRes<Post[]>>} - 게시글 목록 응답 객체
+ */
+export async function getMyRecipe(
+  accessToken: string,
+): ApiResPromise<MyPostType[]> {
+  try {
+    const res = await fetch(`${API_URL}/posts/users?type=recipe`, {
+      headers: {
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      cache: 'force-cache',
+    });
+    return res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
+  }
+}
+
+/**
+ * 내 북마크  레시피 목록 불러오기
+ * @param {string} boardType - 게시판 타입(예: notice, free 등)
+ * @returns {Promise<ApiRes<Post[]>>} - 게시글 목록 응답 객체
+ */
+export async function getLikeRecipe(
+  accessToken: string,
+): ApiResPromise<LikePostType[]> {
+  try {
+    const res = await fetch(`${API_URL}/bookmarks/post?type=recipe`, {
+      headers: {
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      cache: 'force-cache',
     });
     return res.json();
   } catch (error) {

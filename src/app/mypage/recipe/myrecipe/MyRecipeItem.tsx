@@ -3,8 +3,10 @@ import Image from 'next/image';
 // 임시 이미지 불러오기
 import profilePic from '../../../../images/profile.jpg';
 import Checkbox from '@/components/common/Checkbox';
+import { MyPostType } from '@/types/post';
 
-export default function RecipeItem() {
+export default function MyRecipeItem({ item }: { item: MyPostType }) {
+  console.log(2);
   return (
     <div className="flex flex-col">
       <Image
@@ -19,7 +21,7 @@ export default function RecipeItem() {
           <label htmlFor="inputCheckBox" className="sr-only"></label>
           <Checkbox />
         </div>
-        <p className="">가지무침 레시피</p>
+        <p className="">{item.title}</p>
       </div>
     </div>
   );

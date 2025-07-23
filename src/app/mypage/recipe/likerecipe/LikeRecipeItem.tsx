@@ -2,8 +2,10 @@ import Image from 'next/image';
 
 // 임시 이미지 불러오기
 import profilePic from '../../../../images/profile.jpg';
+import { LikePostItemType } from '@/types/post';
+import { Bookmark } from 'lucide-react';
 
-export default function LikeRecipeItem() {
+export default function LikeRecipeItem({ item }: { item: LikePostItemType }) {
   return (
     <div className="flex flex-col">
       <Image
@@ -15,9 +17,11 @@ export default function LikeRecipeItem() {
       />
       <div className="relative text-center mt-2.5">
         <div className="absolute left-0">
-          <span>🔖</span>
+          <form>
+            <Bookmark />
+          </form>
         </div>
-        <p className="">가지무침 레시피</p>
+        <p className="">{item.title}</p>
       </div>
     </div>
   );
