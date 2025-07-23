@@ -4,7 +4,13 @@ import AllItems from '@/app/shopping/AllItems';
 import HotItems from '@/app/shopping/HotItems';
 import SearchBar from '@/components/common/SearchBar';
 
-export default function ShoppingList() {
+import { getProducts } from '@/data/functions/post';
+import { ProductType } from '@/types';
+
+export default async function ShoppingList() {
+  const res = await getProducts();
+  const products: ProductType[] = res.ok === 1 ? res.item : [];
+
   return (
     <>
       <Header />
@@ -21,7 +27,7 @@ export default function ShoppingList() {
 
           {/* ST: Search Bar */}
           <div className="w-fit lg:mt-[1.5625rem] lg:mx-auto">
-            <SearchBar />
+            <SearchBar handleType="handleProductSearch" />
           </div>
           {/* ED: Search Bar */}
 
@@ -33,9 +39,9 @@ export default function ShoppingList() {
           {/* ED: 인기상품 */}
 
           {/* ST: 전체 상품 */}
-          <div className="lg:mt-7">
+          <div className="lg:mt-12">
             <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
-            <AllItems />
+            <AllItems products={products} />
           </div>
           {/* ED: 전체 상품 */}
         </div>

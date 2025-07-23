@@ -6,13 +6,15 @@ import { login } from '@/data/actions/user';
 import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useActionState, useEffect } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 
 export default function LoginForm() {
   const router = useRouter();
   const [userState, formAction, isLoading] = useActionState(login, null);
   console.log(isLoading, userState);
   const { setUser } = useUserStore(state => state);
+
+  const [autoLogin, setAutoLogin] = useState(false);
 
   const redirect = useSearchParams().get('redirect');
 
@@ -24,7 +26,9 @@ export default function LoginForm() {
         email: userState.item.email,
         name: userState.item.name,
         phone: userState.item.phone,
-        address: userState.item.address,
+        postcode: userState.item.postcode,
+        addressDetail1: userState.item.addressDetail1,
+        addressDetail2: userState.item.addressDetail2,
         type: userState.item.type,
         image: userState.item.image,
         token: {
@@ -32,12 +36,26 @@ export default function LoginForm() {
           refreshToken: userState.item.token?.refreshToken || '',
         },
       });
+
+      // 자동로그인 체크 시 localStorage에 저장
+      if (autoLogin) {
+        localStorage.setItem(
+          'accessToken',
+          userState.item.token?.accessToken || '',
+        );
+        localStorage.setItem(
+          'refreshToken',
+          userState.item.token?.refreshToken || '',
+        );
+        localStorage.setItem('userInfo', JSON.stringify(userState.item));
+      }
+
       alert('로그인이 완료되었습니다.');
 
       if (redirect) {
         router.replace(redirect); // 돌아갈 페이지가 있을 경우 이동한다.
       } else {
-        router.back(); // 이전 페이지로 이동한다.
+        router.push('/'); // 이전 페이지로 이동한다.
       }
     } else {
       if (!userState?.errors && userState?.message) {
@@ -50,6 +68,7 @@ export default function LoginForm() {
   return (
     <>
       <form action={formAction}>
+        <input type="hidden" name="autoLogin" value={autoLogin.toString()} />
         <div className="lg:mb-[0.625rem] lg:mt-[1.25rem] flex justify-center ">
           <div>
             <input
@@ -82,10 +101,14 @@ export default function LoginForm() {
         </div>
         <div className="flex justify-between items-center lg:w-[18.125rem] mx-auto ml-auto text-gray text-xs hover:underline">
           <div className="flex items-center gap-1">
-            <Checkbox className="lg:w-[1.25rem] lg:h-[1.25rem]" />
+            <Checkbox
+              className="lg:w-[1.25rem] lg:h-[1.25rem]"
+              checked={autoLogin}
+              onChange={e => setAutoLogin(e.target.checked)}
+            />
             <p>자동 로그인</p>
           </div>
-          <Link href="/user/signup">회원가입</Link>
+          <Link href="/signup">회원가입</Link>
         </div>
 
         <div className="flex justify-center items-center lg:mt-[3.125rem]">

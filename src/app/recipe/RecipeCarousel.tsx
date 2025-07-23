@@ -89,7 +89,7 @@ export default function RecipeCarousel() {
 
   return (
     <>
-      <div className="relative w-[1024px] flex items-center mx-auto lg:mb-10">
+      <div className="relative w-[1024px] flex items-center mx-auto lg:mt-4.5 lg:mb-12">
         <Swiper
           slidesPerView={4}
           spaceBetween={35}

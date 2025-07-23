@@ -1,5 +1,4 @@
-import { ApiCartItem, ApiResPromise, ProductType } from '@/types';
-import { Post, PostReply } from '@/types/post';
+import { CartItemType, ApiResPromise, ProductType } from '@/types';
 // import useUserStore from '@/zustand/useStore';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -24,14 +23,17 @@ export async function getProducts(): ApiResPromise<ProductType[]> {
 // 장바구니 목록 불러오기
 export async function getCartProducts(
   accessToken: string,
-): ApiResPromise<ApiCartItem[]> {
+): ApiResPromise<CartItemType[]> {
   try {
-    const res = await fetch(`${API_URL}/carts/`, {
+    const res = await fetch(`${API_URL}/carts`, {
       headers: {
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
       cache: 'no-store',
+      next: {
+        tags: [`/carts`],
+      },
     });
     return res.json();
   } catch (error) {

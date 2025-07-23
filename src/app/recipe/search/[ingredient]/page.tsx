@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import Search from '@/components/common/SearchBar';
+import SearchBar from '@/components/common/SearchBar';
 
 export default function RecipeSearchPage() {
   const params = useParams();
@@ -81,13 +81,13 @@ export default function RecipeSearchPage() {
           </h2>
 
           <div>
-            <h1 className="text-center text-5xl font-bold mt-[1.5625rem]">
+            <h1 className="text-center text-3xl font-bold mt-[1.5625rem]">
               오늘의 요리는?
             </h1>
           </div>
 
           <div className="flex justify-center mt-5">
-            <Search />
+            <SearchBar handleType="handleRecipeSearch" />
           </div>
 
           <div className="flex justify-between mt-[1.5625rem]">
