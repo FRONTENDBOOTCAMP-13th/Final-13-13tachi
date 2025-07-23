@@ -16,12 +16,25 @@ export interface ProductType {
   };
 }
 
+// 상품 가져오기용 리스트
+export interface ProductItemType {
+  _id: number;
+  price: number;
+  name: string;
+  mainImages?: {
+    path: string;
+    name?: string;
+    originalname?: string;
+  }[];
+  quantity: number;
+}
+
 // 장바구니 리스트
 export interface CartItemType {
   _id: number;
   product_id: number;
   quantity: number;
-  product: ProductType;
+  product: ProductItemType;
 }
 
 // 장바구니 아이템
@@ -36,7 +49,7 @@ export interface CartListProps {
 export interface LikeItemType {
   _id: number;
   target_id: number;
-  product: ProductType;
+  product: ProductItemType;
 }
 
 // 찜상품
@@ -50,14 +63,14 @@ export interface LikeItemProps {
 export interface BuyListType {
   _id: number;
   createdAt: string;
-  products: ProductType[];
+  products: ProductItemType[];
 }
 
 // 주문내역 리스트
 export interface BuyItemListType {
   _id: number;
   createdAt: string;
-  products: ProductType[];
+  products: ProductItemType[];
 }
 
 // 주문내역 아이템
