@@ -62,11 +62,6 @@ export default function RecipeWritePage() {
             value={user?.token?.accessToken ?? ''}
           />
           <input
-            type="hidden"
-            name="user"
-            value={user?.token?.accessToken ?? ''}
-          />
-          <input
             type="text"
             name="title"
             placeholder="제목을 입력 해주세요."

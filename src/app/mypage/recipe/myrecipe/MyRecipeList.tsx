@@ -42,7 +42,7 @@ export default function MyRecipeList() {
               key={item._id}
               item={{
                 _id: item._id,
-                title: item.post.title,
+                title: item.title,
               }}
             />
           ))

@@ -34,6 +34,7 @@ export async function createPost(
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${body.accessToken}`,
       },
       body: JSON.stringify(body),
     });
@@ -47,8 +48,8 @@ export async function createPost(
 
   // redirect는 예외를 throw 하는 방식이라서 try 문에서 사용하면 catch로 처리되므로 제대로 동작하지 않음
   if (data.ok) {
-    revalidatePath(`/${body.type}`);
-    redirect(`/${body.type}`);
+    revalidatePath(`/recipe`);
+    redirect(`/recipe`);
   } else {
     return data;
   }

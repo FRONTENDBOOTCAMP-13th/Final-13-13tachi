@@ -3,9 +3,9 @@ import Image from 'next/image';
 // 임시 이미지 불러오기
 import profilePic from '../../../../images/profile.jpg';
 import Checkbox from '@/components/common/Checkbox';
-import { MyPostProps } from '@/types/post';
+import { MyPostType } from '@/types/post';
 
-export default function MyRecipeItem({ item }: { item: MyPostProps }) {
+export default function MyRecipeItem({ item }: { item: MyPostType }) {
   console.log(2);
   return (
     <div className="flex flex-col">

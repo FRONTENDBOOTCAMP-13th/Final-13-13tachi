@@ -11,8 +11,5 @@ export default async function MyRecipe() {
     <div className="flex flex-col justify-between h-full">
       <MyRecipeList />
     </div>
-    // <div className="h-full">
-    //   <EmptyMyRecipe />
-    // </div>
   );
 }
