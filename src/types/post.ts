@@ -69,3 +69,27 @@ export type PostForm = Partial<
   // 게시글 태그(쉼표로 구분된 문자열)
   tags?: string;
 };
+
+// 포스트 불러오기용
+export interface PostType {
+  _id: number;
+  title: string;
+  image: string;
+}
+
+// 레시피 북마크 리스트
+export interface LikePostType {
+  _id: number;
+  post: PostType;
+}
+// 레시피 북마크 아이템
+export interface LikePostItemType {
+  _id: number;
+  title: string;
+}
+
+// 나의 레시피 리스트
+export interface MyPostType {
+  _id: number;
+  title: string;
+}

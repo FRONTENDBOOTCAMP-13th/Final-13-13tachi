@@ -6,7 +6,7 @@ import BuyItem from '@/app/mypage/buylist/BuyItem';
 // import profilePic from '../../../images/profile.jpg';
 // import Button from '@/components/common/Button';
 
-import { BuyItemListType, BuyItemProps } from '@/types';
+import { BuyItemListType, ProductItemType } from '@/types';
 import Link from 'next/link';
 
 export default function BuyItemList({ item }: { item: BuyItemListType }) {
@@ -23,7 +23,7 @@ export default function BuyItemList({ item }: { item: BuyItemListType }) {
       </div>
       <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] p-[1.125rem]">
         <div className="flex flex-col w-full gap-[2.125rem]">
-          {item.products.map((product: BuyItemProps) => (
+          {item.products.map((product: ProductItemType) => (
             <BuyItem
               key={product._id}
               item={{

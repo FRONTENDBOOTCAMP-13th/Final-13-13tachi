@@ -18,7 +18,7 @@ export default async function LoginPage() {
         <div className="flex flex-col lg:gap-[0.625rem] w-full relative">
           <Link
             href="/login"
-            className="flex items-center justify-center lg:w-[20.3125rem] lg:h-[3.4375rem] border-white border-[0.1875rem] lg:text-base lg:font-semibold text-white text-center rounded-lg"
+            className="flex items-center justify-center lg:w-[20.3125rem] lg:h-[3.4375rem] border-white border-[0.1875rem] lg:text-base lg:font-semibold text-white text-center rounded-lg hover:bg-black/15"
           >
             이메일로 시작하기
           </Link>

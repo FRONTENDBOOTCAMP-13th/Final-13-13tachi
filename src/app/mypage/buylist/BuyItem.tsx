@@ -3,12 +3,12 @@ import Image from 'next/image';
 // 임시 이미지 불러오기
 import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
-import { BuyItemProps } from '@/types';
+import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { AddCart } from '@/data/actions/cart';
 import { useActionState } from 'react';
 
-export default function BuyItem({ item }: { item: BuyItemProps }) {
+export default function BuyItem({ item }: { item: ProductItemType }) {
   const { user } = useUserStore();
   const [addState, AddAction, isAdding] = useActionState(AddCart, null);
   console.log(addState, isAdding);
