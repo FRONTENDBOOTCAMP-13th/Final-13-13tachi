@@ -108,7 +108,7 @@ export default function LoginForm() {
             />
             <p>자동 로그인</p>
           </div>
-          <Link href="/user/signup">회원가입</Link>
+          <Link href="/signup">회원가입</Link>
         </div>
 
         <div className="flex justify-center items-center lg:mt-[3.125rem]">

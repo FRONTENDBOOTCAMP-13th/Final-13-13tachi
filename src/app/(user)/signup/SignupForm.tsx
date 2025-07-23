@@ -33,7 +33,7 @@ export default function SignupForm() {
   useEffect(() => {
     if (state?.ok) {
       alert('회원 가입이 완료되었습니다');
-      router.replace('/user/login');
+      router.replace('/login');
     } else if (state?.ok === 0 && !state?.errors) {
       alert(state?.message);
     }
@@ -207,7 +207,12 @@ export default function SignupForm() {
         </div>
       </div>
 
-      <AddressForm register={register} setValue={setValue} errors={errors} />
+      <AddressForm
+        register={register}
+        setValue={setValue}
+        errors={errors}
+        required
+      />
 
       <div className="flex justify-center items-center lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
