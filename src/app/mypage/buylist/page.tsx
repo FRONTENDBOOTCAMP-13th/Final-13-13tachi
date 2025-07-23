@@ -11,7 +11,9 @@ export default async function buyList() {
         <h3 className="lg:w-full lg:text-xl font-semibold">주문내역</h3>
         <hr className="text-light-gray w-full" />
       </div>
-      <BuyList />
+      <div className="flex flex-col mb-9">
+        <BuyList />
+      </div>
       {/* <div className="h-full">
         <EmptyBuyList />
       </div> */}

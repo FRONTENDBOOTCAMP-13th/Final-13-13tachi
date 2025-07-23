@@ -52,7 +52,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                   <p className="lg:text-sm mt-1">{item.price}</p>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-5 border-[0.0625rem] rounded-lg lg:w-20 lg:h-[1.875rem] p-1">
-                  <form>
+                  <form action={quantityAction}>
                     <input
                       type="hidden"
                       name="accessToken"
@@ -64,15 +64,12 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                       name="quantity"
                       value={Number(item.quantity) - 1}
                     />
-                    <button
-                      className="lg:text-base font-semibold hover:cursor-pointer"
-                      formAction={quantityAction}
-                    >
+                    <button className="lg:text-base font-semibold hover:cursor-pointer">
                       -
                     </button>
                   </form>
                   <span className="lg:text-sm">{item.quantity}</span>
-                  <form>
+                  <form action={quantityAction}>
                     <input
                       type="hidden"
                       name="accessToken"
@@ -84,10 +81,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                       name="quantity"
                       value={Number(item.quantity) + 1}
                     />
-                    <button
-                      className="lg:text-base font-semibold hover:cursor-pointer"
-                      formAction={quantityAction}
-                    >
+                    <button className="lg:text-base font-semibold hover:cursor-pointer">
                       +
                     </button>
                   </form>
@@ -96,14 +90,14 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
             </div>
           </div>
           <div className="flex flex-col justify-center items-end gap-[1.5625rem]">
-            <form>
+            <form action={deleteAction}>
               <input
                 type="hidden"
                 name="accessToken"
                 value={user?.token?.accessToken ?? ''}
               />
               <input type="hidden" name="_id" value={item._id} />
-              <Button size="sm" variant="white" formAction={deleteAction}>
+              <Button size="sm" variant="white">
                 삭제
               </Button>
             </form>
