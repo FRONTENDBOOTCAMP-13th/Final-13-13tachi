@@ -1,9 +1,19 @@
 // 상품
 export interface ProductType {
-  _id: number;
-  price: number;
-  name: string;
-  quantity: number;
+  _id?: number;
+  seller_id?: number;
+  price?: number;
+  name?: string;
+  mainImages?: {
+    path: string;
+    name?: string;
+    originalname?: string;
+  }[];
+  extra?: {
+    category?: string[];
+    sort?: number;
+    details?: string;
+  };
 }
 
 // 장바구니 리스트

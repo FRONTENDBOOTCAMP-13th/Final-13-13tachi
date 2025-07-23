@@ -1,8 +1,10 @@
+'use client';
+
 import React, { useState } from 'react';
 import PostCode from 'react-daum-postcode';
 import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import Input from '@/components/common/Input';
-import { SignupFormProps } from '@/app/user/signup/SignupForm';
+import { SignupFormProps } from '@/app/(user)/signup/SignupForm';
 
 //react-hook-form의 함수와 에러 객체를(SignupForm, EditForm) props로 받아옴
 //기존의 회원 정보 데이터를 가져오기 위함
@@ -10,12 +12,14 @@ interface AddressFormProps {
   register: UseFormRegister<SignupFormProps>;
   setValue: UseFormSetValue<SignupFormProps>;
   errors: FieldErrors<SignupFormProps>;
+  required?: boolean; //* 여부
 }
 
 export default function AddressForm({
   register,
   setValue,
   errors,
+  required = false,
 }: AddressFormProps) {
   //검색 모달 열고 닫기
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +37,7 @@ export default function AddressForm({
         <label htmlFor="address" className="block text-black lg:text-base">
           주소
         </label>
-        <span className="text-light-red lg:text-sm ml-1">*</span>
+        {required && <span className="text-light-red lg:text-sm ml-1">*</span>}
       </div>
       <div className="flex flex-col gap-[0.625rem]">
         <div className="flex gap-[0.625rem] items-center">
