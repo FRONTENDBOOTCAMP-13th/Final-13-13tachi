@@ -1,4 +1,20 @@
 import SignupForm from '@/app/(user)/signup/SignupForm';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `회원가입 - UgVeg : 흙내음 상점`,
+    description: `무료 회원 가입후 흙내음 가득한 여정에 첫 발을 내딛어 보세요`,
+    openGraph: {
+      title: `회원가입 - UgVeg : 흙내음 상점`,
+      description: `무료 회원 가입후 흙내음 가득한 여정에 첫 발을 내딛어 보세요`,
+      url: `/signup`,
+      images: {
+        url: '/thumbnail.svg',
+      },
+    },
+  };
+}
 
 export default async function SignupPage() {
   return (

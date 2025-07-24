@@ -1,5 +1,19 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: `로그인 - UgVeg : 흙내음 상점`,
+  description: `흙내음 상점에서 자연의 맛을 로그인하세요`,
+  openGraph: {
+    title: `로그인 - UgVeg : 흙내음 상점`,
+    description: `흙내음 상점에서 자연의 맛을 로그인하세요`,
+    url: `/login/select`,
+    images: {
+      url: '/thumbnail.svg',
+    },
+  },
+};
 
 export default async function LoginPage() {
   return (
