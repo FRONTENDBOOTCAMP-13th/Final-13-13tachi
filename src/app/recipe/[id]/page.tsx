@@ -6,9 +6,9 @@ import FoodBtn from '@/components/common/FoodBtn';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { Bookmark, Share2 } from 'lucide-react';
-import profilePic from '../../../images/profile.jpg';
 import type { Post } from '@/types/post';
 import Comments from './Comments';
+import Profile from '@/app/recipe/[id]/Profile';
 
 type RecipeDetailData = Pick<
   Post,
@@ -46,7 +46,6 @@ export default async function RecipeDetailPage({
   params: { id: string };
 }) {
   const recipe = await fetchRecipeDetail(params.id);
-
   if (!recipe) {
     return <div className="text-center mt-10">레시피를 찾을 수 없습니다.</div>;
   }
@@ -59,7 +58,6 @@ export default async function RecipeDetailPage({
           '/',
         )
       : null;
-
   return (
     <>
       <Header />
@@ -89,20 +87,7 @@ export default async function RecipeDetailPage({
           </div>
 
           {/* 작성자 프로필 */}
-          <div className="flex flex-col items-center justify-center mt-[-4rem] relative z-10">
-            <div className="lg:w-[7.5rem] lg:h-[7.5rem] overflow-hidden rounded-full ring-4 ring-white">
-              <Image
-                src={profilePic}
-                alt={recipe.user?.name ?? '작성자'}
-                width={120}
-                height={120}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span className="mt-[0.625rem] text-xl font-semibold">
-              {recipe.user?.name ?? '익명'}
-            </span>
-          </div>
+          <Profile username={recipe.user.name} />
 
           <main>
             <h1 className="text-5xl font-bold">{recipe.title}</h1>

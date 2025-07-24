@@ -4,11 +4,13 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Dropdown() {
   const { resetUser } = useUserStore();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { user } = useUserStore();
 
   //로그아웃 시 토큰 삭제
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,10 +40,12 @@ export default function Dropdown() {
       <button onClick={() => setOpen(prev => !prev)}>
         <Image
           className="w-8 h-8 object-cover rounded-full mr-2"
-          src="/profile.svg"
+          src={
+            user?.image ? `${API_URL}/${user.image}` : '/images/front-end.png'
+          }
           width="32"
           height="32"
-          alt="프로필 이미지"
+          alt={`${user?.name} 프로필 이미지`}
         />
       </button>
 

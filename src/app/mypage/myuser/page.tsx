@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 // 임시 이미지 불러오기
-import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function User() {
   const { user } = useUserStore();
@@ -20,8 +20,10 @@ export default function User() {
       <div className="flex flex-col justify-between">
         <div className="contents">
           <Image
-            src={profilePic}
-            alt="프로필 이미지"
+            src={
+              user?.image ? `${API_URL}/${user.image}` : '/images/front-end.png'
+            }
+            alt={`${user?.name} 프로필 이미지`}
             width={80}
             height={80}
             className="w-20 h-20 object-cover rounded-[50%] mb-6"

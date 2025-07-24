@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 // 임시 이미지 불러오기
-import profilePic from '../../images/profile.jpg';
+
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import {
@@ -17,7 +17,7 @@ import {
   ShoppingCart,
 } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function RootLayout({
   children,
 }: {
@@ -42,8 +42,12 @@ export default function RootLayout({
               <aside className="flex flex-col items-center lg:gap-[2.125rem] lg:w-[12.25rem] h-full bg-bg-gray text-black lg:p-[1.875rem] lg:mr-[1.875rem] rounded-lg">
                 <div className="flex flex-col items-center lg:gap-1">
                   <Image
-                    src={profilePic}
-                    alt="profilepic"
+                    src={
+                      user?.image
+                        ? `${API_URL}/${user.image}`
+                        : '/images/front-end.png'
+                    }
+                    alt={`${user?.name} 프로필 이미지`}
                     width={80}
                     height={80}
                     className="rounded-[50%] object-cover lg:w-20 lg:h-20"
