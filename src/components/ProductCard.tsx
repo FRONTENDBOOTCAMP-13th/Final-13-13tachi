@@ -15,14 +15,13 @@ export default function ProductCard({ filteredItems }: ProductCardProps) {
   const ProductCardList = filteredItems.map((item: ProductType, index) => {
     return (
       <li key={index}>
-        {/* //TODO 상세 페이지 연결 */}
-        <Link href="#">
+        <Link href={`shopping/${item._id}`}>
           <div className="relative aspect-square">
             <Image
               src={`${API_URL}/${item.mainImages![0].path}`}
               alt={`${item.name} 이미지`}
               fill
-              className="rounded-[0.5rem] object-cover"
+              className="rounded-lg object-cover"
             />
           </div>
           <div className="relative lg:mt-4 w-full">
@@ -33,7 +32,7 @@ export default function ProductCard({ filteredItems }: ProductCardProps) {
               </span>
             </div>
             <strong className="inlin-block text-orange lg:mt-1.5 lg:text-xl">
-              {item.price}
+              {item.price?.toLocaleString()}원
             </strong>
             {/* TODO 내 찜목록은 filled로 보여지도록, 클릭하면 내 찜목록에 토글 되도록, 아이콘 filled와 토글 되도록, 로그인 안 되어 있을 경우에 클릭하면 로그인 페이지 안내 모달 나오도록 */}
             <button

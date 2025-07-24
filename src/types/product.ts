@@ -16,6 +16,12 @@ export interface ProductType {
   };
 }
 
+// 상품 조회
+export interface ProductTypeRes {
+  ok: 0 | 1;
+  item: ProductType;
+}
+
 // 상품 가져오기용 리스트
 export interface ProductItemType {
   _id: number;

@@ -34,7 +34,7 @@ export default async function ShoppingList() {
           {/* ST: 인기상품 */}
           <div className="lg:mt-7.5">
             <h3 className="font-bold text-dark-green lg:text-3xl">인기 상품</h3>
-            <HotItems />
+            <HotItems products={products} />
           </div>
           {/* ED: 인기상품 */}
 
