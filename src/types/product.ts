@@ -13,6 +13,7 @@ export interface ProductType {
     category?: string[];
     sort?: number;
     details?: string;
+    isBest?: boolean;
   };
 }
 

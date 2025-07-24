@@ -4,164 +4,28 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 
 import './main.css';
-import ProductCard from '@/components/ProductCard';
+// import ProductCard from '@/components/ProductCard';
 import MainSlide from '@/app/MainSlide';
 import ValueSlide from '@/app/ValueSlide';
+import { getProducts } from '@/data/functions/post';
+import { ProductType } from '@/types';
+import ProductCard from '@/components/ProductCard';
 
-interface AllItems {
-  title: string;
-  details: string;
-  price: string;
-  img: string;
-  category: string;
-}
+export default async function Home() {
+  const res = await getProducts();
+  const products: ProductType[] = res.ok === 1 ? res.item : [];
+  const filteredItems = products.slice(0, 4);
 
-const shoppingArr: AllItems[] = [
-  {
-    title: '감쟈합니다111111111111111111111111111111111111111111111111111111',
-    details: '1kg',
-    price: '3,250원',
-    img: '/assets/shopping/items1.png',
-    category: '과일',
-  },
-  {
-    title: '바니바니바니바니 당근당근',
-    details: '2개',
-    price: '1,800원',
-    img: '/assets/shopping/items2.png',
-    category: '과일',
-  },
-  {
-    title: '길쭉이 오이',
-    details: '52개',
-    price: '5,252원',
-    img: '/assets/shopping/items3.png',
-    category: '채소',
-  },
-  {
-    title: '구 양배추 현 조세호',
-    details: '1개',
-    price: '1,840원',
-    img: '/assets/shopping/items4.png',
-    category: '채소',
-  },
-  {
-    title: '단호하게 단호박',
-    details: '1개',
-    price: '2,100원',
-    img: '/assets/shopping/items5.png',
-    category: '채소',
-  },
-  {
-    title: 'bro콜리',
-    details: '200g',
-    price: '1,500원',
-    img: '/assets/shopping/items6.png',
-    category: '채소',
-  },
-  {
-    title: '토맛 토마토',
-    details: '400g',
-    price: '3,400원',
-    img: '/assets/shopping/items7.png',
-    category: '과일',
-  },
-  {
-    title: '감쟈합니다',
-    details: '1kg',
-    price: '3,250원',
-    img: '/assets/shopping/items1.png',
-    category: '채소',
-  },
-  {
-    title: '바니바니바니바니 당kjkk근당근',
-    details: '2개',
-    price: '1,800원',
-    img: '/assets/shopping/items2.png',
-    category: '채소',
-  },
-  {
-    title: '길쭉이 오이',
-    details: '52개',
-    price: '5,252원',
-    img: '/assets/shopping/items3.png',
-    category: '채소',
-  },
-  {
-    title: '구 양배추 현 조세호',
-    details: '1개',
-    price: '1,840원',
-    img: '/assets/shopping/items4.png',
-    category: '과일',
-  },
-  {
-    title: '단호하게 단호박',
-    details: '1개',
-    price: '2,100원',
-    img: '/assets/shopping/items5.png',
-    category: '과일',
-  },
-  {
-    title: 'bro콜리',
-    details: '200g',
-    price: '1,500원',
-    img: '/assets/shopping/items6.png',
-    category: '채소',
-  },
-  {
-    title: '토맛 토마토',
-    details: '400g',
-    price: '3,400원',
-    img: '/assets/shopping/items7.png',
-    category: '채소',
-  },
-  {
-    title: '감쟈합니다',
-    details: '1kg',
-    price: '3,250원',
-    img: '/assets/shopping/items1.png',
-    category: '과일',
-  },
-  {
-    title: '바니바니바니바니 당kjkk근당근',
-    details: '2개',
-    price: '1,800원',
-    img: '/assets/shopping/items2.png',
-    category: '과일',
-  },
-  {
-    title: '길쭉이 오이',
-    details: '52개',
-    price: '5,252원',
-    img: '/assets/shopping/items3.png',
-    category: '과일',
-  },
-  {
-    title: '구 양배추 현 조세호',
-    details: '1개',
-    price: '1,840원',
-    img: '/assets/shopping/items4.png',
-    category: '과일',
-  },
-  {
-    title: '단호하게 단호박',
-    details: '1개',
-    price: '2,100원',
-    img: '/assets/shopping/items5.png',
-    category: '과일',
-  },
-  {
-    title: 'bro콜리',
-    details: '200g',
-    price: '1,500원',
-    img: '/assets/shopping/items6.png',
-    category: '채소',
-  },
-];
+  const hotItems = products.filter(item => item.extra?.isBest).slice(0, 4);
 
-const filteredItems = shoppingArr.slice(0, 4);
+  const vegeItems = products
+    .filter(item => item.extra?.category?.includes('채소'))
+    .slice(0, 4);
 
-export default function Home() {
+  const fruitItems = products
+    .filter(item => item.extra?.category?.includes('과일'))
+    .slice(0, 4);
+
   return (
     <>
       <Header />
@@ -207,7 +71,7 @@ export default function Home() {
                 + 더보기
               </Link>
             </div>
-            <ProductCard filteredItems={filteredItems} />
+            <ProductCard filteredItems={vegeItems} />
           </section>
           {/* ED: 채소류 */}
 
@@ -219,7 +83,7 @@ export default function Home() {
                 + 더보기
               </Link>
             </div>
-            <ProductCard filteredItems={filteredItems} />
+            <ProductCard filteredItems={fruitItems} />
           </section>
           {/* ED: 과일류 */}
 
@@ -231,7 +95,7 @@ export default function Home() {
                 + 더보기
               </Link>
             </div>
-            <ProductCard filteredItems={filteredItems} />
+            <ProductCard filteredItems={hotItems} />
           </section>
           {/* ED: 인기 레시피 */}
 
