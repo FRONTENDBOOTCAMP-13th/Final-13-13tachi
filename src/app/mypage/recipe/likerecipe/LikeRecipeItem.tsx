@@ -4,8 +4,18 @@ import Image from 'next/image';
 import profilePic from '../../../../images/profile.jpg';
 import { LikePostItemType } from '@/types/post';
 import { Bookmark } from 'lucide-react';
+import { useActionState } from 'react';
+import useUserStore from '@/zustand/useStore';
+import { deleteBookmark } from '@/data/actions/post';
 
 export default function LikeRecipeItem({ item }: { item: LikePostItemType }) {
+  const { user } = useUserStore();
+  const [deleteState, deleteAction, isDeleting] = useActionState(
+    deleteBookmark,
+    null,
+  );
+  console.log(deleteState, isDeleting);
+
   return (
     <div className="flex flex-col">
       <Image
@@ -17,8 +27,16 @@ export default function LikeRecipeItem({ item }: { item: LikePostItemType }) {
       />
       <div className="relative text-center mt-2.5">
         <div className="absolute left-0">
-          <form>
-            <Bookmark />
+          <form action={deleteAction}>
+            <input
+              type="hidden"
+              name="accessToken"
+              value={user?.token?.accessToken ?? ''}
+            />
+            <input type="hidden" name="_id" value={item._id} />
+            <button className="hover:cursor-pointer">
+              <Bookmark fill="green" />
+            </button>
           </form>
         </div>
         <p className="">{item.title}</p>
