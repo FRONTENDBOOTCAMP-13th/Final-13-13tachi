@@ -2,21 +2,12 @@
 import Image from 'next/image';
 
 import Button from '@/components/common/Button';
-import Checkbox from '@/components/common/Checkbox';
 import { ProductItemType } from '@/types';
 import { useActionState, useState } from 'react';
 import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import useUserStore from '@/zustand/useStore';
 
-export default function CartItemForm({
-  item,
-  checked,
-  onCheckChange,
-}: {
-  item: ProductItemType;
-  checked: boolean;
-  onCheckChange: (checked: boolean) => void;
-}) {
+export default function CartItemForm({ item }: { item: ProductItemType }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
   const [deleteState, deleteAction, isDeleting] = useActionState(
@@ -50,11 +41,11 @@ export default function CartItemForm({
               htmlFor={`inputCheckBox-${item._id}`}
               className="sr-only"
             ></label>
-            <Checkbox
+            {/* <Checkbox
               id={`inputCheckBox-${item._id}`}
               checked={checked}
               onChange={e => onCheckChange(e.target.checked)}
-            />
+            /> */}
             <div className="flex flex-row lg:gap-3.5 lg:h-[6.25rem]">
               <Image
                 width={100}

@@ -13,7 +13,6 @@ export default function CartList() {
   const accessToken = user?.token?.accessToken;
 
   const [res, setRes] = useState<ApiRes<CartItemType[]> | null>(null);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   useEffect(() => {
     if (accessToken) {
@@ -37,12 +36,6 @@ export default function CartList() {
   if (res.ok === 0) {
     return <div>{res.message}</div>; // 실패 메시지 렌더링
   }
-
-  const selectedItems = res.item.filter(i => selectedIds.includes(i._id));
-  const totalPrice = selectedItems.reduce(
-    (sum, i) => sum + i.quantity * i.product.price,
-    0,
-  );
   return (
     <>
       {res.ok ? (
@@ -56,22 +49,13 @@ export default function CartList() {
               price: item.product.price,
               image: item.product.image,
             }}
-            checked={selectedIds.includes(item._id)}
-            onCheckChange={checked => {
-              setSelectedIds(prev =>
-                checked
-                  ? [...prev, item._id]
-                  : prev.filter(id => id !== item._id),
-              );
-            }}
           />
         ))
       ) : (
         <p>{}</p>
       )}
       <p className="text-right lg:mt-[1.875rem] lg:text-lg font-semibold">
-        총 상품 금액{' '}
-        <span className="text-[#8B0505]">{totalPrice.toLocaleString()}</span>원
+        총 상품 금액 <span className="text-[#8B0505]">0</span>원
       </p>
       <div className="flex justify-center">
         <form>
