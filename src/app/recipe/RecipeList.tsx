@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import { Recipe } from '@/types/product';
-import { Post } from '@/types/post';
+import type { Recipe } from '@/types/product';
+import type { Post } from '@/types/post';
 
 export default function RecipeList() {
   const [activeTab, setActiveTab] = useState<
@@ -29,19 +29,28 @@ export default function RecipeList() {
 
         const data = await res.json();
 
+        const baseImageUrl = process.env.NEXT_PUBLIC_API_URL ?? '';
+
         const recipes: Recipe[] = (
           Array.isArray(data.item) ? (data.item as Post[]) : []
-        ).map(item => ({
-          _id: item._id?.toString() || '',
-          title: item.title || '제목 없음',
-          author: item.user?.name ? item.user.name : '익명', // 작성자 이름 없으면 익명
-          tag: item.tag || '',
-          image:
-            typeof item.image === 'string' && item.image.trim() !== ''
-              ? item.image
-              : null,
-          category: item.type === 'recipe' ? '나의레시피' : item.type,
-        }));
+        ).map(item => {
+          const rawImage = item.image;
+
+          // image가 빈 문자열이 아니면 base URL과 합쳐서 절대 URL로 만듦
+          const imageUrl =
+            typeof rawImage === 'string' && rawImage.trim() !== ''
+              ? `${baseImageUrl}/${rawImage}`.replace(/\/+/g, '/')
+              : null;
+
+          return {
+            _id: item._id?.toString() || '',
+            title: item.title || '제목 없음',
+            author: item.user?.name ? item.user.name : '익명',
+            tag: item.tag || '',
+            image: imageUrl,
+            category: item.type === 'recipe' ? '나의레시피' : item.type,
+          };
+        });
 
         setRecipeArr(recipes);
       } catch (error) {
@@ -87,7 +96,7 @@ export default function RecipeList() {
       </div>
 
       {loading ? (
-        <div className="text-center mt-10">불러오는 중...</div>
+        <div className="text-center mt-10">레시피 불러오는 중...</div>
       ) : filteredRecipes.length === 0 ? (
         <div className="text-center mt-10 text-gray-500">
           레시피가 없습니다.
@@ -99,7 +108,9 @@ export default function RecipeList() {
               <Link
                 key={item._id}
                 href={`/recipe/${item._id}`}
-                className={`w-[15rem] block ${index >= 4 ? 'mt-[60px]' : 'mt-[25px]'}`}
+                className={`w-[15rem] block ${
+                  index >= 4 ? 'mt-[60px]' : 'mt-[25px]'
+                }`}
               >
                 <figure className="lg:w-[15rem]">
                   <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg bg-gray-100">
