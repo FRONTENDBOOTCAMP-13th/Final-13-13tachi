@@ -17,7 +17,7 @@ export default function BuyItemList({ item }: { item: BuyItemListType }) {
           <span className="mr-4 text-dark-green">{item.createdAt}</span>
           <span className="text-gray">주문번호:20230725-0001</span>
         </p>
-        <Link href={`/mypage/buyinfo`} className="text-dark-green">
+        <Link href={`/mypage/buylist/${item._id}`} className="text-dark-green">
           상세조회
         </Link>
       </div>

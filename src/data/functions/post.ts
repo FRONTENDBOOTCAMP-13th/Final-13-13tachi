@@ -4,6 +4,7 @@ import {
   ProductType,
   LikeItemType,
   BuyListType,
+  OrderInfoType,
 } from '@/types';
 import { LikePostType, MyPostType, Post, PostReply } from '@/types/post';
 // import useUserStore from '@/zustand/useStore';
@@ -84,6 +85,29 @@ export async function BuyProducts(
       cache: 'no-store',
       next: {
         tags: [`orders`],
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 불러오기 실패' };
+  }
+}
+
+// 주문 상세 불러오기
+export async function getOrderInfo(
+  accessToken: string,
+  _id: number,
+): ApiResPromise<OrderInfoType> {
+  try {
+    const res = await fetch(`${API_URL}/orders/${_id}`, {
+      headers: {
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      cache: 'no-store',
+      next: {
+        tags: [`orders/${_id}`],
       },
     });
     return res.json();

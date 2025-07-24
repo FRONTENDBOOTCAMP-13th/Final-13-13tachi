@@ -65,6 +65,26 @@ export interface BuyListType {
   createdAt: string;
   products: ProductItemType[];
 }
+// 주문상세
+export interface OrderInfoType {
+  _id: number;
+  createdAt: string;
+  address: {
+    value: string;
+  };
+  cost: {
+    total: number;
+  };
+  products: ProductItemType[];
+}
+// 주문 상세 아이템
+export interface OrderInfoItemType {
+  _id: number;
+  createdAt: string;
+  address: string;
+  cost: number;
+  products: ProductItemType[];
+}
 
 // 주문내역 리스트
 export interface BuyItemListType {

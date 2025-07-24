@@ -1,27 +1,32 @@
-// 주문 내역 목록
-// import BuyList from '@/app/mypage/buylist/BuyList';
+'use client';
 
-import BuyInfoItem from '@/app/mypage/buyinfo/BuyinfoItem';
+import BuyInfoItem from '@/app/mypage/buylist/[_id]/BuyinfoItem';
 import Button from '@/components/common/Button';
+import CustomLink from '@/components/common/CustomLink';
+import { OrderInfoItemType, ProductItemType } from '@/types';
 
-export default async function buyInfo() {
+export default function BuyInfoItemList({ item }: { item: OrderInfoItemType }) {
   return (
-    <main className="flex flex-col h-full">
-      <div className="lg:w-[49.875rem] flex flex-col lg:gap-2 mb-[1.875rem]">
-        <h3 className="lg:w-full lg:text-xl font-semibold">주문내역</h3>
-        <hr className="text-light-gray w-full" />
-      </div>
+    <>
       <div className="flex flex-row justify-between text-sm mb-2.5">
         <p>
-          <span className="mr-4 text-dark-green">2025.07.10</span>
+          <span className="mr-4 text-dark-green">{item.createdAt}</span>
           <span className="text-gray">주문번호:20230725-0001</span>
         </p>
       </div>
       <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] p-[1.125rem]">
         <div className="flex flex-col w-full gap-[2.125rem]">
-          <BuyInfoItem />
-          <BuyInfoItem />
-          <BuyInfoItem />
+          {item.products.map((product: ProductItemType) => (
+            <BuyInfoItem
+              key={product._id}
+              item={{
+                _id: product._id,
+                name: product.name,
+                quantity: product.quantity,
+                price: product.price,
+              }}
+            />
+          ))}
         </div>
       </div>
       <div className="grid grid-cols-2 gap-[1.875rem] mt-9 h-full">
@@ -31,7 +36,7 @@ export default async function buyInfo() {
             <p>성이름</p>
             <p>010-1234-5678</p>
             <p>
-              서울 종로구 종로23길 17, 광화문 D타워 <span>(55050)</span>
+              {item.address} <span>(55050)</span>
             </p>
           </div>
         </div>
@@ -42,7 +47,7 @@ export default async function buyInfo() {
           <div className="flex flex-col border-1 rounded-lg border-light-gray px-5 py-8 gap-2">
             <p className="flex flex-row justify-between">
               <span>결제 금액</span>
-              <span>35000원</span>
+              <span>{item.cost}원</span>
             </p>
             <p className="flex flex-row justify-between">
               <span>결제 수단</span>
@@ -55,10 +60,8 @@ export default async function buyInfo() {
         <Button size="xxl" variant="white">
           주문 취소하기
         </Button>
-        <Button size="xxl" variant="green">
-          주문 내역으로 돌아가기
-        </Button>
+        <CustomLink href="/mypage/buylist">주문 내역으로 돌아가기</CustomLink>
       </div>
-    </main>
+    </>
   );
 }

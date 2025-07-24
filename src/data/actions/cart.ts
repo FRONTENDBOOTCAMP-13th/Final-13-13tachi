@@ -113,7 +113,7 @@ export async function updateCartQuantity(
   const accessToken = formData.get('accessToken'); // 인증 토큰
 
   const body = {
-    quantity: formData.get('quantity'),
+    quantity: Number(formData.get('quantity')),
   };
 
   let res: Response;
@@ -142,7 +142,6 @@ export async function updateCartQuantity(
   if (data.ok) {
     revalidateTag(`carts/${_id}`); // 게시글 상세 페이지 갱신
     revalidateTag(`carts/`);
-    redirect(`/mypage/cart`);
   } else {
     return data;
   }

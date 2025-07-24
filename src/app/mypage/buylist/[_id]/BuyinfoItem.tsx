@@ -1,18 +1,17 @@
 import Image from 'next/image';
 
 // 임시 이미지 불러오기
-import profilePic from '../../../images/profile.jpg';
+import profilePic from '../../../../images/profile.jpg';
 import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { AddCart } from '@/data/actions/cart';
 import { useActionState } from 'react';
 
-export default function BuyItem({ item }: { item: ProductItemType }) {
+export default function BuyInfoItem({ item }: { item: ProductItemType }) {
   const { user } = useUserStore();
   const [addState, AddAction, isAdding] = useActionState(AddCart, null);
   console.log(addState, isAdding);
-  console.log('3번 호출');
   return (
     <div className="flex flex-row justify-between w-full">
       <div className="flex flex-row items-center lg:gap-3.5 lg:h-[6.25rem]">
@@ -28,9 +27,9 @@ export default function BuyItem({ item }: { item: ProductItemType }) {
             </span>
             <span className="lg:text-xs">(350g)</span>
           </p>
-          <p className="flex gap-2.5 items-center">
+          <p className="flex gap-8 items-center">
             <span className="lg:text-base">{item.price}원</span>
-            <span className="lg:text-xs">{item.quantity}개</span>
+            <span className="lg:text-xs">무료배송</span>
           </p>
         </div>
       </div>
@@ -42,7 +41,7 @@ export default function BuyItem({ item }: { item: ProductItemType }) {
             value={user?.token?.accessToken ?? ''}
           />
           <input type="hidden" name="_id" value={item._id} />
-          <Button size="lg" variant="green" type="button">
+          <Button size="lg" variant="green">
             레시피 작성하기
           </Button>
         </form>
