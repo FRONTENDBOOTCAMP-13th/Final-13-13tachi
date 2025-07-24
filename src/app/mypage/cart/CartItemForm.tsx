@@ -10,7 +10,15 @@ import { useActionState, useState } from 'react';
 import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import useUserStore from '@/zustand/useStore';
 
-export default function CartItemForm({ item }: { item: CartListProps }) {
+export default function CartItemForm({
+  item,
+  checked,
+  onCheckChange,
+}: {
+  item: CartListProps;
+  checked: boolean;
+  onCheckChange: (checked: boolean) => void;
+}) {
   const { user } = useUserStore();
   const [deleteState, deleteAction, isDeleting] = useActionState(
     deleteCart,
@@ -43,7 +51,11 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
               htmlFor={`inputCheckBox-${item._id}`}
               className="sr-only"
             ></label>
-            <Checkbox id={`inputCheckBox-${item._id}`} />
+            <Checkbox
+              id={`inputCheckBox-${item._id}`}
+              checked={checked}
+              onChange={e => onCheckChange(e.target.checked)}
+            />
             <div className="flex flex-row lg:gap-3.5 lg:h-[6.25rem]">
               <Image
                 src={profilePic}
@@ -73,7 +85,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                     <input
                       type="hidden"
                       name="quantity"
-                      value={Number(item.quantity) - 1}
+                      value={quantity - 1 < 1 ? 1 : quantity - 1}
                     />
                     <button
                       type="submit"
@@ -91,11 +103,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                       value={user?.token?.accessToken ?? ''}
                     />
                     <input type="hidden" name="_id" value={item._id} />
-                    <input
-                      type="hidden"
-                      name="quantity"
-                      value={Number(item.quantity) + 1}
-                    />
+                    <input type="hidden" name="quantity" value={quantity + 1} />
                     <button
                       type="submit"
                       onClick={() => handleUp()}
@@ -121,7 +129,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
               </Button>
             </form>
             <span className="lg:text-base font-semibold">
-              {item.price * item.quantity}
+              {item.price * quantity}
             </span>
           </div>
         </div>
