@@ -28,7 +28,11 @@ export default function CartList() {
     return <div>로딩중...</div>;
   }
   if (res.ok && res.item.length === 0) {
-    return <EmptyCart />;
+    return (
+      <div className="h-full">
+        <EmptyCart />
+      </div>
+    );
   }
   if (res.ok === 0) {
     return <div>{res.message}</div>; // 실패 메시지 렌더링
@@ -50,6 +54,7 @@ export default function CartList() {
               name: item.product.name,
               quantity: item.quantity,
               price: item.product.price,
+              image: item.product.image,
             }}
             checked={selectedIds.includes(item._id)}
             onCheckChange={checked => {

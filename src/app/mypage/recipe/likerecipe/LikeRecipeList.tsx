@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { getLikeRecipe } from '@/data/functions/post';
-import Button from '@/components/common/Button';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { LikePostType } from '@/types/post';
 import LikeRecipeItem from '@/app/mypage/recipe/likerecipe/LikeRecipeItem';
+
+import CustomLink from '@/components/common/CustomLink';
+import EmptyLikeRecipe from '@/app/mypage/recipe/likerecipe/EmptyLikeRecipe';
 
 export default function LikeRecipeList() {
   const { user } = useUserStore();
@@ -35,9 +37,6 @@ export default function LikeRecipeList() {
     return <div>로딩중...</div>;
   }
 
-  // if (res.ok && res.item.length === 0) {
-  //   return <EmptyMyRecipe />;
-  // }
   console.log('1');
   console.log(res);
   const items =
@@ -45,6 +44,10 @@ export default function LikeRecipeList() {
     Object.entries(res)
       .filter(([key]) => key !== 'ok')
       .map(([, value]) => value as LikePostType);
+
+  if (res.ok && items.length === 0) {
+    return <EmptyLikeRecipe />;
+  }
 
   return (
     <>
@@ -56,6 +59,7 @@ export default function LikeRecipeList() {
               item={{
                 _id: item._id,
                 title: item.post.title,
+                image: item.post.image,
               }}
             />
           ))
@@ -63,10 +67,8 @@ export default function LikeRecipeList() {
           <p>{res.message}</p>
         )}
       </div>
-      <div className="flex justify-end">
-        <Button size="xxl" variant="green">
-          레시피 보러가기
-        </Button>
+      <div className="flex justify-end mt-4">
+        <CustomLink href="/recipe">레시피 보러가기</CustomLink>
       </div>
     </>
   );

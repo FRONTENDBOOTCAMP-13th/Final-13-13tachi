@@ -5,6 +5,7 @@
 // import profilePic from '../../../images/profile.jpg';
 // import Button from '@/components/common/Button';
 import BuyItemList from '@/app/mypage/buylist/BuyItemList';
+import EmptyBuyList from '@/app/mypage/buylist/EmptyBuyList';
 import { BuyProducts } from '@/data/functions/post';
 import { ApiRes, BuyListType } from '@/types';
 import useUserStore from '@/zustand/useStore';
@@ -28,9 +29,16 @@ export default function BuyList() {
   if (!res) {
     return <div>로딩중...</div>;
   }
+  if (res.ok && res.item.length === 0) {
+    return (
+      <div className="h-full">
+        <EmptyBuyList />
+      </div>
+    );
+  }
   console.log('1번 호출');
   return (
-    <>
+    <div className="flex flex-col mb-9">
       {res.ok ? (
         res.item.map((item: BuyListType) => (
           <BuyItemList
@@ -45,6 +53,6 @@ export default function BuyList() {
       ) : (
         <p>{res.message}</p>
       )}
-    </>
+    </div>
   );
 }

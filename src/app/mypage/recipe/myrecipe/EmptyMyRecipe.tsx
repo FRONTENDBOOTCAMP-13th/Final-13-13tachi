@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 // 임시 이미지 불러오기
 import emptyPic from '../../../../images/recipe.png';
-import Button from '@/components/common/Button';
+import CustomLink from '@/components/common/CustomLink';
 
 export default function EmptyMyRecipe() {
   return (
@@ -20,9 +20,7 @@ export default function EmptyMyRecipe() {
         </p>
         <p className="text-sm">나만의 새로운 레시피를 등록해 보세요</p>
       </p>
-      <Button size="xxl" variant="green">
-        레시피 작성하기
-      </Button>
+      <CustomLink href="/recipe/write">레시피 작성하기</CustomLink>
     </div>
   );
 }
