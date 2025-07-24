@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 // 임시 이미지 불러오기
 import emptyPic from '../../../images/emptycart.png';
-import Button from '@/components/common/Button';
+import CustomLink from '@/components/common/CustomLink';
 
 export default function EmptyCart() {
   return (
@@ -20,9 +20,7 @@ export default function EmptyCart() {
         </p>
         <p className="text-sm">장바구니를 새로운 상품으로 채워보세요</p>
       </p>
-      <Button size="xxl" variant="green">
-        상품 담으러 가기
-      </Button>
+      <CustomLink href="/shopping">상품 담으러 가기</CustomLink>
     </div>
   );
 }

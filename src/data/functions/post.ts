@@ -20,7 +20,6 @@ export async function getProducts(): ApiResPromise<ProductType[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
     });
     return res.json();
   } catch (error) {
@@ -38,7 +37,6 @@ export async function getProductDetails(
       headers: {
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
       next: {
         tags: [`products/${_id}`],
       },
@@ -61,7 +59,6 @@ export async function getCartProducts(
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
-      cache: 'force-cache',
       next: {
         tags: [`carts`],
       },
@@ -174,7 +171,6 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
     });
     return res.json();
   } catch (error) {
@@ -195,7 +191,6 @@ export async function getPost(_id: number): ApiResPromise<Post> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
     });
     return res.json();
   } catch (error) {
@@ -239,7 +234,6 @@ export async function getMyRecipe(
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
-      cache: 'force-cache',
     });
     return res.json();
   } catch (error) {

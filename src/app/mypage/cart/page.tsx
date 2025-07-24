@@ -1,6 +1,3 @@
-// 빈 경우
-// import EmptyCart from '@/app/mypage/cart/EmptyCart';
-
 // 비지 않은 경우
 import CartList from '@/app/mypage/cart/CartList';
 
@@ -12,9 +9,6 @@ export default async function Cart() {
         <hr className="text-light-gray w-full" />
       </div>
       <CartList />
-      {/* <div className="h-full">
-        <EmptyCart />
-      </div> */}
     </main>
   );
 }

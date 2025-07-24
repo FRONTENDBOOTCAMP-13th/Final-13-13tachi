@@ -1,6 +1,3 @@
-// 비어있는 경우
-// import EmptyLikes from '@/app/mypage/likes/EmptyLikes';
-
 // 찜목록
 import LikeList from '@/app/mypage/likes/LikeList';
 
@@ -11,12 +8,7 @@ export default async function Likes() {
         <h3 className="lg:w-full lg:text-xl font-semibold">내가 찜한 상품</h3>
         <hr className="text-light-gray w-full" />
       </div>
-      <div className="flex flex-col gap-2.5">
-        <LikeList />
-      </div>
-      {/* <div className="h-full">
-        <EmptyLikes />
-      </div> */}
+      <LikeList />
     </main>
   );
 }

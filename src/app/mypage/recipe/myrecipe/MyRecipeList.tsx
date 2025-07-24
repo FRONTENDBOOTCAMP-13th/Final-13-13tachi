@@ -8,10 +8,16 @@ import useUserStore from '@/zustand/useStore';
 import MyRecipeItem from '@/app/mypage/recipe/myrecipe/MyRecipeItem';
 import { MyPostType } from '@/types/post';
 import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
+import CustomLink from '@/components/common/CustomLink';
+// import { deletePost } from '@/data/actions/post';
 
 export default function MyRecipeList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
+  // const [deleteState, deleteAction, isDeleting] = useActionState(
+  //   deletePost,
+  //   null,
+  // );
 
   const [res, setRes] = useState<ApiRes<MyPostType[]> | null>(null);
 
@@ -27,10 +33,12 @@ export default function MyRecipeList() {
   if (!res) {
     return <div>로딩중...</div>;
   }
+  console.log(getMyRecipe(accessToken));
 
   if (res.ok && res.item.length === 0) {
     return <EmptyMyRecipe />;
   }
+
   console.log('1');
   console.log(res);
   return (
@@ -43,6 +51,7 @@ export default function MyRecipeList() {
               item={{
                 _id: item._id,
                 title: item.title,
+                image: item.image,
               }}
             />
           ))
@@ -50,17 +59,13 @@ export default function MyRecipeList() {
           <p>{res.message}</p>
         )}
       </div>
-      <div className="flex justify-end gap-x-2.5">
+      <div className="flex justify-end gap-x-2.5 mt-4">
         <form>
           <Button size="xxlsm" variant="white">
             삭제
           </Button>
         </form>
-        <form>
-          <Button size="xxl" variant="green">
-            레시피 작성하기
-          </Button>
-        </form>
+        <CustomLink href={`/recipe/write`}>레시피 작성하기</CustomLink>
       </div>
     </>
   );

@@ -1,16 +1,23 @@
 'use client';
 import Image from 'next/image';
 
-// 임시 이미지 불러오기
-import profilePic from '../../../images/profile.jpg';
 import Button from '@/components/common/Button';
 import Checkbox from '@/components/common/Checkbox';
-import { CartListProps } from '@/types';
+import { ProductItemType } from '@/types';
 import { useActionState, useState } from 'react';
 import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import useUserStore from '@/zustand/useStore';
 
-export default function CartItemForm({ item }: { item: CartListProps }) {
+export default function CartItemForm({
+  item,
+  checked,
+  onCheckChange,
+}: {
+  item: ProductItemType;
+  checked: boolean;
+  onCheckChange: (checked: boolean) => void;
+}) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
   const [deleteState, deleteAction, isDeleting] = useActionState(
     deleteCart,
@@ -43,13 +50,17 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
               htmlFor={`inputCheckBox-${item._id}`}
               className="sr-only"
             ></label>
-            <Checkbox id={`inputCheckBox-${item._id}`} />
+            <Checkbox
+              id={`inputCheckBox-${item._id}`}
+              checked={checked}
+              onChange={e => onCheckChange(e.target.checked)}
+            />
             <div className="flex flex-row lg:gap-3.5 lg:h-[6.25rem]">
               <Image
-                src={profilePic}
-                alt="상품이미지"
                 width={100}
                 height={100}
+                src={`${API_URL}/${item.image?.path}`}
+                alt={`${item.name} 이미지`}
                 className="lg:w-[6.25rem] lg:h-[6.25rem] object-cover rounded-lg shadow-image"
               ></Image>
               <div className="flex flex-col justify-between">
@@ -70,11 +81,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                       value={user?.token?.accessToken ?? ''}
                     />
                     <input type="hidden" name="_id" value={item._id} />
-                    <input
-                      type="hidden"
-                      name="quantity"
-                      value={Number(item.quantity) - 1}
-                    />
+                    <input type="hidden" name="quantity" value={quantity} />
                     <button
                       type="submit"
                       onClick={() => handleDown()}
@@ -91,11 +98,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
                       value={user?.token?.accessToken ?? ''}
                     />
                     <input type="hidden" name="_id" value={item._id} />
-                    <input
-                      type="hidden"
-                      name="quantity"
-                      value={Number(item.quantity) + 1}
-                    />
+                    <input type="hidden" name="quantity" value={quantity} />
                     <button
                       type="submit"
                       onClick={() => handleUp()}
@@ -121,7 +124,7 @@ export default function CartItemForm({ item }: { item: CartListProps }) {
               </Button>
             </form>
             <span className="lg:text-base font-semibold">
-              {item.price * item.quantity}
+              {item.price * quantity}
             </span>
           </div>
         </div>

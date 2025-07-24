@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 // 임시 이미지 불러오기
 import emptyPic from '../../../../images/bookmark.png';
-import Button from '@/components/common/Button';
+import CustomLink from '@/components/common/CustomLink';
 
 export default function EmptyLikeRecipe() {
   return (
@@ -16,13 +16,11 @@ export default function EmptyLikeRecipe() {
       />
       <p className="mb-10">
         <p className="text-xl font-semibold text-center mb-3">
-          내 레시피가 없어요
+          북마크 한 레시피가 없어요
         </p>
-        <p className="text-sm">나만의 새로운 레시피를 등록해 보세요</p>
+        <p className="text-sm">마음에 드는 레시피를 북마크 해 보세요</p>
       </p>
-      <Button size="xxl" variant="green">
-        레시피 작성하기
-      </Button>
+      <CustomLink href="/recipe">레시피 보러가기</CustomLink>
     </div>
   );
 }

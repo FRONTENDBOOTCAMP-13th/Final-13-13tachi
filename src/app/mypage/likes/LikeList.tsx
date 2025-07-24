@@ -1,5 +1,6 @@
 'use client';
 
+import EmptyLikes from '@/app/mypage/likes/EmptyLikes';
 import LikeItemForm from '@/app/mypage/likes/LikeItemForm';
 
 import { getLikeProducts } from '@/data/functions/post';
@@ -40,8 +41,16 @@ export default function LikeList() {
       .filter(([key]) => key !== 'ok')
       .map(([, value]) => value as LikeItemType);
 
+  if (res.ok && items.length === 0) {
+    return (
+      <div className="h-full">
+        <EmptyLikes />
+      </div>
+    );
+  }
+
   return (
-    <>
+    <div className="flex flex-col gap-2.5">
       {res.ok ? (
         items.map((item: LikeItemType) => (
           <LikeItemForm
@@ -50,12 +59,13 @@ export default function LikeList() {
               _id: item._id,
               price: item.product?.price,
               name: item.product?.name,
+              mainImages: item.product.mainImages,
             }}
           />
         ))
       ) : (
         <p>{res.message}</p>
       )}
-    </>
+    </div>
   );
 }

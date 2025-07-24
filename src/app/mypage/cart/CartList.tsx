@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import { getCartProducts } from '@/data/functions/post';
-import Button from '@/components/common/Button';
 import { CartItemType, ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import CartItemForm from '@/app/mypage/cart/CartItemForm';
+import EmptyCart from '@/app/mypage/cart/EmptyCart';
+import CustomLink from '@/components/common/CustomLink';
 
 export default function CartList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
 
   const [res, setRes] = useState<ApiRes<CartItemType[]> | null>(null);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   useEffect(() => {
     if (accessToken) {
@@ -25,7 +27,22 @@ export default function CartList() {
   if (!res) {
     return <div>로딩중...</div>;
   }
+  if (res.ok && res.item.length === 0) {
+    return (
+      <div className="h-full">
+        <EmptyCart />
+      </div>
+    );
+  }
+  if (res.ok === 0) {
+    return <div>{res.message}</div>; // 실패 메시지 렌더링
+  }
 
+  const selectedItems = res.item.filter(i => selectedIds.includes(i._id));
+  const totalPrice = selectedItems.reduce(
+    (sum, i) => sum + i.quantity * i.product.price,
+    0,
+  );
   return (
     <>
       {res.ok ? (
@@ -37,19 +54,29 @@ export default function CartList() {
               name: item.product.name,
               quantity: item.quantity,
               price: item.product.price,
+              image: item.product.image,
+            }}
+            checked={selectedIds.includes(item._id)}
+            onCheckChange={checked => {
+              setSelectedIds(prev =>
+                checked
+                  ? [...prev, item._id]
+                  : prev.filter(id => id !== item._id),
+              );
             }}
           />
         ))
       ) : (
-        <p>{res.message}</p>
+        <p>{}</p>
       )}
       <p className="text-right lg:mt-[1.875rem] lg:text-lg font-semibold">
-        총 상품 금액 <span className="text-[#8B0505]">59,900</span>원
+        총 상품 금액{' '}
+        <span className="text-[#8B0505]">{totalPrice.toLocaleString()}</span>원
       </p>
       <div className="flex justify-center">
-        <Button size="xxl" variant="green">
-          주문하기
-        </Button>
+        <form>
+          <CustomLink href="/order">주문하기</CustomLink>
+        </form>
       </div>
     </>
   );

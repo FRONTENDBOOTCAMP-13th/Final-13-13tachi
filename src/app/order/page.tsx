@@ -8,6 +8,7 @@ import kakaopay from '../../images/kakaopay.png';
 import naverpay from '../../images/naverpay.png';
 import tosspay from '../../images/tosspay.png';
 import Button from '@/components/common/Button';
+import { CircleEqualIcon, MinusCircle, PlusCircle } from 'lucide-react';
 
 export default function Order() {
   return (
@@ -46,15 +47,15 @@ export default function Order() {
             <tr>
               <td className="border border-l-0 relative py-4">
                 <span>10000</span>
-                {/* <PlusCircle className="text-black fill-gray-100 absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" /> */}
+                <PlusCircle className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
               </td>
               <td className="border relative py-4">
                 <span>10000</span>
-                {/* <MinusCircle className="text-black fill-gray-100 absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" /> */}
+                <MinusCircle className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
               </td>
               <td className="border relative py-4">
                 <span>10000</span>
-                {/* <CircleEqualIcon className="text-black fill-gray-100 absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" /> */}
+                <CircleEqualIcon className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
               </td>
               <td className="border border-r-0 relative py-4">
                 <span>10000</span>

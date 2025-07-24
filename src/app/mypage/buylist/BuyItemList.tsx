@@ -31,6 +31,7 @@ export default function BuyItemList({ item }: { item: BuyItemListType }) {
                 name: product.name,
                 quantity: product.quantity,
                 price: product.price,
+                image: product.image,
               }}
             />
           ))}
