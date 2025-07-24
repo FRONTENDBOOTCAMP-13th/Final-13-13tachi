@@ -36,6 +36,10 @@ export default function CartList() {
   if (res.ok === 0) {
     return <div>{res.message}</div>; // 실패 메시지 렌더링
   }
+  const totalPrice = res.item.reduce((sum, item) => {
+    return sum + item.product.price * item.quantity;
+  }, 0);
+
   return (
     <>
       {res.ok ? (
@@ -55,7 +59,7 @@ export default function CartList() {
         <p>{}</p>
       )}
       <p className="text-right lg:mt-[1.875rem] lg:text-lg font-semibold">
-        총 상품 금액 <span className="text-[#8B0505]">0</span>원
+        총 상품 금액 <span className="text-[#8B0505]">{totalPrice}</span>원
       </p>
       <div className="flex justify-center">
         <form>

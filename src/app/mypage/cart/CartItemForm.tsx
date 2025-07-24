@@ -115,7 +115,7 @@ export default function CartItemForm({ item }: { item: ProductItemType }) {
               </Button>
             </form>
             <span className="lg:text-base font-semibold">
-              {item.price * quantity}
+              {item.price * quantity}원
             </span>
           </div>
         </div>
