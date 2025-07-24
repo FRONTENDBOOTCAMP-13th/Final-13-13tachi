@@ -76,9 +76,9 @@ export default function AddressForm({
         <Input
           type="text"
           id="addressDetail1"
-          placeholder="기본주소"
+          placeholder="상세주소를 입력하세요"
           {...register('addressDetail1', {
-            required: '상세주소를 입력하세요',
+            required: '상세주소를 입력해주세요',
           })}
         />
         {errors.addressDetail1 && (
