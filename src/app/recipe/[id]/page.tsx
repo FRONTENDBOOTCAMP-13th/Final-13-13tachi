@@ -1,23 +1,26 @@
+// app/recipe/[id]/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import Comment from './Comment';
 import { Bookmark, Share2 } from 'lucide-react';
+import profilePic from '../../../images/profile.jpg';
+import type { Post } from '@/types/post';
+import Comments from './Comments';
 
-interface RecipeDetailData {
-  _id: string;
-  title: string;
-  content: string;
-  author: string;
-  category: string;
-  img?: string;
-  ingredients?: string;
-  tag: string;
-  createdAt?: string;
-}
+type RecipeDetailData = Pick<
+  Post,
+  | '_id'
+  | 'title'
+  | 'content'
+  | 'user'
+  | 'category'
+  | 'image'
+  | 'tag'
+  | 'createdAt'
+>;
 
 async function fetchRecipeDetail(id: string): Promise<RecipeDetailData | null> {
   try {
@@ -27,6 +30,7 @@ async function fetchRecipeDetail(id: string): Promise<RecipeDetailData | null> {
       },
       cache: 'no-store',
     });
+
     if (!res.ok) throw new Error('Failed to fetch recipe detail');
     const data = await res.json();
     return data.item || null;
@@ -36,15 +40,25 @@ async function fetchRecipeDetail(id: string): Promise<RecipeDetailData | null> {
   }
 }
 
-export default async function RecipeDetailPage(props: {
+export default async function RecipeDetailPage({
+  params,
+}: {
   params: { id: string };
 }) {
-  const { id } = await props.params;
-  const recipe = await fetchRecipeDetail(id);
+  const recipe = await fetchRecipeDetail(params.id);
 
   if (!recipe) {
     return <div className="text-center mt-10">레시피를 찾을 수 없습니다.</div>;
   }
+
+  // 이미지 URL 구성
+  const imageUrl =
+    recipe.image && recipe.image.trim() !== ''
+      ? `${process.env.NEXT_PUBLIC_API_URL}/${recipe.image}`.replace(
+          /\/{2,}/g,
+          '/',
+        )
+      : null;
 
   return (
     <>
@@ -56,11 +70,12 @@ export default async function RecipeDetailPage(props: {
         </h2>
 
         <div className="px-15">
-          <div className="flex justify-center mt-[4.0625rem]">
+          {/* 레시피 이미지 */}
+          <div className="flex justify-center mt-[4.0625rem] relative z-0">
             <div className="lg:w-[56.25rem] lg:h-[31.25rem] relative">
-              {recipe.img ? (
+              {imageUrl ? (
                 <Image
-                  src={recipe.img}
+                  src={imageUrl}
                   alt={recipe.title}
                   fill
                   className="object-cover rounded-lg"
@@ -73,37 +88,39 @@ export default async function RecipeDetailPage(props: {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center mt-[-4rem]">
+          {/* 작성자 프로필 */}
+          <div className="flex flex-col items-center justify-center mt-[-4rem] relative z-10">
             <div className="lg:w-[7.5rem] lg:h-[7.5rem] overflow-hidden rounded-full ring-4 ring-white">
               <Image
-                src="/imgs/recipe/recipe7.png"
-                alt={recipe.author || '작성자'}
+                src={profilePic}
+                alt={recipe.user?.name ?? '작성자'}
                 width={120}
                 height={120}
                 className="w-full h-full object-cover"
               />
             </div>
             <span className="mt-[0.625rem] text-xl font-semibold">
-              {recipe.author || '익명'}
+              {recipe.user?.name ?? '익명'}
             </span>
           </div>
 
           <main>
             <h1 className="text-5xl font-bold">{recipe.title}</h1>
 
+            {/* 태그와 버튼 */}
             <div className="flex justify-between items-center mt-5">
               <div className="flex gap-2 flex-wrap">
                 {(() => {
-                  let tag: string[] = [];
+                  let tagList: string[] = [];
 
                   try {
                     const parsed = JSON.parse(recipe.tag ?? '[]');
-                    if (Array.isArray(parsed)) tag = parsed;
+                    if (Array.isArray(parsed)) tagList = parsed;
                   } catch {
-                    tag = recipe.tag?.split(',') || [];
+                    tagList = recipe.tag?.split(',') || [];
                   }
 
-                  return tag.map((item, idx) => (
+                  return tagList.map((item, idx) => (
                     <FoodBtn key={idx} label={item} selected={true} />
                   ));
                 })()}
@@ -119,11 +136,13 @@ export default async function RecipeDetailPage(props: {
               </div>
             </div>
 
+            {/* 본문 */}
             <div
               className="bg-[#f4f4f4] px-9 py-6 rounded-lg mt-5"
               dangerouslySetInnerHTML={{ __html: recipe.content || 'null' }}
             />
 
+            {/* 공유/북마크 */}
             <div className="flex justify-end mt-3">
               <Share2 strokeWidth={1} fill="true" />
               <div className="text-center ml-[0.4375rem]">
@@ -132,12 +151,14 @@ export default async function RecipeDetailPage(props: {
               </div>
             </div>
 
+            {/* 목록으로 */}
             <div className="flex justify-center mt-[1.875rem]">
               <Button size="xxl">
                 <Link href="/recipe">목록으로</Link>
               </Button>
             </div>
 
+            {/* 연관 상품 자리 */}
             <div>
               <h2 className="text-2xl font-bold mt-15">연관상품</h2>
               <div className="mt-[1.875rem]">
@@ -145,25 +166,8 @@ export default async function RecipeDetailPage(props: {
               </div>
             </div>
 
-            <div className="p-15">
-              <div className="flex items-center border-b-2 border-[#DEDEDE]">
-                <h3 className="text-xl font-semibold mb-[0.625rem]">댓글</h3>
-                <span className="text-xl font-semibold text-[#67913C] ml-2 mb-[0.625rem]">
-                  3
-                </span>
-              </div>
-              <Comment />
-              <form action="#">
-                <div className="flex items-center mt-9">
-                  <input
-                    type="text"
-                    placeholder="댓글을 입력하세요"
-                    className="w-[48.75rem] h-[2.5rem] border-1 border-light-gray rounded-lg mr-5 px-5  text-sm"
-                  />
-                  <Button size="md">등록</Button>
-                </div>
-              </form>
-            </div>
+            {/* 댓글 */}
+            <Comments postId={params.id} />
           </main>
         </div>
       </div>

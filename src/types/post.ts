@@ -54,6 +54,8 @@ export interface Post {
   image: string;
   // 카테고리
   category?: string;
+  // 태그(ingredients)
+  tag: string;
 }
 
 /**

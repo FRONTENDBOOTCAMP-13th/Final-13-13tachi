@@ -1,37 +1,97 @@
 'use client';
 
-import Link from 'next/link';
-import TextEditor from './TextEditor';
+import { useState } from 'react';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { useState } from 'react';
-import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
+import Button from '@/components/common/Button';
+import TextEditor from './TextEditor';
 import { ChevronDown } from 'lucide-react';
-import { useActionState } from 'react';
-import { createPost } from '@/data/actions/post';
 import useUserStore from '@/zustand/useStore';
+import Link from 'next/link';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID ?? '';
+
+type CreatePostData = {
+  accessToken?: string;
+  type: string;
+  title: string;
+  content: string;
+  tag: string;
+  image?: string;
+};
+
+async function uploadFile(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append('attach', file);
+
+  const res = await fetch(`${API_URL}/files/`, {
+    method: 'POST',
+    headers: {
+      'client-id': CLIENT_ID,
+    },
+    body: formData,
+  });
+
+  if (!res.ok) {
+    throw new Error('파일 업로드 실패');
+  }
+
+  const data = await res.json();
+
+  if (data.ok !== 1 || !data.item || data.item.length === 0) {
+    throw new Error('파일 업로드 응답 오류');
+  }
+
+  return data.item[0].path; // 예: files/openmarket/xxxxx.jpg
+}
+
+async function createPost(
+  postData: CreatePostData,
+): Promise<{ ok: number; message?: string }> {
+  const res = await fetch(`${API_URL}/posts/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${postData.accessToken ?? ''}`,
+    },
+    body: JSON.stringify(postData),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    return { ok: 0, message: errorData.message ?? '게시글 등록 실패' };
+  }
+
+  const data = await res.json();
+  return data;
+}
 
 export default function RecipeWritePage() {
-  const [fileName, setFileName] = useState('대표 이미지를 등록 해주세요');
+  const { user } = useUserStore();
+
   const [file, setFile] = useState<File | null>(null);
+  const [fileName, setFileName] = useState('대표 이미지를 등록 해주세요');
   const [toggleOpen, setToggleOpen] = useState(false);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
   const [content, setContent] = useState('');
-  const [state, formAction] = useActionState(createPost, null);
-  const { user } = useUserStore();
+  const [title, setTitle] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const ingredientList = [
-    { ingredient: '당근' },
-    { ingredient: '감자' },
-    { ingredient: '아스파라거스' },
-    { ingredient: '오이' },
-    { ingredient: '피망' },
-    { ingredient: '사과' },
-    { ingredient: '바나나' },
-    { ingredient: '딸기' },
-    { ingredient: '포도' },
-    { ingredient: '수박' },
+    '당근',
+    '감자',
+    '아스파라거스',
+    '오이',
+    '피망',
+    '사과',
+    '바나나',
+    '딸기',
+    '포도',
+    '수박',
   ];
 
   const handleClick = (ingredient: string) => {
@@ -44,58 +104,114 @@ export default function RecipeWritePage() {
     );
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.[0]) {
+      setFile(e.target.files[0]);
+      setFileName(e.target.files[0].name);
+    } else {
+      setFile(null);
+      setFileName('대표 이미지를 등록 해주세요');
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!title.trim()) {
+      alert('제목을 입력해주세요');
+      return;
+    }
+    if (!content.trim()) {
+      alert('내용을 입력해주세요');
+      return;
+    }
+    if (selectedIngredients.length === 0) {
+      alert('재료를 최소 1개 이상 선택해주세요');
+      return;
+    }
+    if (!file) {
+      alert('대표 이미지를 선택해주세요');
+      return;
+    }
+    if (!user?.token?.accessToken) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    setLoading(true);
+    setErrorMsg('');
+
+    try {
+      // 1. 이미지 업로드
+      const imagePath = await uploadFile(file);
+
+      // 2. 게시글 작성
+      const postData: CreatePostData = {
+        accessToken: user.token.accessToken,
+        type: 'recipe',
+        title,
+        content,
+        tag: selectedIngredients.join(','),
+        image: imagePath,
+      };
+
+      const result = await createPost(postData);
+
+      if (result.ok === 1) {
+        alert('게시글이 성공적으로 등록되었습니다!');
+        // 필요 시 리다이렉트
+        window.location.href = '/recipe';
+      } else {
+        setErrorMsg(result.message ?? '게시글 등록 실패');
+      }
+    } catch (error) {
+      setErrorMsg('파일 업로드 또는 게시글 등록 중 오류가 발생했습니다.');
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Header />
-      <div className="lg:max-w-5xl mx-auto pt-[4.0625rem] pb-[6.25rem]">
+      <main className="lg:max-w-5xl mx-auto pt-[4rem] pb-[6rem] px-4">
         <h2 className="text-gray">
-          <Link href="/">HOME</Link>
-          <span>{' > '}</span>
-          <Link href="/recipe">레시피</Link>
+          <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link>{' '}
+          &gt; 레시피 작성
         </h2>
-        <h1 className="text-5xl font-bold mt-[0.9375rem]">레시피 작성</h1>
+        <h1 className="text-5xl font-bold mt-4 mb-6">레시피 작성</h1>
 
-        <form action={formAction}>
-          <input
-            type="hidden"
-            name="accessToken"
-            value={user?.token?.accessToken ?? ''}
-          />
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="title"
             placeholder="제목을 입력 해주세요."
+            className="w-full h-12 border border-light-gray rounded-lg pl-4 mb-4"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
             required
-            className="mt-[1.875rem] w-full h-[2.8125rem] border border-light-gray rounded-lg pl-4"
           />
 
-          <input type="hidden" name="type" value="recipe" />
-          <input
-            type="hidden"
-            name="tag"
-            value={selectedIngredients.join(',')}
-          />
-          <input type="hidden" name="content" value={content} />
-
-          <p className="mt-[1.875rem] mb-5">
+          <p className="mb-2">
             사용하신 재료를 선택해주세요 (최대 3개 까지만)
             <span className="text-required-red ml-1">*</span>
           </p>
+
           <div className="flex justify-between items-center mb-5">
             <div className="flex gap-4 flex-wrap">
-              {ingredientList.map((item, index) => (
+              {ingredientList.map((ingredient, idx) => (
                 <FoodBtn
-                  key={index}
-                  label={item.ingredient}
-                  selected={selectedIngredients.includes(item.ingredient)}
-                  onClick={() => handleClick(item.ingredient)}
+                  key={idx}
+                  label={ingredient}
+                  selected={selectedIngredients.includes(ingredient)}
+                  onClick={() => handleClick(ingredient)}
                 />
               ))}
             </div>
             <button
               type="button"
-              onClick={() => setToggleOpen(prev => !prev)}
-              className="p-2"
+              onClick={() => setToggleOpen(!toggleOpen)}
               aria-label="재료 선택 토글"
             >
               <ChevronDown
@@ -105,14 +221,14 @@ export default function RecipeWritePage() {
           </div>
 
           {toggleOpen && (
-            <div className="p-4 rounded-lg border border-gray-300">
+            <div className="p-4 rounded-lg border border-gray-300 mb-4">
               <div className="flex gap-4 flex-wrap">
-                {ingredientList.map((item, index) => (
+                {ingredientList.map((ingredient, idx) => (
                   <FoodBtn
-                    key={index}
-                    label={item.ingredient}
-                    selected={selectedIngredients.includes(item.ingredient)}
-                    onClick={() => handleClick(item.ingredient)}
+                    key={idx}
+                    label={ingredient}
+                    selected={selectedIngredients.includes(ingredient)}
+                    onClick={() => handleClick(ingredient)}
                   />
                 ))}
               </div>
@@ -122,41 +238,35 @@ export default function RecipeWritePage() {
           <TextEditor value={content} onChange={setContent} />
 
           <div className="flex justify-end mt-5">
+            <span className="mr-2 text-required-red">*</span>
             <input
               type="file"
               id="fileInput"
               name="image"
+              accept="image/*"
               required
-              onChange={e => {
-                if (e.target.files?.[0]) {
-                  setFile(e.target.files[0]);
-                  setFileName(e.target.files[0].name);
-                } else {
-                  setFile(null);
-                  setFileName('대표 이미지를 등록 해주세요');
-                }
-              }}
               className="sr-only"
+              onChange={handleFileChange}
             />
             <label
               htmlFor="fileInput"
-              className="w-[20.625rem] h-[2.8125rem] border border-light-gray rounded-lg pl-4 flex items-center cursor-pointer overflow-hidden"
+              className="w-80 h-12 border border-light-gray rounded-lg pl-4 flex items-center cursor-pointer overflow-hidden"
             >
               {fileName}
             </label>
           </div>
 
+          {errorMsg && (
+            <p className="text-red-600 text-center mt-4">{errorMsg}</p>
+          )}
+
           <div className="flex justify-end mt-5">
-            <Button size="xxl" type="submit">
-              작성완료
+            <Button size="xxl" type="submit" disabled={loading}>
+              {loading ? '등록 중...' : '작성완료'}
             </Button>
           </div>
-
-          {state?.ok === 0 && (
-            <p className="text-red-500 mt-4 text-center">{state.message}</p>
-          )}
         </form>
-      </div>
+      </main>
       <Footer />
     </>
   );
