@@ -59,7 +59,7 @@ export default function LikeList() {
               _id: item._id,
               price: item.product?.price,
               name: item.product?.name,
-              image: item.product.image,
+              mainImages: item.product.mainImages,
             }}
           />
         ))

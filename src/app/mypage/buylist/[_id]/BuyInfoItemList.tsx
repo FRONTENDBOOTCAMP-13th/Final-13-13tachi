@@ -4,8 +4,10 @@ import BuyInfoItem from '@/app/mypage/buylist/[_id]/BuyinfoItem';
 import Button from '@/components/common/Button';
 import CustomLink from '@/components/common/CustomLink';
 import { OrderInfoItemType, ProductItemType } from '@/types';
+import useUserStore from '@/zustand/useStore';
 
 export default function BuyInfoItemList({ item }: { item: OrderInfoItemType }) {
+  const { user } = useUserStore();
   return (
     <>
       <div className="flex flex-row justify-between text-sm mb-2.5">
@@ -24,6 +26,7 @@ export default function BuyInfoItemList({ item }: { item: OrderInfoItemType }) {
                 name: product.name,
                 quantity: product.quantity,
                 price: product.price,
+                image: product.image,
               }}
             />
           ))}
@@ -33,8 +36,8 @@ export default function BuyInfoItemList({ item }: { item: OrderInfoItemType }) {
         <div>
           <p className="text-xl font-semibold text-dark-green mb-6">배송지</p>
           <div className="flex flex-col border-1 rounded-lg border-light-gray p-5 gap-1.5">
-            <p>성이름</p>
-            <p>010-1234-5678</p>
+            <p>{user?.name}</p>
+            <p>{user?.phone}</p>
             <p>
               {item.address} <span>(55050)</span>
             </p>

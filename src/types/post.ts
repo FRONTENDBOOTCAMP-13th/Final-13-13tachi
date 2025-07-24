@@ -86,10 +86,12 @@ export interface LikePostType {
 export interface LikePostItemType {
   _id: number;
   title: string;
+  image: string;
 }
 
 // 나의 레시피 리스트
 export interface MyPostType {
   _id: number;
   title: string;
+  image: string;
 }
