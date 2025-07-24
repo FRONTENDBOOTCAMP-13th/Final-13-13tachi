@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default async function LoginPage() {
   return (
-    <div className="relative">
+    <div className="relative lg:min-h-[calc(100dvh-21.625rem)]">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
         style={{ backgroundImage: "url('/login-img.svg')" }}
