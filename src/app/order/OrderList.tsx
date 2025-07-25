@@ -2,8 +2,9 @@ import Image from 'next/image';
 
 // 임시 이미지 불러오기
 import profilePic from '../../images/profile.jpg';
+import { CartItemType } from '@/types';
 
-export default function OrderList() {
+export default function OrderList({ item }: { item: CartItemType }) {
   return (
     <div className="flex flex-row items-center lg:gap-[1.875rem] lg:h-[6.25rem]">
       <Image
@@ -13,7 +14,7 @@ export default function OrderList() {
       ></Image>
       <div className="flex flex-col justufy-center">
         <p className="lg:text-base font-semibold">
-          <span className=" mr-1">못난이 사과</span>
+          <span className=" mr-1">{item.product.name}</span>
           <span className="lg:text-xs font-medium mr-2.5">(350g)</span>
           <span>1</span>
           <span>개</span>
