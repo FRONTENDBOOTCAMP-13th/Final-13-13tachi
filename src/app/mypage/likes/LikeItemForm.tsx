@@ -6,21 +6,23 @@ import Image from 'next/image';
 
 import Button from '@/components/common/Button';
 import { LikeItemProps } from '@/types';
-import { useActionState } from 'react';
-import { AddCart, deleteLike } from '@/data/actions/cart';
 import useUserStore from '@/zustand/useStore';
 
-export default function LikeItemForm({ item }: { item: LikeItemProps }) {
+interface LikeItemActionProps {
+  addAction: (FormData: FormData) => void;
+  deleteAction: (FormData: FormData) => void;
+}
+
+export default function LikeItemForm({
+  item,
+  action,
+}: {
+  item: LikeItemProps;
+  action: LikeItemActionProps;
+}) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
-  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
-  const [deleteState, deleteAction, isDeleting] = useActionState(
-    deleteLike,
-    null,
-  );
-  console.log(deleteState, isDeleting);
-  console.log(addState, isAdding);
-  console.log(item.mainImages[0].path);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex flex-row justify-between lg:w-[49.875rem] border-1 border-light-gray lg:p-4.5 rounded-lg ">
@@ -45,19 +47,19 @@ export default function LikeItemForm({ item }: { item: LikeItemProps }) {
           </div>
         </div>
         <div className="flex flex-col justify-center items-end lg:gap-2">
-          <form action={AddAction}>
+          <form action={action.addAction}>
             <input
               type="hidden"
               name="accessToken"
               value={user?.token?.accessToken ?? ''}
             />
-            <input type="hidden" name="product_id" value={item._id} />
+            <input type="hidden" name="product_id" value={item.product_id} />
             <input type="hidden" name="quantity" value={+1} />
             <Button size="xxs" variant="green">
               장바구니 담기
             </Button>
           </form>
-          <form action={deleteAction}>
+          <form action={action.deleteAction}>
             <input
               type="hidden"
               name="accessToken"

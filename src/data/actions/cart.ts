@@ -1,7 +1,6 @@
 'use server';
 import { ApiRes, ApiResPromise, CartItemType, LikeItemType } from '@/types';
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
@@ -91,7 +90,7 @@ export async function deleteCart(
 
   if (data.ok) {
     revalidateTag(`carts`);
-    redirect(`/mypage/cart`);
+    revalidatePath(`/mypage/cart`);
   }
 
   return data;
@@ -193,7 +192,7 @@ export async function deleteLike(
 
   if (data.ok) {
     revalidateTag(`bookmarks`);
-    redirect(`/mypage/likes`);
+    revalidatePath(`/mypage/likes`);
   }
 
   return data;

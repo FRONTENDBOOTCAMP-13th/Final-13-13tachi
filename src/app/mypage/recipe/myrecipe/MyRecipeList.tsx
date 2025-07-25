@@ -2,38 +2,41 @@
 
 import { useEffect, useState } from 'react';
 import { getMyRecipe } from '@/data/functions/post';
-import Button from '@/components/common/Button';
+// import Button from '@/components/common/Button';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import MyRecipeItem from '@/app/mypage/recipe/myrecipe/MyRecipeItem';
 import { MyPostType } from '@/types/post';
 import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
 import CustomLink from '@/components/common/CustomLink';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 // import { deletePost } from '@/data/actions/post';
 
 export default function MyRecipeList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
-  // const [deleteState, deleteAction, isDeleting] = useActionState(
-  //   deletePost,
-  //   null,
-  // );
+  const router = useRouter();
 
   const [res, setRes] = useState<ApiRes<MyPostType[]> | null>(null);
 
   useEffect(() => {
     if (accessToken) {
       getMyRecipe(accessToken).then(setRes);
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) router.replace('/login');
+      });
     }
   }, [accessToken]);
 
-  if (!accessToken) {
-    return <div>로그인이 필요합니다.</div>;
-  }
   if (!res) {
     return <div>로딩중...</div>;
   }
-  console.log(getMyRecipe(accessToken));
 
   if (res.ok && res.item.length === 0) {
     return <EmptyMyRecipe />;
@@ -60,11 +63,11 @@ export default function MyRecipeList() {
         )}
       </div>
       <div className="flex justify-end gap-x-2.5 mt-4">
-        <form>
+        {/* <form>
           <Button size="xxlsm" variant="white">
             삭제
           </Button>
-        </form>
+        </form> */}
         <CustomLink href={`/recipe/write`}>레시피 작성하기</CustomLink>
       </div>
     </>
