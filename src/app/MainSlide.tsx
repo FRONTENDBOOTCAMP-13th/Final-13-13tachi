@@ -14,16 +14,22 @@ export default function MainSlide() {
       navigation={true}
       modules={[Navigation, Pagination, Autoplay]}
       loop={true}
-      autoplay={{
-        delay: 7000,
-        disableOnInteraction: false,
-      }}
+      // autoplay={{
+      //   delay: 7000,
+      //   disableOnInteraction: false,
+      // }}
       speed={1000}
-      className="main-slide lg:h-[42.5rem]"
+      className="main-slide h-[42.5rem]"
     >
       <SwiperSlide className="relative video-slide">
         <div className="relative">
-          <video autoPlay loop muted playsInline>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full object-cover"
+          >
             <source src="/main-video-1.mp4" type="video/mp4" />
           </video>
         </div>
