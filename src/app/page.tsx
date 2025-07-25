@@ -31,7 +31,7 @@ export default async function Home() {
       <Header />
       <div>
         {/* ST: 메인 슬라이드 */}
-        <div className="max-w-[1920px] mx-auto">
+        <div className="max-w-full mx-auto">
           <MainSlide />
         </div>
         {/* ED: 메인 슬라이드 */}
