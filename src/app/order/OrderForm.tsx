@@ -25,13 +25,14 @@ export default function OrderForm() {
 
           <hr className="text-light-gray w-full mb-7" />
 
-          <div className="flex flex-col gap-5 mb-7"></div>
-          <OrderList />
-          <OrderTable />
-
+          <div className="flex flex-col gap-5 mb-7">
+            <OrderList />
+            <OrderTable />
+          </div>
           <div className="flex flex-col lg:flex-row justify-between gap-[2rem]">
             <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
               <h3 className="lg:text-xl font-bold mb-[0.75rem]">주문자 정보</h3>
+              <hr className="text-light-gray w-full mb-[1.5rem]" />
               <OrderUserForm />
             </div>
             <PayForm />
