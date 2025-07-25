@@ -1,28 +1,41 @@
-import Image from 'next/image';
+'use client';
 
-// 임시 이미지 불러오기
-import profilePic from '../../images/profile.jpg';
-import { CartItemType } from '@/types';
+import OrderItemForm from '@/app/order/OrderItemForm';
+import { getCartProducts } from '@/data/functions/post';
+import { ApiResCart, CartItemType } from '@/types';
+import useUserStore from '@/zustand/useStore';
+import { useEffect, useState } from 'react';
 
-export default function OrderList({ item }: { item: CartItemType }) {
+export default function OrderList() {
+  const { user } = useUserStore();
+  const accessToken = user?.token?.accessToken;
+
+  const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
+
+  useEffect(() => {
+    if (accessToken) {
+      getCartProducts(accessToken).then(setRes);
+    }
+  }, [accessToken]);
   return (
-    <div className="flex flex-row items-center lg:gap-[1.875rem] lg:h-[6.25rem]">
-      <Image
-        src={profilePic}
-        alt="상품이미지"
-        className="lg:w-[6.25rem] lg:h-[6.25rem] object-cover rounded-lg shadow-image"
-      ></Image>
-      <div className="flex flex-col justufy-center">
-        <p className="lg:text-base font-semibold">
-          <span className=" mr-1">{item.product.name}</span>
-          <span className="lg:text-xs font-medium mr-2.5">(350g)</span>
-          <span>1</span>
-          <span>개</span>
-        </p>
-        <p>
-          <span className="lg:text-sm">3000원</span>
-        </p>
-      </div>
-    </div>
+    <>
+      {' '}
+      {res?.ok ? (
+        res.item.map((item: CartItemType) => (
+          <OrderItemForm
+            key={item._id}
+            item={{
+              _id: item._id,
+              name: item.product.name,
+              quantity: item.quantity,
+              price: item.product.price,
+              image: item.product.image,
+            }}
+          />
+        ))
+      ) : (
+        <p>{}</p>
+      )}
+    </>
   );
 }
