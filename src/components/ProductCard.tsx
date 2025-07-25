@@ -1,51 +1,14 @@
-'use client';
-
 import { ProductType } from '@/types';
-import { Heart } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import ProductCardItem from './ProductCardItem';
 
 interface ProductCardProps {
   filteredItems: ProductType[];
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function ProductCard({ filteredItems }: ProductCardProps) {
-  const ProductCardList = filteredItems.map((item: ProductType, index) => {
-    return (
-      <li key={index}>
-        <Link href={`shopping/${item._id}`}>
-          <div className="relative aspect-square">
-            <Image
-              src={`${API_URL}/${item.mainImages![0].path}`}
-              alt={`${item.name} 이미지`}
-              fill
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="relative lg:mt-4 w-full">
-            <div className="flex gap-2 w-full lg:pr-6">
-              <h4 className="truncate  lg:text-base ">{item.name}</h4>
-              <span className="text-gray lg:mt-[0.0625rem] lg:text-sm">
-                {item.extra?.details}
-              </span>
-            </div>
-            <strong className="inlin-block text-orange lg:mt-1.5 lg:text-xl">
-              {item.price?.toLocaleString()}원
-            </strong>
-            {/* TODO 내 찜목록은 filled로 보여지도록, 클릭하면 내 찜목록에 토글 되도록, 아이콘 filled와 토글 되도록, 로그인 안 되어 있을 경우에 클릭하면 로그인 페이지 안내 모달 나오도록 */}
-            <button
-              type="button"
-              className="absolute top-[0.25rem] right-0 cursor-pointer"
-            >
-              <Heart strokeWidth={1} className="w-4.5 h-4.5" />
-            </button>
-          </div>
-        </Link>
-      </li>
-    );
-  });
+  const ProductCardList = filteredItems.map((item: ProductType, index) => (
+    <ProductCardItem key={index} item={item} />
+  ));
   return (
     <>
       <ul className="grid lg:mt-5 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-15">

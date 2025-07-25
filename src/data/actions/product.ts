@@ -42,6 +42,7 @@ export async function productAddLike(
   if (data.ok) {
     revalidateTag(`bookmarks`);
     revalidateTag(`/shopping/${_id}`);
+    revalidateTag(`/shopping`);
   }
 
   return data;
@@ -84,6 +85,7 @@ export async function productDeleteLike(
   if (data.ok) {
     revalidateTag(`bookmarks`);
     revalidateTag(`/shopping/${_id}`);
+    revalidateTag(`/shopping`);
   }
 
   return data;
