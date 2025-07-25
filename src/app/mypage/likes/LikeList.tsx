@@ -2,12 +2,13 @@
 
 import EmptyLikes from '@/app/mypage/likes/EmptyLikes';
 import LikeItemForm from '@/app/mypage/likes/LikeItemForm';
+import { AddCart, deleteLike } from '@/data/actions/cart';
 
 import { getLikeProducts } from '@/data/functions/post';
 import { ApiRes, LikeItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 
-import { useEffect, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 
 export default function LikeList() {
   const { user } = useUserStore();
@@ -27,6 +28,14 @@ export default function LikeList() {
         setRes({ ok: 0, message: '에러 발생!' });
       });
   }, [accessToken]);
+
+  const [addState, addAction, isAdding] = useActionState(AddCart, null);
+  console.log(addState, isAdding);
+  const [deleteState, deleteAction, isDeleting] = useActionState(
+    deleteLike,
+    null,
+  );
+  console.log(deleteState, isDeleting);
 
   if (!accessToken) {
     return <div>로그인이 필요합니다.</div>;
@@ -57,9 +66,14 @@ export default function LikeList() {
             key={item._id}
             item={{
               _id: item._id,
+              product_id: item.product._id,
               price: item.product?.price,
               name: item.product?.name,
               mainImages: item.product.mainImages,
+            }}
+            action={{
+              addAction: addAction,
+              deleteAction: deleteAction,
             }}
           />
         ))

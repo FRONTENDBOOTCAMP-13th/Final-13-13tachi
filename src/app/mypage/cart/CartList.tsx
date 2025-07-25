@@ -32,14 +32,6 @@ export default function CartList() {
   );
   console.log(quantityState, isUpdating);
 
-  useEffect(() => {
-    if (quantityState?.ok) {
-      if (accessToken) {
-        getCartProducts(accessToken).then(setRes);
-      }
-    }
-  }, [quantityState]);
-
   if (!accessToken) {
     return <div>로그인이 필요합니다.</div>;
   }
@@ -65,6 +57,7 @@ export default function CartList() {
             key={item._id}
             item={{
               _id: item._id,
+              product_id: item.product._id,
               name: item.product.name,
               quantity: item.quantity,
               price: item.product.price,
