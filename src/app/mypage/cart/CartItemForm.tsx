@@ -80,7 +80,7 @@ export default function CartItemForm({
                     />
                     <button
                       type="submit"
-                      onCanPlay={() => handleDown()}
+                      onClick={() => handleDown()}
                       className="lg:text-base font-semibold hover:cursor-pointer"
                     >
                       -
