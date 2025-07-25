@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { getLikeRecipe } from '@/data/functions/post';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
@@ -11,12 +11,18 @@ import CustomLink from '@/components/common/CustomLink';
 import EmptyLikeRecipe from '@/app/mypage/recipe/likerecipe/EmptyLikeRecipe';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
+import { deleteBookmark } from '@/data/actions/post';
 
 export default function LikeRecipeList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const router = useRouter();
   const [res, setRes] = useState<ApiRes<LikePostType[]> | null>(null);
+  const [deleteState, deleteAction, isDeleting] = useActionState(
+    deleteBookmark,
+    null,
+  );
+  console.log(deleteState, isDeleting);
 
   useEffect(() => {
     if (!accessToken) {
@@ -41,6 +47,14 @@ export default function LikeRecipeList() {
         });
     }
   }, [accessToken]);
+
+  useEffect(() => {
+    if (deleteState?.ok) {
+      if (accessToken) {
+        getLikeRecipe(accessToken).then(setRes);
+      }
+    }
+  }, [deleteState]);
 
   if (!res) {
     return <div>로딩중...</div>;
@@ -70,6 +84,7 @@ export default function LikeRecipeList() {
                 title: item.post.title,
                 image: item.post.image,
               }}
+              action={{ deleteAction }}
             />
           ))
         ) : (
