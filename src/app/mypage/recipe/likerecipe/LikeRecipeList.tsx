@@ -25,6 +25,10 @@ export default function LikeRecipeList() {
   console.log(deleteState, isDeleting);
 
   useEffect(() => {
+    if (accessToken === null || accessToken === undefined) {
+      // accessToken이 아직 로드 중이라면 아무것도 하지 않음
+      return;
+    }
     if (!accessToken) {
       {
         Swal.fire({

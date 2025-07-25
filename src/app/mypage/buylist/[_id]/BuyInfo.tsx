@@ -21,6 +21,10 @@ export default function BuyInfo({ orderId }: { orderId: number }) {
   const [addState, AddAction, isAdding] = useActionState(AddCart, null);
   console.log(isAdding);
   useEffect(() => {
+    if (accessToken === null || accessToken === undefined) {
+      // accessToken이 아직 로드 중이라면 아무것도 하지 않음
+      return;
+    }
     if (accessToken) {
       getOrderInfo(accessToken, orderId).then(setRes);
     } else {

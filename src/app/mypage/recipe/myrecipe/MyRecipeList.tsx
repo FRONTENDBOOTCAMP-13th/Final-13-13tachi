@@ -21,6 +21,10 @@ export default function MyRecipeList() {
   const [res, setRes] = useState<ApiRes<MyPostType[]> | null>(null);
 
   useEffect(() => {
+    if (accessToken === null || accessToken === undefined) {
+      // accessToken이 아직 로드 중이라면 아무것도 하지 않음
+      return;
+    }
     if (accessToken) {
       getMyRecipe(accessToken).then(setRes);
     } else {
