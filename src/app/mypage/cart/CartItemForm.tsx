@@ -3,29 +3,30 @@ import Image from 'next/image';
 
 import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
-import { useActionState, useState } from 'react';
-import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import useUserStore from '@/zustand/useStore';
+import { useState } from 'react';
 
-export default function CartItemForm({ item }: { item: ProductItemType }) {
+interface CartItemActionProps {
+  deleteAction: (FormData: FormData) => void;
+  quantityAction: (FormData: FormData) => void;
+}
+
+export default function CartItemForm({
+  item,
+  action,
+}: {
+  item: ProductItemType;
+  action: CartItemActionProps;
+}) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
-  const [deleteState, deleteAction, isDeleting] = useActionState(
-    deleteCart,
-    null,
-  );
-  console.log(deleteState, isDeleting);
-  const [quantityState, quantityAction, isUpdating] = useActionState(
-    updateCartQuantity,
-    null,
-  );
-  console.log(quantityState, isUpdating);
 
   const [quantity, setQuantity] = useState(item.quantity);
 
   const handleUp = () => {
     setQuantity(prev => prev + 1);
   };
+
   const handleDown = () => {
     if (quantity > 1) {
       setQuantity(prev => prev - 1);
@@ -65,31 +66,39 @@ export default function CartItemForm({ item }: { item: ProductItemType }) {
                   <p className="lg:text-sm mt-1">{item.price}원</p>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-5 border-[0.0625rem] rounded-lg lg:w-20 lg:h-[1.875rem] p-1">
-                  <form action={quantityAction}>
+                  <form action={action.quantityAction}>
                     <input
                       type="hidden"
                       name="accessToken"
                       value={user?.token?.accessToken ?? ''}
                     />
                     <input type="hidden" name="_id" value={item._id} />
-                    <input type="hidden" name="quantity" value={quantity} />
+                    <input
+                      type="hidden"
+                      name="quantity"
+                      value={item.quantity - 1}
+                    />
                     <button
                       type="submit"
-                      onClick={() => handleDown()}
+                      onCanPlay={() => handleDown()}
                       className="lg:text-base font-semibold hover:cursor-pointer"
                     >
                       -
                     </button>
                   </form>
                   <span className="lg:text-sm">{quantity}</span>
-                  <form action={quantityAction}>
+                  <form action={action.quantityAction}>
                     <input
                       type="hidden"
                       name="accessToken"
                       value={user?.token?.accessToken ?? ''}
                     />
                     <input type="hidden" name="_id" value={item._id} />
-                    <input type="hidden" name="quantity" value={quantity} />
+                    <input
+                      type="hidden"
+                      name="quantity"
+                      value={item.quantity + 1}
+                    />
                     <button
                       type="submit"
                       onClick={() => handleUp()}
@@ -103,7 +112,7 @@ export default function CartItemForm({ item }: { item: ProductItemType }) {
             </div>
           </div>
           <div className="flex flex-col justify-center items-end gap-[1.5625rem]">
-            <form action={deleteAction}>
+            <form action={action.deleteAction}>
               <input
                 type="hidden"
                 name="accessToken"
@@ -115,7 +124,7 @@ export default function CartItemForm({ item }: { item: ProductItemType }) {
               </Button>
             </form>
             <span className="lg:text-base font-semibold">
-              {item.price * quantity}원
+              {item.price * item.quantity}원
             </span>
           </div>
         </div>
