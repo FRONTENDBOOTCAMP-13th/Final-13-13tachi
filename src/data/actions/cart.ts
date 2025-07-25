@@ -1,6 +1,6 @@
 'use server';
 import { ApiRes, ApiResPromise, CartItemType, LikeItemType } from '@/types';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -143,6 +143,7 @@ export async function updateCartQuantity(
   if (data.ok) {
     revalidateTag(`carts/${_id}`); // 게시글 상세 페이지 갱신
     revalidateTag(`carts/`);
+    revalidatePath(`/mypage/cart`);
   } else {
     return data;
   }
