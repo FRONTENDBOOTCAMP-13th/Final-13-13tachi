@@ -5,10 +5,12 @@ import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import { Bookmark, Share2 } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
 import type { Post } from '@/types/post';
 import Comments from './Comments';
-import Profile from '@/app/recipe/[id]/Profile';
+import Profile from './Profile';
+import RecipeActionButtons from './RecipeActionButton';
+import ShareButton from '@/components/common/ShareButton';
 
 type RecipeDetailData = Pick<
   Post,
@@ -35,7 +37,7 @@ async function fetchRecipeDetail(id: string): Promise<RecipeDetailData | null> {
     const data = await res.json();
     return data.item || null;
   } catch (error) {
-    console.error(error);
+    console.error('❌ fetch error:', error);
     return null;
   }
 }
@@ -50,25 +52,41 @@ export default async function RecipeDetailPage({
     return <div className="text-center mt-10">레시피를 찾을 수 없습니다.</div>;
   }
 
-  // 이미지 URL 구성
+  // 이미지 URL 정리
   const imageUrl =
     recipe.image && recipe.image.trim() !== ''
       ? `${process.env.NEXT_PUBLIC_API_URL}/${recipe.image}`.replace(
-          /\/{2,}/g,
+          /(?<!:)\/{2,}/g,
           '/',
         )
       : null;
+
+  const profileImageUrl =
+    recipe.user.image && recipe.user.image.trim() !== ''
+      ? recipe.user.image
+      : null;
+
+  // 태그 배열 파싱
+  const tagList = (() => {
+    try {
+      const parsed = JSON.parse(recipe.tag ?? '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return recipe.tag?.split(',') || [];
+    }
+  })();
+
   return (
     <>
       <Header />
       <div className="lg:max-w-[56.25rem] mx-auto pt-[4.0625rem] pb-[6.25rem]">
-        <h2 className="text-gray">
+        <h2 className="text-gray text-sm mb-5">
           <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link>{' '}
           &gt; {recipe.title}
         </h2>
 
         <div className="px-15">
-          {/* 레시피 이미지 */}
+          {/* 대표 이미지 */}
           <div className="flex justify-center mt-[4.0625rem] relative z-0">
             <div className="lg:w-[56.25rem] lg:h-[31.25rem] relative">
               {imageUrl ? (
@@ -86,50 +104,38 @@ export default async function RecipeDetailPage({
             </div>
           </div>
 
-          {/* 작성자 프로필 */}
-          <Profile username={recipe.user.name} />
+          {/* 프로필 */}
+          <Profile username={recipe.user.name} imageUrl={profileImageUrl} />
 
           <main>
-            <h1 className="text-5xl font-bold">{recipe.title}</h1>
+            <h1 className="text-5xl font-bold mt-6">{recipe.title}</h1>
 
-            {/* 태그와 버튼 */}
+            {/* 태그 + 수정/삭제 버튼 */}
             <div className="flex justify-between items-center mt-5">
               <div className="flex gap-2 flex-wrap">
-                {(() => {
-                  let tagList: string[] = [];
-
-                  try {
-                    const parsed = JSON.parse(recipe.tag ?? '[]');
-                    if (Array.isArray(parsed)) tagList = parsed;
-                  } catch {
-                    tagList = recipe.tag?.split(',') || [];
-                  }
-
-                  return tagList.map((item, idx) => (
-                    <FoodBtn key={idx} label={item} selected={true} />
-                  ));
-                })()}
+                {tagList.map((item, idx) => (
+                  <FoodBtn key={idx} label={item} selected={true} />
+                ))}
               </div>
 
-              <div className="flex">
-                <div className="mr-[0.625rem]">
-                  <Button size="sm">수정</Button>
-                </div>
-                <Button size="sm" variant="white">
-                  삭제
-                </Button>
-              </div>
+              {/* 작성자만 수정/삭제 가능 */}
+              <RecipeActionButtons
+                authorId={String(recipe.user._id)}
+                postId={String(recipe._id)}
+              />
             </div>
 
-            {/* 본문 */}
+            {/* 본문 내용 */}
             <div
               className="bg-[#f4f4f4] px-9 py-6 rounded-lg mt-5"
-              dangerouslySetInnerHTML={{ __html: recipe.content || 'null' }}
+              dangerouslySetInnerHTML={{
+                __html: recipe.content || '내용 없음',
+              }}
             />
 
             {/* 공유/북마크 */}
             <div className="flex justify-end mt-3">
-              <Share2 strokeWidth={1} fill="true" />
+              <ShareButton />
               <div className="text-center ml-[0.4375rem]">
                 <Bookmark strokeWidth={1} />
                 <p>13</p>
@@ -143,11 +149,11 @@ export default async function RecipeDetailPage({
               </Button>
             </div>
 
-            {/* 연관 상품 자리 */}
-            <div>
-              <h2 className="text-2xl font-bold mt-15">연관상품</h2>
-              <div className="mt-[1.875rem]">
-                <p>연관상품 컴포 올 자리</p>
+            {/* 연관상품 자리 */}
+            <div className="mt-10">
+              <h2 className="text-2xl font-bold">연관상품</h2>
+              <div className="mt-5">
+                <p>연관상품 컴포넌트 자리</p>
               </div>
             </div>
 
