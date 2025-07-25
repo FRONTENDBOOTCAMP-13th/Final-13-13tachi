@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { LikePostItemType } from '@/types/post';
 import { Bookmark } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
+import Link from 'next/link';
 
 interface LikePostActionType {
   deleteAction: (FormData: FormData) => void;
@@ -21,13 +22,15 @@ export default function LikeRecipeItem({
 
   return (
     <div className="flex flex-col">
-      <Image
-        src={`${API_URL}/${item.image}`}
-        alt={item.title}
-        width={180}
-        height={180}
-        className="lg:w-[11.25rem] lg:h-[11.25rem] object-cover rounded-lg shadow-image"
-      />
+      <Link href={`/recipe/${item._id}`}>
+        <Image
+          src={`${API_URL}/${item.image}`}
+          alt={item.title}
+          width={180}
+          height={180}
+          className="lg:w-[11.25rem] lg:h-[11.25rem] object-cover rounded-lg shadow-image"
+        />
+      </Link>
       <div className="relative text-center mt-2.5">
         <div className="absolute right-0">
           <form action={action.deleteAction}>
@@ -42,7 +45,7 @@ export default function LikeRecipeItem({
             </button>
           </form>
         </div>
-        <p className="">{item.title}</p>
+        <Link href={`/recipe/${item._id}`}>{item.title}</Link>
       </div>
     </div>
   );
