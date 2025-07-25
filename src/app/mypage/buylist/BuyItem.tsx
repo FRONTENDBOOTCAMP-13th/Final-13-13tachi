@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
+import CustomLink from '@/components/common/CustomLink';
 
 interface BuyItemActionProps {
   addAction: (FormData: FormData) => void;
@@ -56,9 +57,9 @@ export default function BuyItem({
             value={user?.token?.accessToken ?? ''}
           />
           <input type="hidden" name="_id" value={item._id} />
-          <Button size="lg" variant="green" type="button">
+          <CustomLink href="/recipe/write" size="lg" variant="green">
             레시피 작성하기
-          </Button>
+          </CustomLink>
         </form>
         <form action={action.addAction}>
           <input
