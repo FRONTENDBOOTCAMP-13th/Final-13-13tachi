@@ -6,22 +6,38 @@
 // import Button from '@/components/common/Button';
 import BuyItemList from '@/app/mypage/buylist/BuyItemList';
 import EmptyBuyList from '@/app/mypage/buylist/EmptyBuyList';
+import { AddCart } from '@/data/actions/cart';
 import { BuyProducts } from '@/data/functions/post';
 import { ApiRes, BuyListType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { useEffect, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function BuyList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
 
   const [res, setRes] = useState<ApiRes<BuyListType[]> | null>(null);
+  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
+  console.log(isAdding);
 
   useEffect(() => {
     if (accessToken) {
       BuyProducts(accessToken).then(setRes);
     }
   }, [accessToken]);
+
+  useEffect(() => {
+    if (addState?.ok) {
+      if (accessToken) {
+        Swal.fire({
+          icon: 'success',
+          text: '장바구니에 담겼습니다',
+          confirmButtonText: '확인',
+        });
+      }
+    }
+  }, [addState]);
 
   if (!accessToken) {
     return <div>로그인이 필요합니다.</div>;
@@ -48,6 +64,7 @@ export default function BuyList() {
               createdAt: item.createdAt,
               products: item.products,
             }}
+            action={{ addAction: AddAction }}
           />
         ))
       ) : (

@@ -9,6 +9,7 @@ import { ApiRes, LikeItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 
 import { useActionState, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function LikeList() {
   const { user } = useUserStore();
@@ -36,6 +37,26 @@ export default function LikeList() {
     null,
   );
   console.log(deleteState, isDeleting);
+
+  useEffect(() => {
+    if (deleteState?.ok) {
+      if (accessToken) {
+        getLikeProducts(accessToken).then(setRes);
+      }
+    }
+  }, [deleteState]);
+
+  useEffect(() => {
+    if (addState?.ok) {
+      if (accessToken) {
+        Swal.fire({
+          icon: 'success',
+          text: '장바구니에 담겼습니다',
+          confirmButtonText: '확인',
+        });
+      }
+    }
+  }, [addState]);
 
   if (!accessToken) {
     return <div>로그인이 필요합니다.</div>;

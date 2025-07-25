@@ -5,19 +5,25 @@ import Image from 'next/image';
 import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { AddCart } from '@/data/actions/cart';
-import { useActionState } from 'react';
 
-export default function BuyItem({ item }: { item: ProductItemType }) {
+interface BuyItemActionProps {
+  addAction: (FormData: FormData) => void;
+}
+
+export default function BuyItem({
+  item,
+  action,
+}: {
+  item: ProductItemType;
+  action: BuyItemActionProps;
+}) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
-  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
 
   console.log('전체', item);
   console.log('아이디', item._id);
   console.log('이미지', item.image);
 
-  console.log(addState, isAdding);
   console.log('3번 호출');
   return (
     <div className="flex flex-row justify-between w-full">
@@ -54,7 +60,7 @@ export default function BuyItem({ item }: { item: ProductItemType }) {
             레시피 작성하기
           </Button>
         </form>
-        <form action={AddAction}>
+        <form action={action.addAction}>
           <input
             type="hidden"
             name="accessToken"

@@ -33,12 +33,12 @@ export default function CartList() {
   console.log(quantityState, isUpdating);
 
   useEffect(() => {
-    if (quantityState?.ok) {
+    if (quantityState?.ok || deleteState?.ok) {
       if (accessToken) {
         getCartProducts(accessToken).then(setRes);
       }
     }
-  }, [quantityState]);
+  }, [quantityState, deleteState]);
 
   if (!accessToken) {
     return <div>로그인이 필요합니다.</div>;
