@@ -37,12 +37,12 @@ export default function LikeItemForm({
             ></Image>
             <div className="flex flex-col justufy-center lg:gap-2">
               <div>
-                <span className="lg:text-base font-semibold text-dark-green mr-0.5">
+                <span className="lg:text-base font-semibold text-dark-green mr-2.5">
                   {item.name}
                 </span>
-                <span className="lg:text-sm">(350g)</span>
+                <span className="lg:text-sm">({item.extra?.details})</span>
               </div>
-              <p className="lg:text-sm">{item.price}원</p>
+              <p className="lg:text-sm">{item.price.toLocaleString()}원</p>
             </div>
           </div>
         </div>

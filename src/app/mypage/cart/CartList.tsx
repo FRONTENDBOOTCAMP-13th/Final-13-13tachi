@@ -78,6 +78,7 @@ export default function CartList() {
               quantity: item.quantity,
               price: item.product.price,
               image: item.product.image,
+              extra: item.product.extra,
             }}
             action={{
               deleteAction: deleteAction,

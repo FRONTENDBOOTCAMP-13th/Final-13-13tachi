@@ -41,10 +41,12 @@ export default function BuyItem({
             <span className="lg:text-base font-semibold text-dark-green mr-2.5">
               {item.name}
             </span>
-            <span className="lg:text-xs">(350g)</span>
+            <span className="lg:text-xs">({item.extra?.details})</span>
           </p>
           <p className="flex gap-2.5 items-center">
-            <span className="lg:text-base">{item.price}원</span>
+            <span className="lg:text-base">
+              {item.price.toLocaleString()}원
+            </span>
             <span className="lg:text-xs">{item.quantity}개</span>
           </p>
         </div>

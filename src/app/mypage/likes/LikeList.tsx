@@ -99,6 +99,7 @@ export default function LikeList() {
               price: item.product?.price,
               name: item.product?.name,
               mainImages: item.product.mainImages,
+              extra: item.product.extra,
             }}
             action={{
               addAction: addAction,
