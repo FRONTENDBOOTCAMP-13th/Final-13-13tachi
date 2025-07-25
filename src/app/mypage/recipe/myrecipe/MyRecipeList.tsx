@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getMyRecipe } from '@/data/functions/post';
-import Button from '@/components/common/Button';
+// import Button from '@/components/common/Button';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import MyRecipeItem from '@/app/mypage/recipe/myrecipe/MyRecipeItem';
@@ -60,11 +60,11 @@ export default function MyRecipeList() {
         )}
       </div>
       <div className="flex justify-end gap-x-2.5 mt-4">
-        <form>
+        {/* <form>
           <Button size="xxlsm" variant="white">
             삭제
           </Button>
-        </form>
+        </form> */}
         <CustomLink href={`/recipe/write`}>레시피 작성하기</CustomLink>
       </div>
     </>
