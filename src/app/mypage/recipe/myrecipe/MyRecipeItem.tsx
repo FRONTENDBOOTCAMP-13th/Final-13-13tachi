@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import Checkbox from '@/components/common/Checkbox';
+// import Checkbox from '@/components/common/Checkbox';
 import { MyPostType } from '@/types/post';
 import Link from 'next/link';
 
@@ -18,10 +18,10 @@ export default function MyRecipeItem({ item }: { item: MyPostType }) {
         />
       </Link>
       <div className="relative text-center mt-2.5">
-        <div className="absolute left-0">
+        {/* <div className="absolute left-0">
           <label htmlFor="inputCheckBox" className="sr-only"></label>
           <Checkbox />
-        </div>
+        </div> */}
         <Link href={`/recipe/${item._id}`}>{item.title}</Link>
       </div>
     </div>

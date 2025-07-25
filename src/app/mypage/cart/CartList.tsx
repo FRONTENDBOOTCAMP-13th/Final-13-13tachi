@@ -1,25 +1,44 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { getCartProducts } from '@/data/functions/post';
-import { CartItemType, ApiRes } from '@/types';
+import { CartItemType, ApiResCart } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import CartItemForm from '@/app/mypage/cart/CartItemForm';
 import EmptyCart from '@/app/mypage/cart/EmptyCart';
 import CustomLink from '@/components/common/CustomLink';
+import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 
 export default function CartList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
 
-  const [res, setRes] = useState<ApiRes<CartItemType[]> | null>(null);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
 
   useEffect(() => {
     if (accessToken) {
       getCartProducts(accessToken).then(setRes);
     }
   }, [accessToken]);
+
+  const [deleteState, deleteAction, isDeleting] = useActionState(
+    deleteCart,
+    null,
+  );
+  console.log(deleteState, isDeleting);
+  const [quantityState, quantityAction, isUpdating] = useActionState(
+    updateCartQuantity,
+    null,
+  );
+  console.log(quantityState, isUpdating);
+
+  useEffect(() => {
+    if (quantityState?.ok) {
+      if (accessToken) {
+        getCartProducts(accessToken).then(setRes);
+      }
+    }
+  }, [quantityState]);
 
   if (!accessToken) {
     return <div>로그인이 필요합니다.</div>;
@@ -38,11 +57,6 @@ export default function CartList() {
     return <div>{res.message}</div>; // 실패 메시지 렌더링
   }
 
-  const selectedItems = res.item.filter(i => selectedIds.includes(i._id));
-  const totalPrice = selectedItems.reduce(
-    (sum, i) => sum + i.quantity * i.product.price,
-    0,
-  );
   return (
     <>
       {res.ok ? (
@@ -56,13 +70,9 @@ export default function CartList() {
               price: item.product.price,
               image: item.product.image,
             }}
-            checked={selectedIds.includes(item._id)}
-            onCheckChange={checked => {
-              setSelectedIds(prev =>
-                checked
-                  ? [...prev, item._id]
-                  : prev.filter(id => id !== item._id),
-              );
+            action={{
+              deleteAction: deleteAction,
+              quantityAction: quantityAction,
             }}
           />
         ))
@@ -71,7 +81,10 @@ export default function CartList() {
       )}
       <p className="text-right lg:mt-[1.875rem] lg:text-lg font-semibold">
         총 상품 금액{' '}
-        <span className="text-[#8B0505]">{totalPrice.toLocaleString()}</span>원
+        <span className="text-[#8B0505]">
+          {res?.cost?.total.toLocaleString() ?? 0}
+        </span>
+        원
       </p>
       <div className="flex justify-center">
         <form>
