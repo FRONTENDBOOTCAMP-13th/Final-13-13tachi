@@ -1,10 +1,24 @@
+'use client';
+
 import Image from 'next/image';
 // 임시 이미지 불러오기
 import kakaopay from '../../images/kakaopay.png';
 import naverpay from '../../images/naverpay.png';
 import tosspay from '../../images/tosspay.png';
+import { useState } from 'react';
 
-export default function PayForm() {
+export default function PayForm({
+  onPaymentChange,
+}: {
+  onPaymentChange: (payment: string) => void;
+}) {
+  const [payment, setPayment] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPayment(value);
+    onPaymentChange(value);
+  };
   return (
     <form>
       <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
@@ -20,6 +34,8 @@ export default function PayForm() {
                   id="bank"
                   value="bank"
                   className="mr-2"
+                  checked={payment === 'account'}
+                  onChange={handleChange}
                 />
                 <span>내 통장 결제</span>
               </label>
@@ -31,6 +47,8 @@ export default function PayForm() {
                   id="account"
                   value="account"
                   className="mr-2"
+                  checked={payment === 'transfer'}
+                  onChange={handleChange}
                 />
                 <span>계좌 이체</span>
               </label>
@@ -43,6 +61,8 @@ export default function PayForm() {
                   id="card"
                   value="card"
                   className="mr-2"
+                  checked={payment === 'card'}
+                  onChange={handleChange}
                 />
                 <span>신용/체크카드</span>
               </label>
@@ -55,6 +75,8 @@ export default function PayForm() {
                   id="kakaopay"
                   value="kakaopay"
                   className="mr-2"
+                  checked={payment === 'kakaopay'}
+                  onChange={handleChange}
                 />
                 <Image
                   src={kakaopay}
@@ -72,6 +94,8 @@ export default function PayForm() {
                   id="naverpay"
                   value="naverpay"
                   className="mr-2"
+                  checked={payment === 'naverpay'}
+                  onChange={handleChange}
                 />
                 <Image
                   src={naverpay}
@@ -91,6 +115,8 @@ export default function PayForm() {
                   id="tosspay"
                   value="tosspay"
                   className="mr-2"
+                  checked={payment === 'tosspay'}
+                  onChange={handleChange}
                 />
                 <Image
                   src={tosspay}
