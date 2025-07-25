@@ -6,6 +6,7 @@
 // import Button from '@/components/common/Button';
 import BuyItemList from '@/app/mypage/buylist/BuyItemList';
 import EmptyBuyList from '@/app/mypage/buylist/EmptyBuyList';
+import Loading from '@/app/mypage/buylist/Loading';
 import { AddCart } from '@/data/actions/cart';
 import { BuyProducts } from '@/data/functions/post';
 import { ApiRes, BuyListType } from '@/types';
@@ -54,7 +55,7 @@ export default function BuyList() {
   }, [addState]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
   if (res.ok && res.item.length === 0) {
     return (

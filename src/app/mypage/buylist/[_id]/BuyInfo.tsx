@@ -1,5 +1,6 @@
 'use client';
 import BuyInfoItemList from '@/app/mypage/buylist/[_id]/BuyInfoItemList';
+import Loading from '@/app/mypage/buylist/[_id]/Loading';
 import { AddCart } from '@/data/actions/cart';
 // import Image from 'next/image';
 
@@ -51,7 +52,7 @@ export default function BuyInfo({ orderId }: { orderId: number }) {
   }, [addState]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
   if (res.ok === 0) {
     return <div>{res.message}</div>; // 실패 메시지 렌더링

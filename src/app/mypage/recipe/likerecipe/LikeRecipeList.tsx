@@ -12,6 +12,7 @@ import EmptyLikeRecipe from '@/app/mypage/recipe/likerecipe/EmptyLikeRecipe';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { deleteBookmark } from '@/data/actions/post';
+import Loading from '@/app/mypage/recipe/likerecipe/Loading';
 
 export default function LikeRecipeList() {
   const { user } = useUserStore();
@@ -61,7 +62,7 @@ export default function LikeRecipeList() {
   }, [deleteState]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
 
   console.log('1');

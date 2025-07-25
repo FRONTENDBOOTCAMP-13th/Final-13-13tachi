@@ -10,6 +10,7 @@ import CustomLink from '@/components/common/CustomLink';
 import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import Loading from '@/app/mypage/cart/Loading';
 
 export default function CartList() {
   const { user } = useUserStore();
@@ -56,7 +57,7 @@ export default function CartList() {
   }, [quantityState, deleteState]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
   if (res.ok && res.item.length === 0) {
     return (

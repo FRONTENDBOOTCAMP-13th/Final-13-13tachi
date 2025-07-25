@@ -11,6 +11,7 @@ import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
 import CustomLink from '@/components/common/CustomLink';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import Loading from '@/app/mypage/recipe/myrecipe/Loading';
 // import { deletePost } from '@/data/actions/post';
 
 export default function MyRecipeList() {
@@ -39,7 +40,7 @@ export default function MyRecipeList() {
   }, [accessToken]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
 
   if (res.ok && res.item.length === 0) {

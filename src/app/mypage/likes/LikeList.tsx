@@ -2,6 +2,7 @@
 
 import EmptyLikes from '@/app/mypage/likes/EmptyLikes';
 import LikeItemForm from '@/app/mypage/likes/LikeItemForm';
+import Loading from '@/app/mypage/likes/Loading';
 import { AddCart, deleteLike } from '@/data/actions/cart';
 
 import { getLikeProducts } from '@/data/functions/post';
@@ -74,7 +75,7 @@ export default function LikeList() {
   }, [addState]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
 
   const items =
