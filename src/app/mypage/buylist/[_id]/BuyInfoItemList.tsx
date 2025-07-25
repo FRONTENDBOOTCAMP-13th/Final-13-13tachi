@@ -6,7 +6,16 @@ import CustomLink from '@/components/common/CustomLink';
 import { OrderInfoItemType, ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 
-export default function BuyInfoItemList({ item }: { item: OrderInfoItemType }) {
+interface BuyListActionProps {
+  addAction: (FormData: FormData) => void;
+}
+export default function BuyInfoItemList({
+  item,
+  action,
+}: {
+  item: OrderInfoItemType;
+  action: BuyListActionProps;
+}) {
   const { user } = useUserStore();
   return (
     <>
@@ -27,7 +36,9 @@ export default function BuyInfoItemList({ item }: { item: OrderInfoItemType }) {
                 quantity: product.quantity,
                 price: product.price,
                 image: product.image,
+                extra: product.extra,
               }}
+              action={action}
             />
           ))}
         </div>

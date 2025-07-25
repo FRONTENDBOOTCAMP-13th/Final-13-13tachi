@@ -42,6 +42,7 @@ export default function BuyItemList({
                 quantity: product.quantity,
                 price: product.price,
                 image: product.image,
+                extra: product.extra,
               }}
               action={action}
             />

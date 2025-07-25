@@ -35,6 +35,12 @@ export interface ProductItemType {
     originalname?: string;
   };
   quantity: number;
+  extra?: {
+    category?: string[];
+    sort?: number;
+    details?: string;
+    isBest?: boolean;
+  };
 }
 
 // 장바구니 리스트
@@ -71,6 +77,12 @@ export interface LikeItemProps {
     name?: string;
     originalname?: string;
   }[];
+  extra?: {
+    category?: string[];
+    sort?: number;
+    details?: string;
+    isBest?: boolean;
+  };
 }
 
 // 찜상품
