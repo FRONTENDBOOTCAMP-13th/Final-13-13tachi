@@ -39,7 +39,7 @@ export default function OrderForm() {
           </div>
         </div>
 
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center mt-20 mb-[6.25rem]">
           <Button size="xxl" variant="green">
             결제하기
           </Button>
