@@ -5,19 +5,26 @@ import Image from 'next/image';
 import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { AddCart } from '@/data/actions/cart';
-import { useActionState } from 'react';
+import CustomLink from '@/components/common/CustomLink';
 
-export default function BuyItem({ item }: { item: ProductItemType }) {
+interface BuyItemActionProps {
+  addAction: (FormData: FormData) => void;
+}
+
+export default function BuyItem({
+  item,
+  action,
+}: {
+  item: ProductItemType;
+  action: BuyItemActionProps;
+}) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
-  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
 
   console.log('전체', item);
   console.log('아이디', item._id);
   console.log('이미지', item.image);
 
-  console.log(addState, isAdding);
   console.log('3번 호출');
   return (
     <div className="flex flex-row justify-between w-full">
@@ -34,10 +41,12 @@ export default function BuyItem({ item }: { item: ProductItemType }) {
             <span className="lg:text-base font-semibold text-dark-green mr-2.5">
               {item.name}
             </span>
-            <span className="lg:text-xs">(350g)</span>
+            <span className="lg:text-xs">({item.extra?.details})</span>
           </p>
           <p className="flex gap-2.5 items-center">
-            <span className="lg:text-base">{item.price}원</span>
+            <span className="lg:text-base">
+              {item.price.toLocaleString()}원
+            </span>
             <span className="lg:text-xs">{item.quantity}개</span>
           </p>
         </div>
@@ -50,11 +59,11 @@ export default function BuyItem({ item }: { item: ProductItemType }) {
             value={user?.token?.accessToken ?? ''}
           />
           <input type="hidden" name="_id" value={item._id} />
-          <Button size="lg" variant="green" type="button">
+          <CustomLink href="/recipe/write" size="lg" variant="green">
             레시피 작성하기
-          </Button>
+          </CustomLink>
         </form>
-        <form action={AddAction}>
+        <form action={action.addAction}>
           <input
             type="hidden"
             name="accessToken"

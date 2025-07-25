@@ -33,7 +33,7 @@ export default function RootLayout({
       <div className="flex justify-center mt-[4.0625rem] mb-[6.25rem]">
         <div className="flex flex-row lg:max-w-5xl">
           <div className="flex flex-col lg:gap-[2.1875rem]">
-            <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
+            <h2 className="text-sm text-gray  mb-[1.25rem]">
               <Link href="/">HOME</Link>
               <span>{' > '}</span>
               <Link href="/mypage">마이페이지</Link>

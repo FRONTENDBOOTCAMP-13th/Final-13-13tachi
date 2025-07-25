@@ -1,5 +1,6 @@
 'use client';
 import BuyInfoItemList from '@/app/mypage/buylist/[_id]/BuyInfoItemList';
+import { AddCart } from '@/data/actions/cart';
 // import Image from 'next/image';
 
 // 임시 이미지 불러오기
@@ -8,21 +9,43 @@ import BuyInfoItemList from '@/app/mypage/buylist/[_id]/BuyInfoItemList';
 import { getOrderInfo } from '@/data/functions/post';
 import { ApiRes, OrderInfoType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useActionState, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function BuyInfo({ orderId }: { orderId: number }) {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const [res, setRes] = useState<ApiRes<OrderInfoType> | null>(null);
+  const router = useRouter();
+  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
+  console.log(isAdding);
   useEffect(() => {
     if (accessToken) {
       getOrderInfo(accessToken, orderId).then(setRes);
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) router.replace('/login');
+      });
     }
   }, [accessToken, orderId]);
 
-  if (!accessToken) {
-    return <div>로그인이 필요합니다.</div>;
-  }
+  useEffect(() => {
+    if (addState?.ok) {
+      if (accessToken) {
+        Swal.fire({
+          icon: 'success',
+          text: '장바구니에 담겼습니다',
+          confirmButtonText: '확인',
+        });
+      }
+    }
+  }, [addState]);
+
   if (!res) {
     return <div>로딩중...</div>;
   }
@@ -42,6 +65,7 @@ export default function BuyInfo({ orderId }: { orderId: number }) {
         address: res.item.address.value,
         cost: res.item.cost.total,
       }}
+      action={{ addAction: AddAction }}
     />
   );
 }

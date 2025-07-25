@@ -42,11 +42,6 @@ export default function CartItemForm({
               htmlFor={`inputCheckBox-${item._id}`}
               className="sr-only"
             ></label>
-            {/* <Checkbox
-              id={`inputCheckBox-${item._id}`}
-              checked={checked}
-              onChange={e => onCheckChange(e.target.checked)}
-            /> */}
             <div className="flex flex-row lg:gap-3.5 lg:h-[6.25rem]">
               <Image
                 width={100}
@@ -58,12 +53,14 @@ export default function CartItemForm({
               <div className="flex flex-col justify-between">
                 <div>
                   <>
-                    <span className="lg:text-base font-semibold text-dark-green mr-0.5">
+                    <span className="lg:text-base font-semibold text-dark-green mr-2.5">
                       {item.name}
                     </span>
-                    <span className="lg:text-sm">(350g)</span>
+                    <span className="lg:text-sm">({item.extra?.details})</span>
                   </>
-                  <p className="lg:text-sm mt-1">{item.price}원</p>
+                  <p className="lg:text-sm mt-1">
+                    {item.price.toLocaleString()}원
+                  </p>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-5 border-[0.0625rem] rounded-lg lg:w-20 lg:h-[1.875rem] p-1">
                   <form action={action.quantityAction}>
@@ -80,7 +77,7 @@ export default function CartItemForm({
                     />
                     <button
                       type="submit"
-                      onCanPlay={() => handleDown()}
+                      onClick={() => handleDown()}
                       className="lg:text-base font-semibold hover:cursor-pointer"
                     >
                       -

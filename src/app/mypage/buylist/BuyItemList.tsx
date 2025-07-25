@@ -9,7 +9,17 @@ import BuyItem from '@/app/mypage/buylist/BuyItem';
 import { BuyItemListType, ProductItemType } from '@/types';
 import Link from 'next/link';
 
-export default function BuyItemList({ item }: { item: BuyItemListType }) {
+interface BuyListActionProps {
+  addAction: (FormData: FormData) => void;
+}
+
+export default function BuyItemList({
+  item,
+  action,
+}: {
+  item: BuyItemListType;
+  action: BuyListActionProps;
+}) {
   return (
     <div className="mb-9">
       <div className="flex flex-row justify-between text-sm mb-2.5">
@@ -32,7 +42,9 @@ export default function BuyItemList({ item }: { item: BuyItemListType }) {
                 quantity: product.quantity,
                 price: product.price,
                 image: product.image,
+                extra: product.extra,
               }}
+              action={action}
             />
           ))}
         </div>

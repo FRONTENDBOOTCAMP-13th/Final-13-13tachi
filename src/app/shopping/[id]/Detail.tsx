@@ -30,9 +30,10 @@ export default function Detail({
     likeRes &&
     Object.entries(likeRes)
       .filter(([key]) => key !== 'ok')
-      .some(([, value]) => value._id == id);
+      .some(([, value]) => value.product._id == id);
 
   useEffect(() => {
+    //찜하기 데이터에 있는지 여부를 isLike/setIsLike로 상태관리
     setIsLike(likeItems!);
   }, [likeItems]);
 
@@ -50,7 +51,8 @@ export default function Detail({
       });
   }, [accessToken]);
 
-  console.log('likeRes', likeRes);
+  const handleLikeChange = (newIsLike: boolean) => setIsLike(newIsLike); // 자식 컴포넌트(LikesForm)에서 버튼 동작시 isLike 상태 업데이트 시켜줌
+
   return (
     <>
       {/* ST: 상단 상품 정보*/}
@@ -74,7 +76,9 @@ export default function Detail({
             <LikesForm
               isLike={isLike}
               accessToken={accessToken!}
+              likeRes={likeRes!}
               productRes={productRes}
+              handleLikeChange={handleLikeChange}
             />
           </div>
           <div className="flex justify-between items-center lg:mt-3">
