@@ -8,16 +8,27 @@ import CartItemForm from '@/app/mypage/cart/CartItemForm';
 import EmptyCart from '@/app/mypage/cart/EmptyCart';
 import CustomLink from '@/components/common/CustomLink';
 import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 export default function CartList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
+  const router = useRouter();
 
   const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
 
   useEffect(() => {
     if (accessToken) {
       getCartProducts(accessToken).then(setRes);
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) router.replace('/login');
+      });
     }
   }, [accessToken]);
 
@@ -40,9 +51,6 @@ export default function CartList() {
     }
   }, [quantityState, deleteState]);
 
-  if (!accessToken) {
-    return <div>로그인이 필요합니다.</div>;
-  }
   if (!res) {
     return <div>로딩중...</div>;
   }

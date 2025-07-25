@@ -7,6 +7,7 @@ import { AddCart, deleteLike } from '@/data/actions/cart';
 import { getLikeProducts } from '@/data/functions/post';
 import { ApiRes, LikeItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
+import { useRouter } from 'next/navigation';
 
 import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
@@ -15,19 +16,29 @@ export default function LikeList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const [res, setRes] = useState<ApiRes<LikeItemType[]> | null>(null);
-
+  const router = useRouter();
   useEffect(() => {
-    if (!accessToken) return;
-
-    getLikeProducts(accessToken)
-      .then(res => {
-        console.log('찜 데이터:', res);
-        setRes(res);
-      })
-      .catch(err => {
-        console.error('찜 가져오기 실패:', err);
-        setRes({ ok: 0, message: '에러 발생!' });
-      });
+    if (!accessToken) {
+      {
+        Swal.fire({
+          icon: 'warning',
+          text: '로그인 후 이용해주세요',
+          confirmButtonText: '확인',
+        }).then(result => {
+          if (result.isConfirmed) router.replace('/login');
+        });
+      }
+    } else {
+      getLikeProducts(accessToken)
+        .then(res => {
+          console.log('찜 데이터:', res);
+          setRes(res);
+        })
+        .catch(err => {
+          console.error('찜 가져오기 실패:', err);
+          setRes({ ok: 0, message: '에러 발생!' });
+        });
+    }
   }, [accessToken]);
 
   const [addState, addAction, isAdding] = useActionState(AddCart, null);
@@ -58,9 +69,6 @@ export default function LikeList() {
     }
   }, [addState]);
 
-  if (!accessToken) {
-    return <div>로그인이 필요합니다.</div>;
-  }
   if (!res) {
     return <div>로딩중...</div>;
   }

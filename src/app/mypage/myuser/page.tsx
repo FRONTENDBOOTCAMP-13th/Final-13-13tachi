@@ -5,10 +5,26 @@ import Image from 'next/image';
 // 임시 이미지 불러오기
 import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function User() {
   const { user } = useUserStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) router.replace('/login');
+      });
+    }
+  }, [user]);
 
   console.log('user in MyPage:', user);
   return (

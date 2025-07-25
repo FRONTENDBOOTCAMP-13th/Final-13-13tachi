@@ -9,30 +9,39 @@ import LikeRecipeItem from '@/app/mypage/recipe/likerecipe/LikeRecipeItem';
 
 import CustomLink from '@/components/common/CustomLink';
 import EmptyLikeRecipe from '@/app/mypage/recipe/likerecipe/EmptyLikeRecipe';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 export default function LikeRecipeList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
-
+  const router = useRouter();
   const [res, setRes] = useState<ApiRes<LikePostType[]> | null>(null);
 
   useEffect(() => {
-    if (!accessToken) return;
-
-    getLikeRecipe(accessToken)
-      .then(res => {
-        console.log('찜 데이터:', res);
-        setRes(res);
-      })
-      .catch(err => {
-        console.error('찜 가져오기 실패:', err);
-        setRes({ ok: 0, message: '에러 발생!' });
-      });
+    if (!accessToken) {
+      {
+        Swal.fire({
+          icon: 'warning',
+          text: '로그인 후 이용해주세요',
+          confirmButtonText: '확인',
+        }).then(result => {
+          if (result.isConfirmed) router.replace('/login');
+        });
+      }
+    } else {
+      getLikeRecipe(accessToken)
+        .then(res => {
+          console.log('찜 데이터:', res);
+          setRes(res);
+        })
+        .catch(err => {
+          console.error('찜 가져오기 실패:', err);
+          setRes({ ok: 0, message: '에러 발생!' });
+        });
+    }
   }, [accessToken]);
 
-  if (!accessToken) {
-    return <div>로그인이 필요합니다.</div>;
-  }
   if (!res) {
     return <div>로딩중...</div>;
   }

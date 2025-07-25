@@ -10,12 +10,14 @@ import { AddCart } from '@/data/actions/cart';
 import { BuyProducts } from '@/data/functions/post';
 import { ApiRes, BuyListType } from '@/types';
 import useUserStore from '@/zustand/useStore';
+import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 export default function BuyList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
+  const router = useRouter();
 
   const [res, setRes] = useState<ApiRes<BuyListType[]> | null>(null);
   const [addState, AddAction, isAdding] = useActionState(AddCart, null);
@@ -24,6 +26,14 @@ export default function BuyList() {
   useEffect(() => {
     if (accessToken) {
       BuyProducts(accessToken).then(setRes);
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) router.replace('/login');
+      });
     }
   }, [accessToken]);
 
@@ -39,9 +49,6 @@ export default function BuyList() {
     }
   }, [addState]);
 
-  if (!accessToken) {
-    return <div>로그인이 필요합니다.</div>;
-  }
   if (!res) {
     return <div>로딩중...</div>;
   }
