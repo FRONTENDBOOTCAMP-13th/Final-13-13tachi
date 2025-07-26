@@ -51,7 +51,7 @@ export default function MyRecipeList() {
   console.log(res);
   return (
     <>
-      <div className="grid grid-cols-4 w-fit gap-x-6 gap-y-5 mx-auto">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 w-fit gap-x-6 gap-y-5 mx-auto">
         {res.ok ? (
           res.item.map((item: MyPostType) => (
             <MyRecipeItem
@@ -67,7 +67,7 @@ export default function MyRecipeList() {
           <p>{res.message}</p>
         )}
       </div>
-      <div className="flex justify-end gap-x-2.5 mt-4">
+      <div className="flex justify-end mt-4">
         {/* <form>
           <Button size="xxlsm" variant="white">
             삭제

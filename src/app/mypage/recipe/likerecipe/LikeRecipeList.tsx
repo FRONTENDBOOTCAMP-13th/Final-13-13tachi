@@ -79,7 +79,7 @@ export default function LikeRecipeList() {
 
   return (
     <>
-      <div className="grid grid-cols-4 w-fit gap-x-6 gap-y-5 mx-auto">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 w-fit gap-x-6 gap-y-5 mx-auto">
         {res.ok ? (
           items.map((item: LikePostType) => (
             <LikeRecipeItem
