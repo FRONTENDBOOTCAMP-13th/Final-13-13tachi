@@ -49,28 +49,40 @@ export default function User() {
             className="w-20 h-20 object-cover rounded-[50%] mb-6"
           />
           <div className="flex flex-col gap-4 text-base">
-            <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">이름</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
-              <span>{user?.name ?? '홍길동'}</span>
-            </p>
-            <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+              <span>
+                {user?.name ?? (
+                  <div className="lg:h-4 lg:w-10 rounded-lg bg-gray-200" />
+                )}
+              </span>
+            </div>
+            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">이메일</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
-              <span>{user?.email ?? 'asd123@naver.com'}</span>
-            </p>
-            <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+              <span>
+                {user?.email ?? (
+                  <div className="lg:h-4 lg:w-30 rounded-lg bg-gray-200" />
+                )}
+              </span>
+            </div>
+            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">전화번호</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
-              <span>{user?.phone ?? 'asd123@naver.com'}</span>
-            </p>
-            <p className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+              <span>
+                {user?.phone ?? (
+                  <div className="lg:h-4 lg:w-25 rounded-lg bg-gray-200" />
+                )}
+              </span>
+            </div>
+            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">주소</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
               <span>
                 {`${user?.postcode ?? ''} ${user?.addressDetail1 ?? ''} ${user?.addressDetail2 ?? ''}`}
               </span>
-            </p>
+            </div>
           </div>
         </div>
         <div className="flex justify-end">
