@@ -32,13 +32,13 @@ export default function User() {
 
   console.log('user in MyPage:', user);
   return (
-    <div className="h-full">
-      <div className="lg:w-[49.875rem] flex flex-col lg:gap-2">
-        <h3 className="lg:w-full lg:text-xl font-semibold">회원정보</h3>
+    <div className="lg:w-[49.875rem] md:w-[31.75rem] w-80 h-full">
+      <div className="flex flex-col gap-2">
+        <h3 className="w-full text-xl font-semibold">회원정보</h3>
         <hr className="text-light-gray w-full mb-5" />
       </div>
-      <div className="flex flex-col justify-between">
-        <div className="contents">
+      <div className="flex flex-col">
+        <div className="">
           <Image
             src={
               user?.image ? `${API_URL}/${user.image}` : '/images/front-end.png'
@@ -86,13 +86,13 @@ export default function User() {
             </div>
           </div>
         </div>
-        <div className="flex justify-end">
-          <Link href="/edit">
-            <Button size="xxl" variant="green">
-              회원정보 수정하기
-            </Button>
-          </Link>
-        </div>
+      </div>
+      <div className="flex justify-center mt-[4.0625rem]">
+        <Link href="/edit">
+          <Button size="xxl" variant="green">
+            회원정보 수정하기
+          </Button>
+        </Link>
       </div>
     </div>
   );
