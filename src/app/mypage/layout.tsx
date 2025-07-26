@@ -41,21 +41,29 @@ export default function RootLayout({
     <>
       <Header />
       <div className="flex justify-center mt-[4.0625rem] mb-[6.25rem]">
-        <div className="flex flex-row lg:max-w-5xl">
-          <div className="flex flex-col lg:gap-[2.1875rem]">
-            <h2 className="text-sm text-gray  mb-[1.25rem]">
+        <div className="flex flex-row lg:max-w-5xl md:max-w-[44.25rem]">
+          <div className="flex flex-col gap-[2.1875rem]">
+            <h2 className="text-sm text-gray">
               <Link href="/">HOME</Link>
               <span>{' > '}</span>
               <Link href="/mypage">마이페이지</Link>
+              <p className="mt-5 text-4xl font-semibold text-black">
+                마이페이지
+              </p>
             </h2>
-            <div className="flex flex-row">
-              <aside className="flex flex-col items-center lg:gap-[2.125rem] lg:w-[12.25rem] h-full bg-bg-gray text-black lg:p-[1.875rem] lg:mr-[1.875rem] rounded-lg">
+            <div className="lg:flex lg:flex-row md:flex md:flex-row flex flex-row">
+              <aside
+                className="lg:flex lg:flex-col lg:items-center lg:gap-[2.125rem] lg:w-[12.25rem] lg:p-[1.875rem] lg:mr-[1.875rem] 
+                  md:flex md:flex-col md:items-center md:gap-[2.125rem] md:w-[10.625rem] md:py-[1.875rem] md:px-5 md:mr-[1.875rem] 
+                  hidden
+                  h-full bg-bg-gray text-black rounded-lg"
+              >
                 <div>
                   {loading ? (
-                    <div className="flex flex-col items-center lg:gap-2">
-                      <div className="lg:w-20 lg:h-20 rounded-[50%] bg-gray-200 animate-pulse" />
-                      <div className="lg:h-5 lg:w-15 rounded-lg bg-gray-200 animate-pulse" />
-                      <div className="mt-1 lg:h-[0.8rem] lg:w-32 rounded-lg bg-gray-200 animate-pulse" />
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-20 h-20 rounded-[50%] bg-gray-200 animate-pulse" />
+                      <div className="h-5 w-15 rounded-lg bg-gray-200 animate-pulse" />
+                      <div className="mt-1 h-[0.8rem] w-32 rounded-lg bg-gray-200 animate-pulse" />
                     </div>
                   ) : (
                     <div className="flex flex-col items-center lg:gap-1">
@@ -68,14 +76,16 @@ export default function RootLayout({
                         alt={`${user?.name} 프로필 이미지`}
                         width={80}
                         height={80}
-                        className="rounded-[50%] object-cover lg:w-20 lg:h-20"
+                        className="rounded-[50%] object-cover w-20 h-20"
                       ></Image>
-                      <p className="lg:text-base font-semibold">{user?.name}</p>
-                      <p className="lg:text-sm">{user?.email}</p>
+                      <p className="lg:text-base md:text-base font-semibold">
+                        {user?.name}
+                      </p>
+                      <p className="lg:text-sm md:text-sm">{user?.email}</p>
                     </div>
                   )}
                 </div>
-                <ul className="flex flex-col lg:space-y-4  lg:text-base">
+                <ul className="flex flex-col space-y-4 lg:text-base md:text-base">
                   <li>
                     <Link
                       href="/mypage/cart"
