@@ -40,8 +40,8 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <div className="flex justify-center mt-[4.0625rem] mb-[6.25rem]">
-        <div className="flex flex-row lg:max-w-5xl md:max-w-[44.25rem]">
+      <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:p-[1.125rem]">
+        <div className="flex flex-row lg:w-5xl md:w-[44.25rem] w-80">
           <div className="flex flex-col gap-[2.1875rem]">
             <h2 className="text-sm text-gray">
               <Link href="/">HOME</Link>
