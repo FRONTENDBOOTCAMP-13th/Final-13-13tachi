@@ -58,17 +58,15 @@ export default function BuyItem({
         </div>
       </div>
       <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
-        <form>
-          <input
-            type="hidden"
-            name="accessToken"
-            value={user?.token?.accessToken ?? ''}
-          />
-          <input type="hidden" name="_id" value={item._id} />
-          <CustomLink href="/recipe/write" size="lg" variant="green">
-            레시피 작성하기
-          </CustomLink>
-        </form>
+        <input
+          type="hidden"
+          name="accessToken"
+          value={user?.token?.accessToken ?? ''}
+        />
+        <input type="hidden" name="_id" value={item._id} />
+        <CustomLink href="/recipe/write" size="lg" variant="green">
+          레시피 작성하기
+        </CustomLink>
         <form action={action.addAction}>
           <input
             type="hidden"

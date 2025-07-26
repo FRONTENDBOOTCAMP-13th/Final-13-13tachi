@@ -18,13 +18,13 @@ export default function BuyInfoItemList({
 }) {
   const { user } = useUserStore();
   return (
-    <>
+    <div className="lg:w-[49.875rem] md:w-[31.75rem] w-80">
       <div className="flex flex-row justify-between text-sm mb-2.5">
         <p>
           <span className="mr-4 text-dark-green">{item.createdAt}</span>
         </p>
       </div>
-      <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] p-[1.125rem]">
+      <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray md:p-[1.125rem] p-3">
         <div className="flex flex-col w-full gap-[2.125rem]">
           {item.products.map((product: ProductItemType) => (
             <BuyInfoItem
@@ -42,7 +42,7 @@ export default function BuyInfoItemList({
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-[1.875rem] mt-9 h-full">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-[1.875rem] flex flex-col gap-5 lg:mt-9 mt-8 h-full">
         <div>
           <p className="text-xl font-semibold text-dark-green mb-6">배송지</p>
           <div className="flex flex-col border-1 rounded-lg border-light-gray p-5 gap-1.5">
@@ -75,6 +75,6 @@ export default function BuyInfoItemList({
         </Button>
         <CustomLink href="/mypage/buylist">주문 내역으로 돌아가기</CustomLink>
       </div>
-    </>
+    </div>
   );
 }
