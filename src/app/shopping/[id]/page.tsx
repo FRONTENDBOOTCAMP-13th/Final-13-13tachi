@@ -38,7 +38,7 @@ export default async function ShoppingDetail({
               variant="green"
               size="xxl"
               type="button"
-              href="/shopping" //TODO 나중에 링크 수정
+              href="/shopping"
             >
               목록으로
             </CustomLink>

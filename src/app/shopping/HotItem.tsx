@@ -1,18 +1,15 @@
-'use client';
-
-import { productAddLike, productDeleteLike } from '@/data/actions/product';
-import { ApiRes, LikeItemType, ProductType, User } from '@/types';
-import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { Heart } from 'lucide-react';
+import { ApiRes, LikeItemType, ProductType, User } from '@/types';
 import { useActionState, useEffect, useState } from 'react';
+import { productAddLike, productDeleteLike } from '@/data/actions/product';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-// const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
-export default function ProductCardItem({
+export default function HotItem({
   item, // 현재 상품
   likeRes, // 찜한 목록 최신 상태
   accessToken, // user의 accessToken
@@ -49,24 +46,25 @@ export default function ProductCardItem({
     : null;
 
   return (
-    <li>
-      <Link href={`shopping/${item._id}`}>
-        <div className="relative aspect-square">
+    <>
+      <Link
+        href={`shopping/${item._id}`}
+        className="flex flex-col items-center lg:gap-2.5 lg:py-5.5 lg:px-6"
+      >
+        <div className="relative w-full aspect-[18/17]">
           <Image
             src={`${API_URL}/${item.mainImages![0].path}`}
             alt={`${item.name} 이미지`}
             fill
-            className="rounded-lg object-cover"
+            className="rounded-[1.875rem] object-cover"
           />
         </div>
-        <div className="relative lg:mt-4 w-full">
-          <div className="flex gap-2 w-full lg:pr-6">
-            <h4 className="truncate lg:text-base">{item.name}</h4>
-            <span className="text-gray lg:mt-[0.0625rem] lg:text-sm">
-              {item.extra?.details}
-            </span>
-          </div>
-          <strong className="inline-block text-orange lg:mt-1.5 lg:text-xl">
+        <div className="relative text-center w-full">
+          <h4 className="relative block w-full lg:px-2.5 lg:text-base truncate">
+            {item.name}
+          </h4>
+          <p className="text-gray lg:text-sm">{item.extra?.details}</p>
+          <strong className="text-orange font-semibold inline-block lg:mt-1 lg:text-xl">
             {item.price?.toLocaleString()}원
           </strong>
           <form
@@ -115,6 +113,6 @@ export default function ProductCardItem({
           </form>
         </div>
       </Link>
-    </li>
+    </>
   );
 }

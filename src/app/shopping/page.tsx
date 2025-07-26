@@ -1,7 +1,7 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import AllItems from '@/app/shopping/AllItems';
-import HotItems from '@/app/shopping/HotItems';
+import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
 
 import { getProducts } from '@/data/functions/post';
@@ -34,7 +34,7 @@ export default async function ShoppingList() {
           {/* ST: 인기상품 */}
           <div className="lg:mt-7.5">
             <h3 className="font-bold text-dark-green lg:text-3xl">인기 상품</h3>
-            <HotItems products={products} />
+            <HotItemList products={products} />
           </div>
           {/* ED: 인기상품 */}
 
