@@ -11,6 +11,7 @@ import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
 import CustomLink from '@/components/common/CustomLink';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import Loading from '@/app/mypage/recipe/myrecipe/Loading';
 // import { deletePost } from '@/data/actions/post';
 
 export default function MyRecipeList() {
@@ -21,6 +22,10 @@ export default function MyRecipeList() {
   const [res, setRes] = useState<ApiRes<MyPostType[]> | null>(null);
 
   useEffect(() => {
+    if (accessToken === null || accessToken === undefined) {
+      // accessToken이 아직 로드 중이라면 아무것도 하지 않음
+      return;
+    }
     if (accessToken) {
       getMyRecipe(accessToken).then(setRes);
     } else {
@@ -35,7 +40,7 @@ export default function MyRecipeList() {
   }, [accessToken]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
 
   if (res.ok && res.item.length === 0) {

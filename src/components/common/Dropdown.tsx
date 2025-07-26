@@ -71,7 +71,7 @@ export default function Dropdown() {
               </li>
               <li>
                 <Link
-                  href="/mypage/order"
+                  href="/mypage/buylist"
                   className="block  text-black pb-[7px] hover:font-semibold"
                 >
                   주문내역

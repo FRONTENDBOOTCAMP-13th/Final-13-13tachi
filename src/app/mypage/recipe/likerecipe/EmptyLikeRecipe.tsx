@@ -14,12 +14,12 @@ export default function EmptyLikeRecipe() {
         alt="장바구니 이미지"
         className="mb-3.5"
       />
-      <p className="mb-10">
+      <span className="mb-10">
         <p className="text-xl font-semibold text-center mb-3">
           북마크 한 레시피가 없어요
         </p>
         <p className="text-sm">마음에 드는 레시피를 북마크 해 보세요</p>
-      </p>
+      </span>
       <CustomLink href="/recipe">레시피 보러가기</CustomLink>
     </div>
   );
