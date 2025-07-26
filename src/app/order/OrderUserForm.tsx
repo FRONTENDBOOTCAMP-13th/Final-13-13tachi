@@ -1,12 +1,21 @@
 'use client';
 import { SignupFormProps } from '@/app/(user)/signup/SignupForm';
 import Input from '@/components/common/Input';
+import PostCode from 'react-daum-postcode';
 import useUserStore from '@/zustand/useStore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function OrderUserForm() {
   const { user } = useUserStore();
+  const [isOpen, setIsOpen] = useState(false);
+
+  //받은 주소 결과(zonecode, address)를 setValue로 form에 입력
+  const handleComplete = (data: { zonecode: string; address: string }) => {
+    setValue('postcode', data.zonecode);
+    setValue('addressDetail1', data.address);
+    setIsOpen(false);
+  };
 
   const {
     register,
@@ -113,7 +122,11 @@ export default function OrderUserForm() {
               </p>
             )}
 
-            <button className="lg:w-[4rem] lg:h-[1.875rem] lg:border-[0.0938rem] border-light-gray lg:rounded-[0.3125rem] lg:text-xs text-light-gray lg:hover:border-[.125rem]">
+            <button
+              type="button"
+              className="lg:w-[4rem] lg:h-[1.875rem] lg:border-[0.0938rem] border-light-gray lg:rounded-[0.3125rem] lg:text-xs text-light-gray lg:hover:border-[.125rem]"
+              onClick={() => setIsOpen(true)}
+            >
               우편번호
             </button>
           </div>
@@ -162,6 +175,39 @@ export default function OrderUserForm() {
           name="message"
         />
       </div>
+      {/* 주소 검색 모달창 */}
+      {isOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '25%',
+            width: '450px',
+            height: '500px',
+            zIndex: 100,
+            boxShadow: '0 0 8px rgba(0,0,0,0.3)',
+          }}
+        >
+          {/* PostCode - 카카오 우편번호 검색 서비스를 사용하는 리액트용 컴포넌트 */}
+          <PostCode
+            style={{ width: '100%', height: '100%' }} // 닫기 버튼 최하단 위치
+            onComplete={handleComplete} //주소 정보(zonecode, address)를 넘겨줌
+          />
+
+          {/* 모달 닫기 버튼 */}
+          <button
+            onClick={() => setIsOpen(false)}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              boxShadow: '0 0 8px rgba(0,0,0,0.3)',
+              background: '#eee',
+              cursor: 'pointer',
+            }}
+          >
+            닫기
+          </button>
+        </div>
+      )}
     </form>
   );
 }

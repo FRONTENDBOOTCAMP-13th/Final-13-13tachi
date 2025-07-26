@@ -7,10 +7,26 @@ import OrderTable from '@/app/order/OrderTable';
 import Button from '@/components/common/Button';
 import OrderList from '@/app/order/OrderList';
 import OrderUserForm from '@/app/order/OrderUserForm';
+import useUserStore from '@/zustand/useStore';
+import { useEffect, useState } from 'react';
+import { ApiResCart, CartItemType } from '@/types';
+import { getCartProducts } from '@/data/functions/post';
 
 export default function OrderForm() {
+  const { user } = useUserStore();
+  const accessToken = user?.token?.accessToken;
+  const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
+
+  useEffect(() => {
+    if (accessToken) {
+      getCartProducts(accessToken).then(setRes);
+    }
+  }, [accessToken]);
+
+  if (!res) return <div>로딩 중...</div>;
+  if (res.ok === 0) return <div>{res.message}</div>;
   return (
-    <>
+    <form action="">
       <main className="flex flex-col min-h-screen items-center">
         <div className="lg:w-[64rem] flex flex-col mb-[1.875rem]">
           <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
@@ -23,19 +39,28 @@ export default function OrderForm() {
             주문하기
           </h3>
 
-          <hr className="text-light-gray w-full mb-7" />
+          <hr className="text-light-gray w-full " />
 
-          <div className="flex flex-col gap-5 mb-7">
+          <div className="flex flex-col gap-5 my-[1.875rem]">
             <OrderList />
-            <OrderTable />
           </div>
+          <OrderTable />
           <div className="flex flex-col lg:flex-row justify-between gap-[2rem]">
             <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
               <h3 className="lg:text-xl font-bold mb-[0.75rem]">주문자 정보</h3>
               <hr className="text-light-gray w-full mb-[1.5rem]" />
               <OrderUserForm />
             </div>
-            <PayForm />
+            <div className="flex flex-col justify-between">
+              <PayForm />
+              <p className="font-semibold text-lg">
+                총금액 :{' '}
+                <span className="text-dark-red text-5xl font-bold">
+                  {(res.cost?.total ?? 0).toLocaleString()}
+                </span>
+                원
+              </p>
+            </div>
           </div>
         </div>
 
@@ -45,6 +70,6 @@ export default function OrderForm() {
           </Button>
         </div>
       </main>
-    </>
+    </form>
   );
 }
