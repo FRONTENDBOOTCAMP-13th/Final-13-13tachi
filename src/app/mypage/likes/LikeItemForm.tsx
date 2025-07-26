@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Button from '@/components/common/Button';
 import { LikeItemProps } from '@/types';
 import useUserStore from '@/zustand/useStore';
+import Link from 'next/link';
 
 interface LikeItemActionProps {
   addAction: (FormData: FormData) => void;
@@ -25,28 +26,35 @@ export default function LikeItemForm({
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex flex-row justify-between lg:w-[49.875rem] border-1 border-light-gray lg:p-4.5 rounded-lg ">
+      <div className="flex md:flex-row md:justify-between flex-col w-full border-1 border-light-gray md:p-4.5 p-2.5 rounded-lg gap-5">
         <div className="flex flex-row items-center gap-[1.5625rem]">
-          <div className="flex flex-row items-center lg:gap-3.5 lg:h-[6.25rem]">
-            <Image
-              src={`${API_URL}/${item.mainImages[0].path}`}
-              alt={`${item.name} 이미지`}
-              width={100}
-              height={100}
-              className="lg:w-[6.25rem] lg:h-[6.25rem] object-cover rounded-lg shadow-image"
-            ></Image>
-            <div className="flex flex-col justufy-center lg:gap-2">
+          <div className="flex flex-row items-center gap-3.5 md:h-[6.25rem]">
+            <Link
+              href={`/shopping/${item._id}`}
+              className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20"
+            >
+              <Image
+                width={100}
+                height={100}
+                src={`${API_URL}/${item.mainImages[0]?.path}`}
+                alt={`${item.name} 이미지`}
+                className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image"
+              ></Image>
+            </Link>
+            <div className="flex flex-col justufy-center gap-2">
               <div>
-                <span className="lg:text-base font-semibold text-dark-green mr-2.5">
+                <span className="md:text-base text-sm font-semibold text-dark-green mr-2.5">
                   {item.name}
                 </span>
-                <span className="lg:text-sm">({item.extra?.details})</span>
+                <span className="text-xs">({item.extra?.details})</span>
               </div>
-              <p className="lg:text-sm">{item.price.toLocaleString()}원</p>
+              <p className="md:text-base text-sm">
+                {item.price.toLocaleString()}원
+              </p>
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-end lg:gap-2">
+        <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
           <form action={action.addAction}>
             <input
               type="hidden"
