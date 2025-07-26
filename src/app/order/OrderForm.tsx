@@ -26,7 +26,7 @@ export default function OrderForm() {
   if (!res) return <div>로딩 중...</div>;
   if (res.ok === 0) return <div>{res.message}</div>;
   return (
-    <>
+    <form action="">
       <main className="flex flex-col min-h-screen items-center">
         <div className="lg:w-[64rem] flex flex-col mb-[1.875rem]">
           <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
@@ -70,6 +70,6 @@ export default function OrderForm() {
           </Button>
         </div>
       </main>
-    </>
+    </form>
   );
 }

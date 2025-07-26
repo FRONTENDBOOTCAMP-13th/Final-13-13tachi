@@ -264,6 +264,7 @@ export async function createOrderlist(
     items: String(formData.get('items')), //product_id, quantity
     user: String(formData.get('user')), //name, phone, address
     payment: formData.get('payment'), //card,kakaopay
+    total: formData.get('total'),
   };
 
   let res: Response;
