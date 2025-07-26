@@ -48,6 +48,7 @@ export default function User() {
             height={80}
             className="w-20 h-20 object-cover rounded-[50%] mb-6"
           />
+          {/* <div className="lg:h-20 lg:w-20 rounded-[50%] bg-gray-200" /> */}
           <div className="flex flex-col gap-4 text-base">
             <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
               <span className="font-semibold">이름</span>

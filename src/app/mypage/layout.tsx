@@ -17,6 +17,7 @@ import {
   ShoppingCart,
 } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
+import { useEffect, useState } from 'react';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function RootLayout({
   children,
@@ -27,6 +28,15 @@ export default function RootLayout({
   console.log(pathname);
   const isActive = (path: string) => (pathname === path ? 'mypage-active' : '');
   const { user } = useUserStore();
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
+
   return (
     <>
       <Header />
@@ -40,20 +50,30 @@ export default function RootLayout({
             </h2>
             <div className="flex flex-row">
               <aside className="flex flex-col items-center lg:gap-[2.125rem] lg:w-[12.25rem] h-full bg-bg-gray text-black lg:p-[1.875rem] lg:mr-[1.875rem] rounded-lg">
-                <div className="flex flex-col items-center lg:gap-1">
-                  <Image
-                    src={
-                      user?.image
-                        ? `${API_URL}/${user.image}`
-                        : '/images/front-end.png'
-                    }
-                    alt={`${user?.name} 프로필 이미지`}
-                    width={80}
-                    height={80}
-                    className="rounded-[50%] object-cover lg:w-20 lg:h-20"
-                  ></Image>
-                  <p className="lg:text-base font-semibold">{user?.name}</p>
-                  <p className="lg:text-sm">{user?.email}</p>
+                <div>
+                  {loading ? (
+                    <div className="flex flex-col items-center lg:gap-2">
+                      <div className="lg:w-20 lg:h-20 rounded-[50%] bg-gray-200 animate-pulse" />
+                      <div className="lg:h-5 lg:w-15 rounded-lg bg-gray-200 animate-pulse" />
+                      <div className="mt-1 lg:h-[0.8rem] lg:w-32 rounded-lg bg-gray-200 animate-pulse" />
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center lg:gap-1">
+                      <Image
+                        src={
+                          user?.image
+                            ? `${API_URL}/${user.image}`
+                            : '/images/front-end.png'
+                        }
+                        alt={`${user?.name} 프로필 이미지`}
+                        width={80}
+                        height={80}
+                        className="rounded-[50%] object-cover lg:w-20 lg:h-20"
+                      ></Image>
+                      <p className="lg:text-base font-semibold">{user?.name}</p>
+                      <p className="lg:text-sm">{user?.email}</p>
+                    </div>
+                  )}
                 </div>
                 <ul className="flex flex-col lg:space-y-4  lg:text-base">
                   <li>
