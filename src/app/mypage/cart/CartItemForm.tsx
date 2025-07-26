@@ -38,10 +38,6 @@ export default function CartItemForm({
       <div className="flex flex-col justify-center items-center">
         <div className="flex justify-between lg:w-[49.375rem] lg:my-[30px]">
           <div className="flex flex-row items-center gap-[1.5625rem]">
-            <label
-              htmlFor={`inputCheckBox-${item._id}`}
-              className="sr-only"
-            ></label>
             <div className="flex flex-row lg:gap-3.5 lg:h-[6.25rem]">
               <Image
                 width={100}

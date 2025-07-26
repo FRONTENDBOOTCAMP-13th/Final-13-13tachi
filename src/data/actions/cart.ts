@@ -245,3 +245,50 @@ export async function createOrder(
 
   return data;
 }
+
+/**
+ * order 주문 정보
+ * @param {ApiRes<any> | null} state - 이전 상태 (사용하지 않음)
+ * @param {FormData} formData - 주문 정보를 담은 FormData 객체
+ * @returns {Promise<ApiRes<any>>} - 주문 생성 결과 응답 객체
+ * @description
+ * 주문 정보를 서버에 전송
+ */
+export async function createOrderlist(
+  state: ApiRes<CartItemType> | null,
+  formData: FormData,
+): ApiResPromise<CartItemType> {
+  const accessToken = formData.get('accessToken');
+
+  const body = {
+    items: String(formData.get('items')), //product_id, quantity
+    user: String(formData.get('user')), //name, phone, address
+    payment: formData.get('payment'), //card,kakaopay
+  };
+
+  let res: Response;
+  let data: ApiRes<CartItemType>;
+
+  try {
+    res = await fetch(`${API_URL}/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    data = await res.json();
+  } catch (error) {
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`orders`);
+  }
+
+  return data;
+}

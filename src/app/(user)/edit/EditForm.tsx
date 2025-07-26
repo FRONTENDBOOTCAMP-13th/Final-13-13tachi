@@ -8,17 +8,7 @@ import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import useUserStore from '@/zustand/useStore';
 import AddressForm from '@/components/common/Address';
-
-interface SignupFormProps {
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  name: string;
-  phone: string;
-  postcode: string;
-  addressDetail1: string;
-  addressDetail2: string;
-}
+import { SignupFormProps } from '@/app/(user)/signup/SignupForm';
 
 export default function EditForm() {
   const { user } = useUserStore();

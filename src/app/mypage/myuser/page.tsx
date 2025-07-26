@@ -15,6 +15,10 @@ export default function User() {
   const router = useRouter();
 
   useEffect(() => {
+    if (user === null || user === undefined) {
+      // accessToken이 아직 로드 중이라면 아무것도 하지 않음
+      return;
+    }
     if (!user) {
       Swal.fire({
         icon: 'warning',

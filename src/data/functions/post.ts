@@ -257,7 +257,6 @@ export async function getLikeRecipe(
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
-      cache: 'force-cache',
     });
     return res.json();
   } catch (error) {

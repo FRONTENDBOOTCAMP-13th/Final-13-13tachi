@@ -22,7 +22,6 @@ export default function BuyInfoItemList({
       <div className="flex flex-row justify-between text-sm mb-2.5">
         <p>
           <span className="mr-4 text-dark-green">{item.createdAt}</span>
-          <span className="text-gray">주문번호:20230725-0001</span>
         </p>
       </div>
       <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] p-[1.125rem]">

@@ -14,12 +14,12 @@ export default function EmptyBuyList() {
         alt="장바구니 이미지"
         className="mb-3.5"
       />
-      <p className="mb-10">
+      <span className="mb-10">
         <p className="text-xl font-semibold text-center mb-3">
           주문 내역이 없어요
         </p>
         <p className="text-sm">UgVeg의 상품을 구매해 보세요</p>
-      </p>
+      </span>
       <CustomLink href="/shopping">상품 보러 가기</CustomLink>
     </div>
   );

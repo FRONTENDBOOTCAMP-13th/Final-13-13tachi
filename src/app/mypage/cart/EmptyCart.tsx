@@ -14,12 +14,12 @@ export default function EmptyCart() {
         alt="장바구니 이미지"
         className="mb-3.5"
       />
-      <p className="mb-10">
+      <span className="mb-10">
         <p className="text-xl font-semibold text-center mb-3">
           장바구니가 비어있어요
         </p>
         <p className="text-sm">장바구니를 새로운 상품으로 채워보세요</p>
-      </p>
+      </span>
       <CustomLink href="/shopping">상품 담으러 가기</CustomLink>
     </div>
   );

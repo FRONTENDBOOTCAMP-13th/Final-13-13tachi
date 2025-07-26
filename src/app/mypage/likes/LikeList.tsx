@@ -2,6 +2,7 @@
 
 import EmptyLikes from '@/app/mypage/likes/EmptyLikes';
 import LikeItemForm from '@/app/mypage/likes/LikeItemForm';
+import Loading from '@/app/mypage/likes/Loading';
 import { AddCart, deleteLike } from '@/data/actions/cart';
 
 import { getLikeProducts } from '@/data/functions/post';
@@ -18,6 +19,10 @@ export default function LikeList() {
   const [res, setRes] = useState<ApiRes<LikeItemType[]> | null>(null);
   const router = useRouter();
   useEffect(() => {
+    if (accessToken === null || accessToken === undefined) {
+      // accessToken이 아직 로드 중이라면 아무것도 하지 않음
+      return;
+    }
     if (!accessToken) {
       {
         Swal.fire({
@@ -70,7 +75,7 @@ export default function LikeList() {
   }, [addState]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
 
   const items =
