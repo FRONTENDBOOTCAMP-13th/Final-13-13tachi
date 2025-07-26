@@ -29,7 +29,7 @@ export default function BuyItem({
   console.log('3번 호출');
   return (
     <div className="flex md:flex-row md:justify-between flex-col w-full gap-5">
-      <div className="flex flex-row items-center gap-3.5 md:h-[6.25rem]">
+      <div className="flex flex-row items-center gap-3.5">
         <Link
           href={`/shopping/${item._id}`}
           className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20"

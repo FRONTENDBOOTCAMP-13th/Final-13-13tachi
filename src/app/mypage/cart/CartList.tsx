@@ -94,7 +94,7 @@ export default function CartList() {
       ) : (
         <p>{}</p>
       )}
-      <p className="text-right lg:mt-[1.875rem] md:mt-6 mt-4 md:text-lg text-md font-semibold">
+      <p className="text-right lg:mt-[1.875rem] md:mt-6 mt-4 text-lg font-semibold">
         총 상품 금액{' '}
         <span className="text-[#8B0505]">
           {res?.cost?.total.toLocaleString() ?? 0}

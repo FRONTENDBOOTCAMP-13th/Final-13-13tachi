@@ -66,7 +66,7 @@ export default function RootLayout({
                       <div className="mt-1 h-[0.8rem] w-32 rounded-lg bg-gray-200 animate-pulse" />
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center lg:gap-1">
+                    <div className="flex flex-col items-center gap-1">
                       <Image
                         src={
                           user?.image

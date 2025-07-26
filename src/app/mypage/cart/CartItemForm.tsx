@@ -1,11 +1,11 @@
 'use client';
 import Image from 'next/image';
 
-import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useState } from 'react';
 import Link from 'next/link';
+import { X } from 'lucide-react';
 
 interface CartItemActionProps {
   deleteAction: (FormData: FormData) => void;
@@ -55,7 +55,7 @@ export default function CartItemForm({
             <div className="flex flex-col gap-3.5 w-full">
               <div className="flex flex-row justify-between">
                 <div>
-                  <div className="">
+                  <div>
                     <span className="md:text-base text-sm font-semibold text-dark-green line-clamp-1">
                       {item.name}
                       <span className="ml-2.5 text-xs">
@@ -74,9 +74,9 @@ export default function CartItemForm({
                     value={user?.token?.accessToken ?? ''}
                   />
                   <input type="hidden" name="_id" value={item._id} />
-                  <Button size="sm" variant="white">
-                    삭제
-                  </Button>
+                  <button>
+                    <X color="gray" />
+                  </button>
                 </form>
               </div>
               <div className="flex flex-row justify-between gap-[1.5625rem]">
