@@ -1,13 +1,27 @@
-import { ProductType } from '@/types';
+'use client';
+
+import { ApiRes, LikeItemType, ProductType, User } from '@/types';
 import ProductCardItem from './ProductCardItem';
 
-interface ProductCardProps {
+export default function ProductCard({
+  filteredItems, // 장보기 상품 목록
+  likeRes, // 찜한 목록 최신 상태
+  accessToken, // user의 accessToken
+  user,
+}: {
   filteredItems: ProductType[];
-}
-
-export default function ProductCard({ filteredItems }: ProductCardProps) {
+  likeRes: ApiRes<LikeItemType[] | null>;
+  accessToken: string;
+  user: User | null;
+}) {
   const ProductCardList = filteredItems.map((item: ProductType, index) => (
-    <ProductCardItem key={index} item={item} />
+    <ProductCardItem
+      key={index}
+      item={item}
+      likeRes={likeRes!}
+      accessToken={accessToken}
+      user={user}
+    />
   ));
   return (
     <>

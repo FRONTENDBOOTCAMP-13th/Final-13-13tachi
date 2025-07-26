@@ -79,6 +79,7 @@ export default function Detail({
               likeRes={likeRes!}
               productRes={productRes}
               handleLikeChange={handleLikeChange}
+              user={user}
             />
           </div>
           <div className="flex justify-between items-center lg:mt-3">
