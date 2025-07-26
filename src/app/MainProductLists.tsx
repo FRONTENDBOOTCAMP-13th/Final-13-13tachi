@@ -64,7 +64,10 @@ export default function MainProductLists({
       <section>
         <div className="flex items-center lg:gap-8">
           <h3 className="font-semibold lg:text-3xl">채소류</h3>
-          <Link href="#" className="text-dark-green font-semibold">
+          <Link
+            href="/shopping?tab=채소"
+            className="text-dark-green font-semibold"
+          >
             + 더보기
           </Link>
         </div>
@@ -81,7 +84,10 @@ export default function MainProductLists({
       <section>
         <div className="flex items-center lg:gap-8">
           <h3 className="font-semibold lg:text-3xl">과일류</h3>
-          <Link href="#" className="text-dark-green font-semibold">
+          <Link
+            href="/shopping?tab=과일"
+            className="text-dark-green font-semibold"
+          >
             + 더보기
           </Link>
         </div>
