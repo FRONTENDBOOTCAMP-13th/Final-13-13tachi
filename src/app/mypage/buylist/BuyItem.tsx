@@ -6,6 +6,7 @@ import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import CustomLink from '@/components/common/CustomLink';
+import Link from 'next/link';
 
 interface BuyItemActionProps {
   addAction: (FormData: FormData) => void;
@@ -27,31 +28,36 @@ export default function BuyItem({
 
   console.log('3번 호출');
   return (
-    <div className="flex flex-row justify-between w-full">
-      <div className="flex flex-row items-center lg:gap-3.5 lg:h-[6.25rem]">
-        <Image
-          width={100}
-          height={100}
-          src={`${API_URL}/${item.image?.path}`}
-          alt={`${item.name} 이미지`}
-          className="lg:w-[6.25rem] lg:h-[6.25rem] object-cover rounded-lg shadow-image"
-        ></Image>
-        <div className="flex flex-col justufy-center lg:gap-2">
-          <p>
-            <span className="lg:text-base font-semibold text-dark-green mr-2.5">
+    <div className="flex md:flex-row md:justify-between flex-col w-full gap-5">
+      <div className="flex flex-row items-center gap-3.5 md:h-[6.25rem]">
+        <Link
+          href={`/shopping/${item._id}`}
+          className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20"
+        >
+          <Image
+            width={100}
+            height={100}
+            src={`${API_URL}/${item.image?.path}`}
+            alt={`${item.name} 이미지`}
+            className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image"
+          ></Image>
+        </Link>
+        <div className="flex flex-col justufy-center gap-2">
+          <Link href={`/shopping/${item._id}`}>
+            <span className="md:text-base text-sm font-semibold text-dark-green mr-2.5">
               {item.name}
             </span>
-            <span className="lg:text-xs">({item.extra?.details})</span>
-          </p>
+            <span className="text-xs">({item.extra?.details})</span>
+          </Link>
           <p className="flex gap-2.5 items-center">
-            <span className="lg:text-base">
-              {item.price.toLocaleString()}원
+            <span className="md:text-base text-sm">
+              {(item.price * item.quantity).toLocaleString()}원
             </span>
-            <span className="lg:text-xs">{item.quantity}개</span>
+            <span className="md:text-xs text-2xs">{item.quantity}개</span>
           </p>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-end lg:gap-2">
+      <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
         <form>
           <input
             type="hidden"
