@@ -10,6 +10,7 @@ import CustomLink from '@/components/common/CustomLink';
 import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import Loading from '@/app/mypage/cart/Loading';
 
 export default function CartList() {
   const { user } = useUserStore();
@@ -19,6 +20,10 @@ export default function CartList() {
   const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
 
   useEffect(() => {
+    if (accessToken === null || accessToken === undefined) {
+      // accessToken이 아직 로드 중이라면 아무것도 하지 않음
+      return;
+    }
     if (accessToken) {
       getCartProducts(accessToken).then(setRes);
     } else {
@@ -52,7 +57,7 @@ export default function CartList() {
   }, [quantityState, deleteState]);
 
   if (!res) {
-    return <div>로딩중...</div>;
+    return <Loading />;
   }
   if (res.ok && res.item.length === 0) {
     return (

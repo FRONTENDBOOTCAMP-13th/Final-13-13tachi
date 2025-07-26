@@ -1,13 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@/components/common/Button';
 import Comment from './Comment';
+import useUserStore from '@/zustand/useStore';
+
+interface UserType {
+  _id: number;
+  name: string;
+  image?: string;
+}
 
 interface CommentType {
   _id: number;
   content: string;
-  user: { _id: number; name: string; image?: string };
+  user: UserType;
   createdAt: string;
 }
 
@@ -16,6 +23,7 @@ interface CommentsProps {
 }
 
 export default function Comments({ postId }: CommentsProps) {
+  const { user } = useUserStore();
   const [comments, setComments] = useState<CommentType[]>([]);
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState('');
@@ -51,6 +59,10 @@ export default function Comments({ postId }: CommentsProps) {
       alert('댓글 내용을 입력해주세요.');
       return;
     }
+    if (!user) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
     setLoading(true);
     setErrorMsg('');
     try {
@@ -62,7 +74,10 @@ export default function Comments({ postId }: CommentsProps) {
             'Content-Type': 'application/json',
             'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
           },
-          body: JSON.stringify({ content }),
+          body: JSON.stringify({
+            content,
+            name: user.name,
+          }),
         },
       );
       if (res.status === 201) {
@@ -85,6 +100,18 @@ export default function Comments({ postId }: CommentsProps) {
     }
   };
 
+  const handleDelete = (id: number) => {
+    setComments(prev => prev.filter(comment => comment._id !== id));
+  };
+
+  const handleUpdate = (id: number, newContent: string) => {
+    setComments(prev =>
+      prev.map(comment =>
+        comment._id === id ? { ...comment, content: newContent } : comment,
+      ),
+    );
+  };
+
   return (
     <div className="p-15">
       <div className="flex items-center border-b-2 border-[#DEDEDE]">
@@ -97,7 +124,14 @@ export default function Comments({ postId }: CommentsProps) {
       {loading && <p>댓글 불러오는중...</p>}
 
       {comments.map(comment => (
-        <Comment key={comment._id} comment={comment} />
+        <Comment
+          key={comment._id}
+          postId={postId}
+          comment={comment}
+          currentUserId={user?._id}
+          onDelete={handleDelete}
+          onUpdate={handleUpdate}
+        />
       ))}
 
       <form onSubmit={handleSubmit} className="mt-9 flex items-center">
