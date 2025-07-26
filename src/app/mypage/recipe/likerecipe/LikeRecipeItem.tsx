@@ -28,7 +28,7 @@ export default function LikeRecipeItem({
           alt={item.title}
           width={180}
           height={180}
-          className="lg:w-[11.25rem] lg:h-[11.25rem] object-cover rounded-lg shadow-image"
+          className="lg:w-[11.25rem] lg:h-[11.25rem] md:w-36 md:h-36 w-34 h-34 object-cover rounded-lg shadow-image"
         />
       </Link>
       <div className="relative text-center mt-2.5">

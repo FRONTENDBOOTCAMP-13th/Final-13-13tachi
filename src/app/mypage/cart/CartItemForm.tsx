@@ -1,10 +1,11 @@
 'use client';
 import Image from 'next/image';
 
-import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useState } from 'react';
+import Link from 'next/link';
+import { X } from 'lucide-react';
 
 interface CartItemActionProps {
   deleteAction: (FormData: FormData) => void;
@@ -35,30 +36,51 @@ export default function CartItemForm({
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
-        <div className="flex justify-between lg:w-[49.375rem] lg:my-[30px]">
-          <div className="flex flex-row items-center gap-[1.5625rem]">
-            <div className="flex flex-row lg:gap-3.5 lg:h-[6.25rem]">
-              <Image
-                width={100}
-                height={100}
-                src={`${API_URL}/${item.image?.path}`}
-                alt={`${item.name} 이미지`}
-                className="lg:w-[6.25rem] lg:h-[6.25rem] object-cover rounded-lg shadow-image"
-              ></Image>
-              <div className="flex flex-col justify-between">
+      <div className="flex flex-col  justify-center items-center">
+        <div className="flex flex-col w-full lg:my-[30px] md:my-6 my-5">
+          <div className="flex w-full justify-between">
+            <div className="relative mr-[1.5625rem] md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 flex-shrink-0">
+              <Link
+                href={`/shopping/${item._id}`}
+                className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20"
+              >
+                <Image
+                  fill
+                  src={`${API_URL}/${item.image?.path}`}
+                  alt={`${item.name} 이미지`}
+                  className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image"
+                ></Image>
+              </Link>
+            </div>
+            <div className="flex flex-col gap-3.5 w-full">
+              <div className="flex flex-row justify-between">
                 <div>
-                  <>
-                    <span className="lg:text-base font-semibold text-dark-green mr-2.5">
+                  <div>
+                    <span className="md:text-base text-sm font-semibold text-dark-green line-clamp-1">
                       {item.name}
+                      <span className="ml-2.5 text-xs">
+                        ({item.extra?.details})
+                      </span>
                     </span>
-                    <span className="lg:text-sm">({item.extra?.details})</span>
-                  </>
-                  <p className="lg:text-sm mt-1">
+                  </div>
+                  <p className="md:text-base text-sm mt-1">
                     {item.price.toLocaleString()}원
                   </p>
                 </div>
-                <div className="flex flex-row justify-center items-center gap-5 border-[0.0625rem] rounded-lg lg:w-20 lg:h-[1.875rem] p-1">
+                <form action={action.deleteAction}>
+                  <input
+                    type="hidden"
+                    name="accessToken"
+                    value={user?.token?.accessToken ?? ''}
+                  />
+                  <input type="hidden" name="_id" value={item._id} />
+                  <button>
+                    <X color="gray" />
+                  </button>
+                </form>
+              </div>
+              <div className="flex flex-row justify-between gap-[1.5625rem]">
+                <div className="flex flex-row justify-center items-center md:gap-5 gap-3 border-[0.0625rem] rounded-lg md:w-20 md:h-[1.875rem] w-16 h-6 p-1">
                   <form action={action.quantityAction}>
                     <input
                       type="hidden"
@@ -74,12 +96,12 @@ export default function CartItemForm({
                     <button
                       type="submit"
                       onClick={() => handleDown()}
-                      className="lg:text-base font-semibold hover:cursor-pointer"
+                      className="text-base font-semibold hover:cursor-pointer"
                     >
                       -
                     </button>
                   </form>
-                  <span className="lg:text-sm">{quantity}</span>
+                  <span className="text-sm">{quantity}</span>
                   <form action={action.quantityAction}>
                     <input
                       type="hidden"
@@ -95,30 +117,17 @@ export default function CartItemForm({
                     <button
                       type="submit"
                       onClick={() => handleUp()}
-                      className="lg:text-base font-semibold hover:cursor-pointer"
+                      className="text-base font-semibold hover:cursor-pointer"
                     >
                       +
                     </button>
                   </form>
                 </div>
+                <span className="md:text-base text-sm font-semibold">
+                  {(item.price * item.quantity).toLocaleString()}원
+                </span>
               </div>
             </div>
-          </div>
-          <div className="flex flex-col justify-center items-end gap-[1.5625rem]">
-            <form action={action.deleteAction}>
-              <input
-                type="hidden"
-                name="accessToken"
-                value={user?.token?.accessToken ?? ''}
-              />
-              <input type="hidden" name="_id" value={item._id} />
-              <Button size="sm" variant="white">
-                삭제
-              </Button>
-            </form>
-            <span className="lg:text-base font-semibold">
-              {item.price * item.quantity}원
-            </span>
           </div>
         </div>
         <hr className="text-light-gray w-full" />

@@ -24,13 +24,13 @@ export default function BuyItemList({
     <div className="mb-9">
       <div className="flex flex-row justify-between text-sm mb-2.5">
         <p>
-          <span className="mr-4 text-dark-green">{item.createdAt}</span>
+          <span className="text-dark-green">{item.createdAt}</span>
         </p>
         <Link href={`/mypage/buylist/${item._id}`} className="text-dark-green">
           상세조회
         </Link>
       </div>
-      <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] p-[1.125rem]">
+      <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] md:w-[31.75rem] w-80 md:p-[1.125rem] p-3">
         <div className="flex flex-col w-full gap-[2.125rem]">
           {item.products.map((product: ProductItemType) => (
             <BuyItem
