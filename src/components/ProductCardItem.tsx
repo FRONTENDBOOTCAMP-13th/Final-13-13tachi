@@ -56,7 +56,7 @@ export default function ProductCardItem({
             src={`${API_URL}/${item.mainImages![0].path}`}
             alt={`${item.name} 이미지`}
             fill
-            className="rounded-lg object-cover"
+            className="rounded-lg object-cover shadow-image"
           />
         </div>
         <div className="relative lg:mt-4 w-full">

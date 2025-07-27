@@ -1,5 +1,6 @@
 'use client';
 
+import AddCartForm from '@/app/shopping/[id]/AddCartForm';
 import LikesForm from '@/app/shopping/[id]/LikesForm';
 import Button from '@/components/common/Button';
 import CustomLink from '@/components/common/CustomLink';
@@ -21,9 +22,9 @@ export default function Detail({
 }) {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
-  const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
 
   const [quantity, setQuantity] = useState(1); // 수량 상태
+  const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
   const [isLike, setIsLike] = useState(false); // 찜하기 상태
 
   const likeItems = // 현재 상품이 찜하기 데이터에 있는지
@@ -43,7 +44,6 @@ export default function Detail({
     getLikeProducts(accessToken)
       .then(res => {
         setLikeRes(res);
-        console.log('res', res);
       })
       .catch(err => {
         console.error('찜 가져오기 실패:', err);
@@ -73,6 +73,7 @@ export default function Detail({
                 ({productRes.item.extra?.details})
               </span>
             </p>
+            {/* ST: 찜하기 */}
             <LikesForm
               isLike={isLike}
               accessToken={accessToken!}
@@ -81,6 +82,7 @@ export default function Detail({
               handleLikeChange={handleLikeChange}
               user={user}
             />
+            {/* ED: 찜하기 */}
           </div>
           <div className="flex justify-between items-center lg:mt-3">
             <strong className="flex items-center font-semibold text-orange lg:gap-2.5 lg:text-2xl">
@@ -111,6 +113,7 @@ export default function Detail({
           </div>
         </div>
         <div className="flex justify-between lg:mt-10">
+          {/* ST: 레시피 보러가기 */}
           <CustomLink
             variant="white"
             size="xxl"
@@ -119,21 +122,25 @@ export default function Detail({
           >
             레시피 보러가기
           </CustomLink>
+          {/* ED: 레시피 보러가기 */}
+
           {/* ST: 구매하기 */}
           <form>
-            <CustomLink variant="green" size="xxl" type="button" href="#">
+            <Button variant="green" size="xxl" type="button">
               구매하기
-            </CustomLink>
+            </Button>
           </form>
           {/* ED: 구매하기 */}
 
           {/* ST: 장바구니 */}
-          <form>
-            <Button variant="green" size="xxl" type="button">
-              장바구니 담기
-            </Button>
-            {/* ED: 장바구니 */}
-          </form>
+          <AddCartForm
+            accessToken={accessToken!}
+            id={id}
+            quantity={quantity}
+            user={user}
+          />
+
+          {/* ED: 장바구니 */}
         </div>
       </div>
       {/* ED: 상단 상품 정보*/}
