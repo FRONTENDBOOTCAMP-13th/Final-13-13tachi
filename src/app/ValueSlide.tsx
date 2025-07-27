@@ -19,7 +19,7 @@ export default function ValueSlide() {
       speed={1000}
       className="value-slide relative lg:max-w-5xl"
     >
-      <SwiperSlide className="!flex flex-col items-center lg:gap-6">
+      <SwiperSlide className="!flex flex-col items-center">
         <div className="relative w-[250px] aspect-square">
           <Image
             src="/value-slide-1.png"
@@ -37,7 +37,7 @@ export default function ValueSlide() {
           </p>
         </div>
       </SwiperSlide>
-      <SwiperSlide className="!flex flex-col items-center lg:gap-6">
+      <SwiperSlide className="!flex flex-col items-center">
         <div className="relative w-[250px] aspect-square">
           <Image
             src="/value-slide-2.png"
@@ -55,7 +55,7 @@ export default function ValueSlide() {
           </p>
         </div>
       </SwiperSlide>
-      <SwiperSlide className="!flex flex-col items-center lg:gap-6">
+      <SwiperSlide className="!flex flex-col items-center">
         <div className="relative w-[250px] aspect-square">
           <Image
             src="/value-slide-3.png"
@@ -71,7 +71,7 @@ export default function ValueSlide() {
           <p className="lg:mt-2">더 많은 농민들이 우리와 함께하고 있어요.</p>
         </div>
       </SwiperSlide>
-      <SwiperSlide className="!flex flex-col items-center lg:gap-6">
+      <SwiperSlide className="!flex flex-col items-center">
         <div className="relative w-[250px] aspect-square">
           <Image
             src="/value-slide-4.png"
@@ -89,7 +89,7 @@ export default function ValueSlide() {
           </p>
         </div>
       </SwiperSlide>
-      <SwiperSlide className="!flex flex-col items-center lg:gap-6">
+      <SwiperSlide className="!flex flex-col items-center">
         <div className="relative w-[250px] aspect-square">
           <Image
             src="/value-slide-5.png"
@@ -107,7 +107,7 @@ export default function ValueSlide() {
           </p>
         </div>
       </SwiperSlide>
-      <SwiperSlide className="!flex flex-col items-center lg:gap-6">
+      <SwiperSlide className="!flex flex-col items-center">
         <div className="relative w-[250px] aspect-square">
           <Image
             src="/value-slide-6.png"
