@@ -27,10 +27,10 @@ export default function PayForm() {
                 <input
                   type="radio"
                   name="contact"
-                  id="bank"
+                  id="내 통장 결제"
                   value="내 통장 결제"
                   className="mr-2"
-                  checked={payment === 'account'}
+                  checked={payment === '내 통장 결제'}
                   onChange={handleChange}
                 />
                 <span>내 통장 결제</span>
@@ -40,10 +40,10 @@ export default function PayForm() {
                 <input
                   type="radio"
                   name="contact"
-                  id="account"
+                  id="계좌 이체"
                   value="계좌 이체"
                   className="mr-2"
-                  checked={payment === 'transfer'}
+                  checked={payment === '계좌 이체'}
                   onChange={handleChange}
                 />
                 <span>계좌 이체</span>
@@ -54,10 +54,10 @@ export default function PayForm() {
                 <input
                   type="radio"
                   name="contact"
-                  id="card"
+                  id="신용/체크카드"
                   value="신용/체크카드"
                   className="mr-2"
-                  checked={payment === 'card'}
+                  checked={payment === '신용/체크카드'}
                   onChange={handleChange}
                 />
                 <span>신용/체크카드</span>
@@ -68,10 +68,10 @@ export default function PayForm() {
                 <input
                   type="radio"
                   name="contact"
-                  id="kakaopay"
+                  id="카카오페이"
                   value="카카오페이"
                   className="mr-2"
-                  checked={payment === 'kakaopay'}
+                  checked={payment === '카카오페이'}
                   onChange={handleChange}
                 />
                 <Image
@@ -87,10 +87,10 @@ export default function PayForm() {
                 <input
                   type="radio"
                   name="contact"
-                  id="naverpay"
+                  id="네이버페이"
                   value="네이버페이"
                   className="mr-2"
-                  checked={payment === 'naverpay'}
+                  checked={payment === '네이버페이'}
                   onChange={handleChange}
                 />
                 <Image
@@ -108,10 +108,10 @@ export default function PayForm() {
                 <input
                   type="radio"
                   name="contact"
-                  id="tosspay"
+                  id="토스페이"
                   value="토스페이"
                   className="mr-2"
-                  checked={payment === 'tosspay'}
+                  checked={payment === '토스페이'}
                   onChange={handleChange}
                 />
                 <Image
