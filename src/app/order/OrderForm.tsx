@@ -36,11 +36,24 @@ export default function OrderForm() {
       }))
     : [];
 
+  //주문자 정보 입력 확인
+  const handleClientValidation = (e: React.FormEvent<HTMLFormElement>) => {
+    if (
+      !userFormData?.name ||
+      !userFormData?.phone ||
+      !userFormData?.postcode ||
+      !userFormData?.addressDetail1
+    ) {
+      e.preventDefault();
+      alert('주문자 정보를 모두 입력해주세요.');
+    }
+  };
+
   if (!res) return <div>로딩 중...</div>;
   if (res.ok === 0) return <div>{res.message}</div>;
 
   return (
-    <form action={orderAction}>
+    <form action={orderAction} onSubmit={handleClientValidation}>
       <input
         type="hidden"
         name="accessToken"
