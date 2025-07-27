@@ -199,7 +199,7 @@ export async function deleteLike(
 }
 
 /**
- * 장바구니 추가
+ * 주문 폼
  * @param {ApiRes<PostReply> | null} state - 이전 상태(사용하지 않음)
  * @param {FormData} formData - 삭제할 댓글 정보를 담은 FormData 객체
  * @returns {Promise<ApiRes<PostReply>>} - 삭제 결과 응답 객체
@@ -210,19 +210,30 @@ export async function createOrder(
   state: ApiRes<CartItemType> | null,
   formData: FormData,
 ): ApiResPromise<CartItemType> {
-  const accessToken = formData.get('accessToken');
   console.log('추가');
+  const accessToken = formData.get('accessToken');
+  const productsStr = formData.get('products');
+  let products: { _id: number; quantity: number }[] = [];
+  if (productsStr && typeof productsStr == 'string') {
+    products = JSON.parse(productsStr) as {
+      _id: number;
+      quantity: number;
+    }[];
+    console.log('sss', products);
+  }
 
   const body = {
-    product_id: Number(formData.get('product_id')),
-    quantity: Number(formData.get('quantity')),
+    products,
+    user: formData.get('user'), //name, phone, address
+    payment: formData.get('payment'), //card,kakaopay
+    total: formData.get('total'),
   };
 
   let res: Response;
   let data: ApiRes<CartItemType>;
 
   try {
-    res = await fetch(`${API_URL}/carts`, {
+    res = await fetch(`${API_URL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -240,7 +251,7 @@ export async function createOrder(
   }
 
   if (data.ok) {
-    revalidateTag(`carts`);
+    revalidateTag(`orders`);
   }
 
   return data;

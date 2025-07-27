@@ -1,12 +1,24 @@
 'use client';
-import { SignupFormProps } from '@/app/(user)/signup/SignupForm';
 import Input from '@/components/common/Input';
 import PostCode from 'react-daum-postcode';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+export interface UserInfoType {
+  name: string;
+  phone: string;
+  postcode: string;
+  addressDetail1: string;
+  addressDetail2: string;
+}
 
-export default function OrderUserForm() {
+type UserOrderFormProps = {
+  onChangeUserData: (data: UserInfoType) => void;
+};
+
+export default function OrderUserForm({
+  onChangeUserData,
+}: UserOrderFormProps) {
   const { user } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +33,8 @@ export default function OrderUserForm() {
     register,
     setValue,
     formState: { errors },
-  } = useForm<SignupFormProps>({ mode: 'onChange' });
+    watch,
+  } = useForm<UserInfoType>({ mode: 'onChange' });
 
   useEffect(() => {
     if (user) {
@@ -29,11 +42,17 @@ export default function OrderUserForm() {
       setValue('postcode', user.postcode ?? '');
       setValue('addressDetail1', user.addressDetail1 ?? '');
       setValue('addressDetail2', user.addressDetail2 ?? '');
+      setValue('addressDetail2', user.addressDetail2 ?? '');
     }
   }, [user, setValue]);
 
+  const watchedFields = watch();
+  useEffect(() => {
+    onChangeUserData(watchedFields);
+  }, [onChangeUserData]);
+
   return (
-    <form>
+    <div>
       <div className="flex items-center justify-between mb-[0.625rem]">
         <div className="flex items-center">
           <label className="block text-black lg:text-base" htmlFor="name1">
@@ -208,6 +227,6 @@ export default function OrderUserForm() {
           </button>
         </div>
       )}
-    </form>
+    </div>
   );
 }

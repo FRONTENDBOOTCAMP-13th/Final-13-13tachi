@@ -7,20 +7,16 @@ import naverpay from '../../images/naverpay.png';
 import tosspay from '../../images/tosspay.png';
 import { useState } from 'react';
 
-export default function PayForm({
-  onPaymentChange,
-}: {
-  onPaymentChange: (payment: string) => void;
-}) {
-  const [payment, setPayment] = useState('');
+export default function PayForm() {
+  const [payment, setPayment] = useState('card');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPayment(value);
-    onPaymentChange(value);
   };
   return (
-    <form>
+    <>
+      <input type="hidden" name="payment" value={payment} />
       <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
         <h3 className="lg:text-xl font-bold mb-[0.75rem]">결제 수단</h3>
         <hr className="text-light-gray w-full mb-[1.5rem]" />
@@ -131,6 +127,6 @@ export default function PayForm({
           </fieldset>
         </div>
       </div>
-    </form>
+    </>
   );
 }
