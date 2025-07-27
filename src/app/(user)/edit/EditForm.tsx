@@ -73,7 +73,7 @@ export default function EditForm() {
         },
       }));
       alert('수정이 완료되었습니다');
-      router.replace('/mypage/user');
+      router.replace('/mypage/myuser');
     } else if (state?.ok === 0 && !state?.errors) {
       alert(state?.message);
     }
