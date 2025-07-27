@@ -213,18 +213,34 @@ export async function createOrder(
   console.log('추가');
   const accessToken = formData.get('accessToken');
   const productsStr = formData.get('products');
+  const userStr = formData.get('user');
   let products: { _id: number; quantity: number }[] = [];
+  let user: {
+    name: string;
+    phone: string;
+    postcode: string;
+    addressDetail1: string;
+    addressDetail2: string;
+  } | null = null;
   if (productsStr && typeof productsStr == 'string') {
     products = JSON.parse(productsStr) as {
       _id: number;
       quantity: number;
     }[];
-    console.log('sss', products);
+  }
+  if (userStr && typeof userStr === 'string') {
+    user = JSON.parse(userStr) as {
+      name: string;
+      phone: string;
+      postcode: string;
+      addressDetail1: string;
+      addressDetail2: string;
+    };
   }
 
   const body = {
     products,
-    user: formData.get('user'), //name, phone, address
+    user: user,
     payment: formData.get('payment'), //card,kakaopay
     total: formData.get('total'),
   };

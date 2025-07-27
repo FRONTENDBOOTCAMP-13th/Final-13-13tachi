@@ -42,14 +42,17 @@ export default function OrderUserForm({
       setValue('postcode', user.postcode ?? '');
       setValue('addressDetail1', user.addressDetail1 ?? '');
       setValue('addressDetail2', user.addressDetail2 ?? '');
-      setValue('addressDetail2', user.addressDetail2 ?? '');
     }
   }, [user, setValue]);
 
-  const watchedFields = watch();
+  const name = watch('name');
+  const phone = watch('phone');
+  const postcode = watch('postcode');
+  const addressDetail1 = watch('addressDetail1');
+  const addressDetail2 = watch('addressDetail2');
   useEffect(() => {
-    onChangeUserData(watchedFields);
-  }, [onChangeUserData]);
+    onChangeUserData({ name, phone, postcode, addressDetail1, addressDetail2 });
+  }, [name, phone, postcode, addressDetail1, addressDetail2, onChangeUserData]);
 
   return (
     <div>
