@@ -28,7 +28,7 @@ export default function PayForm() {
                   type="radio"
                   name="contact"
                   id="bank"
-                  value="bank"
+                  value="내 통장 결제"
                   className="mr-2"
                   checked={payment === 'account'}
                   onChange={handleChange}
@@ -41,7 +41,7 @@ export default function PayForm() {
                   type="radio"
                   name="contact"
                   id="account"
-                  value="account"
+                  value="계좌 이체"
                   className="mr-2"
                   checked={payment === 'transfer'}
                   onChange={handleChange}
@@ -55,7 +55,7 @@ export default function PayForm() {
                   type="radio"
                   name="contact"
                   id="card"
-                  value="card"
+                  value="신용/체크카드"
                   className="mr-2"
                   checked={payment === 'card'}
                   onChange={handleChange}
@@ -69,7 +69,7 @@ export default function PayForm() {
                   type="radio"
                   name="contact"
                   id="kakaopay"
-                  value="kakaopay"
+                  value="카카오페이"
                   className="mr-2"
                   checked={payment === 'kakaopay'}
                   onChange={handleChange}
@@ -88,7 +88,7 @@ export default function PayForm() {
                   type="radio"
                   name="contact"
                   id="naverpay"
-                  value="naverpay"
+                  value="네이버페이"
                   className="mr-2"
                   checked={payment === 'naverpay'}
                   onChange={handleChange}
@@ -109,7 +109,7 @@ export default function PayForm() {
                   type="radio"
                   name="contact"
                   id="tosspay"
-                  value="tosspay"
+                  value="토스페이"
                   className="mr-2"
                   checked={payment === 'tosspay'}
                   onChange={handleChange}
