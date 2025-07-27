@@ -75,7 +75,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근1',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -101,7 +101,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이2',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -127,7 +127,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯3',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -153,7 +153,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근4',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -179,7 +179,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이5',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -231,7 +231,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근7',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -257,7 +257,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이8',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -283,7 +283,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯9',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -309,7 +309,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근10',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -335,7 +335,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이11',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -361,7 +361,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯12',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -387,7 +387,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근13',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -413,7 +413,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이14',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -439,7 +439,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯15',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -465,7 +465,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근16',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -491,7 +491,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이17',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -517,7 +517,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯18',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -543,7 +543,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근19',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -569,7 +569,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이20',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -595,7 +595,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯21',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -621,7 +621,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근22',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -647,7 +647,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이23',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -673,7 +673,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯24',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -699,7 +699,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근25',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -725,7 +725,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이26',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -751,7 +751,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯27',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -777,7 +777,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근28',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -803,7 +803,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이29',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -829,7 +829,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯30',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
@@ -855,7 +855,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '바니바니바니바니 당근당근31',
         quantity: 320,
-        buyQuantity: 310,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-1.jpeg`,
@@ -881,7 +881,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '고구마 답답이32',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-2.jpeg`,
@@ -907,7 +907,7 @@ export const initData = async (clientId, nextSeq) => {
         active: true,
         name: '브라운 양송이버섯33',
         quantity: 200,
-        buyQuantity: 198,
+        buyQuantity: 0,
         mainImages: [
           {
             path: `/files/${clientId}/product-3.jpeg`,
