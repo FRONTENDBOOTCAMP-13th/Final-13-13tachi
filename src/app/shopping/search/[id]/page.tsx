@@ -1,9 +1,14 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import AllItems from '@/app/shopping/AllItems';
 import SearchBar from '@/components/common/SearchBar';
+import { getProducts } from '@/data/functions/post';
+import { ProductType } from '@/types';
+import SearchItemsList from '@/app/shopping/search/[id]/SearchItemsList';
 
-export default function ShoppingSearch() {
+export default async function ShoppingSearch() {
+  const res = await getProducts();
+  const products: ProductType[] = res.ok === 1 ? res.item : [];
+
   return (
     <>
       <Header />
@@ -26,10 +31,7 @@ export default function ShoppingSearch() {
 
           {/* ST: 전체 상품 */}
           <div className="lg:mt-7">
-            <h3 className="font-bold text-dark-green lg:text-3xl">
-              &apos;토마토&apos; 검색 결과
-            </h3>
-            <AllItems />
+            <SearchItemsList products={products} />
           </div>
           {/* ED: 전체 상품 */}
         </div>
