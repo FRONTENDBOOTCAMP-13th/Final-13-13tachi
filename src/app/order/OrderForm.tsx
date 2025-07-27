@@ -8,25 +8,52 @@ import Button from '@/components/common/Button';
 import OrderList from '@/app/order/OrderList';
 import OrderUserForm from '@/app/order/OrderUserForm';
 import useUserStore from '@/zustand/useStore';
-import { useEffect, useState } from 'react';
-import { ApiResCart, CartItemType } from '@/types';
+import { useActionState, useEffect, useState } from 'react';
+import { ApiResCart, CartItemType, UserInfoType } from '@/types';
 import { getCartProducts } from '@/data/functions/post';
+import { createOrder } from '@/data/actions/cart';
 
 export default function OrderForm() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
+  const [userFormData, setUserFormData] = useState<UserInfoType | null>(null);
+  const [orderState, orderAction, isOrdering] = useActionState(
+    createOrder,
+    null,
+  );
+  console.log(orderState, isOrdering);
 
   useEffect(() => {
     if (accessToken) {
       getCartProducts(accessToken).then(setRes);
     }
   }, [accessToken]);
+  const products = res?.ok
+    ? res.item.map(item => ({
+        _id: Number(item.product_id),
+        quantity: Number(item.quantity),
+      }))
+    : [];
 
   if (!res) return <div>로딩 중...</div>;
   if (res.ok === 0) return <div>{res.message}</div>;
+
   return (
-    <form action="">
+    <form action={orderAction}>
+      <input
+        type="hidden"
+        name="accessToken"
+        value={user?.token?.accessToken ?? ''}
+      />
+      <input type="hidden" name="products" value={JSON.stringify(products)} />
+      <input
+        type="hidden"
+        name="user"
+        value={userFormData ? JSON.stringify(userFormData) : ''}
+      />
+      <input type="hidden" name="total" value={res.cost?.total} />
+
       <main className="flex flex-col min-h-screen items-center">
         <div className="lg:w-[64rem] flex flex-col mb-[1.875rem]">
           <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
@@ -49,7 +76,7 @@ export default function OrderForm() {
             <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
               <h3 className="lg:text-xl font-bold mb-[0.75rem]">주문자 정보</h3>
               <hr className="text-light-gray w-full mb-[1.5rem]" />
-              <OrderUserForm />
+              <OrderUserForm onChangeUserData={setUserFormData} />
             </div>
             <div className="flex flex-col justify-between">
               <PayForm />

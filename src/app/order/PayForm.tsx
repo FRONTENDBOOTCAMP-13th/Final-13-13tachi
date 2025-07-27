@@ -7,20 +7,16 @@ import naverpay from '../../images/naverpay.png';
 import tosspay from '../../images/tosspay.png';
 import { useState } from 'react';
 
-export default function PayForm({
-  onPaymentChange,
-}: {
-  onPaymentChange: (payment: string) => void;
-}) {
-  const [payment, setPayment] = useState('');
+export default function PayForm() {
+  const [payment, setPayment] = useState('card');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPayment(value);
-    onPaymentChange(value);
   };
   return (
-    <form>
+    <>
+      <input type="hidden" name="payment" value={payment} />
       <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
         <h3 className="lg:text-xl font-bold mb-[0.75rem]">결제 수단</h3>
         <hr className="text-light-gray w-full mb-[1.5rem]" />
@@ -32,7 +28,7 @@ export default function PayForm({
                   type="radio"
                   name="contact"
                   id="bank"
-                  value="bank"
+                  value="내 통장 결제"
                   className="mr-2"
                   checked={payment === 'account'}
                   onChange={handleChange}
@@ -45,7 +41,7 @@ export default function PayForm({
                   type="radio"
                   name="contact"
                   id="account"
-                  value="account"
+                  value="계좌 이체"
                   className="mr-2"
                   checked={payment === 'transfer'}
                   onChange={handleChange}
@@ -59,7 +55,7 @@ export default function PayForm({
                   type="radio"
                   name="contact"
                   id="card"
-                  value="card"
+                  value="신용/체크카드"
                   className="mr-2"
                   checked={payment === 'card'}
                   onChange={handleChange}
@@ -73,7 +69,7 @@ export default function PayForm({
                   type="radio"
                   name="contact"
                   id="kakaopay"
-                  value="kakaopay"
+                  value="카카오페이"
                   className="mr-2"
                   checked={payment === 'kakaopay'}
                   onChange={handleChange}
@@ -92,7 +88,7 @@ export default function PayForm({
                   type="radio"
                   name="contact"
                   id="naverpay"
-                  value="naverpay"
+                  value="네이버페이"
                   className="mr-2"
                   checked={payment === 'naverpay'}
                   onChange={handleChange}
@@ -113,7 +109,7 @@ export default function PayForm({
                   type="radio"
                   name="contact"
                   id="tosspay"
-                  value="tosspay"
+                  value="토스페이"
                   className="mr-2"
                   checked={payment === 'tosspay'}
                   onChange={handleChange}
@@ -131,6 +127,6 @@ export default function PayForm({
           </fieldset>
         </div>
       </div>
-    </form>
+    </>
   );
 }

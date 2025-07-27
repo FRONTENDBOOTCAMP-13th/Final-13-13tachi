@@ -67,8 +67,9 @@ export default function BuyInfo({ orderId }: { orderId: number }) {
         _id: res.item._id,
         products: res.item.products,
         createdAt: res.item.createdAt,
-        address: res.item.address.value,
+        user: res.item.user,
         cost: res.item.cost.total,
+        payment: res.item.payment,
       }}
       action={{ addAction: AddAction }}
     />

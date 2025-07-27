@@ -4,7 +4,6 @@ import BuyInfoItem from '@/app/mypage/buylist/[_id]/BuyinfoItem';
 import Button from '@/components/common/Button';
 import CustomLink from '@/components/common/CustomLink';
 import { OrderInfoItemType, ProductItemType } from '@/types';
-import useUserStore from '@/zustand/useStore';
 
 interface BuyListActionProps {
   addAction: (FormData: FormData) => void;
@@ -16,7 +15,6 @@ export default function BuyInfoItemList({
   item: OrderInfoItemType;
   action: BuyListActionProps;
 }) {
-  const { user } = useUserStore();
   return (
     <div className="lg:w-[49.875rem] md:w-[31.75rem] w-80">
       <div className="flex flex-row justify-between text-sm mb-2.5">
@@ -46,10 +44,11 @@ export default function BuyInfoItemList({
         <div>
           <p className="text-xl font-semibold text-dark-green mb-6">배송지</p>
           <div className="flex flex-col border-1 rounded-lg border-light-gray p-5 gap-1.5">
-            <p>{user?.name}</p>
-            <p>{user?.phone}</p>
+            <p>{item.user.name}</p>
+            <p>{item.user.phone}</p>
             <p>
-              {item.address} <span>(55050)</span>
+              {item.user.addressDetail1} {item.user.addressDetail2}{' '}
+              <span>{item.user.postcode}</span>
             </p>
           </div>
         </div>
@@ -64,7 +63,7 @@ export default function BuyInfoItemList({
             </p>
             <p className="flex flex-row justify-between">
               <span>결제 수단</span>
-              <span>신용카드</span>
+              <span>{item.payment}</span>
             </p>
           </div>
         </div>
