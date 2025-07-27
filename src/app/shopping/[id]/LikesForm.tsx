@@ -31,12 +31,8 @@ export default function LikesForm({
       )
     : null;
 
-  console.log(isLike, !isLike);
-  console.log('currentLike', currentLike);
-
   return (
     <>
-      {/* ST: 찜하기 */}
       <form
         action={formData => {
           if (!user) {
@@ -60,7 +56,6 @@ export default function LikesForm({
         )}
         <button
           onClick={e => {
-            e.stopPropagation();
             if (!user) {
               e.preventDefault();
               Swal.fire({
@@ -81,7 +76,6 @@ export default function LikesForm({
           )}
         </button>
       </form>
-      {/* ST: 찜하기 */}
     </>
   );
 }
