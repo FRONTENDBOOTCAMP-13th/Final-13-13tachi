@@ -879,7 +879,7 @@ export const initData = async (clientId, nextSeq) => {
         shippingFees: 0,
         show: true,
         active: true,
-        name: '고구마 답답이32',
+        name: '고구마답답이32',
         quantity: 200,
         buyQuantity: 0,
         mainImages: [
