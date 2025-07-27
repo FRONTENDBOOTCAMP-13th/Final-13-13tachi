@@ -24,3 +24,11 @@ export interface UserState {
   setUser: (user: User) => void;
   resetUser: () => void;
 }
+
+export interface UserInfoType {
+  name: string;
+  phone: string;
+  postcode: string;
+  addressDetail1: string;
+  addressDetail2: string;
+}

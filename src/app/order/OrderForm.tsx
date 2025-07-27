@@ -6,10 +6,10 @@ import PayForm from '@/app/order/PayForm';
 import OrderTable from '@/app/order/OrderTable';
 import Button from '@/components/common/Button';
 import OrderList from '@/app/order/OrderList';
-import OrderUserForm, { UserInfoType } from '@/app/order/OrderUserForm';
+import OrderUserForm from '@/app/order/OrderUserForm';
 import useUserStore from '@/zustand/useStore';
 import { useActionState, useEffect, useState } from 'react';
-import { ApiResCart, CartItemType } from '@/types';
+import { ApiResCart, CartItemType, UserInfoType } from '@/types';
 import { getCartProducts } from '@/data/functions/post';
 import { createOrder } from '@/data/actions/cart';
 

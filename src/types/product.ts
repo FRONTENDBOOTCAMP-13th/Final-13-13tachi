@@ -1,3 +1,5 @@
+import { UserInfoType } from '@/types/user';
+
 // 상품
 export interface ProductType {
   _id?: number;
@@ -107,21 +109,21 @@ export interface BuyListType {
 export interface OrderInfoType {
   _id: number;
   createdAt: string;
-  address: {
-    value: string;
-  };
+  user: UserInfoType;
   cost: {
     total: number;
   };
   products: ProductItemType[];
+  payment: string;
 }
 // 주문 상세 아이템
 export interface OrderInfoItemType {
   _id: number;
   createdAt: string;
-  address: string;
   cost: number;
   products: ProductItemType[];
+  user: UserInfoType;
+  payment: string;
 }
 
 // 주문내역 리스트

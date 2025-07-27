@@ -4,13 +4,7 @@ import PostCode from 'react-daum-postcode';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-export interface UserInfoType {
-  name: string;
-  phone: string;
-  postcode: string;
-  addressDetail1: string;
-  addressDetail2: string;
-}
+import { UserInfoType } from '@/types';
 
 type UserOrderFormProps = {
   onChangeUserData: (data: UserInfoType) => void;
