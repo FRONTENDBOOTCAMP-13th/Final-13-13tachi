@@ -1,4 +1,5 @@
-import { UserInfoType } from '@/types/user';
+import { ApiRes } from '@/types/api';
+import { User, UserInfoType } from '@/types/user';
 
 // 상품
 export interface ProductType {
@@ -147,4 +148,12 @@ export interface Recipe {
   tag?: string;
   image: string | null;
   category: string;
+}
+
+// 상품 카드 타입
+export interface ProductCard {
+  item: ProductType;
+  likeRes: ApiRes<LikeItemType[] | null>;
+  accessToken: string;
+  user?: User | null;
 }

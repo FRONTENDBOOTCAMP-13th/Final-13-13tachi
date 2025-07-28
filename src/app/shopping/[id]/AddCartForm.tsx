@@ -5,17 +5,19 @@ import { useRouter } from 'next/navigation';
 import { useActionState } from 'react';
 import Swal from 'sweetalert2';
 
+interface AddCartForm {
+  accessToken: string;
+  id: number;
+  quantity: number;
+  user: User | null;
+}
+
 export default function AddCartForm({
   accessToken,
   id,
   quantity,
   user,
-}: {
-  accessToken: string;
-  id: number;
-  quantity: number;
-  user: User | null;
-}) {
+}: AddCartForm) {
   const router = useRouter();
 
   // 장바구니 추가 요청

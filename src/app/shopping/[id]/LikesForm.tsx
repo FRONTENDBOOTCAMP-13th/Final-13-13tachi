@@ -5,6 +5,15 @@ import { useRouter } from 'next/navigation';
 import { useActionState } from 'react';
 import Swal from 'sweetalert2';
 
+interface LikeFormProps {
+  isLike: boolean;
+  accessToken: string;
+  likeRes: ApiRes<LikeItemType[] | null>;
+  productRes: ProductTypeRes;
+  handleLikeChange: (newIsLike: boolean) => void;
+  user: User | null;
+}
+
 export default function LikesForm({
   isLike,
   accessToken,
@@ -12,14 +21,7 @@ export default function LikesForm({
   productRes,
   handleLikeChange,
   user,
-}: {
-  isLike: boolean;
-  accessToken: string;
-  likeRes: ApiRes<LikeItemType[] | null>;
-  productRes: ProductTypeRes;
-  handleLikeChange: (newIsLike: boolean) => void;
-  user: User | null;
-}) {
+}: LikeFormProps) {
   const router = useRouter();
 
   const [, likeDeleteAction] = useActionState(productDeleteLike, null);

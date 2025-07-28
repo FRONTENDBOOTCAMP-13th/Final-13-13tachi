@@ -1,7 +1,7 @@
 'use client';
 
 import { productAddLike, productDeleteLike } from '@/data/actions/product';
-import { ApiRes, LikeItemType, ProductType, User } from '@/types';
+import { LikeItemType, ProductCard } from '@/types';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,19 +10,13 @@ import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-// const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
 export default function ProductCardItem({
   item, // 현재 상품
   likeRes, // 찜한 목록 최신 상태
   accessToken, // user의 accessToken
   user,
-}: {
-  item: ProductType;
-  likeRes: ApiRes<LikeItemType[] | null>;
-  accessToken: string;
-  user: User | null;
-}) {
+}: ProductCard) {
   const router = useRouter();
   const [isLike, setIsLike] = useState(false); // 현재 상품이 찜하기 상태인지 상태관리
 
