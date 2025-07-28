@@ -13,13 +13,15 @@ import { useEffect, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+interface DetailProps {
+  productRes: ProductTypeRes;
+  id: number;
+}
+
 export default function Detail({
   productRes, // 상품 상세 불러온 데이터
   id, // 현재 상품 번호
-}: {
-  productRes: ProductTypeRes;
-  id: number;
-}) {
+}: DetailProps) {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
 
@@ -32,10 +34,6 @@ export default function Detail({
     likeRes && likeRes.ok === 1 && Array.isArray(likeRes.item)
       ? likeRes.item.some((like: LikeItemType) => like.product?._id == id)
       : false;
-
-  console.log('likeRes', likeRes);
-  console.log('likeItems', likeItems);
-  console.log('id', id);
 
   useEffect(() => {
     //찜하기 데이터에 있는지 여부를 isLike/setIsLike로 상태관리

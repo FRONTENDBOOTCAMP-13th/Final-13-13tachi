@@ -7,11 +7,11 @@ import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function MainProductLists({
-  products,
-}: {
+interface MainProductListsProps {
   products: ProductType[];
-}) {
+}
+
+export default function MainProductLists({ products }: MainProductListsProps) {
   const hotItems = products.filter(item => item.extra?.isBest).slice(0, 4);
 
   const vegeItems = products

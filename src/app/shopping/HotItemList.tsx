@@ -4,17 +4,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
-
 import HotItem from './HotItem';
-
 import './shopping.css';
-// import { Heart } from 'lucide-react';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
 import { getLikeProducts } from '@/data/functions/post';
-
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function HotItemList({ products }: { products: ProductType[] }) {
   const { user } = useUserStore(); // 로그인 정보

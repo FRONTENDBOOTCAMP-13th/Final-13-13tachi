@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
-import { ApiRes, LikeItemType, ProductType, User } from '@/types';
+import { LikeItemType, ProductCard } from '@/types';
 import { useActionState, useEffect, useState } from 'react';
 import { productAddLike, productDeleteLike } from '@/data/actions/product';
 import Swal from 'sweetalert2';
@@ -14,12 +14,7 @@ export default function HotItem({
   likeRes, // 찜한 목록 최신 상태
   accessToken, // user의 accessToken
   user,
-}: {
-  item: ProductType;
-  likeRes: ApiRes<LikeItemType[] | null>;
-  accessToken: string;
-  user: User | null;
-}) {
+}: ProductCard) {
   const router = useRouter();
   const [isLike, setIsLike] = useState(false); // 현재 상품이 찜하기 상태인지 상태관리
 
