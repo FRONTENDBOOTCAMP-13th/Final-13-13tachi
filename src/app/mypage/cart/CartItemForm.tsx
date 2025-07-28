@@ -5,7 +5,7 @@ import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useState } from 'react';
 import Link from 'next/link';
-import { X } from 'lucide-react';
+import { Plus, Minus, X } from 'lucide-react';
 
 interface CartItemActionProps {
   deleteAction: (FormData: FormData) => void;
@@ -55,14 +55,14 @@ export default function CartItemForm({
             <div className="flex flex-col gap-3.5 w-full">
               <div className="flex flex-row justify-between">
                 <div>
-                  <div>
+                  <Link href={`/shopping/${item._id}`}>
                     <span className="md:text-base text-sm font-semibold text-dark-green line-clamp-1">
                       {item.name}
                       <span className="ml-2.5 text-xs">
                         ({item.extra?.details})
                       </span>
                     </span>
-                  </div>
+                  </Link>
                   <p className="md:text-base text-sm mt-1">
                     {item.price.toLocaleString()}원
                   </p>
@@ -74,14 +74,14 @@ export default function CartItemForm({
                     value={user?.token?.accessToken ?? ''}
                   />
                   <input type="hidden" name="_id" value={item._id} />
-                  <button>
+                  <button className="hover:cursor-pointer">
                     <X color="gray" />
                   </button>
                 </form>
               </div>
               <div className="flex flex-row justify-between gap-[1.5625rem]">
-                <div className="flex flex-row justify-center items-center md:gap-5 gap-3 border-[0.0625rem] rounded-lg md:w-20 md:h-[1.875rem] w-16 h-6 p-1">
-                  <form action={action.quantityAction}>
+                <div className="flex flex-row justify-between items-center border-[0.0625rem] border-light-gray rounded-lg md:w-20 md:h-[1.875rem] w-16 h-6">
+                  <form action={action.quantityAction} className="leading-[0]">
                     <input
                       type="hidden"
                       name="accessToken"
@@ -96,13 +96,13 @@ export default function CartItemForm({
                     <button
                       type="submit"
                       onClick={() => handleDown()}
-                      className="text-base font-semibold hover:cursor-pointer"
+                      className="md:px-2 px-1 hover:cursor-pointer"
                     >
-                      -
+                      <Minus strokeWidth={3} className="w-3.5 h-3.5" />
                     </button>
                   </form>
                   <span className="text-sm">{quantity}</span>
-                  <form action={action.quantityAction}>
+                  <form action={action.quantityAction} className="leading-[0]">
                     <input
                       type="hidden"
                       name="accessToken"
@@ -117,9 +117,9 @@ export default function CartItemForm({
                     <button
                       type="submit"
                       onClick={() => handleUp()}
-                      className="text-base font-semibold hover:cursor-pointer"
+                      className="md:px-2 px-1 hover:cursor-pointer"
                     >
-                      +
+                      <Plus strokeWidth={3} className="w-3.5 h-3.5" />
                     </button>
                   </form>
                 </div>
