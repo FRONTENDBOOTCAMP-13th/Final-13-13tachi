@@ -27,7 +27,7 @@ export default function HotItem({
     likeRes &&
     Object.entries(likeRes)
       .filter(([key]) => key !== 'ok')
-      .some(([, value]) => value.product._id == item._id);
+      .some(([, value]) => value?.product?._id == item._id);
 
   useEffect(() => {
     //찜하기 데이터에 있는지 여부를 isLike/setIsLike로 상태관리

@@ -31,7 +31,7 @@ export default function Detail({
     likeRes &&
     Object.entries(likeRes)
       .filter(([key]) => key !== 'ok')
-      .some(([, value]) => value.product._id == id);
+      .some(([, value]) => value?.product?._id == id);
 
   useEffect(() => {
     //찜하기 데이터에 있는지 여부를 isLike/setIsLike로 상태관리
