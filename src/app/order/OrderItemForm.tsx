@@ -19,7 +19,10 @@ export default function OrderItemForm({ item }: { item: ProductItemType }) {
         <div className="flex flex-col justufy-center">
           <p className="lg:text-base font-semibold">
             <span className=" mr-1">{item.name}</span>
-            <span className="lg:text-xs font-medium mr-2.5">(350g)</span>
+            <span className="lg:text-xs font-medium mr-2.5">
+              {' '}
+              ({item.extra?.details})
+            </span>
             <span>{item.quantity}</span>
             <span>개</span>
           </p>

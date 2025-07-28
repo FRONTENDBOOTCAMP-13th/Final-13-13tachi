@@ -31,6 +31,7 @@ export default function OrderList() {
               quantity: item.quantity,
               price: item.product.price,
               image: item.product.image,
+              extra: item.product.extra,
             }}
           />
         ))
