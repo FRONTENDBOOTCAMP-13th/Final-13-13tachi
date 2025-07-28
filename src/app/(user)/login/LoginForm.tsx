@@ -106,9 +106,9 @@ export default function LoginForm() {
               checked={autoLogin}
               onChange={e => setAutoLogin(e.target.checked)}
             />
-            <p className="text-2xs">자동 로그인</p>
+            <p className="text-2xs md:text-xs">자동 로그인</p>
           </div>
-          <Link href="/signup" className="text-2xs">
+          <Link href="/signup" className="text-2xs md:text-xs">
             회원가입
           </Link>
         </div>
