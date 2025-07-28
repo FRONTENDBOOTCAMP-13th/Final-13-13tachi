@@ -5,17 +5,13 @@ import Button from '@/components/common/Button';
 import Comment from './Comment';
 import useUserStore from '@/zustand/useStore';
 
-interface UserType {
-  _id: number;
-  name: string;
-  image?: string;
-}
-
 interface CommentType {
   _id: number;
   content: string;
-  user: UserType;
+  name: string;
+    user: { _id: number; name: string };
   createdAt: string;
+  updatedAt?: string;
 }
 
 interface CommentsProps {
@@ -37,7 +33,7 @@ export default function Comments({ postId }: CommentsProps) {
         {
           headers: { 'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '' },
           cache: 'no-store',
-        },
+        }
       );
       if (!res.ok) throw new Error('Failed to fetch comments');
       const data = await res.json();
@@ -78,19 +74,14 @@ export default function Comments({ postId }: CommentsProps) {
             content,
             name: user.name,
           }),
-        },
-      );
-      if (res.status === 201) {
-        const data = await res.json();
-        if (data.ok === 1) {
-          setContent('');
-          await fetchComments();
-        } else {
-          setErrorMsg(data.message || '댓글 등록에 실패했습니다.');
         }
+      );
+      const data = await res.json();
+      if (res.status === 201 && data.ok === 1) {
+        setContent('');
+        await fetchComments();
       } else {
-        const errorData = await res.json();
-        setErrorMsg(errorData.message || '댓글 등록 중 오류가 발생했습니다.');
+        setErrorMsg(data.message || '댓글 등록에 실패했습니다.');
       }
     } catch (error) {
       setErrorMsg('네트워크 오류가 발생했습니다.');
@@ -100,35 +91,35 @@ export default function Comments({ postId }: CommentsProps) {
     }
   };
 
-  const handleDelete = (id: number) => {
-    setComments(prev => prev.filter(comment => comment._id !== id));
+  const handleDelete = (_id: number) => {
+    setComments(prev => prev.filter(comment => comment._id !== _id));
   };
 
-  const handleUpdate = (id: number, newContent: string) => {
+  const handleUpdate = (_id: number, newContent: string) => {
     setComments(prev =>
       prev.map(comment =>
-        comment._id === id ? { ...comment, content: newContent } : comment,
-      ),
+        comment._id === _id ? { ...comment, content: newContent } : comment
+      )
     );
   };
 
   return (
     <div className="p-15">
       <div className="flex items-center border-b-2 border-[#DEDEDE]">
-        <h3 className="text-xl font-semibold  mb-2">댓글</h3>
-        <span className="text-xl font-semibold text-[#67913C] ml-2  mb-2">
+        <h3 className="text-xl font-semibold mb-2">댓글</h3>
+        <span className="text-xl font-semibold text-[#67913C] ml-2 mb-2">
           {comments.length}
         </span>
       </div>
 
-      {loading && <p>댓글 불러오는중...</p>}
+      {loading && <p>댓글 불러오는 중...</p>}
 
       {comments.map(comment => (
         <Comment
           key={comment._id}
           postId={postId}
           comment={comment}
-          currentUserId={user?._id}
+          currentUserId={user?._id || null}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
         />

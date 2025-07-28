@@ -79,12 +79,13 @@ export default async function RecipeDetailPage({
   return (
     <>
       <Header />
-      <div className="lg:max-w-[56.25rem] mx-auto pt-[4.0625rem] pb-[6.25rem]">
-        <h2 className="text-gray text-sm mb-5">
+      <div className="flex justify-center">
+        <h2 className="text-gray text-sm mt-[4.0625rem] lg:w-[64rem]">
           <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link>{' '}
           &gt; {recipe.title}
         </h2>
-
+      </div>
+      <div className="lg:max-w-[56.25rem] mx-auto pb-[6.25rem]">
         <div className="px-15">
           {/* 대표 이미지 */}
           <div className="flex justify-center mt-[4.0625rem] relative z-0">
