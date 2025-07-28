@@ -45,7 +45,7 @@ export default function ProductCardItem({
   const currentLike = likeRes
     ? Object.values(likeRes)
         .filter(item => typeof item === 'object' && item?.product)
-        .find(like => like.product._id === item._id)
+        .find(like => like?.product?._id === item._id)
     : null;
 
   return (
