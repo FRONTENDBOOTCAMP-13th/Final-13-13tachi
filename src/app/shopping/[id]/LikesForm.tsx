@@ -25,11 +25,12 @@ export default function LikesForm({
   const [, likeDeleteAction] = useActionState(productDeleteLike, null);
   const [, likeAddAction] = useActionState(productAddLike, null);
 
-  const currentLike = likeRes
-    ? Object.values(likeRes).find(
-        item => item?.product?._id === productRes.item._id,
-      )
-    : null;
+  const currentLike =
+    likeRes && likeRes.ok === 1 && Array.isArray(likeRes.item)
+      ? likeRes.item.find(
+          (like: LikeItemType) => like.product?._id === productRes.item._id,
+        )
+      : null;
 
   return (
     <>
