@@ -71,7 +71,6 @@ export interface LikeItemType {
 // 찜상품 가져오기용 리스트
 export interface LikeItemProps {
   _id: number;
-  product_id: number;
   price: number;
   name: string;
   mainImages: {
