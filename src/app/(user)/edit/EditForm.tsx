@@ -111,6 +111,7 @@ export default function EditForm() {
           <label htmlFor="password" className="block text-black lg:text-base">
             새 비밀번호
           </label>
+          <span className="text-light-red text-xs lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
@@ -120,6 +121,7 @@ export default function EditForm() {
             autoComplete="new-password"
             className="w-[20rem]"
             {...register('password', {
+              required: '새 비밀번호를 입력해주세요',
               pattern: {
                 value: /^(?=.*\d)(?=.*[!@#])[\dA-Za-z!@#]{6,}$/,
                 message: '숫자와 특수문자를 포함한 6자리 이상이어야 합니다.',
@@ -143,6 +145,7 @@ export default function EditForm() {
           >
             새 비밀번호 확인
           </label>
+          <span className="text-light-red text-xs lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
@@ -151,6 +154,7 @@ export default function EditForm() {
             placeholder="비밀번호를 한번 더 입력하세요"
             className="w-[20rem]"
             {...register('passwordConfirm', {
+              required: '새 비밀번호를 다시 입력해주세요',
               validate: (value, formValues) =>
                 value === formValues.password || '비밀번호가 일치하지 않습니다',
             })}
