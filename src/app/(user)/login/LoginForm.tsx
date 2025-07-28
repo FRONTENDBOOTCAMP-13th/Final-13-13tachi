@@ -76,7 +76,7 @@ export default function LoginForm() {
               type="email"
               autoComplete="email"
               placeholder="이메일을 입력하세요"
-              className="w-[250px] h-[40px] text-xs lg:w-[18.125rem] lg:h-[2.8125rem] px-[0.75rem] lg:py-[0.5rem] border border-light-gray rounded-lg focus:outline-none focus:border-gray "
+              className="w-[250px] h-[40px] text-xs md:w-[290px] md:h-[45px] md:text-sm md lg:w-[18.125rem] lg:h-[2.8125rem] px-[0.75rem] lg:py-[0.5rem] border border-light-gray rounded-lg focus:outline-none focus:border-gray "
               name="email"
             />
             <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
@@ -91,7 +91,7 @@ export default function LoginForm() {
               type="password"
               autoComplete="current-password"
               placeholder="비밀번호를 입력하세요"
-              className="w-[250px] h-[40px] text-xs lg:w-[18.125rem] lg:h-[2.8125rem] px-[0.75rem] lg:py-[0.5rem] border border-light-gray rounded-lg focus:outline-none focus:border-gray"
+              className="w-[250px] h-[40px] text-xs md:w-[290px] md:h-[45px] md:text-sm lg:w-[18.125rem] lg:h-[2.8125rem] px-[0.75rem] lg:py-[0.5rem] border border-light-gray rounded-lg focus:outline-none focus:border-gray"
               name="password"
             />
             <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
@@ -99,16 +99,16 @@ export default function LoginForm() {
             </p>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-[5px] w-[250px] lg:w-[18.125rem] mx-auto ml-auto text-gray text-xs hover:underline">
+        <div className="flex justify-between items-center mt-[5px] w-[250px] md:w-[290px] lg:w-[18.125rem] mx-auto ml-auto text-gray text-xs hover:underline">
           <div className="flex items-center gap-1">
             <Checkbox
               className="lg:w-[1.25rem] lg:h-[1.25rem]"
               checked={autoLogin}
               onChange={e => setAutoLogin(e.target.checked)}
             />
-            <p className="text-2xs">자동 로그인</p>
+            <p className="text-2xs md:text-xs">자동 로그인</p>
           </div>
-          <Link href="/signup" className="text-2xs">
+          <Link href="/signup" className="text-2xs md:text-xs">
             회원가입
           </Link>
         </div>

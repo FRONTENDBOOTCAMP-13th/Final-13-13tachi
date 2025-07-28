@@ -32,9 +32,12 @@ export default function AddressForm({
   };
 
   return (
-    <div className="flex items-start justify-between">
+    <div className="flex items-start flex-col md:justify-between md:flex-row lg:justify-between ">
       <div className="flex items-center w-[6rem]">
-        <label htmlFor="address" className="block text-black lg:text-base">
+        <label
+          htmlFor="address"
+          className="block text-black text-sm md:text-base lg:text-base"
+        >
           주소
         </label>
         {required && <span className="text-light-red lg:text-sm ml-1">*</span>}
@@ -49,7 +52,7 @@ export default function AddressForm({
               id="postcode"
               placeholder="우편번호"
               disabled
-              className="w-[8rem]"
+              className="w-[8rem] text-xs lg:text-sm px-[0.75rem]"
               {...register('postcode', {
                 required: '우편번호를 입력해주세요',
                 pattern: {
@@ -75,9 +78,11 @@ export default function AddressForm({
 
         {/* 상세주소 1 */}
         <Input
+          width="md"
           type="text"
           id="addressDetail1"
           placeholder="상세주소를 입력하세요"
+          className="w-[320px] md-[300px] lg-[330px] text-xs lg:text-sm px-[0.75rem]"
           {...register('addressDetail1', {
             required: '상세주소를 입력해주세요',
           })}
