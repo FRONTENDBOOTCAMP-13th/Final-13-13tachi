@@ -1,5 +1,3 @@
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import SearchBar from '@/components/common/SearchBar';
 import { getProducts } from '@/data/functions/post';
 import { ProductType } from '@/types';
@@ -11,7 +9,6 @@ export default async function ShoppingSearch() {
 
   return (
     <>
-      <Header />
       <main>
         <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
           {/* ST: 오늘의 못난이는? */}
@@ -36,7 +33,6 @@ export default async function ShoppingSearch() {
           {/* ED: 전체 상품 */}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

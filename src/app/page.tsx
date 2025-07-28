@@ -1,8 +1,4 @@
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
-
 import './main.css';
-// import ProductCard from '@/components/ProductCard';
 import MainSlide from '@/app/MainSlide';
 import ValueSlide from '@/app/ValueSlide';
 import { getProducts } from '@/data/functions/post';
@@ -15,7 +11,6 @@ export default async function Home() {
 
   return (
     <>
-      <Header />
       <div>
         {/* ST: 메인 슬라이드 */}
         <div className="max-w-full mx-auto">
@@ -40,7 +35,6 @@ export default async function Home() {
         <MainProductLists products={products} />
         {/* ED: 상품 리스트 */}
       </div>
-      <Footer />
     </>
   );
 }
