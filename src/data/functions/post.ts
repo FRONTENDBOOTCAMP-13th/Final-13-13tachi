@@ -265,3 +265,23 @@ export async function getLikeRecipe(
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
 }
+
+/**
+ * 레시피 목록 불러오기
+ * @param {string} boardType - 게시판 타입(예: notice, free 등)
+ * @returns {Promise<ApiRes<Post[]>>} - 게시글 목록 응답 객체
+ */
+export async function getRecipeDetail(_id: number): ApiResPromise<Post> {
+  try {
+    const res = await fetch(`${API_URL}/posts/${_id}`, {
+      headers: {
+        'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
+      },
+    });
+    return res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
+  }
+}

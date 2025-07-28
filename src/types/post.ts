@@ -56,6 +56,10 @@ export interface Post {
   category?: string;
   // 태그(ingredients)
   tag: string;
+  extra?: {
+    image?: string;
+    [key: string]: unknown;
+  };
 }
 
 /**
