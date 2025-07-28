@@ -8,9 +8,7 @@ import type { Recipe } from '@/types/product';
 import type { Post } from '@/types/post';
 
 export default function RecipeList() {
-  const [activeTab, setActiveTab] = useState<
-    '전체' | '채소' | '과일' | '나의레시피'
-  >('전체');
+  const [activeTab, setActiveTab] = useState<'전체' | '채소' | '과일' | '나의레시피'>('전체');
   const [recipeArr, setRecipeArr] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +22,7 @@ export default function RecipeList() {
               'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
             },
             cache: 'no-store',
-          },
+          }
         );
 
         const data = await res.json();
@@ -36,10 +34,9 @@ export default function RecipeList() {
         ).map(item => {
           const rawImage = item.image;
 
-          // image가 빈 문자열이 아니면 base URL과 합쳐서 절대 URL로 만듦
           const imageUrl =
             typeof rawImage === 'string' && rawImage.trim() !== ''
-              ? `${baseImageUrl}/${rawImage}`.replace(/\/+/g, '/')
+              ? `${baseImageUrl.replace(/\/$/, '')}/${rawImage.replace(/^\//, '')}`
               : null;
 
           return {
@@ -155,7 +152,7 @@ export default function RecipeList() {
                   </figcaption>
                 </figure>
               </Link>
-            ) : null,
+            ) : null
           )}
         </div>
       )}
