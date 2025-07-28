@@ -8,7 +8,7 @@ import tosspay from '../../images/tosspay.png';
 import { useState } from 'react';
 
 export default function PayForm() {
-  const [payment, setPayment] = useState('card');
+  const [payment, setPayment] = useState('내 통장 결제');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
