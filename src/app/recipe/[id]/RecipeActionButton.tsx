@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
+import Swal from 'sweetalert2';
 
 interface RecipeActionButtonsProps {
   authorId: string;
@@ -19,19 +20,33 @@ export default function RecipeActionButtons({
   const [loading, setLoading] = useState(false);
 
   const isAuthor = String(user?._id) === String(authorId);
-
   if (!isAuthor) return null;
 
   const handleDelete = async () => {
-    if (!confirm('정말 게시글을 삭제하시겠습니까?')) return;
+    const result = await Swal.fire({
+      icon: 'question',
+      text: '정말 게시글을 삭제하시겠습니까?',
+      showCancelButton: true,
+      confirmButtonText: '삭제',
+      cancelButtonText: '취소',
+      confirmButtonColor: '#d33',
+    });
+
+    if (!result.isConfirmed) return;
 
     if (!user?.token?.accessToken) {
-      alert('로그인 후 이용해주세요.');
-      router.push('/login');
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요.',
+        confirmButtonText: '확인',
+      }).then(() => {
+        router.push('/login');
+      });
       return;
     }
 
     setLoading(true);
+
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`,
@@ -47,14 +62,26 @@ export default function RecipeActionButtons({
       const data = await res.json();
 
       if (res.ok && data.ok === 1) {
-        alert('게시글이 삭제되었습니다.');
+        await Swal.fire({
+          icon: 'success',
+          text: '게시글이 삭제되었습니다.',
+          confirmButtonText: '확인',
+        });
         router.push('/recipe');
       } else {
-        alert(data.message || '삭제 실패');
+        Swal.fire({
+          icon: 'error',
+          text: data.message || '삭제 실패',
+          confirmButtonText: '확인',
+        });
       }
     } catch (error) {
       console.error(error);
-      alert('삭제 중 오류가 발생했습니다.');
+      Swal.fire({
+        icon: 'error',
+        text: '삭제 중 오류가 발생했습니다.',
+        confirmButtonText: '확인',
+      });
     } finally {
       setLoading(false);
     }
@@ -70,7 +97,12 @@ export default function RecipeActionButtons({
       >
         수정
       </Button>
-      <Button size="sm" variant="white" onClick={handleDelete} disabled={loading}>
+      <Button
+        size="sm"
+        variant="white"
+        onClick={handleDelete}
+        disabled={loading}
+      >
         {loading ? '삭제 중...' : '삭제'}
       </Button>
     </div>

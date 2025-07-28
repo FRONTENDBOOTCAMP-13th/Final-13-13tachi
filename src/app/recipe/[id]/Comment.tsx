@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
 import CommentActionButton from './CommentActionButton';
+import Swal from 'sweetalert2';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -35,8 +36,21 @@ export default function Comment({
   const profileSrc = '/images/front-end.png';
 
   const handleUpdate = async () => {
-    if (!editedContent.trim()) return alert('내용을 입력하세요.');
-    if (!user?.token?.accessToken) return alert('로그인 후 이용해주세요.');
+    if (!editedContent.trim()) {
+      return Swal.fire({
+        icon: 'warning',
+        text: '내용을 입력하세요.',
+        confirmButtonText: '확인',
+      });
+    }
+
+    if (!user?.token?.accessToken) {
+      return Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요.',
+        confirmButtonText: '확인',
+      });
+    }
 
     setLoading(true);
     try {
@@ -57,20 +71,49 @@ export default function Comment({
       if (res.ok && data.ok === 1) {
         onUpdate(comment._id, editedContent);
         setIsEditing(false);
-        alert('댓글이 수정되었습니다.');
+        Swal.fire({
+          icon: 'success',
+          text: '댓글이 수정되었습니다.',
+          confirmButtonText: '확인',
+        });
       } else {
-        alert(data.message || '수정에 실패했습니다.');
+        Swal.fire({
+          icon: 'error',
+          text: data.message || '수정에 실패했습니다.',
+          confirmButtonText: '확인',
+        });
       }
     } catch (error) {
-      console.error('댓글 수정 중 오류:', error);
-      alert('수정 중 오류가 발생했습니다.');
+      console.error('댓글 삭제 중 오류:', error);
+      Swal.fire({
+        icon: 'error',
+        text: '수정 중 오류가 발생했습니다.',
+        confirmButtonText: '확인',
+      });
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDeleteComment = async () => {
-    if (!user?.token?.accessToken) return alert('로그인 후 이용해주세요.');
+  const handleDelete = async () => {
+    if (!user?.token?.accessToken) {
+      return Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요.',
+        confirmButtonText: '확인',
+      });
+    }
+
+    const result = await Swal.fire({
+      icon: 'question',
+      text: '댓글을 삭제하시겠습니까?',
+      showCancelButton: true,
+      confirmButtonText: '삭제',
+      cancelButtonText: '취소',
+      confirmButtonColor: '#d33',
+    });
+
+    if (!result.isConfirmed) return;
 
     setLoading(true);
     try {
@@ -88,13 +131,25 @@ export default function Comment({
       const data = await res.json();
       if (res.ok && data.ok === 1) {
         onDelete(comment._id);
-        alert('댓글이 삭제되었습니다.');
+        Swal.fire({
+          icon: 'success',
+          text: '댓글이 삭제되었습니다.',
+          confirmButtonText: '확인',
+        });
       } else {
-        alert(data.message || '삭제에 실패했습니다.');
+        Swal.fire({
+          icon: 'error',
+          text: data.message || '삭제에 실패했습니다.',
+          confirmButtonText: '확인',
+        });
       }
     } catch (error) {
       console.error('댓글 삭제 중 오류:', error);
-      alert('삭제 중 오류가 발생했습니다.');
+      Swal.fire({
+        icon: 'error',
+        text: '삭제 중 오류가 발생했습니다.',
+        confirmButtonText: '확인',
+      });
     } finally {
       setLoading(false);
     }
@@ -102,7 +157,7 @@ export default function Comment({
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
-    if (isEditing) setEditedContent(comment.content); // 취소 시 원상복귀
+    if (isEditing) setEditedContent(comment.content);
   };
 
   return (
@@ -122,9 +177,9 @@ export default function Comment({
           </p>
           {!isEditing && user && comment.name === user.name && (
             <CommentActionButton
-              authorId={0}
+              authorId={comment.user._id}
               commentId={comment._id}
-              onDelete={handleDeleteComment}
+              onDelete={handleDelete}
               onEditToggle={handleEditToggle}
               loading={loading}
             />
@@ -143,6 +198,7 @@ export default function Comment({
             <button
               className="text-dark-green text-sm hover:underline px-2 py-1 border border-dark-green rounded"
               onClick={handleUpdate}
+              type="button"
               disabled={loading}
             >
               {loading ? '저장 중...' : '저장'}

@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import Button from '@/components/common/Button';
 import Comment from './Comment';
 import useUserStore from '@/zustand/useStore';
+import Swal from 'sweetalert2';
 
 interface CommentType {
   _id: number;
   content: string;
   name: string;
-    user: { _id: number; name: string };
+  user: { _id: number; name: string };
   createdAt: string;
   updatedAt?: string;
 }
@@ -23,7 +24,6 @@ export default function Comments({ postId }: CommentsProps) {
   const [comments, setComments] = useState<CommentType[]>([]);
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
 
   const fetchComments = async () => {
     setLoading(true);
@@ -33,13 +33,18 @@ export default function Comments({ postId }: CommentsProps) {
         {
           headers: { 'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '' },
           cache: 'no-store',
-        }
+        },
       );
       if (!res.ok) throw new Error('Failed to fetch comments');
       const data = await res.json();
       setComments(data.item || []);
     } catch (error) {
       console.error(error);
+      Swal.fire({
+        icon: 'error',
+        text: '댓글을 불러오는 데 실패했습니다.',
+        confirmButtonText: '확인',
+      });
     } finally {
       setLoading(false);
     }
@@ -51,16 +56,26 @@ export default function Comments({ postId }: CommentsProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!content.trim()) {
-      alert('댓글 내용을 입력해주세요.');
+      Swal.fire({
+        icon: 'warning',
+        text: '댓글 내용을 입력해주세요.',
+        confirmButtonText: '확인',
+      });
       return;
     }
+
     if (!user) {
-      alert('로그인이 필요합니다.');
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인이 필요합니다.',
+        confirmButtonText: '확인',
+      });
       return;
     }
+
     setLoading(true);
-    setErrorMsg('');
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/replies`,
@@ -74,18 +89,31 @@ export default function Comments({ postId }: CommentsProps) {
             content,
             name: user.name,
           }),
-        }
+        },
       );
       const data = await res.json();
       if (res.status === 201 && data.ok === 1) {
         setContent('');
         await fetchComments();
+        Swal.fire({
+          icon: 'success',
+          text: '댓글이 등록되었습니다.',
+          confirmButtonText: '확인',
+        });
       } else {
-        setErrorMsg(data.message || '댓글 등록에 실패했습니다.');
+        Swal.fire({
+          icon: 'error',
+          text: data.message || '댓글 등록에 실패했습니다.',
+          confirmButtonText: '확인',
+        });
       }
     } catch (error) {
-      setErrorMsg('네트워크 오류가 발생했습니다.');
       console.error(error);
+      Swal.fire({
+        icon: 'error',
+        text: '네트워크 오류가 발생했습니다.',
+        confirmButtonText: '확인',
+      });
     } finally {
       setLoading(false);
     }
@@ -98,8 +126,8 @@ export default function Comments({ postId }: CommentsProps) {
   const handleUpdate = (_id: number, newContent: string) => {
     setComments(prev =>
       prev.map(comment =>
-        comment._id === _id ? { ...comment, content: newContent } : comment
-      )
+        comment._id === _id ? { ...comment, content: newContent } : comment,
+      ),
     );
   };
 
@@ -138,8 +166,6 @@ export default function Comments({ postId }: CommentsProps) {
           {loading ? '등록 중...' : '등록'}
         </Button>
       </form>
-
-      {errorMsg && <p className="text-red-600 mt-2">{errorMsg}</p>}
     </div>
   );
 }
