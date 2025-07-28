@@ -1,7 +1,5 @@
 'use client';
 
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -72,7 +70,6 @@ export default function RecipeSearchPage() {
   return (
     <>
       <div>
-        <Header />
         <div className="lg:max-w-5xl mx-auto pt-[4.0625rem] pb-[6.25rem]">
           <h2 className="text-gray">
             <Link href="/">HOME</Link>
@@ -159,7 +156,6 @@ export default function RecipeSearchPage() {
           )}
         </div>
       </div>
-      <Footer />
     </>
   );
 }

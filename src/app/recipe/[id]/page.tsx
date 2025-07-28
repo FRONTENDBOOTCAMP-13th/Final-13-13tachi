@@ -3,8 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import { Bookmark } from 'lucide-react';
 import type { Post } from '@/types/post';
 import Comments from './Comments';
@@ -78,7 +76,6 @@ export default async function RecipeDetailPage({
 
   return (
     <>
-      <Header />
       <div className="flex justify-center">
         <h2 className="text-gray text-sm mt-[4.0625rem] lg:w-[64rem]">
           <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link>{' '}
@@ -163,7 +160,6 @@ export default async function RecipeDetailPage({
           </main>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

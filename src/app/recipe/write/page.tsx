@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
 import FoodBtn from '@/components/common/FoodBtn';
 import Button from '@/components/common/Button';
 import TextEditor from './TextEditor';
@@ -206,7 +204,6 @@ export default function RecipeWritePage() {
 
   return (
     <>
-      <Header />
       <main className="lg:max-w-5xl mx-auto pt-[4rem] pb-[6rem] px-4">
         <h2 className="text-gray">
           <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link>{' '}
@@ -295,7 +292,6 @@ export default function RecipeWritePage() {
           </div>
         </form>
       </main>
-      <Footer />
     </>
   );
 }
