@@ -927,108 +927,7 @@ export const initData = async (clientId, nextSeq) => {
     ],
 
     // 주문
-    order: [
-      {
-        _id: await nextSeq('order'),
-        user_id: 1,
-        state: 'OS020',
-        products: [
-          {
-            _id: 1,
-            seller_id: 2,
-            state: 'OS020',
-            name: '바니바니바니바니 당근당근1',
-            image: {
-              path: `/files/${clientId}/product-1.jpeg`,
-              name: 'product-1.jpeg',
-              originalname: 'product-1.jpeg',
-            },
-            quantity: 2,
-            price: 1990,
-            review_id: 3,
-            extra: {
-              isBest: true,
-              category: ['당근', '채소'],
-              details: '150g',
-            },
-          },
-        ],
-        cost: {
-          products: 3980,
-          shippingFees: 0,
-          discount: {
-            products: 0,
-            shippingFees: 0,
-          },
-          total: 3980,
-        },
-        address: {
-          name: '회사',
-          value: '서울시 강남구 신사동 234',
-        },
-        createdAt: getTime(-6, -60 * 60 * 3),
-        updatedAt: getTime(-6, -60 * 60 * 3),
-      },
-      {
-        _id: await nextSeq('order'),
-        user_id: 1,
-        state: 'OS010',
-        products: [
-          {
-            _id: 2,
-            seller_id: 2,
-            state: 'OS010',
-            name: '고구마 답답이1',
-            image: {
-              path: `/files/${clientId}/product-2.jpeg`,
-              name: 'product-2.jpeg',
-              originalname: 'product-2.jpeg',
-            },
-            quantity: 1,
-            price: 2990,
-            extra: {
-              isBest: true,
-              category: ['고구마', '과일'],
-              details: '500g',
-            },
-          },
-          {
-            _id: 3,
-            seller_id: 1,
-            state: 'OS010',
-            name: '브라운 양송이버섯1',
-            image: {
-              path: `/files/${clientId}/product-3.jpeg`,
-              name: 'product-3.jpeg',
-              originalname: 'product-3.jpeg',
-            },
-            quantity: 2,
-            price: 2150,
-            review_id: 2,
-            extra: {
-              isBest: false,
-              category: ['양송이버섯', '채소'],
-              details: '150g',
-            },
-          },
-        ],
-        cost: {
-          products: 7290,
-          shippingFees: 0,
-          discount: {
-            products: 0,
-            shippingFees: 0,
-          },
-          total: 7290,
-        },
-        address: {
-          name: '집',
-          value: '서울시 강남구 역삼동 123',
-        },
-        createdAt: getTime(-4, -60 * 60 * 22),
-        updatedAt: getTime(-2, -60 * 60 * 12),
-      },
-    ],
+    order: [],
 
     // 후기
     review: [],
@@ -1057,7 +956,6 @@ export const initData = async (clientId, nextSeq) => {
         },
         type: 'product',
         target_id: 1,
-        memo: '첫째 크리스마스 선물.',
         createdAt: getTime(-3, -60 * 60 * 2),
       },
       {
@@ -1070,7 +968,6 @@ export const initData = async (clientId, nextSeq) => {
         },
         type: 'product',
         target_id: 2,
-        memo: '둘째 생일 선물',
         createdAt: getTime(-1, -60 * 60 * 12),
       },
       {
@@ -1083,7 +980,6 @@ export const initData = async (clientId, nextSeq) => {
         },
         type: 'post',
         target_id: 1,
-        memo: '크기 문의글 북마크',
         createdAt: getTime(-1, -60 * 60 * 12),
       },
     ],

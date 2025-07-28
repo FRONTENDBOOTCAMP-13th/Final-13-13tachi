@@ -67,13 +67,13 @@ export default function LikeRecipeList() {
 
   console.log('1');
   console.log(res);
-  const items =
-    res &&
-    Object.entries(res)
-      .filter(([key]) => key !== 'ok')
-      .map(([, value]) => value as LikePostType);
+  // const items =
+  //   res &&
+  //   Object.entries(res)
+  //     .filter(([key]) => key !== 'ok')
+  //     .map(([, value]) => value as LikePostType);
 
-  if (res.ok && items.length === 0) {
+  if (res.ok && res.item.length === 0) {
     return <EmptyLikeRecipe />;
   }
 
@@ -81,7 +81,7 @@ export default function LikeRecipeList() {
     <>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 w-fit gap-x-6 gap-y-5 mx-auto">
         {res.ok ? (
-          items.map((item: LikePostType) => (
+          res.item.map((item: LikePostType) => (
             <LikeRecipeItem
               key={item._id}
               item={{

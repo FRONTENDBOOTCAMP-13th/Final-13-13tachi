@@ -1,4 +1,4 @@
-import Button from '@/components/common/Button';
+import CustomLink from '@/components/common/CustomLink';
 import Image from 'next/image';
 
 export default function Complete() {
@@ -20,7 +20,9 @@ export default function Complete() {
       <p className="text-sm font-bold text-light-green ">
         주문번호: {orderNumber}
       </p>
-      <Button size="xxl">홈으로 돌아가기</Button>
+      <CustomLink href="/" size="xxl">
+        홈으로 돌아가기
+      </CustomLink>
     </div>
   );
 }

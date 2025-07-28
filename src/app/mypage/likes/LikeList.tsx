@@ -78,13 +78,13 @@ export default function LikeList() {
     return <Loading />;
   }
 
-  const items =
-    res &&
-    Object.entries(res)
-      .filter(([key]) => key !== 'ok')
-      .map(([, value]) => value as LikeItemType);
+  // const items =
+  //   res &&
+  //   Object.entries(res)
+  //     .filter(([key]) => key !== 'ok')
+  //     .map(([, value]) => value as LikeItemType);
 
-  if (res.ok && items.length === 0) {
+  if (res.ok && res.item.length === 0) {
     return (
       <div className="h-full">
         <EmptyLikes />
@@ -95,16 +95,15 @@ export default function LikeList() {
   return (
     <div className="flex flex-col gap-2.5">
       {res.ok ? (
-        items.map((item: LikeItemType) => (
+        res.item.map((item: LikeItemType) => (
           <LikeItemForm
             key={item._id}
             item={{
-              _id: item._id,
-              product_id: item.product._id,
+              _id: item.product?._id,
               price: item.product?.price,
               name: item.product?.name,
-              mainImages: item.product.mainImages,
-              extra: item.product.extra,
+              mainImages: item.product?.mainImages,
+              extra: item.product?.extra,
             }}
             action={{
               addAction: addAction,

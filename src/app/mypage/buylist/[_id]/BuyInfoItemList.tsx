@@ -48,7 +48,7 @@ export default function BuyInfoItemList({
             <p>{item.user.phone}</p>
             <p>
               {item.user.addressDetail1} {item.user.addressDetail2}{' '}
-              <span>{item.user.postcode}</span>
+              <span>({item.user.postcode})</span>
             </p>
           </div>
         </div>

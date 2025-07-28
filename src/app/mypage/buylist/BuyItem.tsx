@@ -51,7 +51,7 @@ export default function BuyItem({
           </Link>
           <p className="flex gap-2.5 items-center">
             <span className="md:text-base text-sm">
-              {(item.price * item.quantity).toLocaleString()}원
+              {item.price.toLocaleString()}원
             </span>
             <span className="md:text-xs text-2xs">{item.quantity}개</span>
           </p>

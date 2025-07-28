@@ -42,12 +42,12 @@ export default function LikeItemForm({
               ></Image>
             </Link>
             <div className="flex flex-col justufy-center gap-2">
-              <div>
+              <Link href={`/shopping/${item._id}`}>
                 <span className="md:text-base text-sm font-semibold text-dark-green mr-2.5">
                   {item.name}
                 </span>
                 <span className="text-xs">({item.extra?.details})</span>
-              </div>
+              </Link>
               <p className="md:text-base text-sm">
                 {item.price.toLocaleString()}원
               </p>
@@ -61,7 +61,7 @@ export default function LikeItemForm({
               name="accessToken"
               value={user?.token?.accessToken ?? ''}
             />
-            <input type="hidden" name="product_id" value={item.product_id} />
+            <input type="hidden" name="product_id" value={item._id} />
             <input type="hidden" name="quantity" value={+1} />
             <Button size="xxs" variant="green">
               장바구니 담기
