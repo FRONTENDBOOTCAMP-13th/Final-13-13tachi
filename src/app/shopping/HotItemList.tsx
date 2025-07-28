@@ -16,7 +16,7 @@ import { getLikeProducts } from '@/data/functions/post';
 
 // const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function HotItems({ products }: { products: ProductType[] }) {
+export default function HotItemList({ products }: { products: ProductType[] }) {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
 
