@@ -1,0 +1,17 @@
+meta {
+  name: 설정 수정
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{url}}/admin/config/itemPerPage
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "value": 20
+  }
+}

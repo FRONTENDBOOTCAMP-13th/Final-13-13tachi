@@ -1,1 +1,152 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  /* 텍스트 사이즈 변수 설정 */
+  --text-*: initial;
+
+  --text-2xs: 0.625rem; /* 10px */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.375rem; /* 22px */
+  --text-3xl: 1.5rem; /* 24px */
+  --text-4xl: 1.75rem; /* 28px */
+  --text-5xl: 2rem; /* 32px */
+
+  /* 색상 변수 설정 */
+  --color-dark-green: #2b3d19;
+  --color-hover-green: #1d2911;
+  --color-light-green: #638763;
+  --color-yellow: #fbbe42;
+  --color-light-yellow: #f7f4e8;
+  --color-gray: #6b6b6b;
+  --color-light-gray: #c7c7c7;
+  --color-hover-gray: #d6d6d6;
+  --color-disable-gray: #e3e3e3;
+  --color-bg-gray: #f0f0f0;
+  --color-orange: #da633e;
+  --color-light-red: #e40000;
+  --color-dark-red: #8b0505;
+  --color-required-red: #e40000;
+
+  /* breakpoint 설정*/
+  --breakpoint-md: 39.9375rem; /* 768px */
+  --breakpoint-lg: 80rem; /* 1280px */
+
+  /* shadow 설정 */
+  --btn-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+  /* 이미지 쉐도우 */
+  --shadow-image: 3px 4px 11px rgba(0, 0, 0, 0.25);
+}
+
+/* Pretendard 폰트 */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-display: swap;
+  src:
+    local('Pretendard Black'),
+    url('/fonts/Pretendard-Black.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-display: swap;
+  src:
+    local('Pretendard ExtraBold'),
+    url('/fonts/Pretendard-ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Pretendard Bold'),
+    url('/fonts/Pretendard-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Pretendard SemiBold'),
+    url('/fonts/Pretendard-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Pretendard Medium'),
+    url('/fonts/Pretendard-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Pretendard Regular'),
+    url('/fonts/Pretendard-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local('Pretendard Light'),
+    url('/fonts/Pretendard-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-display: swap;
+  src:
+    local('Pretendard ExtraLight'),
+    url('/fonts/Pretendard-ExtraLight.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-display: swap;
+  src:
+    local('Pretendard Thin'),
+    url('/fonts/Pretendard-Thin.woff2') format('woff2');
+}
+
+body {
+  /* 기본 폰트 선언 */
+  font-family: 'Pretendard', sans-serif;
+
+  /* 기본 배경색 선언 */
+  background-color: #fff;
+  word-break: keep-all;
+}
+
+/* Tailwind CSS의 커스텀 컴포넌트 클래스 정의 */
+@layer components {
+  .mypage-active {
+    @apply text-dark-green;
+    @apply font-semibold;
+    @apply underline;
+    @apply underline-offset-8;
+    @apply decoration-dark-green;
+    @apply decoration-2;
+  }
+}
+
+@layer components {
+  .mypage-recipe-active {
+    @apply text-black;
+  }
+}
