@@ -9,6 +9,7 @@ import TextEditor from './TextEditor';
 import { ChevronDown } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? '';
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID ?? '';
@@ -34,9 +35,7 @@ async function uploadFile(file: File): Promise<string> {
     body: formData,
   });
 
-  if (!res.ok) {
-    throw new Error('파일 업로드 실패');
-  }
+  if (!res.ok) throw new Error('파일 업로드 실패');
 
   const data = await res.json();
 
@@ -44,7 +43,7 @@ async function uploadFile(file: File): Promise<string> {
     throw new Error('파일 업로드 응답 오류');
   }
 
-  return data.item[0].path; // 예: files/openmarket/xxxxx.jpg
+  return data.item[0].path;
 }
 
 async function createPost(
@@ -79,7 +78,6 @@ export default function RecipeWritePage() {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
 
   const ingredientList = [
     '당근',
@@ -100,7 +98,12 @@ export default function RecipeWritePage() {
         ? prev.filter(i => i !== ingredient)
         : prev.length < 3
           ? [...prev, ingredient]
-          : (alert('재료 선택은 3개까지만 가능합니다!'), prev),
+          : (Swal.fire({
+              icon: 'warning',
+              text: '재료 선택은 3개까지만 가능합니다!',
+              confirmButtonText: '확인',
+            }),
+            prev),
     );
   };
 
@@ -118,34 +121,51 @@ export default function RecipeWritePage() {
     e.preventDefault();
 
     if (!title.trim()) {
-      alert('제목을 입력해주세요');
+      Swal.fire({
+        icon: 'warning',
+        text: '제목을 입력해주세요',
+        confirmButtonText: '확인',
+      });
       return;
     }
     if (!content.trim()) {
-      alert('내용을 입력해주세요');
+      Swal.fire({
+        icon: 'warning',
+        text: '내용을 입력해주세요',
+        confirmButtonText: '확인',
+      });
       return;
     }
     if (selectedIngredients.length === 0) {
-      alert('재료를 최소 1개 이상 선택해주세요');
+      Swal.fire({
+        icon: 'warning',
+        text: '재료를 최소 1개 이상 선택해주세요',
+        confirmButtonText: '확인',
+      });
       return;
     }
     if (!file) {
-      alert('대표 이미지를 선택해주세요');
+      Swal.fire({
+        icon: 'warning',
+        text: '대표 이미지를 선택해주세요',
+        confirmButtonText: '확인',
+      });
       return;
     }
     if (!user?.token?.accessToken) {
-      alert('로그인이 필요합니다.');
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인이 필요합니다.',
+        confirmButtonText: '확인',
+      });
       return;
     }
 
     setLoading(true);
-    setErrorMsg('');
 
     try {
-      // 1. 이미지 업로드
       const imagePath = await uploadFile(file);
 
-      // 2. 게시글 작성
       const postData: CreatePostData = {
         accessToken: user.token.accessToken,
         type: 'recipe',
@@ -158,15 +178,27 @@ export default function RecipeWritePage() {
       const result = await createPost(postData);
 
       if (result.ok === 1) {
-        alert('게시글이 성공적으로 등록되었습니다!');
-        // 필요 시 리다이렉트
-        window.location.href = '/recipe';
+        Swal.fire({
+          icon: 'success',
+          text: '게시글이 성공적으로 등록되었습니다!',
+          confirmButtonText: '확인',
+        }).then(() => {
+          window.location.href = '/recipe';
+        });
       } else {
-        setErrorMsg(result.message ?? '게시글 등록 실패');
+        Swal.fire({
+          icon: 'error',
+          text: result.message ?? '게시글 등록 실패',
+          confirmButtonText: '확인',
+        });
       }
     } catch (error) {
-      setErrorMsg('파일 업로드 또는 게시글 등록 중 오류가 발생했습니다.');
       console.error(error);
+      Swal.fire({
+        icon: 'error',
+        text: '파일 업로드 또는 게시글 등록 중 오류가 발생했습니다.',
+        confirmButtonText: '확인',
+      });
     } finally {
       setLoading(false);
     }
@@ -255,10 +287,6 @@ export default function RecipeWritePage() {
               {fileName}
             </label>
           </div>
-
-          {errorMsg && (
-            <p className="text-red-600 text-center mt-4">{errorMsg}</p>
-          )}
 
           <div className="flex justify-end mt-5">
             <Button size="xxl" type="submit" disabled={loading}>

@@ -20,24 +20,23 @@ export default function CommentActionButton({
 
   if (!user) return null;
 
-  const handleDelete = () => {
-    if (loading) return;
-    if (confirm('정말 댓글을 삭제하시겠습니까?')) {
-      onDelete();
-    }
-  };
-
-  const handleEdit = () => {
-    if (loading) return;
-    onEditToggle();
-  };
-
   return (
     <div className="flex gap-2">
-      <Button size="sm" variant="green" onClick={handleEdit} disabled={loading}>
+      <Button
+        size="sm"
+        variant="green"
+        onClick={onEditToggle}
+        disabled={loading}
+      >
         수정
       </Button>
-      <Button size="sm" variant="white" onClick={handleDelete} disabled={loading}>
+      <Button
+        size="sm"
+        variant="white"
+        onClick={onDelete}
+        disabled={loading}
+        type="button"
+      >
         {loading ? '처리 중...' : '삭제'}
       </Button>
     </div>
