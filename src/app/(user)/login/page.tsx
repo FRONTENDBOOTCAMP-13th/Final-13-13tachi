@@ -1,5 +1,6 @@
 import LoginForm from '@/app/(user)/login/LoginForm';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 export default async function LoginPage() {
   return (
@@ -29,7 +30,9 @@ export default async function LoginPage() {
             </h2>
           </div>
 
-          <LoginForm />
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoginForm />
+          </Suspense>
         </div>
       </main>
     </div>
