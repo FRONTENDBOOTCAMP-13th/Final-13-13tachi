@@ -19,7 +19,7 @@ interface CommentProps {
   currentUserId?: number | null;
   onDelete: (id: number) => void;
   onUpdate: (id: number, newContent: string) => void;
-  postId: string;
+  postId: number;
 }
 
 export default function Comment({

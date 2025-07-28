@@ -16,7 +16,7 @@ interface CommentType {
 }
 
 interface CommentsProps {
-  postId: string;
+  postId: number;
 }
 
 export default function Comments({ postId }: CommentsProps) {

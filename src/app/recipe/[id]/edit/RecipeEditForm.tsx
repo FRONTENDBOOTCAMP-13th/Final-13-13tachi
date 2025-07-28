@@ -14,7 +14,7 @@ const QuillNoSSRWrapper = dynamic(() => import('react-quill-new'), {
 });
 
 interface RecipeEditFormProps {
-  postId: string;
+  postId: number;
   initialTitle: string;
   initialContent: string;
   initialImage?: string;
