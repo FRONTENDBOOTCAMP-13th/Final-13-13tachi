@@ -48,6 +48,7 @@ export default function AddressForm({
               type="text"
               id="postcode"
               placeholder="우편번호"
+              disabled
               className="w-[8rem]"
               {...register('postcode', {
                 required: '우편번호를 입력해주세요',

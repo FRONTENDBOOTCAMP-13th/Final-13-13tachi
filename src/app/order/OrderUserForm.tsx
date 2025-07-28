@@ -123,6 +123,7 @@ export default function OrderUserForm({
               type="text"
               id="postcode"
               placeholder="우편번호"
+              disabled
               defaultValue={user?.postcode ?? ''}
               {...register('postcode', {
                 required: '우편번호를 입력해주세요',
