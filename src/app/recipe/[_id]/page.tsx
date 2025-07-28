@@ -100,7 +100,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
               {/* 프로필 */}
               <Profile
                 username={recipe.item.user.name}
-                imageUrl={`${API_URL}/${recipe.item.user.image}`}
+                imageUrl={`${recipe.item.user.image}`}
               />
 
               <main>
