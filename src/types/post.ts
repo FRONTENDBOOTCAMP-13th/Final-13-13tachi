@@ -101,3 +101,10 @@ export interface MyPostType {
   title: string;
   image: string;
 }
+
+// API에서 받는 레시피 상세 응답 타입
+export interface RecipeDetailResponse {
+  ok: number; // 성공 여부 (0 = 실패, 1 = 성공 같은 형식)
+  message?: string; // 실패 메시지 등
+  item?: Post; // 성공 시 데이터
+}
