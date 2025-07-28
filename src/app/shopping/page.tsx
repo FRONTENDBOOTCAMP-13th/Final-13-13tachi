@@ -1,7 +1,7 @@
 import AllItems from '@/app/shopping/AllItems';
 import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
-
+import { Suspense } from 'react';
 import { getProducts } from '@/data/functions/post';
 import { ProductType } from '@/types';
 
@@ -31,14 +31,18 @@ export default async function ShoppingList() {
           {/* ST: 인기상품 */}
           <div className="lg:mt-7.5">
             <h3 className="font-bold text-dark-green lg:text-3xl">인기 상품</h3>
-            <HotItemList products={products} />
+            <Suspense>
+              <HotItemList products={products} />
+            </Suspense>
           </div>
           {/* ED: 인기상품 */}
 
           {/* ST: 전체 상품 */}
           <div className="lg:mt-12">
             <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
-            <AllItems products={products} />
+            <Suspense>
+              <AllItems products={products} />
+            </Suspense>
           </div>
           {/* ED: 전체 상품 */}
         </div>
