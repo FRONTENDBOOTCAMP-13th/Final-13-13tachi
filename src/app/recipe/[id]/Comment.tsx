@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
+import CommentActionButton from './CommentActionButton';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -11,18 +11,18 @@ interface CommentProps {
   comment: {
     _id: number;
     content: string;
-    user: { _id: number; name: string; image?: string };
+    name: string;
+    user: { _id: number; name: string };
     createdAt: string;
   };
   currentUserId?: number | null;
   onDelete: (id: number) => void;
   onUpdate: (id: number, newContent: string) => void;
-  postId: string; // 추가 (댓글 수정/삭제 API에서 필요)
+  postId: string;
 }
 
 export default function Comment({
   comment,
-  currentUserId,
   onDelete,
   onUpdate,
   postId,
@@ -32,18 +32,12 @@ export default function Comment({
   const [editedContent, setEditedContent] = useState(comment.content);
   const [loading, setLoading] = useState(false);
 
-  const profileSrc = comment.user?.image
-    ? `${API_URL}/${comment.user.image}`
-    : '/images/front-end.png';
-
-  // 여기서 타입 맞춰서 비교
-  const isAuthor = String(currentUserId) === String(comment.user._id);
+  const profileSrc = '/images/front-end.png';
 
   const handleUpdate = async () => {
-    if (!editedContent.trim()) {
-      alert('내용을 입력하세요.');
-      return;
-    }
+    if (!editedContent.trim()) return alert('내용을 입력하세요.');
+    if (!user?.token?.accessToken) return alert('로그인 후 이용해주세요.');
+
     setLoading(true);
     try {
       const res = await fetch(
@@ -53,28 +47,31 @@ export default function Comment({
           headers: {
             'Content-Type': 'application/json',
             'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
-            Authorization: `Bearer ${user?.token?.accessToken || ''}`,
+            Authorization: `Bearer ${user.token.accessToken}`,
           },
           body: JSON.stringify({ content: editedContent }),
         },
       );
+
       const data = await res.json();
       if (res.ok && data.ok === 1) {
         onUpdate(comment._id, editedContent);
         setIsEditing(false);
+        alert('댓글이 수정되었습니다.');
       } else {
-        alert(data.message || '수정 실패');
+        alert(data.message || '수정에 실패했습니다.');
       }
     } catch (error) {
-      console.error(error);
+      console.error('댓글 수정 중 오류:', error);
       alert('수정 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDelete = async () => {
-    if (!confirm('댓글을 삭제하시겠습니까?')) return;
+  const handleDeleteComment = async () => {
+    if (!user?.token?.accessToken) return alert('로그인 후 이용해주세요.');
+
     setLoading(true);
     try {
       const res = await fetch(
@@ -83,22 +80,29 @@ export default function Comment({
           method: 'DELETE',
           headers: {
             'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
-            Authorization: `Bearer ${user?.token?.accessToken || ''}`,
+            Authorization: `Bearer ${user.token.accessToken}`,
           },
         },
       );
+
       const data = await res.json();
       if (res.ok && data.ok === 1) {
         onDelete(comment._id);
+        alert('댓글이 삭제되었습니다.');
       } else {
-        alert(data.message || '삭제 실패');
+        alert(data.message || '삭제에 실패했습니다.');
       }
     } catch (error) {
-      console.error(error);
+      console.error('댓글 삭제 중 오류:', error);
       alert('삭제 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+    if (isEditing) setEditedContent(comment.content); // 취소 시 원상복귀
   };
 
   return (
@@ -112,59 +116,47 @@ export default function Comment({
         />
       </div>
       <div className="ml-4 w-full">
-        <p className="font-semibold text-dark-green mb-1">
-          {comment.user?.name}
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="font-semibold text-dark-green mb-1">
+            {comment.name || comment.user?.name}
+          </p>
+          {!isEditing && user && comment.name === user.name && (
+            <CommentActionButton
+              authorId={0}
+              commentId={comment._id}
+              onDelete={handleDeleteComment}
+              onEditToggle={handleEditToggle}
+              loading={loading}
+            />
+          )}
+        </div>
+
         {isEditing ? (
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center mt-2">
             <input
               className="border px-2 py-1 rounded text-sm w-full"
               value={editedContent}
               onChange={e => setEditedContent(e.target.value)}
               disabled={loading}
+              placeholder="댓글 내용을 입력하세요"
             />
             <button
-              className="text-dark-green text-sm hover:underline"
+              className="text-dark-green text-sm hover:underline px-2 py-1 border border-dark-green rounded"
               onClick={handleUpdate}
               disabled={loading}
             >
-              저장
+              {loading ? '저장 중...' : '저장'}
             </button>
             <button
-              className="text-gray-500 text-sm hover:underline"
-              onClick={() => {
-                setIsEditing(false);
-                setEditedContent(comment.content);
-              }}
+              className="text-gray-500 text-sm hover:underline px-2 py-1 border border-gray-300 rounded"
+              onClick={handleEditToggle}
               disabled={loading}
             >
               취소
             </button>
           </div>
         ) : (
-          <>
-            <p className="text-sm">{comment.content}</p>
-            {isAuthor && (
-              <div className="mt-2 flex gap-2">
-                <Button
-                  size="sm"
-                  variant="green"
-                  onClick={() => setIsEditing(true)}
-                  disabled={loading}
-                >
-                  수정
-                </Button>
-                <Button
-                  size="sm"
-                  variant="white"
-                  onClick={handleDelete}
-                  disabled={loading}
-                >
-                  삭제
-                </Button>
-              </div>
-            )}
-          </>
+          <p className="text-sm">{comment.content}</p>
         )}
       </div>
     </div>
