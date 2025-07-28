@@ -27,11 +27,15 @@ export default function Detail({
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
   const [isLike, setIsLike] = useState(false); // 찜하기 상태
 
-  const likeItems = // 현재 상품이 찜하기 데이터에 있는지
-    likeRes &&
-    Object.entries(likeRes)
-      .filter(([key]) => key !== 'ok')
-      .some(([, value]) => value?.product?._id == id);
+  // 현재 상품이 찜하기 데이터에 있는지
+  const likeItems =
+    likeRes && likeRes.ok === 1 && Array.isArray(likeRes.item)
+      ? likeRes.item.some((like: LikeItemType) => like.product?._id == id)
+      : false;
+
+  console.log('likeRes', likeRes);
+  console.log('likeItems', likeItems);
+  console.log('id', id);
 
   useEffect(() => {
     //찜하기 데이터에 있는지 여부를 isLike/setIsLike로 상태관리

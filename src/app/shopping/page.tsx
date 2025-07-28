@@ -1,5 +1,3 @@
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import AllItems from '@/app/shopping/AllItems';
 import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
@@ -13,7 +11,6 @@ export default async function ShoppingList() {
 
   return (
     <>
-      <Header />
       <main>
         <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
           {/* ST: 오늘의 못난이는? */}
@@ -46,7 +43,6 @@ export default async function ShoppingList() {
           {/* ED: 전체 상품 */}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

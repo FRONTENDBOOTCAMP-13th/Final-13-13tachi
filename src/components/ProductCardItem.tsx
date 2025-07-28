@@ -26,11 +26,13 @@ export default function ProductCardItem({
   const router = useRouter();
   const [isLike, setIsLike] = useState(false); // 현재 상품이 찜하기 상태인지 상태관리
 
-  const likeItems = // 현재 상품이 찜하기 데이터에 있는지
-    likeRes &&
-    Object.entries(likeRes)
-      .filter(([key]) => key !== 'ok')
-      .some(([, value]) => value?.product?._id == item._id);
+  // 현재 상품이 찜하기 데이터에 있는지
+  const likeItems =
+    likeRes && likeRes.ok === 1 && Array.isArray(likeRes.item)
+      ? likeRes.item.some(
+          (like: LikeItemType) => like.product?._id === item._id,
+        )
+      : false;
 
   useEffect(() => {
     //찜하기 데이터에 있는지 여부를 isLike/setIsLike로 상태관리
@@ -42,11 +44,12 @@ export default function ProductCardItem({
   const [, likeDeleteAction] = useActionState(productDeleteLike, null);
   const [, likeAddAction] = useActionState(productAddLike, null);
 
-  const currentLike = likeRes
-    ? Object.values(likeRes)
-        .filter(item => typeof item === 'object' && item?.product)
-        .find(like => like?.product?._id === item._id)
-    : null;
+  const currentLike =
+    likeRes && likeRes.ok === 1 && Array.isArray(likeRes.item)
+      ? likeRes.item.find(
+          (like: LikeItemType) => like.product?._id === item._id,
+        )
+      : null;
 
   return (
     <li>

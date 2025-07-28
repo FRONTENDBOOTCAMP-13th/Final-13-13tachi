@@ -1,5 +1,3 @@
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import CustomLink from '@/components/common/CustomLink';
 import { getProductDetails } from '@/data/functions/post';
 import { ProductTypeRes } from '@/types';
@@ -16,7 +14,6 @@ export default async function ShoppingDetail({
 
   return (
     <>
-      <Header />
       <main>
         <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
           {/* ST: Title */}
@@ -46,7 +43,6 @@ export default async function ShoppingDetail({
           {/* ED: 목록으로*/}
         </div>
       </main>
-      <Footer />
     </>
   );
 }
