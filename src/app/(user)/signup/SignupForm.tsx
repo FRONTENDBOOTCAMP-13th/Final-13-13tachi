@@ -53,24 +53,28 @@ export default function SignupForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="lg:w-[28.625rem] space-y-[0.625rem]"
+      className="w-[320px] md:w-[428px] lg:w-[28.625rem] space-y-[0.625rem]"
     >
       <input type="hidden" name="type" value="user" />
 
       {/* 이메일 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="email" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="email"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             이메일
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
+          <span className="text-light-red text-xs lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
+            width="md"
             id="email"
             type="email"
             placeholder="이메일을 입력하세요"
-            className="w-[20rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('email', {
               required: '이메일을 입력해주세요',
               pattern: {
@@ -89,20 +93,24 @@ export default function SignupForm() {
       </div>
 
       {/* 비밀번호 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="password" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="password"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             비밀번호
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
+            width="md"
             id="password"
             type="password"
             placeholder="비밀번호를 입력하세요"
             autoComplete="new-password"
-            className="w-[20rem]"
+            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('password', {
               required: '비밀번호를 입력해주세요',
               pattern: {
@@ -112,7 +120,7 @@ export default function SignupForm() {
             })}
           />
           {errors.password && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400 break-words w-[20rem]">
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
               {errors.password.message}
             </p>
           )}
@@ -120,11 +128,11 @@ export default function SignupForm() {
       </div>
 
       {/* 비밀번호 확인 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[7rem]">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
           <label
             htmlFor="passwordConfirm"
-            className="block text-black lg:text-base"
+            className="block text-black text-sm md:text-base lg:text-base"
           >
             비밀번호 확인
           </label>
@@ -135,7 +143,7 @@ export default function SignupForm() {
             id="passwordConfirm"
             type="password"
             placeholder="비밀번호를 한번 더 입력하세요"
-            className="w-[20rem]"
+            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('passwordConfirm', {
               required: '비밀번호를 확인해주세요',
               validate: (value, formValues) =>
@@ -151,9 +159,12 @@ export default function SignupForm() {
       </div>
 
       {/* 이름 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="name" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="name"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             이름
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
@@ -164,6 +175,7 @@ export default function SignupForm() {
             type="text"
             autoComplete="name"
             placeholder="이름을 입력하세요"
+            className=" w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('name', {
               required: '이름를 입력해주세요',
             })}
@@ -177,9 +189,12 @@ export default function SignupForm() {
       </div>
 
       {/* 전화번호 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="phone" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="phone"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             전화번호
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
@@ -190,7 +205,7 @@ export default function SignupForm() {
             type="text"
             autoComplete="tel"
             placeholder="전화번호를 입력하세요"
-            className="w-[20rem]"
+            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('phone', {
               required: '전화번호를 입력해주세요',
               pattern: {
@@ -214,7 +229,7 @@ export default function SignupForm() {
         required
       />
 
-      <div className="flex justify-center items-center lg:mt-[2rem] lg:mb-[6.25rem]">
+      <div className="flex justify-center items-center mb-[60px] mt-[50px] md:mb-[80px] lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
           가입하기
         </Button>
