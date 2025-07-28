@@ -2,16 +2,16 @@ import CustomLink from '@/components/common/CustomLink';
 import { getProductDetails } from '@/data/functions/post';
 import { ProductTypeRes } from '@/types';
 import Detail from '@/app/shopping/[id]/Detail';
+
 interface shoppingPageProps {
   params: Promise<{
-    _id: number;
+    id: number;
   }>;
 }
 
 export default async function ShoppingDetail({ params }: shoppingPageProps) {
-  const { _id } = await params;
-
-  const productRes = (await getProductDetails(_id)) as ProductTypeRes;
+  const { id } = await params;
+  const productRes = (await getProductDetails(Number(id))) as ProductTypeRes;
 
   return (
     <>
@@ -27,7 +27,9 @@ export default async function ShoppingDetail({ params }: shoppingPageProps) {
           {/* ED: Title */}
 
           {/* ST: 상품 상세 내용 */}
-          <Detail productRes={productRes} id={_id} />
+
+          <Detail productRes={productRes} id={id} />
+
           {/* ED: 상품 상세 내용 */}
 
           {/* ST: 목록으로*/}
