@@ -40,9 +40,7 @@ export default function Dropdown() {
       <button onClick={() => setOpen(prev => !prev)}>
         <Image
           className="w-8 h-8 object-cover rounded-full mr-2"
-          src={
-            user?.image ? `${API_URL}/${user.image}` : '/images/front-end.png'
-          }
+          src={user?.image ? `${API_URL}/${user.image}` : '/profile.svg'}
           width="32"
           height="32"
           alt={`${user?.name} 프로필 이미지`}

@@ -71,7 +71,7 @@ export default function RootLayout({
                         src={
                           user?.image
                             ? `${API_URL}/${user.image}`
-                            : '/images/front-end.png'
+                            : '/profile.svg'
                         }
                         alt={`${user?.name} 프로필 이미지`}
                         width={80}
