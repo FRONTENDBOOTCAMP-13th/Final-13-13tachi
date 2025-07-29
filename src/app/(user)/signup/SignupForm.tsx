@@ -105,7 +105,6 @@ export default function SignupForm() {
         </div>
         <div>
           <Input
-            width="md"
             id="password"
             type="password"
             placeholder="비밀번호를 입력하세요"
