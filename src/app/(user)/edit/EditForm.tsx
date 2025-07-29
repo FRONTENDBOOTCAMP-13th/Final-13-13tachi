@@ -83,12 +83,15 @@ export default function EditForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="lg:w-[28.625rem] space-y-[0.625rem]"
+      className="w-[320px] md:w-[428px] lg:w-[28.625rem] space-y-[0.625rem]"
     >
       {/* 이메일 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="email" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="email"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             이메일
           </label>
         </div>
@@ -97,7 +100,7 @@ export default function EditForm() {
             id="email"
             type="email"
             placeholder="이메일을 입력하세요"
-            className="w-[20rem]"
+            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             defaultValue={user?.email ?? ''}
             disabled
             readOnly
@@ -106,9 +109,12 @@ export default function EditForm() {
       </div>
 
       {/* 비밀번호 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="password" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="password"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             새 비밀번호
           </label>
           <span className="text-light-red text-xs lg:text-sm ml-1">*</span>
@@ -119,7 +125,7 @@ export default function EditForm() {
             type="password"
             placeholder="비밀번호를 입력하세요"
             autoComplete="new-password"
-            className="w-[20rem]"
+            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('password', {
               required: '새 비밀번호를 입력해주세요',
               pattern: {
@@ -137,11 +143,11 @@ export default function EditForm() {
       </div>
 
       {/* 비밀번호 확인 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[7rem]">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
           <label
             htmlFor="passwordConfirm"
-            className="block text-black lg:text-base"
+            className="block text-black text-sm md:text-base lg:text-base"
           >
             새 비밀번호 확인
           </label>
@@ -152,7 +158,7 @@ export default function EditForm() {
             id="passwordConfirm"
             type="password"
             placeholder="비밀번호를 한번 더 입력하세요"
-            className="w-[20rem]"
+            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('passwordConfirm', {
               required: '새 비밀번호를 다시 입력해주세요',
               validate: (value, formValues) =>
@@ -168,8 +174,8 @@ export default function EditForm() {
       </div>
 
       {/* 이름 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
           <label htmlFor="name" className="block text-black lg:text-base">
             이름
           </label>
@@ -180,6 +186,7 @@ export default function EditForm() {
             type="text"
             autoComplete="name"
             placeholder="이름을 입력하세요"
+            className=" w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             defaultValue={user?.name ?? ''}
             disabled
             readOnly
@@ -188,9 +195,12 @@ export default function EditForm() {
       </div>
 
       {/* 전화번호 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="phone" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="phone"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             전화번호
           </label>
         </div>
@@ -200,7 +210,7 @@ export default function EditForm() {
             type="text"
             autoComplete="tel"
             placeholder="전화번호를 입력하세요"
-            className="w-[20rem]"
+            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             defaultValue={user?.phone ?? ''}
             {...register('phone', {
               required: '전화번호를 입력해주세요',
@@ -220,7 +230,7 @@ export default function EditForm() {
 
       <AddressForm register={register} setValue={setValue} errors={errors} />
 
-      <div className="flex justify-center items-center lg:mt-[2rem] lg:mb-[6.25rem]">
+      <div className="flex justify-center items-center mb-[60px] mt-[50px] md:mb-[80px] lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
           수정하기
         </Button>
