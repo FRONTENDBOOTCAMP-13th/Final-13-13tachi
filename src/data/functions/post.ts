@@ -6,6 +6,7 @@ import {
   LikeItemType,
   BuyListType,
   OrderInfoType,
+  ShoppingOrderType,
 } from '@/types';
 import { LikePostType, MyPostType, Post, PostReply } from '@/types/post';
 // import useUserStore from '@/zustand/useStore';
@@ -284,4 +285,38 @@ export async function getRecipeDetail(_id: number): ApiResPromise<Post> {
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
+}
+
+// 단일 상품 구매 정보 불러오기
+export async function getShoppingOrder({
+  id,
+  quantity,
+  accessToken,
+}: {
+  id: string;
+  quantity: string;
+  accessToken: string;
+}): ApiResPromise<ShoppingOrderType> {
+  const body = {
+    dryRun: true,
+    products: [
+      {
+        _id: Number(id),
+        quantity: Number(quantity),
+      },
+    ],
+  };
+
+  console.log('body', body);
+  const res = await fetch(`${API_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+  return res.json();
 }
