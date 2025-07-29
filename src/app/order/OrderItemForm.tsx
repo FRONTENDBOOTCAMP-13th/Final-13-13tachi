@@ -27,7 +27,9 @@ export default function OrderItemForm({ item }: { item: ProductItemType }) {
             <span>개</span>
           </p>
           <p>
-            <span className="lg:text-sm">{item.price * item.quantity}원</span>
+            <span className="lg:text-sm">
+              {(item.price * item.quantity).toLocaleString()}원
+            </span>
           </p>
         </div>
       </div>

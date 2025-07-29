@@ -320,7 +320,7 @@ export async function uploadFile(file: File): Promise<string> {
     },
     body: formData,
   });
-    const data = await res.json();
+  const data = await res.json();
 
   if (!res.ok || data.ok !== 1 || !data.item?.length) {
     throw new Error('파일 업로드 실패');
@@ -331,7 +331,7 @@ export async function uploadFile(file: File): Promise<string> {
 
 // 게시글 등록
 export async function createPost(
-  postData: CreatePostData
+  postData: CreatePostData,
 ): Promise<ApiRes<unknown>> {
   const res = await fetch(`${API_URL}/posts/`, {
     method: 'POST',
@@ -383,4 +383,5 @@ export async function getShoppingOrder({
     body: JSON.stringify(body),
   });
 
-
+  return res.json();
+}

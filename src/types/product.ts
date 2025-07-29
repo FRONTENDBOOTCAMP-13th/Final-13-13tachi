@@ -158,36 +158,10 @@ export interface ProductCard {
   user?: User | null;
 }
 
-// ST: 상품 단일 구매 타입
-// export interface ShoppingOrderProduct {
-//   _id: number;
-//   quantity: number;
-//   seller_id: number;
-//   name: string;
-//   image: {
-//     url: string;
-//     fileName: string;
-//     orgName: string;
-//   };
-//   price: number;
-//   extra: {
-//     isBest: boolean;
-//     category: string[];
-//     details: string;
-//   };
-// }
-
-// export interface ShoppingOrderCost {
-//   products: number;
-//   shippingFees: number;
-//   discount: {
-//     products: number;
-//     shippingFees: number;
-//   };
-//   total: number;
-// }
-
+// 상품 단일 구매 타입
 export interface ShoppingOrderType {
   products: ProductItemType[];
+  cost: {
+    total?: number;
+  };
 }
-// ED: 상품 단일 구매 타입

@@ -5,9 +5,15 @@ import Button from '@/components/common/Button';
 import OrderUserForm from '@/app/order/OrderUserForm';
 import useUserStore from '@/zustand/useStore';
 import { useActionState, useEffect, useState } from 'react';
-import { ApiResCart, CartItemType, UserInfoType } from '@/types';
-import { getCartProducts } from '@/data/functions/post';
-import { createOrder } from '@/data/actions/cart';
+import {
+  ApiRes,
+  ApiResCart,
+  CartItemType,
+  ShoppingOrderType,
+  UserInfoType,
+} from '@/types';
+import { getCartProducts, getShoppingOrder } from '@/data/functions/post';
+import { createOrder, createShoppingOrder } from '@/data/actions/cart';
 import OrderList from '@/app/order/OrderList';
 import OrderTable from '@/app/order/OrderTable';
 import { useSearchParams } from 'next/navigation';
@@ -23,6 +29,7 @@ export default function OrderForm() {
     createOrder,
     null,
   );
+  const [, shoppingOrderAction] = useActionState(createShoppingOrder, null);
   console.log(orderState, isOrdering);
   const id = useSearchParams().get('id');
   const quantity = useSearchParams().get('quantity');
@@ -53,8 +60,6 @@ export default function OrderForm() {
           }))
         : [];
 
-  console.log('shoppingRes', products);
-
   //주문자 정보 입력 확인
   const handleClientValidation = (e: React.FormEvent<HTMLFormElement>) => {
     if (
@@ -68,12 +73,44 @@ export default function OrderForm() {
     }
   };
 
-  if (!res) return <div>로딩 중...</div>;
-  if (res.ok === 0) return <div>{res.message}</div>;
+  // id, quantity가 있을 때(단일 상품 주문)
+  if (id && quantity) {
+    if (!shoppingRes) return <div>로딩 중...</div>;
+    if (shoppingRes.ok === 0) return <div>{shoppingRes.message}</div>;
+  } else {
+    // 장바구니 주문
+    if (!res) return <div>로딩 중...</div>;
+    if (res.ok === 0) return <div>{res.message}</div>;
+  }
 
   return (
     <div>
-      {res.ok ? (
+      {id && quantity ? (
+        shoppingRes?.ok ? (
+          <div>
+            <div className="flex flex-col md:gap-8 gap-5 md:my-[1.875rem] my-5">
+              <OrderList
+                items={shoppingRes.item.products.map(item => ({
+                  _id: item._id,
+                  product_id: item._id,
+                  quantity: item.quantity,
+                  product: {
+                    _id: item._id,
+                    quantity: item.quantity,
+                    name: item.name,
+                    price: item.price / item.quantity,
+                    image: item.image,
+                    extra: item.extra,
+                  },
+                }))}
+              />
+            </div>
+            <OrderTable total={shoppingRes.item.cost.total ?? 0} />
+          </div>
+        ) : (
+          <p>{}</p>
+        )
+      ) : res?.ok ? (
         <div>
           <div className="flex flex-col md:gap-8 gap-5 md:my-[1.875rem] my-5">
             <OrderList items={res.item} />
@@ -83,7 +120,11 @@ export default function OrderForm() {
       ) : (
         <p>{}</p>
       )}
-      <form action={orderAction} onSubmit={handleClientValidation}>
+
+      <form
+        action={id && quantity ? shoppingOrderAction : orderAction}
+        onSubmit={handleClientValidation}
+      >
         <input
           type="hidden"
           name="accessToken"
@@ -95,7 +136,19 @@ export default function OrderForm() {
           name="user"
           value={userFormData ? JSON.stringify(userFormData) : ''}
         />
-        <input type="hidden" name="total" value={res.cost?.total} />
+        <input
+          type="hidden"
+          name="total"
+          value={
+            id && quantity
+              ? shoppingRes?.ok
+                ? (shoppingRes.item.cost.total ?? 0)
+                : 0
+              : res?.ok
+                ? (res.cost?.total ?? 0)
+                : 0
+          }
+        />
         <div className="flex flex-col lg:flex-row justify-between gap-[2rem]">
           <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
             <h3 className="lg:text-xl font-bold mb-[0.75rem]">주문자 정보</h3>
@@ -107,7 +160,14 @@ export default function OrderForm() {
             <p className="font-semibold text-lg">
               총금액 :{' '}
               <span className="text-dark-red text-5xl font-bold">
-                {(res.cost?.total ?? 0).toLocaleString()}
+                {(id && quantity
+                  ? shoppingRes?.ok
+                    ? (shoppingRes.item.cost.total ?? 0)
+                    : 0
+                  : res?.ok
+                    ? (res.cost?.total ?? 0)
+                    : 0
+                ).toLocaleString()}
               </span>
               원
             </p>
