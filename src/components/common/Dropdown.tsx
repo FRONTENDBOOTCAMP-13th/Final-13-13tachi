@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
+import Swal from 'sweetalert2';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Dropdown() {
@@ -19,7 +20,12 @@ export default function Dropdown() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
-    alert('로그아웃 되었습니다.');
+    Swal.fire({
+      icon: 'info',
+      title: '로그아웃 완료',
+      text: '로그아웃이 완료 되었습니다.',
+      confirmButtonText: '확인',
+    });
   };
 
   // 바깥 아무곳이나 클릭 시 드롭다운 닫아짐
