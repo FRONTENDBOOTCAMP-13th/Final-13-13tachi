@@ -215,8 +215,8 @@ export default function EditForm() {
             {...register('phone', {
               required: '전화번호를 입력해주세요',
               pattern: {
-                value: /^[0-9-]+$/,
-                message: '숫자와 하이픈(-)만 입력 가능합니다',
+                value: /^\d{2,3}-\d{3,4}-\d{4}$/,
+                message: '000-0000-0000형식으로 입력해주세요',
               },
             })}
           />
