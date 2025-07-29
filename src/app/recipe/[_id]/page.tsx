@@ -3,12 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
-import { Bookmark } from 'lucide-react';
 import Comments from './Comments';
 import Profile from './Profile';
 import RecipeActionButtons from './RecipeActionButton';
 import ShareButton from '@/components/common/ShareButton';
 import { getRecipeDetail } from '@/data/functions/post';
+import BookmarkButton from './BookmarkButton';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // export type RecipeDetailData = Pick<
@@ -132,9 +132,8 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
                 {/* 공유/북마크 */}
                 <div className="flex justify-end mt-3">
                   <ShareButton />
-                  <div className="text-center ml-[0.4375rem]">
-                    <Bookmark strokeWidth={1} />
-                    <p>13</p>
+                  <div className="text-center ml-[0.4375rem] flex items-center">
+                    <BookmarkButton postId={recipe.item._id} />
                   </div>
                 </div>
 
