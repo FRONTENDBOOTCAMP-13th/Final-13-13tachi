@@ -21,7 +21,7 @@ export default function OrderItemList({
         <p>
           <span className="text-dark-green">{item.createdAt}</span>
         </p>
-        <Link href={`/mypage/buylist/${item._id}`} className="text-dark-green">
+        <Link href={`/mypage/order/${item._id}`} className="text-dark-green">
           상세조회
         </Link>
       </div>

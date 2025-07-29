@@ -61,7 +61,7 @@ export default function Dropdown() {
               </li>
               <li>
                 <Link
-                  href="/mypage/likes"
+                  href="/mypage/wish"
                   className="block  text-black pb-[7px]  hover:font-semibold"
                 >
                   찜한 상품
@@ -69,7 +69,7 @@ export default function Dropdown() {
               </li>
               <li>
                 <Link
-                  href="/mypage/buylist"
+                  href="/mypage/order"
                   className="block  text-black pb-[7px] hover:font-semibold"
                 >
                   주문내역
@@ -85,7 +85,7 @@ export default function Dropdown() {
               </li>
               <li>
                 <Link
-                  href="/mypage/myuser"
+                  href="/mypage/user"
                   className="block text-black pb-[7px] hover:font-semibold"
                 >
                   회원정보

@@ -28,7 +28,7 @@ export default function RootLayout({
             </li>
             <li>
               <Link
-                href="/mypage/recipe/likerecipe"
+                href="/mypage/recipe/bookmarkRecipe"
                 className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/bookmarkRecipe')} `}
               >
                 <h3>레시피 북마크</h3>

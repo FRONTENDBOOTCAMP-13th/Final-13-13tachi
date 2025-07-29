@@ -94,8 +94,8 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/likes"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/likes')} `}
+                      href="/mypage/wish"
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/wish')} `}
                     >
                       <Heart width={16} />
                       <span>내가 찜한 상품</span>
@@ -103,8 +103,8 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/buylist"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/buylist')} ${isActive('/mypage/buyinfo')}`}
+                      href="/mypage/order"
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/order')} ${isActive('/mypage/buyinfo')}`}
                     >
                       <ReceiptText width={16} />
                       <span>주문내역</span>
@@ -113,7 +113,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/recipe"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myrecipe')} ${isActive('/mypage/recipe/likerecipe')}`}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe')} ${isActive('/mypage/recipe/likerecipe')}`}
                     >
                       <BookOpen width={16} />
                       <span>레시피</span>
@@ -121,8 +121,8 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/myuser"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/myuser')} `}
+                      href="/mypage/user"
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
                     >
                       <IdCard width={16} />
                       <span>회원정보</span>
