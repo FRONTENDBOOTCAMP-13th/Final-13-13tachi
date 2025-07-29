@@ -6,7 +6,7 @@ export default function Complete() {
   const orderNumber = '20230725-0001';
 
   return (
-    <div className="flex flex-col items-center gap-[1.5625rem] mt-[10.9375rem] mb-[13.6875rem]">
+    <main className="flex flex-col items-center gap-[1.5625rem] mt-[10.9375rem] mb-[13.6875rem]">
       <Image
         src="/check-circle.svg"
         alt="원형체크"
@@ -23,6 +23,6 @@ export default function Complete() {
       <CustomLink href="/" size="xxl">
         홈으로 돌아가기
       </CustomLink>
-    </div>
+    </main>
   );
 }

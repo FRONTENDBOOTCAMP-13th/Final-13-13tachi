@@ -3,7 +3,7 @@
 import { getCartProducts } from '@/data/functions/post';
 import { ApiResCart, CartItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { CircleEqualIcon, MinusCircle, PlusCircle } from 'lucide-react';
+import { Circle, CircleEqual, MinusCircle, PlusCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function OrderTable() {
@@ -48,7 +48,8 @@ export default function OrderTable() {
           </td>
           <td className="border relative py-4">
             <span className="font-semibold">무료배송</span>
-            <CircleEqualIcon className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
+            <Circle className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
+            <CircleEqual className="text-black  absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
           </td>
           <td className="border border-r-0 relative py-4">
             <span className="font-semibold text-dark-red">
