@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import AddressForm from '@/components/common/Address';
+import Swal from 'sweetalert2';
 
 export interface SignupFormProps {
   email: string;
@@ -32,10 +33,23 @@ export default function SignupForm() {
 
   useEffect(() => {
     if (state?.ok) {
-      alert('회원 가입이 완료되었습니다');
-      router.replace('/login');
+      Swal.fire({
+        icon: 'success',
+        title: '회원가입 완료',
+        text: '회원 가입이 완료되었습니다.',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) {
+          router.replace('/login');
+        }
+      });
     } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
+      Swal.fire({
+        icon: 'error',
+        title: '회원가입 실패',
+        text: state?.message || '문제가 발생했습니다. 다시 시도해주세요.',
+        confirmButtonText: '확인',
+      });
     }
   }, [state, router]);
 

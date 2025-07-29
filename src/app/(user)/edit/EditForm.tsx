@@ -9,6 +9,7 @@ import Input from '@/components/common/Input';
 import useUserStore from '@/zustand/useStore';
 import AddressForm from '@/components/common/Address';
 import { SignupFormProps } from '@/app/(user)/signup/SignupForm';
+import Swal from 'sweetalert2';
 
 export default function EditForm() {
   const { user } = useUserStore();
@@ -33,7 +34,13 @@ export default function EditForm() {
 
   const onSubmit = (data: SignupFormProps) => {
     if (!user) {
-      alert('로그인이 필요합니다.');
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) router.replace('/login');
+      });
       return;
     }
 
@@ -72,8 +79,16 @@ export default function EditForm() {
           ...updatedUser,
         },
       }));
-      alert('수정이 완료되었습니다');
-      router.replace('/mypage/myuser');
+      Swal.fire({
+        icon: 'success',
+        title: '회원정보 수정 완료',
+        text: '수정이 완료되었습니다.',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) {
+          router.replace('/mypage/myuser');
+        }
+      });
     } else if (state?.ok === 0 && !state?.errors) {
       alert(state?.message);
     }
@@ -209,19 +224,14 @@ export default function EditForm() {
             id="phone"
             type="text"
             autoComplete="tel"
-            placeholder="000-0000-0000형식으로 입력하세요"
+            placeholder="전화번호를 입력하세요"
             className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             defaultValue={user?.phone ?? ''}
             {...register('phone', {
               required: '전화번호를 입력해주세요',
-              validate: value => {
-                if (!/^[0-9-]+$/.test(value)) {
-                  return '숫자와 하이픈(-)만 입력 가능합니다';
-                }
-                if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(value)) {
-                  return '000-0000-0000 형식이어야 합니다';
-                }
-                return true;
+              pattern: {
+                value: /^[0-9-]+$/,
+                message: '숫자와 하이픈(-)만 입력 가능합니다',
               },
             })}
           />
