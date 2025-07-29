@@ -4,8 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-// 임시 이미지 불러오기
-
 import {
   BookOpen,
   Heart,
@@ -16,7 +14,9 @@ import {
 } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function RootLayout({
   children,
 }: {

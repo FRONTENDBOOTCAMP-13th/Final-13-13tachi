@@ -1,23 +1,23 @@
 import Image from 'next/image';
-
-// 임시 이미지 불러오기
 import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import CustomLink from '@/components/common/CustomLink';
 import Link from 'next/link';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 interface BuyListActionProps {
   addAction: (FormData: FormData) => void;
 }
 
-export default function BuyInfoItem({
+export default function OrderInfoItem({
   item,
   action,
 }: {
   item: ProductItemType;
   action: BuyListActionProps;
 }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
   return (
     <div className="flex md:flex-row md:justify-between flex-col gap-5">

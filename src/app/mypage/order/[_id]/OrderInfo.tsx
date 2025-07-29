@@ -1,12 +1,8 @@
 'use client';
-import BuyInfoItemList from '@/app/mypage/buylist/[_id]/BuyInfoItemList';
-import Loading from '@/app/mypage/buylist/[_id]/Loading';
-import { AddCart } from '@/data/actions/cart';
-// import Image from 'next/image';
 
-// 임시 이미지 불러오기
-// import profilePic from '../../../images/profile.jpg';
-// import Button from '@/components/common/Button';
+import Loading from '@/app/mypage/order/[_id]/Loading';
+import OrderInfoList from '@/app/mypage/order/[_id]/OrderInfoList';
+import { AddCart } from '@/data/actions/cart';
 import { getOrderInfo } from '@/data/functions/post';
 import { ApiRes, OrderInfoType } from '@/types';
 import useUserStore from '@/zustand/useStore';
@@ -14,13 +10,13 @@ import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-export default function BuyInfo({ orderId }: { orderId: number }) {
+export default function OrderInfo({ orderId }: { orderId: number }) {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const [res, setRes] = useState<ApiRes<OrderInfoType> | null>(null);
   const router = useRouter();
-  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
-  console.log(isAdding);
+  const [addState, AddAction] = useActionState(AddCart, null);
+
   useEffect(() => {
     if (accessToken === null || accessToken === undefined) {
       // accessToken이 아직 로드 중이라면 아무것도 하지 않음
@@ -62,7 +58,7 @@ export default function BuyInfo({ orderId }: { orderId: number }) {
   console.log(orderId);
 
   return (
-    <BuyInfoItemList
+    <OrderInfoList
       item={{
         _id: res.item._id,
         products: res.item.products,

@@ -1,11 +1,6 @@
 'use client';
-import BuyItem from '@/app/mypage/buylist/BuyItem';
-// import Image from 'next/image';
 
-// 임시 이미지 불러오기
-// import profilePic from '../../../images/profile.jpg';
-// import Button from '@/components/common/Button';
-
+import OrderItem from '@/app/mypage/order/OrderItem';
 import { BuyItemListType, ProductItemType } from '@/types';
 import Link from 'next/link';
 
@@ -13,7 +8,7 @@ interface BuyListActionProps {
   addAction: (FormData: FormData) => void;
 }
 
-export default function BuyItemList({
+export default function OrderItemList({
   item,
   action,
 }: {
@@ -33,7 +28,7 @@ export default function BuyItemList({
       <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray lg:w-[49.875rem] md:w-[31.75rem] w-80 md:p-[1.125rem] p-3">
         <div className="flex flex-col w-full gap-[2.125rem]">
           {item.products.map((product: ProductItemType) => (
-            <BuyItem
+            <OrderItem
               key={product._id}
               item={{
                 _id: product._id,
