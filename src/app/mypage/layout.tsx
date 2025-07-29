@@ -36,7 +36,7 @@ export default function RootLayout({
   }, [user]);
 
   return (
-    <>
+    <main>
       <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:p-[1.125rem]">
         <div className="flex flex-row lg:w-5xl md:w-[44.25rem] w-80">
           <div className="flex flex-col gap-[2.1875rem]">
@@ -139,11 +139,11 @@ export default function RootLayout({
                   </li>
                 </ul>
               </aside>
-              <main className="">{children}</main>
+              <>{children}</>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
