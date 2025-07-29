@@ -4,13 +4,20 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
 
-interface handleTypeProp {
+interface SearchBarProps {
   handleType: 'handleRecipeSearch' | 'handleProductSearch';
+  placeholder?: string;
 }
 
-export default function SearchBar({ handleType }: handleTypeProp) {
+export default function SearchBar({ handleType, placeholder }: SearchBarProps) {
   const [text, setText] = useState('');
   const router = useRouter();
+
+  // placeholder 기본값 설정
+  const defaultPlaceholder =
+    handleType === 'handleRecipeSearch'
+      ? '레시피명을 입력해주세요'
+      : '상품명을 입력해주세요';
 
   const handleRecipeSearch = () => {
     if (text.trim()) {
@@ -29,7 +36,6 @@ export default function SearchBar({ handleType }: handleTypeProp) {
     handleType: 'handleRecipeSearch' | 'handleProductSearch',
   ) => {
     if (e.key === 'Enter') {
-      console.log('handleKeyDown에서 받은 handleType:', handleType);
       if (handleType === 'handleRecipeSearch') {
         handleRecipeSearch();
       } else if (handleType === 'handleProductSearch') {
@@ -45,7 +51,7 @@ export default function SearchBar({ handleType }: handleTypeProp) {
     >
       <input
         type="text"
-        placeholder="상품명을 입력해주세요"
+        placeholder={placeholder || defaultPlaceholder}
         value={text}
         onChange={e => setText(e.target.value)}
         onKeyDown={e => handleKeyDown(e, handleType)}
