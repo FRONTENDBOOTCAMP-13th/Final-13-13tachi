@@ -22,6 +22,7 @@ export async function createUser(
     // 회원가입 요청 바디 생성
     const body = {
       type: formData.get('type') || 'user',
+      image: formData.get('image'),
       name: formData.get('name'),
       email: formData.get('email'),
       password: formData.get('password'),

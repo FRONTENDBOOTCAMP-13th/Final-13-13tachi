@@ -10,6 +10,7 @@ import AddressForm from '@/components/common/Address';
 
 export interface SignupFormProps {
   email: string;
+  image: string;
   password: string;
   passwordConfirm: string;
   name: string;
@@ -30,6 +31,26 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
+  const profileImages = [
+    'files/febc13-final13-emjf/profile1.jpg',
+    'files/febc13-final13-emjf/profile2.jpg',
+    'files/febc13-final13-emjf/profile3.jpg',
+    'files/febc13-final13-emjf/profile4.jpg',
+    'files/febc13-final13-emjf/profile5.jpg',
+    'files/febc13-final13-emjf/profile6.jpg',
+    'files/febc13-final13-emjf/profile7.jpg',
+    'files/febc13-final13-emjf/profile8.jpg',
+    'files/febc13-final13-emjf/profile9.jpg',
+    'files/febc13-final13-emjf/profile10.jpg',
+    'files/febc13-final13-emjf/profile11.jpg',
+    'files/febc13-final13-emjf/profile12.jpg',
+  ];
+
+  function getRandomImage() {
+    const randomNum = Math.floor(Math.random() * profileImages.length);
+    return profileImages[randomNum];
+  }
+
   useEffect(() => {
     if (state?.ok) {
       alert('회원 가입이 완료되었습니다');
@@ -44,6 +65,7 @@ export default function SignupForm() {
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value as string);
     });
+    formData.append('image', getRandomImage());
     startTransition(() => {
       formAction(formData);
     });
