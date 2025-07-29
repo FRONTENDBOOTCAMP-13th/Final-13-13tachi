@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-// import type { Recipe } from '@/types/product';
 import type { Post } from '@/types/post';
-// import { getRecipes } from '@/data/functions/post';
-// import { ApiRes } from '@/types';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import useUserStore from '@/zustand/useStore';
+
+import { addBookmark, deleteBookmark } from '@/data/functions/post';
+import { getLikeRecipe } from '@/data/functions/post';
+
 interface RecipeListProps {
   post: Post[];
 }
@@ -18,11 +19,60 @@ export default function RecipeList({ post }: RecipeListProps) {
     '전체' | '채소' | '과일' | '나의레시피'
   >('전체');
   const [recipeArr, setRecipeArr] = useState<Post[]>([]);
-  // const [loading, setLoading] = useState(true);
+  const [likeMap, setLikeMap] = useState<Map<number, number>>(new Map());
+
+  const { user } = useUserStore();
+  const accessToken = user?.token?.accessToken;
 
   useEffect(() => {
     setRecipeArr(post);
   }, [post]);
+
+  useEffect(() => {
+    if (!accessToken) return;
+
+    getLikeRecipe(accessToken).then(res => {
+      if (res.ok === 1 && res.item) {
+        const map = new Map<number, number>();
+        res.item.forEach(bookmark => {
+          map.set(bookmark.post._id, bookmark._id);
+        });
+        setLikeMap(map);
+      }
+    });
+  }, [accessToken]);
+
+  const toggleBookmark = async (postId: number) => {
+    if (!accessToken) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    const bookmarkId = likeMap.get(postId);
+    const isBookmarked = bookmarkId !== undefined;
+
+    try {
+      if (isBookmarked) {
+        const res = await deleteBookmark(accessToken, bookmarkId);
+        if (res.ok === 1) {
+          setLikeMap(prev => {
+            const newMap = new Map(prev);
+            newMap.delete(postId);
+            return newMap;
+          });
+        } else {
+          alert(res.message || '삭제 중 오류가 발생했습니다.');
+        }
+      } else {
+        const res = await addBookmark(accessToken, postId);
+        if (res.ok === 1 && res.item) {
+          setLikeMap(prev => new Map(prev).set(postId, res.item._id));
+        }
+      }
+    } catch (error) {
+      console.error('북마크 요청 실패:', error);
+    }
+  };
 
   const filteredRecipes =
     activeTab === '전체'
@@ -69,7 +119,7 @@ export default function RecipeList({ post }: RecipeListProps) {
                 <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg bg-gray-100">
                   {item.image ? (
                     <Image
-                      src={`${API_URL}/${item.image}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-300 hover:scale-110"
@@ -88,8 +138,16 @@ export default function RecipeList({ post }: RecipeListProps) {
                       {item.title}
                     </span>
                     <Bookmark
-                      className="absolute right-0 top-1"
+                      className={`absolute right-0 top-1 cursor-pointer ${
+                        likeMap.has(item._id)
+                          ? 'fill-black text-black'
+                          : 'text-black'
+                      }`}
                       strokeWidth={1}
+                      onClick={e => {
+                        e.preventDefault(); // 링크 이동 방지
+                        toggleBookmark(item._id);
+                      }}
                     />
                   </div>
                   <div className="flex justify-between items-center">

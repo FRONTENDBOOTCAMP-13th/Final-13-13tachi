@@ -2,7 +2,7 @@
 
 import { ApiRes, ApiResPromise } from '@/types';
 import { LikePostType, Post, PostReply } from '@/types/post';
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -104,6 +104,7 @@ export async function createReply(
  * @description
  * 댓글을 삭제하고, 성공 시 해당 게시글의 댓글 목록을 갱신합니다.
  */
+// 북마크 목록 가져오기 (내 북마크된 게시글 리스트)
 export async function deleteBookmark(
   state: ApiRes<LikePostType> | null,
   formData: FormData,
@@ -129,13 +130,11 @@ export async function deleteBookmark(
 
     data = await res.json();
   } catch (error) {
-    // 네트워크 오류 처리
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
 
   if (data.ok) {
-    revalidateTag(`bookmarks`);
     redirect(`/mypage/recipe/likerecipe`);
   }
 
