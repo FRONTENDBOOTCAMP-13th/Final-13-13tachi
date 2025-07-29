@@ -9,14 +9,26 @@ import OrderList from '@/app/order/OrderList';
 import OrderUserForm from '@/app/order/OrderUserForm';
 import useUserStore from '@/zustand/useStore';
 import { useActionState, useEffect, useState } from 'react';
-import { ApiResCart, CartItemType, UserInfoType } from '@/types';
-import { getCartProducts } from '@/data/functions/post';
+import {
+  ApiRes,
+  ApiResCart,
+  ShoppingOrderType,
+  CartItemType,
+  UserInfoType,
+} from '@/types';
+import { getShoppingOrder, getCartProducts } from '@/data/functions/post';
 import { createOrder } from '@/data/actions/cart';
+import { useSearchParams } from 'next/navigation';
 
-export default function OrderForm() {
+export default function OrderForm({}) {
+  const id = useSearchParams().get('id');
+  const quantity = useSearchParams().get('quantity');
+
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
+  const [shoppingRes, setShoppingRes] =
+    useState<ApiRes<ShoppingOrderType> | null>(null);
   const [userFormData, setUserFormData] = useState<UserInfoType | null>(null);
   const [orderState, orderAction, isOrdering] = useActionState(
     createOrder,
@@ -26,15 +38,31 @@ export default function OrderForm() {
 
   useEffect(() => {
     if (accessToken) {
-      getCartProducts(accessToken).then(setRes);
+      if (id && quantity) {
+        getShoppingOrder({ id, quantity, accessToken }).then(setShoppingRes);
+      } else {
+        getCartProducts(accessToken).then(setRes);
+      }
     }
   }, [accessToken]);
-  const products = res?.ok
-    ? res.item.map(item => ({
-        _id: Number(item.product_id),
-        quantity: Number(item.quantity),
-      }))
-    : [];
+  const products =
+    id && quantity
+      ? shoppingRes?.ok
+        ? [
+            {
+              _id: shoppingRes.item.products[0]._id,
+              quantity: shoppingRes.item.products[0].quantity,
+            },
+          ]
+        : []
+      : res?.ok
+        ? res.item.map(item => ({
+            _id: Number(item.product_id),
+            quantity: Number(item.quantity),
+          }))
+        : [];
+
+  console.log('shoppingRes', products);
 
   //주문자 정보 입력 확인
   const handleClientValidation = (e: React.FormEvent<HTMLFormElement>) => {
@@ -96,7 +124,7 @@ export default function OrderForm() {
               <p className="font-semibold text-lg">
                 총금액 :{' '}
                 <span className="text-dark-red text-5xl font-bold">
-                  {(res.cost?.total ?? 0).toLocaleString()}
+                  {/* {(res.cost?.total ?? 0).toLocaleString()} */}
                 </span>
                 원
               </p>
