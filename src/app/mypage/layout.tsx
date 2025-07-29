@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -26,14 +28,34 @@ export default function RootLayout({
   console.log(pathname);
   const isActive = (path: string) => (pathname === path ? 'mypage-active' : '');
   const { user } = useUserStore();
+  const { resetUser } = useUserStore();
 
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
       setLoading(false);
     }
   }, [user]);
+
+  //로그아웃 시 토큰 삭제
+  const handleLogout = () => {
+    resetUser();
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userInfo');
+    Swal.fire({
+      icon: 'info',
+      title: '로그아웃 완료',
+      text: '로그아웃이 완료 되었습니다.',
+      confirmButtonText: '확인',
+    }).then(result => {
+      if (result.isConfirmed) {
+        router.replace('/');
+      }
+    });
+  };
 
   return (
     <main>
@@ -129,13 +151,13 @@ export default function RootLayout({
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href=""
+                    <button
+                      onClick={handleLogout}
                       className="flex flex-row gap-2 hover:text-[var(--color-dark-green)] hover:font-semibold"
                     >
                       <LogOut width={16} />
                       <span>로그아웃</span>
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </aside>
