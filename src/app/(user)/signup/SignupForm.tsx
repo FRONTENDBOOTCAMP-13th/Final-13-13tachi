@@ -203,13 +203,18 @@ export default function SignupForm() {
             id="phone"
             type="text"
             autoComplete="tel"
-            placeholder="전화번호를 입력하세요"
+            placeholder="000-0000-0000 형식으로 입력하세요"
             className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('phone', {
               required: '전화번호를 입력해주세요',
-              pattern: {
-                value: /^[0-9-]+$/,
-                message: '숫자와 하이픈(-)만 입력 가능합니다',
+              validate: value => {
+                if (!/^[0-9-]+$/.test(value)) {
+                  return '숫자와 하이픈(-)만 입력 가능합니다';
+                }
+                if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(value)) {
+                  return '000-0000-0000 형식이어야 합니다';
+                }
+                return true;
               },
             })}
           />
