@@ -9,7 +9,7 @@ export default async function LoginPage() {
         style={{ backgroundImage: "url('/login-img.svg')" }}
       />
       <div className="absolute inset-0 -z-10 bg-black opacity-50" />
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center mt-[210px] mb-[280px]  md:my-[0px]">
         <h2 className="text-base font-semibold md:text-lg md:font-semibold lg:text-xl lg:font-bold text-center text-white mb-[1.25rem]">
           흙내음 상점에서 <br /> 자연의 맛을 로그인하세요
         </h2>
