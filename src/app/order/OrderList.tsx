@@ -15,6 +15,7 @@ export default function OrderList({ items }: OrderListType) {
           key={item._id}
           item={{
             _id: item._id,
+            product_id: item.product_id,
             name: item.product.name,
             quantity: item.quantity,
             price: item.product.price,
