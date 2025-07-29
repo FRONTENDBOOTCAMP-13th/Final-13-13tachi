@@ -6,8 +6,10 @@ import {
   LikeItemType,
   BuyListType,
   OrderInfoType,
+  ShoppingOrderType,
 } from '@/types';
 import { LikePostType, MyPostType, Post, PostReply } from '@/types/post';
+import { CreatePostData, ApiRes } from '@/types/post';
 // import useUserStore from '@/zustand/useStore';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -305,3 +307,80 @@ export async function getRecipes(): ApiResPromise<Post[]> {
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
 }
+
+// 이미지 파일 업로드
+export async function uploadFile(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append('attach', file);
+
+  const res = await fetch(`${API_URL}/files/`, {
+    method: 'POST',
+    headers: {
+      'client-id': CLIENT_ID,
+    },
+    body: formData,
+  });
+    const data = await res.json();
+
+  if (!res.ok || data.ok !== 1 || !data.item?.length) {
+    throw new Error('파일 업로드 실패');
+  }
+
+  return data.item[0].path;
+}
+
+// 게시글 등록
+export async function createPost(
+  postData: CreatePostData
+): Promise<ApiRes<unknown>> {
+  const res = await fetch(`${API_URL}/posts/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${postData.accessToken ?? ''}`,
+    },
+    body: JSON.stringify(postData),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok || data.ok !== 1) {
+    return { ok: 0, message: data.message ?? '게시글 등록 실패' };
+  }
+
+  return data;
+}
+
+// 단일 상품 구매 정보 불러오기
+export async function getShoppingOrder({
+  id,
+  quantity,
+  accessToken,
+}: {
+  id: string;
+  quantity: string;
+  accessToken: string;
+}): ApiResPromise<ShoppingOrderType> {
+  const body = {
+    dryRun: true,
+    products: [
+      {
+        _id: Number(id),
+        quantity: Number(quantity),
+      },
+    ],
+  };
+
+  console.log('body', body);
+  const res = await fetch(`${API_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+

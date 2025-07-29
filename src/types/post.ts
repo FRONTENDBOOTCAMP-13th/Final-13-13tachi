@@ -62,6 +62,22 @@ export interface Post {
   };
 }
 
+export interface CreatePostData {
+  accessToken?: string;
+  type: string;
+  title: string;
+  content: string;
+  tag: string;
+  image?: string;
+}
+
+export interface ApiRes<T> {
+  ok: number;
+  message?: string;
+  data?: T;
+  errorName?: string;
+}
+
 /**
  * 게시글 작성/수정 폼에서 사용하는 타입
  * - Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>>: Post 타입에서 type, title, content, _id만 선택해 모두 옵셔널로 만듦
