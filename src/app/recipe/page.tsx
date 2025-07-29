@@ -2,8 +2,10 @@ import Link from 'next/link';
 import RecipeCarousel from './RecipeCarousel';
 import SearchBar from '@/components/common/SearchBar';
 import RecipeList from './RecipeList';
+import { getRecipes } from '@/data/functions/post';
 
-export default function RecipeListPage() {
+export default async function RecipeListPage() {
+  const res = await getRecipes();
   return (
     <>
       <div className="lg:max-w-5xl mx-auto pt-[4.0625rem] pb-[6.25rem]">
@@ -29,7 +31,7 @@ export default function RecipeListPage() {
 
         <RecipeCarousel />
         <h3 className="text-3xl text-dark-green font-bold">전체 레시피</h3>
-        <RecipeList />
+        {res.ok ? <RecipeList post={res.item} /> : <p>{res.message}</p>}
       </div>
     </>
   );
