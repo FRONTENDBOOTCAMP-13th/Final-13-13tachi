@@ -1,25 +1,12 @@
 'use client';
 
-import { getCartProducts } from '@/data/functions/post';
-import { ApiResCart, CartItemType } from '@/types';
-import useUserStore from '@/zustand/useStore';
-import { CircleEqualIcon, MinusCircle, PlusCircle } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Circle, CircleEqual, MinusCircle, PlusCircle } from 'lucide-react';
 
-export default function OrderTable() {
-  const { user } = useUserStore();
-  const accessToken = user?.token?.accessToken;
-  const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
+interface OrderTableType {
+  total: number;
+}
 
-  useEffect(() => {
-    if (accessToken) {
-      getCartProducts(accessToken).then(setRes);
-    }
-  }, [accessToken]);
-
-  if (!res) return <div>로딩중...</div>;
-  if (res.ok === 0) return <div>{res.message}</div>;
-
+export default function OrderTable({ total }: OrderTableType) {
   return (
     <table className="w-full text-center border-collapse table-fixed mb-10">
       <thead>
@@ -39,7 +26,7 @@ export default function OrderTable() {
       <tbody>
         <tr>
           <td className="border border-l-0 relative py-4">
-            <span>{(res.cost?.total ?? 0).toLocaleString()}</span>
+            <span>{total.toLocaleString()}</span>
             <PlusCircle className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
           </td>
           <td className="border relative py-4">
@@ -48,11 +35,12 @@ export default function OrderTable() {
           </td>
           <td className="border relative py-4">
             <span className="font-semibold">무료배송</span>
-            <CircleEqualIcon className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
+            <Circle className="text-black fill-white absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
+            <CircleEqual className="text-black  absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" />
           </td>
           <td className="border border-r-0 relative py-4">
             <span className="font-semibold text-dark-red">
-              {(res.cost?.total ?? 0).toLocaleString()}
+              {total.toLocaleString()}
             </span>
           </td>
         </tr>

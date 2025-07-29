@@ -1,12 +1,9 @@
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
 import OrderForm from '@/app/order/OrderForm';
+
 export default function Order() {
   return (
-    <>
-      <Header />
+    <main className="lg:w-[64rem] md:w-[44.25rem] w-80">
       <OrderForm />
-      <Footer />
-    </>
+    </main>
   );
 }
