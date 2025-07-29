@@ -1,6 +1,4 @@
 import Image from 'next/image';
-
-// 임시 이미지 불러오기
 import { LikePostItemType } from '@/types/post';
 import { Bookmark } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
@@ -10,14 +8,15 @@ interface LikePostActionType {
   deleteAction: (FormData: FormData) => void;
 }
 
-export default function LikeRecipeItem({
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export default function BookmarkRecipeItem({
   item,
   action,
 }: {
   item: LikePostItemType;
   action: LikePostActionType;
 }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
 
   return (

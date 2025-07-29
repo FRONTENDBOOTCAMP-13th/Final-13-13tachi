@@ -1,32 +1,25 @@
 import Image from 'next/image';
-
-// 임시 이미지 불러오기
-
 import Button from '@/components/common/Button';
 import { ProductItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import CustomLink from '@/components/common/CustomLink';
 import Link from 'next/link';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 interface BuyItemActionProps {
   addAction: (FormData: FormData) => void;
 }
 
-export default function BuyItem({
+export default function OrderItem({
   item,
   action,
 }: {
   item: ProductItemType;
   action: BuyItemActionProps;
 }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
 
-  console.log('전체', item);
-  console.log('아이디', item._id);
-  console.log('이미지', item.image);
-
-  console.log('3번 호출');
   return (
     <div className="flex md:flex-row md:justify-between flex-col w-full gap-5">
       <div className="flex flex-row items-center gap-3.5">

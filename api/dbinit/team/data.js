@@ -21,7 +21,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 역삼동 123',
         type: 'admin',
         loginType: 'email',
-        image: `files/${clientId}/user-muzi.png`,
+        image: `files/${clientId}/profile1.jpg`,
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         extra: {
@@ -38,7 +38,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'seller',
         loginType: 'email',
-        image: `files/${clientId}/user-neo.png`,
+        image: `files/${clientId}/profile3.jpg`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -55,7 +55,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'seller',
         loginType: 'email',
-        image: `files/${clientId}/user-neo.png`,
+        image: `files/${clientId}/profile2.jpg`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -922,12 +922,119 @@ export const initData = async (clientId, nextSeq) => {
           isBest: false,
           category: ['양송이버섯', '채소'],
           details: '150g',
+          info: [
+            '큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.',
+            '당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.',
+            '크기가 다양하고 모양이 개성 있어요.',
+          ],
+          storage: ['습기 없이 냉장보관 / 5일'],
         },
       },
     ],
 
     // 주문
-    order: [],
+    order: [
+      {
+        _id: await nextSeq('order'),
+        user_id: 1,
+        state: 'OS020',
+        products: [
+          {
+            _id: 1,
+            seller_id: 2,
+            state: 'OS020',
+            name: '바니바니바니바니 당근당근1',
+            image: {
+              path: `/files/${clientId}/product-1.jpeg`,
+              name: 'product-1.jpeg',
+              originalname: 'product-1.jpeg',
+            },
+            quantity: 2,
+            price: 1990,
+            review_id: 3,
+            extra: {
+              isBest: true,
+              category: ['당근', '채소'],
+              details: '150g',
+            },
+          },
+        ],
+        cost: {
+          products: 3980,
+          shippingFees: 0,
+          discount: {
+            products: 0,
+            shippingFees: 0,
+          },
+          total: 3980,
+        },
+        address: {
+          name: '회사',
+          value: '서울시 강남구 신사동 234',
+        },
+        createdAt: getTime(-6, -60 * 60 * 3),
+        updatedAt: getTime(-6, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq('order'),
+        user_id: 1,
+        state: 'OS010',
+        products: [
+          {
+            _id: 2,
+            seller_id: 2,
+            state: 'OS010',
+            name: '고구마 답답이1',
+            image: {
+              path: `/files/${clientId}/product-2.jpeg`,
+              name: 'product-2.jpeg',
+              originalname: 'product-2.jpeg',
+            },
+            quantity: 1,
+            price: 2990,
+            extra: {
+              isBest: true,
+              category: ['고구마', '과일'],
+              details: '500g',
+            },
+          },
+          {
+            _id: 3,
+            seller_id: 1,
+            state: 'OS010',
+            name: '브라운 양송이버섯1',
+            image: {
+              path: `/files/${clientId}/product-3.jpeg`,
+              name: 'product-3.jpeg',
+              originalname: 'product-3.jpeg',
+            },
+            quantity: 2,
+            price: 2150,
+            review_id: 2,
+            extra: {
+              isBest: false,
+              category: ['양송이버섯', '채소'],
+              details: '150g',
+            },
+          },
+        ],
+        cost: {
+          products: 7290,
+          shippingFees: 0,
+          discount: {
+            products: 0,
+            shippingFees: 0,
+          },
+          total: 7290,
+        },
+        address: {
+          name: '집',
+          value: '서울시 강남구 역삼동 123',
+        },
+        createdAt: getTime(-4, -60 * 60 * 22),
+        updatedAt: getTime(-2, -60 * 60 * 12),
+      },
+    ],
 
     // 후기
     review: [],
@@ -956,6 +1063,7 @@ export const initData = async (clientId, nextSeq) => {
         },
         type: 'product',
         target_id: 1,
+        memo: '첫째 크리스마스 선물.',
         createdAt: getTime(-3, -60 * 60 * 2),
       },
       {
@@ -968,6 +1076,7 @@ export const initData = async (clientId, nextSeq) => {
         },
         type: 'product',
         target_id: 2,
+        memo: '둘째 생일 선물',
         createdAt: getTime(-1, -60 * 60 * 12),
       },
       {
@@ -980,6 +1089,7 @@ export const initData = async (clientId, nextSeq) => {
         },
         type: 'post',
         target_id: 1,
+        memo: '크기 문의글 북마크',
         createdAt: getTime(-1, -60 * 60 * 12),
       },
     ],

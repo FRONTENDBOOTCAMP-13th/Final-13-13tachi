@@ -1,10 +1,8 @@
 import Image from 'next/image';
-
-// 임시 이미지 불러오기
 import emptyPic from '../../../../images/bookmark.png';
 import CustomLink from '@/components/common/CustomLink';
 
-export default function EmptyLikeRecipe() {
+export default function EmptyBookmarkRecipe() {
   return (
     <div className="h-full flex flex-col justify-center items-center">
       <Image

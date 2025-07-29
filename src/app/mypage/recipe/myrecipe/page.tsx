@@ -1,10 +1,4 @@
-// import Image from 'next/image';
-
-// import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
-
-// 레시피 목록 불러오기
-
-import MyRecipeList from '@/app/mypage/recipe/myrecipe/MyRecipeList';
+import MyRecipeList from '@/app/mypage/recipe/myRecipe/MyRecipeList';
 
 export default async function MyRecipe() {
   return (
