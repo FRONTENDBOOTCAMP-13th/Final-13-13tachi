@@ -135,7 +135,7 @@ export default function EditForm() {
             })}
           />
           {errors.password && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400 break-words w-[20rem]">
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
               {errors.password.message}
             </p>
           )}
