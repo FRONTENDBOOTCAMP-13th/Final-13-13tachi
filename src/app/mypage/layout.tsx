@@ -4,8 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-// 임시 이미지 불러오기
-
 import {
   BookOpen,
   Heart,
@@ -16,7 +14,11 @@ import {
 } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function RootLayout({
   children,
 }: {
@@ -26,8 +28,10 @@ export default function RootLayout({
   console.log(pathname);
   const isActive = (path: string) => (pathname === path ? 'mypage-active' : '');
   const { user } = useUserStore();
+  const { resetUser } = useUserStore();
 
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
@@ -35,9 +39,27 @@ export default function RootLayout({
     }
   }, [user]);
 
+  //로그아웃 시 토큰 삭제
+  const handleLogout = () => {
+    resetUser();
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userInfo');
+    Swal.fire({
+      icon: 'info',
+      title: '로그아웃 완료',
+      text: '로그아웃이 완료 되었습니다.',
+      confirmButtonText: '확인',
+    }).then(result => {
+      if (result.isConfirmed) {
+        router.replace('/');
+      }
+    });
+  };
+
   return (
-    <>
-      <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:p-[1.125rem]">
+    <main>
+      <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:px-[1.125rem]">
         <div className="flex flex-row lg:w-5xl md:w-[44.25rem] w-80">
           <div className="flex flex-col gap-[2.1875rem]">
             <h2 className="text-sm text-gray">
@@ -94,8 +116,8 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/likes"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/likes')} `}
+                      href="/mypage/wish"
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/wish')} `}
                     >
                       <Heart width={16} />
                       <span>내가 찜한 상품</span>
@@ -103,8 +125,8 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/buylist"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/buylist')} ${isActive('/mypage/buyinfo')}`}
+                      href="/mypage/order"
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/order')} ${isActive('/mypage/buyinfo')}`}
                     >
                       <ReceiptText width={16} />
                       <span>주문내역</span>
@@ -113,7 +135,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/recipe"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myrecipe')} ${isActive('/mypage/recipe/likerecipe')}`}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe')} ${isActive('/mypage/recipe/likerecipe')}`}
                     >
                       <BookOpen width={16} />
                       <span>레시피</span>
@@ -121,29 +143,29 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/myuser"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/myuser')} `}
+                      href="/mypage/user"
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
                     >
                       <IdCard width={16} />
                       <span>회원정보</span>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href=""
+                    <button
+                      onClick={handleLogout}
                       className="flex flex-row gap-2 hover:text-[var(--color-dark-green)] hover:font-semibold"
                     >
                       <LogOut width={16} />
                       <span>로그아웃</span>
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </aside>
-              <main className="">{children}</main>
+              <>{children}</>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }

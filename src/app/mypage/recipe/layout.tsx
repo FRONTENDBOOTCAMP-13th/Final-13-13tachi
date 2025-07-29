@@ -21,15 +21,15 @@ export default function RootLayout({
             <li>
               <Link
                 href="/mypage/recipe/myrecipe"
-                className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myrecipe')} `}
+                className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} `}
               >
                 <h3>나의 레시피</h3>
               </Link>
             </li>
             <li>
               <Link
-                href="/mypage/recipe/likerecipe"
-                className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/likerecipe')} `}
+                href="/mypage/recipe/bookmarkRecipe"
+                className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/bookmarkRecipe')} `}
               >
                 <h3>레시피 북마크</h3>
               </Link>

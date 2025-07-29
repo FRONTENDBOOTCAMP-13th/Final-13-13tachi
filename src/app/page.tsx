@@ -10,7 +10,7 @@ export default async function Home() {
   const products: ProductType[] = res.ok === 1 ? res.item : [];
 
   return (
-    <>
+    <main>
       <div>
         {/* ST: 메인 슬라이드 */}
         <div className="max-w-full mx-auto">
@@ -35,6 +35,6 @@ export default async function Home() {
         <MainProductLists products={products} />
         {/* ED: 상품 리스트 */}
       </div>
-    </>
+    </main>
   );
 }

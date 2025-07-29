@@ -1,19 +1,16 @@
 'use client';
-
-import EmptyLikes from '@/app/mypage/likes/EmptyLikes';
-import LikeItemForm from '@/app/mypage/likes/LikeItemForm';
-import Loading from '@/app/mypage/likes/Loading';
+import EmptyWish from '@/app/mypage/wish/EmptyWish';
+import Loading from '@/app/mypage/wish/Loading';
+import WishItem from '@/app/mypage/wish/WishItem';
 import { AddCart, deleteLike } from '@/data/actions/cart';
-
 import { getLikeProducts } from '@/data/functions/post';
 import { ApiRes, LikeItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useRouter } from 'next/navigation';
-
 import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-export default function LikeList() {
+export default function WishList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const [res, setRes] = useState<ApiRes<LikeItemType[]> | null>(null);
@@ -78,16 +75,10 @@ export default function LikeList() {
     return <Loading />;
   }
 
-  // const items =
-  //   res &&
-  //   Object.entries(res)
-  //     .filter(([key]) => key !== 'ok')
-  //     .map(([, value]) => value as LikeItemType);
-
   if (res.ok && res.item.length === 0) {
     return (
       <div className="h-full">
-        <EmptyLikes />
+        <EmptyWish />
       </div>
     );
   }
@@ -96,7 +87,7 @@ export default function LikeList() {
     <div className="flex flex-col gap-2.5">
       {res.ok ? (
         res.item.map((item: LikeItemType) => (
-          <LikeItemForm
+          <WishItem
             key={item._id}
             item={{
               _id: item.product?._id,

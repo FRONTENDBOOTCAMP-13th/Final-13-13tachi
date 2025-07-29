@@ -7,6 +7,7 @@ import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function LoginForm() {
   const router = useRouter();
@@ -50,13 +51,20 @@ export default function LoginForm() {
         localStorage.setItem('userInfo', JSON.stringify(userState.item));
       }
 
-      alert('로그인이 완료되었습니다.');
-
-      if (redirect) {
-        router.replace(redirect); // 돌아갈 페이지가 있을 경우 이동한다.
-      } else {
-        router.push('/'); // 이전 페이지로 이동한다.
-      }
+      Swal.fire({
+        icon: 'success',
+        title: '로그인 완료',
+        text: '로그인이 완료되었습니다.',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) {
+          if (redirect) {
+            router.replace(redirect);
+          } else {
+            router.push('/');
+          }
+        }
+      });
     } else {
       if (!userState?.errors && userState?.message) {
         // 입력값 검증에러가 아닌 경우

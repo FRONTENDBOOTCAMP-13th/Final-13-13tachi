@@ -1,6 +1,6 @@
 'use client';
 
-import BuyInfoItem from '@/app/mypage/buylist/[_id]/BuyinfoItem';
+import OrderInfoItem from '@/app/mypage/order/[_id]/OrderInfoItem';
 import Button from '@/components/common/Button';
 import CustomLink from '@/components/common/CustomLink';
 import { OrderInfoItemType, ProductItemType } from '@/types';
@@ -8,7 +8,8 @@ import { OrderInfoItemType, ProductItemType } from '@/types';
 interface BuyListActionProps {
   addAction: (FormData: FormData) => void;
 }
-export default function BuyInfoItemList({
+
+export default function OrderInfoList({
   item,
   action,
 }: {
@@ -25,7 +26,7 @@ export default function BuyInfoItemList({
       <div className="flex flex-col justify-center items-center border-1 rounded-lg border-light-gray md:p-[1.125rem] p-3">
         <div className="flex flex-col w-full gap-[2.125rem]">
           {item.products.map((product: ProductItemType) => (
-            <BuyInfoItem
+            <OrderInfoItem
               key={product._id}
               item={{
                 _id: product._id,

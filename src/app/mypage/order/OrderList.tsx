@@ -1,12 +1,8 @@
 'use client';
-// import Image from 'next/image';
 
-// 임시 이미지 불러오기
-// import profilePic from '../../../images/profile.jpg';
-// import Button from '@/components/common/Button';
-import BuyItemList from '@/app/mypage/buylist/BuyItemList';
-import EmptyBuyList from '@/app/mypage/buylist/EmptyBuyList';
-import Loading from '@/app/mypage/buylist/Loading';
+import EmptyOrder from '@/app/mypage/order/EmptyOrder';
+import Loading from '@/app/mypage/order/Loading';
+import OrderItemList from '@/app/mypage/order/OrderItemList';
 import { AddCart } from '@/data/actions/cart';
 import { BuyProducts } from '@/data/functions/post';
 import { ApiRes, BuyListType } from '@/types';
@@ -15,14 +11,13 @@ import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-export default function BuyList() {
+export default function OrderList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const router = useRouter();
 
   const [res, setRes] = useState<ApiRes<BuyListType[]> | null>(null);
-  const [addState, AddAction, isAdding] = useActionState(AddCart, null);
-  console.log(isAdding);
+  const [addState, AddAction] = useActionState(AddCart, null);
 
   useEffect(() => {
     if (accessToken === null || accessToken === undefined) {
@@ -60,7 +55,7 @@ export default function BuyList() {
   if (res.ok && res.item.length === 0) {
     return (
       <div className="h-full">
-        <EmptyBuyList />
+        <EmptyOrder />
       </div>
     );
   }
@@ -69,7 +64,7 @@ export default function BuyList() {
     <div className="flex flex-col mb-9">
       {res.ok ? (
         res.item.map((item: BuyListType) => (
-          <BuyItemList
+          <OrderItemList
             key={item._id}
             item={{
               _id: item._id,

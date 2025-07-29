@@ -6,6 +6,7 @@ import {
   LikeItemType,
   BuyListType,
   OrderInfoType,
+  ShoppingOrderType,
 } from '@/types';
 import { LikePostType, MyPostType, Post, PostReply } from '@/types/post';
 import { CreatePostData, ApiRes } from '@/types/post';
@@ -360,7 +361,7 @@ export async function addBookmark(accessToken: string, postId: number) {
       'Client-Id': CLIENT_ID,
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({ target_id: postId }), // 여기서 key는 target_id입니다!
+    body: JSON.stringify({ target_id: postId }), // key는 target_id 입니다
   });
 
   const data = await res.json();
@@ -385,4 +386,38 @@ export async function deleteBookmark(accessToken: string, bookmarkId: number) {
     throw new Error(data.message || '북마크 삭제 실패');
   }
   return data;
+}
+
+// 단일 상품 구매 정보 불러오기
+export async function getShoppingOrder({
+  id,
+  quantity,
+  accessToken,
+}: {
+  id: string;
+  quantity: string;
+  accessToken: string;
+}): ApiResPromise<ShoppingOrderType> {
+  const body = {
+    dryRun: true,
+    products: [
+      {
+        _id: Number(id),
+        quantity: Number(quantity),
+      },
+    ],
+  };
+
+  console.log('body', body);
+  const res = await fetch(`${API_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+  return res.json();
 }

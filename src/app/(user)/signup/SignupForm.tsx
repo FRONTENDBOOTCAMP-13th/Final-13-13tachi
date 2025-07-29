@@ -7,9 +7,11 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import AddressForm from '@/components/common/Address';
+import Swal from 'sweetalert2';
 
 export interface SignupFormProps {
   email: string;
+  image: string;
   password: string;
   passwordConfirm: string;
   name: string;
@@ -30,12 +32,45 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
+  const profileImages = [
+    'files/febc13-final13-emjf/profile1.jpg',
+    'files/febc13-final13-emjf/profile2.jpg',
+    'files/febc13-final13-emjf/profile3.jpg',
+    'files/febc13-final13-emjf/profile4.jpg',
+    'files/febc13-final13-emjf/profile5.jpg',
+    'files/febc13-final13-emjf/profile6.jpg',
+    'files/febc13-final13-emjf/profile7.jpg',
+    'files/febc13-final13-emjf/profile8.jpg',
+    'files/febc13-final13-emjf/profile9.jpg',
+    'files/febc13-final13-emjf/profile10.jpg',
+    'files/febc13-final13-emjf/profile11.jpg',
+    'files/febc13-final13-emjf/profile12.jpg',
+  ];
+
+  function getRandomImage() {
+    const randomNum = Math.floor(Math.random() * profileImages.length);
+    return profileImages[randomNum];
+  }
+
   useEffect(() => {
     if (state?.ok) {
-      alert('회원 가입이 완료되었습니다');
-      router.replace('/login');
+      Swal.fire({
+        icon: 'success',
+        title: '회원가입 완료',
+        text: '회원 가입이 완료되었습니다.',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) {
+          router.replace('/login');
+        }
+      });
     } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
+      Swal.fire({
+        icon: 'error',
+        title: '회원가입 실패',
+        text: state?.message || '문제가 발생했습니다. 다시 시도해주세요.',
+        confirmButtonText: '확인',
+      });
     }
   }, [state, router]);
 
@@ -44,6 +79,7 @@ export default function SignupForm() {
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value as string);
     });
+    formData.append('image', getRandomImage());
     startTransition(() => {
       formAction(formData);
     });
@@ -105,7 +141,6 @@ export default function SignupForm() {
         </div>
         <div>
           <Input
-            width="md"
             id="password"
             type="password"
             placeholder="비밀번호를 입력하세요"
@@ -204,13 +239,18 @@ export default function SignupForm() {
             id="phone"
             type="text"
             autoComplete="tel"
-            placeholder="전화번호를 입력하세요"
+            placeholder="000-0000-0000 형식으로 입력하세요"
             className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
             {...register('phone', {
               required: '전화번호를 입력해주세요',
-              pattern: {
-                value: /^[0-9-]+$/,
-                message: '숫자와 하이픈(-)만 입력 가능합니다',
+              validate: value => {
+                if (!/^[0-9-]+$/.test(value)) {
+                  return '숫자와 하이픈(-)만 입력 가능합니다';
+                }
+                if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(value)) {
+                  return '000-0000-0000 형식이어야 합니다';
+                }
+                return true;
               },
             })}
           />

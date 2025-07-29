@@ -1,27 +1,25 @@
 'use client';
 
 import Image from 'next/image';
-
-// 임시 이미지 불러오기
-
 import Button from '@/components/common/Button';
 import { LikeItemProps } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface LikeItemActionProps {
   addAction: (FormData: FormData) => void;
   deleteAction: (FormData: FormData) => void;
 }
 
-export default function LikeItemForm({
+export default function WishItem({
   item,
   action,
 }: {
   item: LikeItemProps;
   action: LikeItemActionProps;
 }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
 
   return (

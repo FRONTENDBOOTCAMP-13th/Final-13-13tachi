@@ -5,25 +5,20 @@ import { getLikeRecipe } from '@/data/functions/post';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { LikePostType } from '@/types/post';
-import LikeRecipeItem from '@/app/mypage/recipe/likerecipe/LikeRecipeItem';
-
 import CustomLink from '@/components/common/CustomLink';
-import EmptyLikeRecipe from '@/app/mypage/recipe/likerecipe/EmptyLikeRecipe';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { deleteBookmark } from '@/data/actions/post';
-import Loading from '@/app/mypage/recipe/likerecipe/Loading';
+import EmptyLikeRecipe from '@/app/mypage/recipe/bookmarkRecipe/EmptyBookmarkRecipe';
+import BookmarkRecipeItem from '@/app/mypage/recipe/bookmarkRecipe/BookmarkRecipeItem';
+import Loading from '@/app/mypage/recipe/bookmarkRecipe/Loading';
 
-export default function LikeRecipeList() {
+export default function BookmarkRecipeList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const router = useRouter();
   const [res, setRes] = useState<ApiRes<LikePostType[]> | null>(null);
-  const [deleteState, deleteAction, isDeleting] = useActionState(
-    deleteBookmark,
-    null,
-  );
-  console.log(deleteState, isDeleting);
+  const [deleteState, deleteAction] = useActionState(deleteBookmark, null);
 
   useEffect(() => {
     if (accessToken === null || accessToken === undefined) {
@@ -65,14 +60,6 @@ export default function LikeRecipeList() {
     return <Loading />;
   }
 
-  console.log('1');
-  console.log(res);
-  // const items =
-  //   res &&
-  //   Object.entries(res)
-  //     .filter(([key]) => key !== 'ok')
-  //     .map(([, value]) => value as LikePostType);
-
   if (res.ok && res.item.length === 0) {
     return <EmptyLikeRecipe />;
   }
@@ -82,7 +69,7 @@ export default function LikeRecipeList() {
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 w-fit gap-x-6 gap-y-5 mx-auto">
         {res.ok ? (
           res.item.map((item: LikePostType) => (
-            <LikeRecipeItem
+            <BookmarkRecipeItem
               key={item._id}
               item={{
                 _id: item._id,

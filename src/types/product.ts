@@ -157,3 +157,11 @@ export interface ProductCard {
   accessToken: string;
   user?: User | null;
 }
+
+// 상품 단일 구매 타입
+export interface ShoppingOrderType {
+  products: ProductItemType[];
+  cost: {
+    total?: number;
+  };
+}

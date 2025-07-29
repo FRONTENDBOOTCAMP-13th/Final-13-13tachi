@@ -1,40 +1,64 @@
 'use client';
 
-import Link from 'next/link';
-
 import PayForm from '@/app/order/PayForm';
-import OrderTable from '@/app/order/OrderTable';
 import Button from '@/components/common/Button';
-import OrderList from '@/app/order/OrderList';
 import OrderUserForm from '@/app/order/OrderUserForm';
 import useUserStore from '@/zustand/useStore';
 import { useActionState, useEffect, useState } from 'react';
-import { ApiResCart, CartItemType, UserInfoType } from '@/types';
-import { getCartProducts } from '@/data/functions/post';
-import { createOrder } from '@/data/actions/cart';
+import {
+  ApiRes,
+  ApiResCart,
+  CartItemType,
+  ShoppingOrderType,
+  UserInfoType,
+} from '@/types';
+import { getCartProducts, getShoppingOrder } from '@/data/functions/post';
+import { createOrder, createShoppingOrder } from '@/data/actions/cart';
+import OrderList from '@/app/order/OrderList';
+import OrderTable from '@/app/order/OrderTable';
+import { useSearchParams } from 'next/navigation';
 
 export default function OrderForm() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const [res, setRes] = useState<ApiResCart<CartItemType[]> | null>(null);
+  const [shoppingRes, setShoppingRes] =
+    useState<ApiRes<ShoppingOrderType> | null>(null);
   const [userFormData, setUserFormData] = useState<UserInfoType | null>(null);
   const [orderState, orderAction, isOrdering] = useActionState(
     createOrder,
     null,
   );
+  const [, shoppingOrderAction] = useActionState(createShoppingOrder, null);
   console.log(orderState, isOrdering);
+  const id = useSearchParams().get('id');
+  const quantity = useSearchParams().get('quantity');
 
   useEffect(() => {
     if (accessToken) {
-      getCartProducts(accessToken).then(setRes);
+      if (id && quantity) {
+        getShoppingOrder({ id, quantity, accessToken }).then(setShoppingRes);
+      } else {
+        getCartProducts(accessToken).then(setRes);
+      }
     }
   }, [accessToken]);
-  const products = res?.ok
-    ? res.item.map(item => ({
-        _id: Number(item.product_id),
-        quantity: Number(item.quantity),
-      }))
-    : [];
+  const products =
+    id && quantity
+      ? shoppingRes?.ok
+        ? [
+            {
+              _id: shoppingRes.item.products[0]._id,
+              quantity: shoppingRes.item.products[0].quantity,
+            },
+          ]
+        : []
+      : res?.ok
+        ? res.item.map(item => ({
+            _id: Number(item.product_id),
+            quantity: Number(item.quantity),
+          }))
+        : [];
 
   //주문자 정보 입력 확인
   const handleClientValidation = (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,67 +73,112 @@ export default function OrderForm() {
     }
   };
 
-  if (!res) return <div>로딩 중...</div>;
-  if (res.ok === 0) return <div>{res.message}</div>;
+  // id, quantity가 있을 때(단일 상품 주문)
+  if (id && quantity) {
+    if (!shoppingRes) return <div>로딩 중...</div>;
+    if (shoppingRes.ok === 0) return <div>{shoppingRes.message}</div>;
+  } else {
+    // 장바구니 주문
+    if (!res) return <div>로딩 중...</div>;
+    if (res.ok === 0) return <div>{res.message}</div>;
+  }
 
   return (
-    <form action={orderAction} onSubmit={handleClientValidation}>
-      <input
-        type="hidden"
-        name="accessToken"
-        value={user?.token?.accessToken ?? ''}
-      />
-      <input type="hidden" name="products" value={JSON.stringify(products)} />
-      <input
-        type="hidden"
-        name="user"
-        value={userFormData ? JSON.stringify(userFormData) : ''}
-      />
-      <input type="hidden" name="total" value={res.cost?.total} />
-
-      <main className="flex flex-col min-h-screen items-center">
-        <div className="lg:w-[64rem] flex flex-col mb-[1.875rem]">
-          <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
-            <Link href="/">HOME</Link>
-            <span>{' > '}</span>
-            <Link href="/recipe/list">주문 정보 입력</Link>
-          </h2>
-
-          <h3 className="lg:w-full lg:text-5xl font-semibold mb-[2.1875rem]">
-            주문하기
-          </h3>
-
-          <hr className="text-light-gray w-full " />
-
-          <div className="flex flex-col gap-5 my-[1.875rem]">
-            <OrderList />
+    <div>
+      {id && quantity ? (
+        shoppingRes?.ok ? (
+          <div>
+            <div className="flex flex-col md:gap-8 gap-5 md:my-[1.875rem] my-5">
+              <OrderList
+                items={shoppingRes.item.products.map(item => ({
+                  _id: item._id,
+                  product_id: item._id,
+                  quantity: item.quantity,
+                  product: {
+                    _id: item._id,
+                    quantity: item.quantity,
+                    name: item.name,
+                    price: item.price / item.quantity,
+                    image: item.image,
+                    extra: item.extra,
+                  },
+                }))}
+              />
+            </div>
+            <OrderTable total={shoppingRes.item.cost.total ?? 0} />
           </div>
-          <OrderTable />
-          <div className="flex flex-col lg:flex-row justify-between gap-[2rem]">
-            <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
-              <h3 className="lg:text-xl font-bold mb-[0.75rem]">주문자 정보</h3>
-              <hr className="text-light-gray w-full mb-[1.5rem]" />
-              <OrderUserForm onChangeUserData={setUserFormData} />
-            </div>
-            <div className="flex flex-col justify-between">
-              <PayForm />
-              <p className="font-semibold text-lg">
-                총금액 :{' '}
-                <span className="text-dark-red text-5xl font-bold">
-                  {(res.cost?.total ?? 0).toLocaleString()}
-                </span>
-                원
-              </p>
-            </div>
+        ) : (
+          <p>{}</p>
+        )
+      ) : res?.ok ? (
+        <div>
+          <div className="flex flex-col md:gap-8 gap-5 md:my-[1.875rem] my-5">
+            <OrderList items={res.item} />
+          </div>
+          <OrderTable total={res.cost?.total ?? 0} />
+        </div>
+      ) : (
+        <p>{}</p>
+      )}
+
+      <form
+        action={id && quantity ? shoppingOrderAction : orderAction}
+        onSubmit={handleClientValidation}
+      >
+        <input
+          type="hidden"
+          name="accessToken"
+          value={user?.token?.accessToken ?? ''}
+        />
+        <input type="hidden" name="products" value={JSON.stringify(products)} />
+        <input
+          type="hidden"
+          name="user"
+          value={userFormData ? JSON.stringify(userFormData) : ''}
+        />
+        <input
+          type="hidden"
+          name="total"
+          value={
+            id && quantity
+              ? shoppingRes?.ok
+                ? (shoppingRes.item.cost.total ?? 0)
+                : 0
+              : res?.ok
+                ? (res.cost?.total ?? 0)
+                : 0
+          }
+        />
+        <div className="flex flex-col lg:flex-row justify-between gap-[2rem]">
+          <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
+            <h3 className="lg:text-xl font-bold mb-[0.75rem]">주문자 정보</h3>
+            <hr className="text-light-gray w-full mb-[1.5rem]" />
+            <OrderUserForm onChangeUserData={setUserFormData} />
+          </div>
+          <div className="flex flex-col justify-between">
+            <PayForm />
+            <p className="font-semibold text-lg">
+              총금액 :{' '}
+              <span className="text-dark-red text-5xl font-bold">
+                {(id && quantity
+                  ? shoppingRes?.ok
+                    ? (shoppingRes.item.cost.total ?? 0)
+                    : 0
+                  : res?.ok
+                    ? (res.cost?.total ?? 0)
+                    : 0
+                ).toLocaleString()}
+              </span>
+              원
+            </p>
           </div>
         </div>
-
         <div className="flex justify-center mt-20 mb-[6.25rem]">
           <Button size="xxl" variant="green">
             결제하기
           </Button>
         </div>
-      </main>
-    </form>
+      </form>
+    </div>
   );
 }
