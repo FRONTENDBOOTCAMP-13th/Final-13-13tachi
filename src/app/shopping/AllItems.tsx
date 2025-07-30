@@ -3,16 +3,23 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
-import { ApiRes, LikeItemType } from '@/types';
+import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { getLikeProducts } from '@/data/functions/post';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
+import { Search } from 'lucide-react';
+import CustomLink from '@/components/common/CustomLink';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
-export default function AllItems() {
+type AllItemsProps = {
+  products?: ProductType[];
+  searchKeyword?: string;
+};
+
+export default function AllItems({ products, searchKeyword }: AllItemsProps) {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
 
@@ -22,6 +29,7 @@ export default function AllItems() {
   const searchParams = useSearchParams();
   const tabParam = searchParams?.get('tab');
   const categories = ['전체', '채소', '과일'];
+
   // tabParam이 categories에 포함되어 있으면 그 값, 아니면 '전체'로 초기화
   const initialTab =
     tabParam && categories.includes(tabParam) ? tabParam : '전체';
@@ -32,7 +40,6 @@ export default function AllItems() {
     if (tabParam && categories.includes(tabParam)) {
       setActiveTab(tabParam);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tabParam]);
 
   useEffect(() => {
@@ -76,7 +83,9 @@ export default function AllItems() {
       },
     });
 
-  const allItems = data ? data.pages.flatMap(page => page.item) : [];
+  // product 프롭스가 있으면 그걸 사용, 없으면 data 사용
+  const allItems =
+    products ?? (data ? data.pages.flatMap(page => page.item) : []);
 
   const { ref, inView } = useInView();
 
@@ -123,12 +132,30 @@ export default function AllItems() {
           정렬기준
         </button>
       </div>
-      <ProductCard
-        filteredItems={filteredItems}
-        likeRes={likeRes!}
-        accessToken={accessToken!}
-        user={user}
-      />
+      {products && filteredItems.length === 0 ? (
+        <div className="text-center py-12">
+          <Search className="mx-auto h-16 w-16 text-gray-300 mb-4" />
+          <p className="text-gray-600 mb-2">
+            &quot;{searchKeyword}&quot;에 대한 검색 결과가 없습니다.
+          </p>
+          <p className="text-gray-500">
+            다른 검색어를 사용하거나 전체 레시피를 확인해보세요.
+          </p>
+          <div className="lg:mt-[4.0625rem]">
+            <CustomLink href="/shopping" variant="orange" size="xl">
+              전체 레시피 보기
+            </CustomLink>
+          </div>
+        </div>
+      ) : (
+        <ProductCard
+          filteredItems={filteredItems}
+          likeRes={likeRes!}
+          accessToken={accessToken!}
+          user={user}
+        />
+      )}
+
       {hasNextPage ? (
         <p
           ref={ref}
