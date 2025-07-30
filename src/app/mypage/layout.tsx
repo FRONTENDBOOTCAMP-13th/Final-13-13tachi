@@ -64,7 +64,7 @@ export default function RootLayout({
           <div className="flex flex-col gap-[2.1875rem]">
             <h2 className="text-sm text-gray">
               <Link href="/">HOME</Link>
-              <span>{' > '}</span>
+              &nbsp;&gt;&nbsp;
               <Link href="/mypage">마이페이지</Link>
               <p className="mt-5 text-4xl font-semibold text-black">
                 마이페이지
