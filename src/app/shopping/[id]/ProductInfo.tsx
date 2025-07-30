@@ -63,7 +63,7 @@ export default function ProductInfo({
         </h3>
         <div className="flex items-center border-t border-light-gray lg:gap-16 lg:mt-4 lg:pt-6 lg:pl-6">
           <div className="flex items-center lg:gap-4 lg:w-[15rem]">
-            <div className="relative aspect-square lg:w-[6.25rem]">
+            <div className="relative aspect-square rounded-lg overflow-hidden lg:w-[6.25rem]">
               <Image
                 src={`${API_URL}/${seller.item.image}`}
                 alt={`${seller.item.extra.farmName} 의 ${seller.item.name} 농부님 이미지`}
