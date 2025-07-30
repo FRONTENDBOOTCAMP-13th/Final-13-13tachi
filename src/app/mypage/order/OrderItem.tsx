@@ -57,7 +57,7 @@ export default function OrderItem({
           value={user?.token?.accessToken ?? ''}
         />
         <input type="hidden" name="_id" value={item._id} />
-        <CustomLink href="/recipe/write" size="lg" variant="green">
+        <CustomLink href="/recipe/write" size="xxs" variant="green">
           레시피 작성하기
         </CustomLink>
         <form action={action.addAction}>
@@ -68,7 +68,7 @@ export default function OrderItem({
           />
           <input type="hidden" name="product_id" value={item._id} />
           <input type="hidden" name="quantity" value={+1} />
-          <Button size="lg" variant="white">
+          <Button size="xxs" variant="white">
             장바구니 담기
           </Button>
         </form>
