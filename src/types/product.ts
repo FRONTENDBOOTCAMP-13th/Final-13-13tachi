@@ -17,6 +17,8 @@ export interface ProductType {
     sort?: number;
     details?: string;
     isBest?: boolean;
+    info?: string[];
+    storage?: string[];
   };
 }
 
@@ -163,5 +165,16 @@ export interface ShoppingOrderType {
   products: ProductItemType[];
   cost: {
     total?: number;
+  };
+}
+
+// 단일 회원 정보 타입
+export interface MemberType {
+  _id: number;
+  name: string;
+  image: string;
+  extra: {
+    farmName?: string;
+    info?: string[];
   };
 }
