@@ -5,6 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Dropdown() {
@@ -12,22 +15,29 @@ export default function Dropdown() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user } = useUserStore();
+  const router = useRouter();
 
   //로그아웃 시 토큰 삭제
-  const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    await signOut({ redirect: false });
+
     resetUser();
+
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
+
     Swal.fire({
       icon: 'info',
       title: '로그아웃 완료',
       text: '로그아웃이 완료 되었습니다.',
       confirmButtonText: '확인',
     });
-  };
 
+    router.push('/');
+  };
   // 바깥 아무곳이나 클릭 시 드롭다운 닫아짐
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
