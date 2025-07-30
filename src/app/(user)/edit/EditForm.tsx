@@ -86,7 +86,7 @@ export default function EditForm() {
         confirmButtonText: '확인',
       }).then(result => {
         if (result.isConfirmed) {
-          router.replace('/mypage/myuser');
+          router.replace('/mypage/user');
         }
       });
     } else if (state?.ok === 0 && !state?.errors) {
