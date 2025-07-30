@@ -14,10 +14,10 @@ export default function MainSlide() {
       navigation={true}
       modules={[Navigation, Pagination, Autoplay]}
       loop={true}
-      // autoplay={{
-      //   delay: 7000,
-      //   disableOnInteraction: false,
-      // }}
+      autoplay={{
+        delay: 7000,
+        disableOnInteraction: false,
+      }}
       speed={1000}
       className="main-slide h-[42.5rem]"
     >
@@ -42,7 +42,7 @@ export default function MainSlide() {
             못난이 채소의 두 번째 기회가, 지구에게는 희망이 됩니다.
           </p>
           <div className="lg:mt-10">
-            <CustomLink href="#" variant="orange" size="xl">
+            <CustomLink href="/about" variant="orange" size="xl">
               흙내음 이야기 보기
             </CustomLink>
           </div>
@@ -66,7 +66,7 @@ export default function MainSlide() {
             <br /> 못난이 채소에 생명을 불어넣습니다.
           </p>
           <div className="lg:mt-10">
-            <CustomLink href="#" variant="white" size="xl">
+            <CustomLink href="/shopping" variant="white" size="xl">
               장보러 가기
             </CustomLink>
           </div>
