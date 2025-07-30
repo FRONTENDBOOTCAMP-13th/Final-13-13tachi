@@ -2,6 +2,7 @@ import CustomLink from '@/components/common/CustomLink';
 import { getProductDetails } from '@/data/functions/post';
 import { ProductTypeRes } from '@/types';
 import Detail from '@/app/shopping/[id]/Detail';
+import Link from 'next/link';
 
 interface shoppingPageProps {
   params: Promise<{
@@ -19,10 +20,14 @@ export default async function ShoppingDetail({ params }: shoppingPageProps) {
         <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
           {/* ST: Title */}
           <div>
-            <p className="text-gray">HOME &gt; 장보기</p>
-            <h2 className="font-bold lg:mt-5 lg:text-5xl">
+            <h2 className="text-gray">
+              <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
+              <Link href="/shopping">장보기</Link>&nbsp;&gt;&nbsp;
               {productRes.item.name}
             </h2>
+            <h3 className="font-bold lg:mt-5 lg:text-5xl">
+              {productRes.item.name}
+            </h3>
           </div>
           {/* ED: Title */}
 

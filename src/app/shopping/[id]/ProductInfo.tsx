@@ -36,7 +36,7 @@ export default function ProductInfo({
     <div className="lg:mt-20 lg:space-y-[3.75rem]">
       {/* ST: 품목 요약 */}
       <div>
-        <h3 className="font-semibold text-dark-green lg:text-3xl">품목 요약</h3>
+        <h4 className="font-semibold text-dark-green lg:text-3xl">품목 요약</h4>
         <ul className="lg:mt-4 lg:pt-6 lg:pl-6 leading-[1.7] border-t border-light-gray list-disc">
           <li>{productRes.item.extra?.info![0]}</li>
           <li>{productRes.item.extra?.info![1]}</li>
@@ -49,7 +49,7 @@ export default function ProductInfo({
 
       {/* ST: 보관법*/}
       <div>
-        <h3 className="font-semibold text-dark-green lg:text-3xl">보관법</h3>
+        <h4 className="font-semibold text-dark-green lg:text-3xl">보관법</h4>
         <ul className="lg:mt-4 lg:pt-6 lg:pl-6 leading-[1.7] border-t border-light-gray list-disc">
           <li>{productRes.item.extra?.storage![0]}</li>
         </ul>
@@ -58,9 +58,9 @@ export default function ProductInfo({
 
       {/* ST: 판매자 정보*/}
       <div>
-        <h3 className="font-semibold text-dark-green  lg:text-3xl">
+        <h4 className="font-semibold text-dark-green  lg:text-3xl">
           판매자 정보
-        </h3>
+        </h4>
         <div className="flex items-center border-t border-light-gray lg:gap-16 lg:mt-4 lg:pt-6 lg:pl-6">
           <div className="flex items-center lg:gap-4 lg:w-[15rem]">
             <div className="relative aspect-square rounded-lg overflow-hidden lg:w-[6.25rem]">
