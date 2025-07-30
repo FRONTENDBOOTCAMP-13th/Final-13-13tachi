@@ -9,7 +9,7 @@ export default function RecipeWritePage() {
         <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link> &gt;
         레시피 작성
       </h2>
-      <h1 className="text-5xl font-bold mt-4 mb-6">레시피 작성</h1>
+      <h3 className="text-5xl font-bold mt-4 mb-6">레시피 작성</h3>
 
       <RecipeWriteClient />
     </main>

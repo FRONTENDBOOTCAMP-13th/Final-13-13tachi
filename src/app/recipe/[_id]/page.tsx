@@ -11,18 +11,6 @@ import { getRecipeDetail } from '@/data/functions/post';
 import BookmarkButton from './BookmarkButton';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-// export type RecipeDetailData = Pick<
-//   Post,
-//   | '_id'
-//   | 'title'
-//   | 'content'
-//   | 'user'
-//   | 'category'
-//   | 'image'
-//   | 'tag'
-//   | 'createdAt'
-// >;
-
 interface InfoPageProps {
   params: Promise<{
     _id: number;
@@ -36,20 +24,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
     return <div className="text-center mt-10">레시피를 찾을 수 없습니다.</div>;
   }
 
-  // 이미지 URL 정리
-  // const imageUrl =
-  //   recipe.image && recipe.image.trim() !== ''
-  //     ? `${process.env.NEXT_PUBLIC_API_URL}/${recipe.image}`.replace(
-  //         /(?<!:)\/{2,}/g,
-  //         '/',
-  //       )
-
   const imageUrl = recipe.ok;
-
-  // const profileImageUrl =
-  //   recipe.user.image && recipe.user.image.trim() !== ''
-  //     ? recipe.user.image
-  //     : null;
 
   // 태그 배열 파싱
   const tagList = (() => {
@@ -146,7 +121,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
 
                 {/* 연관상품 자리 */}
                 <div className="mt-10">
-                  <h2 className="text-2xl font-bold">연관상품</h2>
+                  <h3 className="text-2xl font-bold">연관상품</h3>
                   <div className="mt-5">
                     <p>연관상품 컴포넌트 자리</p>
                   </div>

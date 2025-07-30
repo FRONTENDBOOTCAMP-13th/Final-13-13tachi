@@ -1,14 +1,6 @@
 import { getRecipeDetail } from '@/data/functions/post';
 import RecipeEditForm from './RecipeEditForm';
 import { Metadata } from 'next';
-// import type { Post } from '@/types/post';
-
-// type RecipeDetailData = Pick<Post, '_id' | 'title' | 'content' | 'user'> & {
-//   extra?: {
-//     image?: string;
-//     [key: string]: unknown;
-//   };
-// };
 
 export const metadata: Metadata = {
   title: '레시피 수정',

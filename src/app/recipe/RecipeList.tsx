@@ -121,7 +121,7 @@ export default function RecipeList({ post }: RecipeListProps) {
   return (
     <>
       <div className="flex justify-between mt-[1.5625rem]">
-        <div className="flex gap-4">
+        <div className="flex gap-2.5">
           {['전체', '채소', '과일', '나의레시피'].map(tab => (
             <span
               key={tab}
