@@ -22,7 +22,10 @@ export default async function RecipeListPage() {
         </div>
 
         <div className="flex justify-center lg:mt-[1.5625rem]">
-          <SearchBar handleType="handleRecipeSearch" />
+             <SearchBar 
+            handleType="handleRecipeSearch" 
+            placeholder="레시피명을 입력해주세요"
+          />
         </div>
         <h2 className="text-3xl text-dark-green font-semibold mt-[1.875rem]">
           인기 레시피

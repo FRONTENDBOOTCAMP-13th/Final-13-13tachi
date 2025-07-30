@@ -4,26 +4,82 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-// import type { Recipe } from '@/types/product';
 import type { Post } from '@/types/post';
-// import { getRecipes } from '@/data/functions/post';
-// import { ApiRes } from '@/types';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import useUserStore from '@/zustand/useStore';
+import useBookmarkStore from '@/zustand/useBookmarkStore';
+
+import { addBookmark, deleteBookmark } from '@/data/functions/post';
+import { getLikeRecipe } from '@/data/functions/post';
+
 interface RecipeListProps {
   post: Post[];
 }
 
 export default function RecipeList({ post }: RecipeListProps) {
-  const [activeTab, setActiveTab] = useState<
-    '전체' | '채소' | '과일' | '나의레시피'
-  >('전체');
+  const [activeTab, setActiveTab] = useState<'전체' | '채소' | '과일' | '나의레시피'>('전체');
   const [recipeArr, setRecipeArr] = useState<Post[]>([]);
-  // const [loading, setLoading] = useState(true);
 
+  const { user } = useUserStore();
+  const accessToken = user?.token?.accessToken;
+
+  // zustand에서 북마크 상태와 상태 변경 함수 가져오기
+  const {
+    likeMap,
+    addBookmark: add,
+    removeBookmark: remove,
+    setLikeMap,
+  } = useBookmarkStore();
+
+  // 초기 레시피 데이터 세팅
   useEffect(() => {
     setRecipeArr(post);
   }, [post]);
 
+  // 로그인 토큰이 있으면 북마크 상태 API에서 가져와 zustand 상태에 세팅
+  useEffect(() => {
+    if (!accessToken) return;
+
+    getLikeRecipe(accessToken).then(res => {
+      if (res.ok === 1 && res.item) {
+        const map = new Map<number, number>();
+        res.item.forEach(bookmark => {
+          map.set(bookmark.post._id, bookmark._id);
+        });
+        setLikeMap(map);
+      }
+    });
+  }, [accessToken, setLikeMap]);
+
+  // 북마크 토글 함수: zustand 상태 업데이트
+  const toggleBookmark = async (postId: number) => {
+    if (!accessToken) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    const bookmarkId = likeMap.get(postId);
+    const isBookmarked = bookmarkId !== undefined;
+
+    try {
+      if (isBookmarked) {
+        const res = await deleteBookmark(accessToken, bookmarkId);
+        if (res.ok === 1) {
+          remove(postId);
+        } else {
+          alert(res.message || '삭제 중 오류가 발생했습니다.');
+        }
+      } else {
+        const res = await addBookmark(accessToken, postId);
+        if (res.ok === 1 && res.item) {
+          add(postId, res.item._id);
+        }
+      }
+    } catch (error) {
+      console.error('북마크 요청 실패:', error);
+    }
+  };
+
+  // 필터링 로직
   const filteredRecipes =
     activeTab === '전체'
       ? recipeArr
@@ -69,7 +125,7 @@ export default function RecipeList({ post }: RecipeListProps) {
                 <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg bg-gray-100">
                   {item.image ? (
                     <Image
-                      src={`${API_URL}/${item.image}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-300 hover:scale-110"
@@ -88,8 +144,27 @@ export default function RecipeList({ post }: RecipeListProps) {
                       {item.title}
                     </span>
                     <Bookmark
-                      className="absolute right-0 top-1"
+                      className={`absolute right-0 top-1 cursor-pointer ${
+                        likeMap.has(item._id)
+                          ? 'fill-black text-black'
+                          : 'text-black'
+                      }`}
                       strokeWidth={1}
+                      onClick={e => {
+                        e.preventDefault(); // 링크 이동 방지
+                        toggleBookmark(item._id);
+                      }}
+                      aria-label={
+                        likeMap.has(item._id) ? '북마크 해제' : '북마크 추가'
+                      }
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          toggleBookmark(item._id);
+                        }
+                      }}
                     />
                   </div>
                   <div className="flex justify-between items-center">
@@ -101,14 +176,12 @@ export default function RecipeList({ post }: RecipeListProps) {
                             .join(' | ')
                         : '재료 없음'}
                     </span>
-                    <span className="text-gray text-sm truncate">
-                      {item.user.name}
-                    </span>
+                    <span className="text-gray text-sm truncate">{item.user.name}</span>
                   </div>
                 </figcaption>
               </figure>
             </Link>
-          ) : null,
+          ) : null
         )}
       </div>
     </>

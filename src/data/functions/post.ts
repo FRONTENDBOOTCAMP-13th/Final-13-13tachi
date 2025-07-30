@@ -352,6 +352,42 @@ export async function createPost(
   return data;
 }
 
+// 북마크 추가 (레시피)
+export async function addBookmark(accessToken: string, postId: number) {
+  const res = await fetch(`${API_URL}/bookmarks/post`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ target_id: postId }), // key는 target_id 입니다
+  });
+
+  const data = await res.json();
+  if (!res.ok || data.ok !== 1) {
+    throw new Error(data.message || '북마크 추가 실패');
+  }
+  return data;
+}
+
+// 북마크 삭제 (레시피)
+export async function deleteBookmark(accessToken: string, bookmarkId: number) {
+  const res = await fetch(`${API_URL}/bookmarks/${bookmarkId}`, {
+    method: 'DELETE',
+    headers: {
+      'Client-Id': CLIENT_ID,
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  const data = await res.json();
+  if (!res.ok || data.ok !== 1) {
+    throw new Error(data.message || '북마크 삭제 실패');
+  }
+  return data;
+}
+
 // 단일 상품 구매 정보 불러오기
 export async function getShoppingOrder({
   id,
