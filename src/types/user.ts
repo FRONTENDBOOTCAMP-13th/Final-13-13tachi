@@ -31,4 +31,5 @@ export interface UserInfoType {
   postcode: string;
   addressDetail1: string;
   addressDetail2: string;
+  message?: string;
 }

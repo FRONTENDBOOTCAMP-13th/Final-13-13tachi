@@ -53,6 +53,7 @@ export default function OrderInfoList({
               {item.user.addressDetail1} {item.user.addressDetail2}{' '}
               <span>({item.user.postcode})</span>
             </p>
+            <p className="text-gray text-sm">{item.user.message}</p>
           </div>
         </div>
         <div className="h-full">
