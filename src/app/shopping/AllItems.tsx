@@ -3,11 +3,16 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
-import { ApiRes, LikeItemType, ProductType } from '@/types';
+import { ApiRes, LikeItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { getLikeProducts } from '@/data/functions/post';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInView } from 'react-intersection-observer';
 
-export default function AllItems({ products }: { products: ProductType[] }) {
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
+
+export default function AllItems() {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
 
@@ -44,11 +49,49 @@ export default function AllItems({ products }: { products: ProductType[] }) {
       });
   }, [accessToken]);
 
+  // ST: 무한스크롤
+  const handleGetProducts = async (page: number) => {
+    try {
+      const res = await fetch(`${API_URL}/products?limit=12&page=${page}`, {
+        headers: {
+          'Client-Id': CLIENT_ID,
+        },
+      });
+      return res.json();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ['product-list'],
+      queryFn: ({ pageParam = 1 }) => handleGetProducts(pageParam),
+      initialPageParam: 1,
+      getNextPageParam: lastPage => {
+        if (lastPage.pagination.page < lastPage.pagination.totalPages) {
+          return lastPage.pagination.page + 1;
+        }
+        return undefined;
+      },
+    });
+
+  const allItems = data ? data.pages.flatMap(page => page.item) : [];
+
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView]);
+  // ED: 무한스크롤
+
   // 아이템 필터링
   const filteredItems =
     activeTab === '전체'
-      ? products
-      : products.filter(item => item.extra?.category?.includes(activeTab));
+      ? allItems
+      : allItems.filter(item => item.extra?.category?.includes(activeTab));
 
   // 카테고리 탭 active
   const AllItemCategory = categories.map((category, i) => (
@@ -86,6 +129,14 @@ export default function AllItems({ products }: { products: ProductType[] }) {
         accessToken={accessToken!}
         user={user}
       />
+      {hasNextPage ? (
+        <p
+          ref={ref}
+          className="w-full text-center text-dark-green font-semibold lg:mt-[4.026rem] lg:text-3xl"
+        >
+          더보기
+        </p>
+      ) : null}
     </>
   );
 }

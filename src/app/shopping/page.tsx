@@ -41,7 +41,7 @@ export default async function ShoppingList() {
           <div className="lg:mt-12">
             <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
             <Suspense>
-              <AllItems products={products} />
+              <AllItems />
             </Suspense>
           </div>
           {/* ED: 전체 상품 */}
