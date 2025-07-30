@@ -49,12 +49,12 @@ export default function HotItem({
         href={`shopping/${item._id}`}
         className="flex flex-col items-center lg:gap-2.5 lg:py-5.5 lg:px-6"
       >
-        <div className="relative w-full aspect-[18/17]">
+        <div className="relative w-full aspect-[18/17] rounded-[1.875rem] overflow-hidden">
           <Image
             src={`${API_URL}/${item.mainImages![0].path}`}
             alt={`${item.name} 이미지`}
             fill
-            className="rounded-[1.875rem] object-cover"
+            className=" object-cover transition-transform duration-300 hover:scale-110"
           />
         </div>
         <div className="relative text-center w-full">

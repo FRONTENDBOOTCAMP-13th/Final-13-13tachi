@@ -48,12 +48,12 @@ export default function ProductCardItem({
   return (
     <li>
       <Link href={`shopping/${item._id}`}>
-        <div className="relative aspect-square">
+        <div className="relative aspect-square rounded-lg  overflow-hidden">
           <Image
             src={`${API_URL}/${item.mainImages![0].path}`}
             alt={`${item.name} 이미지`}
             fill
-            className="rounded-lg object-cover shadow-image"
+            className="object-cover shadow-image transition-transform duration-300 hover:scale-110"
           />
         </div>
         <div className="relative lg:mt-4 w-full">
