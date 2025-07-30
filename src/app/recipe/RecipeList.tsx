@@ -8,21 +8,26 @@ import type { Post } from '@/types/post';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
 
-import { addBookmark, deleteBookmark } from '@/data/functions/post';
-import { getLikeRecipe } from '@/data/functions/post';
+import {
+  addBookmark,
+  deleteBookmark,
+  getLikeRecipe,
+} from '@/data/functions/post';
 
 interface RecipeListProps {
   post: Post[];
 }
 
 export default function RecipeList({ post }: RecipeListProps) {
-  const [activeTab, setActiveTab] = useState<'전체' | '채소' | '과일' | '나의레시피'>('전체');
+  const [activeTab, setActiveTab] = useState<
+    '전체' | '채소' | '과일' | '나의레시피'
+  >('전체');
   const [recipeArr, setRecipeArr] = useState<Post[]>([]);
+  const [visibleCount, setVisibleCount] = useState(8);
 
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
 
-  // zustand에서 북마크 상태와 상태 변경 함수 가져오기
   const {
     likeMap,
     addBookmark: add,
@@ -30,12 +35,12 @@ export default function RecipeList({ post }: RecipeListProps) {
     setLikeMap,
   } = useBookmarkStore();
 
-  // 초기 레시피 데이터 세팅
+  // 초기 게시글 설정
   useEffect(() => {
     setRecipeArr(post);
   }, [post]);
 
-  // 로그인 토큰이 있으면 북마크 상태 API에서 가져와 zustand 상태에 세팅
+  // 북마크 상태 세팅
   useEffect(() => {
     if (!accessToken) return;
 
@@ -50,7 +55,7 @@ export default function RecipeList({ post }: RecipeListProps) {
     });
   }, [accessToken, setLikeMap]);
 
-  // 북마크 토글 함수: zustand 상태 업데이트
+  // 북마크 토글
   const toggleBookmark = async (postId: number) => {
     if (!accessToken) {
       alert('로그인이 필요합니다.');
@@ -63,27 +68,55 @@ export default function RecipeList({ post }: RecipeListProps) {
     try {
       if (isBookmarked) {
         const res = await deleteBookmark(accessToken, bookmarkId);
-        if (res.ok === 1) {
-          remove(postId);
-        } else {
-          alert(res.message || '삭제 중 오류가 발생했습니다.');
-        }
+        if (res.ok === 1) remove(postId);
+        else alert(res.message || '삭제 중 오류가 발생했습니다.');
       } else {
         const res = await addBookmark(accessToken, postId);
-        if (res.ok === 1 && res.item) {
-          add(postId, res.item._id);
-        }
+        if (res.ok === 1 && res.item) add(postId, res.item._id);
       }
     } catch (error) {
       console.error('북마크 요청 실패:', error);
     }
   };
 
-  // 필터링 로직
+  // 카테고리별 재료 매핑
+  const categoryMap = {
+    채소: ['당근', '감자', '아스파라거스', '오이', '피망'],
+    과일: ['사과', '바나나', '딸기', '포도', '수박'],
+  };
+
+  // 탭별 필터링
   const filteredRecipes =
     activeTab === '전체'
       ? recipeArr
-      : recipeArr.filter(r => r.category === activeTab);
+      : activeTab === '나의레시피'
+        ? recipeArr.filter(r => r.user._id === user?._id)
+        : recipeArr.filter(r => {
+            const tags = r.tag?.split(',').map(tag => tag.trim()) || [];
+            const filterIngredients = categoryMap[activeTab] || [];
+            return tags.some(tag => filterIngredients.includes(tag));
+          });
+
+  // 무한 스크롤
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 100 &&
+        visibleCount < filteredRecipes.length
+      ) {
+        setVisibleCount(prev => prev + 8);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visibleCount, filteredRecipes.length]);
+
+  // 탭 변경 시 count 초기화
+  useEffect(() => {
+    setVisibleCount(8);
+  }, [activeTab]);
 
   return (
     <>
@@ -112,7 +145,7 @@ export default function RecipeList({ post }: RecipeListProps) {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl">
-        {filteredRecipes.map((item, index) =>
+        {filteredRecipes.slice(0, visibleCount).map((item, index) =>
           item._id ? (
             <Link
               key={item._id}
@@ -176,12 +209,14 @@ export default function RecipeList({ post }: RecipeListProps) {
                             .join(' | ')
                         : '재료 없음'}
                     </span>
-                    <span className="text-gray text-sm truncate">{item.user.name}</span>
+                    <span className="text-gray text-sm truncate">
+                      {item.user.name}
+                    </span>
                   </div>
                 </figcaption>
               </figure>
             </Link>
-          ) : null
+          ) : null,
         )}
       </div>
     </>
