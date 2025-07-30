@@ -3,6 +3,7 @@
 import SearchItemsList from '@/app/shopping/search/[id]/SearchItemsList';
 import SearchBar from '@/components/common/SearchBar';
 import { ProductType } from '@/types';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function ShoppingSearchList({
@@ -27,7 +28,10 @@ export default function ShoppingSearchList({
     <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
       {/* ST: 오늘의 못난이는? */}
       <div>
-        <p className="text-gray">HOME &gt; 장보기</p>
+        <h2 className="text-gray">
+          <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
+          <Link href="/shopping">장보기</Link>&nbsp;&gt;&nbsp;검색결과
+        </h2>
         <div className="text-center mt-5">
           <h1 className="font-bold mb-2 lg:text-5xl ">
             <span className="text-orange">&quot;{searchKeyword}&quot;</span>

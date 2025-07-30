@@ -47,7 +47,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
       ) : (
         <>
           <div className="flex justify-center">
-            <h2 className="text-gray text-sm mt-[4.0625rem] lg:w-[64rem]">
+            <h2 className="text-gray mt-[4.0625rem] lg:w-[64rem]">
               <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link>{' '}
               &gt; {recipe.item.title}
             </h2>

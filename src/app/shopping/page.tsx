@@ -4,6 +4,7 @@ import SearchBar from '@/components/common/SearchBar';
 import { Suspense } from 'react';
 import { getProducts } from '@/data/functions/post';
 import { ProductType } from '@/types';
+import Link from 'next/link';
 
 export default async function ShoppingList() {
   const res = await getProducts();
@@ -15,10 +16,13 @@ export default async function ShoppingList() {
         <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
           {/* ST: 오늘의 못난이는? */}
           <div>
-            <p className="text-gray">HOME &gt; 장보기</p>
-            <h2 className="font-bold lg:mt-5 lg:text-center lg:text-5xl">
-              오늘의 못난이는?
+            <h2 className="text-gray">
+              <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
+              <Link href="/shopping">장보기</Link>
             </h2>
+            <h3 className="font-bold lg:mt-5 lg:text-center lg:text-5xl">
+              오늘의 못난이는?
+            </h3>
           </div>
           {/* ED: 오늘의 못난이는? */}
 
@@ -30,7 +34,7 @@ export default async function ShoppingList() {
 
           {/* ST: 인기상품 */}
           <div className="lg:mt-7.5">
-            <h3 className="font-bold text-dark-green lg:text-3xl">인기 상품</h3>
+            <h4 className="font-bold text-dark-green lg:text-3xl">인기 상품</h4>
             <Suspense>
               <HotItemList products={products} />
             </Suspense>
@@ -39,7 +43,7 @@ export default async function ShoppingList() {
 
           {/* ST: 전체 상품 */}
           <div className="lg:mt-12">
-            <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
+            <h4 className="font-bold text-dark-green lg:text-3xl">전체 상품</h4>
             <Suspense>
               <AllItems />
             </Suspense>
