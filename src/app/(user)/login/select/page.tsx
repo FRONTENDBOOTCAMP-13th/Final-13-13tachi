@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { loginWithAuthjs } from '@/data/actions/user';
 
 export default async function LoginPage() {
   return (
@@ -22,35 +23,37 @@ export default async function LoginPage() {
           >
             이메일로 시작하기
           </Link>
+          <form>
+            {/* 카카오 로그인 */}
+            <button
+              type="submit"
+              formAction={loginWithAuthjs.bind(null, 'kakao')}
+              className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem]"
+            >
+              <Image
+                src="/kakao.svg"
+                alt="Kakao Login"
+                width={325}
+                height={55}
+                className="w-full h-auto"
+              />
+            </button>
 
-          {/* 카카오 로그인 */}
-          <Link
-            href="/api/auth/kakao"
-            className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem]"
-          >
-            <Image
-              src="/kakao.svg"
-              alt="Kakao Login"
-              width={325}
-              height={55}
-              className="w-full h-auto"
-            />
-          </Link>
-
-          {/* 네이버 로그인 */}
-          <Link
-            href="/api/auth/naver"
-            className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem]"
-          >
-            <Image
-              src="/naver.svg"
-              alt="Naver Login"
-              width={325}
-              height={55}
-              className="w-full h-auto"
-            />
-          </Link>
-
+            {/* 네이버 로그인 */}
+            <button
+              type="submit"
+              formAction={loginWithAuthjs.bind(null, 'naver')}
+              className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem] mt-[0.625rem]"
+            >
+              <Image
+                src="/naver.svg"
+                alt="Naver Login"
+                width={325}
+                height={55}
+                className="w-full h-auto"
+              />
+            </button>
+          </form>
           {/* 회원가입 */}
           <Link
             href="/signup"
