@@ -1,11 +1,20 @@
 'use client';
 
 import ProductCard from '@/components/ProductCard';
-import { getLikeProducts } from '@/data/functions/post';
+import {
+  getLikeProducts,
+  getRecipes,
+  addBookmark,
+  deleteBookmark,
+  getLikeRecipe,
+} from '@/data/functions/post';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
+import { Post } from '@/types/post';
 import useUserStore from '@/zustand/useStore';
+import useBookmarkStore from '@/zustand/useBookmarkStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import RecipeCard from './recipe/RecipeCard';
 
 interface MainProductListsProps {
   products: ProductType[];
@@ -26,6 +35,13 @@ export default function MainProductLists({ products }: MainProductListsProps) {
   const accessToken = user?.token?.accessToken; // accessToken 값
 
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
+  const [recipes, setRecipes] = useState<Post[]>([]); // 레시피 목록
+  const {
+    likeMap,
+    setLikeMap,
+    addBookmark: add,
+    removeBookmark: remove,
+  } = useBookmarkStore(); // 북마크 상태
 
   useEffect(() => {
     // 현재 user의 좋아요 목록을 가져와서 likeRes에 넣어준다
@@ -40,6 +56,49 @@ export default function MainProductLists({ products }: MainProductListsProps) {
         setLikeRes({ ok: 0, message: '에러 발생!' });
       });
   }, [accessToken]);
+
+  useEffect(() => {
+    getRecipes().then(res => {
+      if (res.ok === 1 && res.item) {
+        setRecipes(res.item);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const token = user?.token?.accessToken;
+    if (!token) return;
+
+    getLikeRecipe(token).then(res => {
+      if (res.ok === 1 && res.item) {
+        const map = new Map<number, number>();
+        res.item.forEach(b => map.set(b.post._id, b._id));
+        setLikeMap(map);
+      }
+    });
+  }, [user?.token?.accessToken, setLikeMap]);
+
+  const toggleBookmark = async (postId: number) => {
+    if (!accessToken) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    const bookmarkId = likeMap.get(postId);
+    const isBookmarked = bookmarkId !== undefined;
+
+    try {
+      if (isBookmarked) {
+        const res = await deleteBookmark(accessToken, bookmarkId);
+        if (res.ok === 1) remove(postId);
+      } else {
+        const res = await addBookmark(accessToken, postId);
+        if (res.ok === 1 && res.item) add(postId, res.item._id);
+      }
+    } catch (err) {
+      console.error('북마크 토글 실패:', err);
+    }
+  };
 
   return (
     <main className="mx-auto lg:space-y-15 lg:max-w-5xl lg:pt-15 lg:pb-25">
@@ -108,11 +167,9 @@ export default function MainProductLists({ products }: MainProductListsProps) {
             + 더보기
           </Link>
         </div>
-        <ProductCard
-          filteredItems={hotItems}
-          likeRes={likeRes!}
-          accessToken={accessToken!}
-          user={user}
+        <RecipeCard
+          posts={recipes.slice(0, 4)}
+          toggleBookmark={toggleBookmark}
         />
       </section>
       {/* ED: 인기 레시피 */}

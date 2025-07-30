@@ -182,6 +182,7 @@ export default function RecipeWriteClient() {
       <TextEditor value={content} onChange={setContent} />
 
       <div className="flex justify-end mt-5">
+        <span className="text-required-red mr-1">*</span>
         <input
           type="file"
           id="fileInput"
