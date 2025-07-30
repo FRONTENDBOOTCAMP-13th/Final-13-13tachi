@@ -11,14 +11,14 @@ export default async function RecipeListPage() {
       <div className="lg:max-w-5xl mx-auto pt-[4.0625rem] pb-[6.25rem]">
         <h2 className="text-gray">
           <Link href="/">HOME</Link>
-          <span>{' > '}</span>
+          &nbsp;&gt;&nbsp;
           <Link href="/recipe">레시피</Link>
         </h2>
 
         <div>
-          <h1 className="text-center text-5xl font-bold mt-5">
+          <h3 className="text-center text-5xl font-bold mt-5">
             오늘의 요리는?
-          </h1>
+          </h3>
         </div>
 
         <div className="flex justify-center lg:mt-[1.5625rem]">
@@ -27,13 +27,13 @@ export default async function RecipeListPage() {
             placeholder="레시피명을 입력해주세요"
           />
         </div>
-        <h2 className="text-3xl text-dark-green font-semibold mt-[1.875rem]">
+        <h4 className="text-3xl text-dark-green font-semibold mt-[1.875rem]">
           인기 레시피
-        </h2>
+        </h4>
         {/* 레시피 캐러셀 */}
 
         <RecipeCarousel />
-        <h3 className="text-3xl text-dark-green font-bold">전체 레시피</h3>
+        <h5 className="text-3xl text-dark-green font-bold">전체 레시피</h5>
         {res.ok ? <RecipeList post={res.item} /> : <p>{res.message}</p>}
       </div>
     </>
