@@ -222,6 +222,7 @@ export async function createOrder(
     postcode: string;
     addressDetail1: string;
     addressDetail2: string;
+    message: string;
   } | null = null;
   if (productsStr && typeof productsStr == 'string') {
     products = JSON.parse(productsStr) as {
@@ -236,6 +237,7 @@ export async function createOrder(
       postcode: string;
       addressDetail1: string;
       addressDetail2: string;
+      message: string;
     };
   }
 
