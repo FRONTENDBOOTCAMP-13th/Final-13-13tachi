@@ -32,3 +32,13 @@ export interface UserInfoType {
   addressDetail1: string;
   addressDetail2: string;
 }
+
+// auth provider 인증 후 자동 회원 가입에 사용되는 타입
+// 필수: type, loginType, extra.providerAccountId
+// 선택: name, email, image
+export type OAuthUser = Required<Pick<User, 'type' | 'loginType'>> &
+  Partial<Pick<User, 'name' | 'email' | 'image'>> & {
+    extra: {
+      providerAccountId: string;
+    };
+  };
