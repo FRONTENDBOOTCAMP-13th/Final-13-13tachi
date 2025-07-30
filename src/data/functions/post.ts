@@ -7,6 +7,7 @@ import {
   BuyListType,
   OrderInfoType,
   ShoppingOrderType,
+  MemberType,
 } from '@/types';
 import { LikePostType, MyPostType, Post, PostReply } from '@/types/post';
 import { CreatePostData, ApiRes } from '@/types/post';
@@ -420,4 +421,23 @@ export async function getShoppingOrder({
   });
 
   return res.json();
+}
+
+// 단일 회원 정보 조회
+export async function getMember(_id: number): ApiResPromise<MemberType> {
+  try {
+    const res = await fetch(`${API_URL}/users/${_id}`, {
+      headers: {
+        'Client-Id': CLIENT_ID,
+      },
+      next: {
+        tags: [`users/${_id}`],
+      },
+    });
+    return res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 조회에 실패했습니다.' };
+  }
 }
