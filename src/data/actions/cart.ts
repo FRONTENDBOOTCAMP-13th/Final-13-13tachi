@@ -338,36 +338,6 @@ export async function sendEmail(
   let totalPrice = 0;
   products.map(p => (totalPrice += p.price));
 
-  // const content = `
-  // <div style="margin:0 auto;max-width:600px; font-family: Arial, sans-serif; color:#333;">
-  //   <h2>${sellerName} 농부님! 새 주문이 접수되었습니다!</h2>
-  //   <p><b>주문 번호:</b> ${orderNum}</p>
-  //   <p><b>구매자 이름:</b> ${user.name}님</p>
-  //   <p><b>연락처:</b> ${user.phone}</p>
-  //   <p><b>배송지 주소:</b><br>
-  //      ${user.addressDetail1} ${user.addressDetail2} (${user.postcode})
-  //   </p>
-  //   ${user.message ? `<p><b>배송 요청사항:</b> ${user.message}</p>` : ''}
-  //   <h3>주문 상품 내역</h3>
-  //   <ul>
-  //     ${products
-  //       .map(
-  //         product => `
-  //       <li style="margin-bottom: 10px;">
-  //         <b>${product.name}</b> (${product.extra?.details})<br>
-  //         수량: ${product.quantity}개 / 가격: ${product.price.toLocaleString()}원<br>
-  //         카테고리: ${product.extra?.category?.join(', ')}<br>
-  //       </li>
-  //     `,
-  //       )
-  //       .join('')}
-  //   </ul>
-  //   <hr>
-  //   <p><b>총 결제 금액:</b> ${totalPrice.toLocaleString()}원</p>
-  //   <p>빠른 배송 부탁드립니다.</p>
-  // </div>
-  // `;
-
   const content = `
   <div style="margin:0 auto; max-width:600px; font-family: Arial, sans-serif; ">
     <h1 style="font-size: xx-large; font-weight: 700; color: darkgreen; margin-bottom: 50px; text-align: center;">
@@ -484,9 +454,9 @@ export async function sendEmail(
  * 댓글을 삭제하고, 성공 시 해당 게시글의 댓글 목록을 갱신합니다.
  */
 export async function createShoppingOrder(
-  state: ApiRes<CartItemType> | null,
+  state: ApiRes<OrderInfoType> | null,
   formData: FormData,
-): ApiResPromise<CartItemType> {
+): ApiResPromise<OrderInfoType> {
   console.log('추가');
   const accessToken = formData.get('accessToken');
   const productsStr = formData.get('products');
@@ -498,6 +468,7 @@ export async function createShoppingOrder(
     postcode: string;
     addressDetail1: string;
     addressDetail2: string;
+    message: string;
   } | null = null;
   if (productsStr && typeof productsStr == 'string') {
     products = JSON.parse(productsStr) as {
@@ -512,6 +483,7 @@ export async function createShoppingOrder(
       postcode: string;
       addressDetail1: string;
       addressDetail2: string;
+      message: string;
     };
   }
 
@@ -523,7 +495,7 @@ export async function createShoppingOrder(
   };
 
   let res: Response;
-  let data: ApiRes<CartItemType>;
+  let data: ApiRes<OrderInfoType>;
 
   try {
     res = await fetch(`${API_URL}/orders`, {
@@ -544,6 +516,19 @@ export async function createShoppingOrder(
   }
 
   if (data.ok) {
+    console.log(data);
+    const products = data.item.products;
+    const orderNum = data.item.createdAt;
+    const seller_id = data.item.products[0].seller_id;
+
+    await sendEmail(
+      Number(seller_id),
+      products,
+      user!,
+      orderNum,
+      String(accessToken),
+    );
+
     revalidateTag(`orders`);
     redirect(`/complete`); // 추후 주문 완료 페이지로 수정해야됨
   }
