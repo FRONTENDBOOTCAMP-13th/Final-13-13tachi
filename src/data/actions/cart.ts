@@ -271,7 +271,7 @@ export async function createOrder(
     await deleteAllCart(state, formData);
 
     revalidateTag(`orders`);
-    redirect(`/order/complete`); // 추후 주문 완료 페이지로 수정해야됨
+    redirect(`/complete`); // 추후 주문 완료 페이지로 수정해야됨
   }
 
   return data;
@@ -347,7 +347,7 @@ export async function createShoppingOrder(
 
   if (data.ok) {
     revalidateTag(`orders`);
-    redirect(`/order/complete`); // 추후 주문 완료 페이지로 수정해야됨
+    redirect(`/complete`); // 추후 주문 완료 페이지로 수정해야됨
   }
 
   return data;

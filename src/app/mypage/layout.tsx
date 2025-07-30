@@ -126,7 +126,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/order"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/order')} ${isActive('/mypage/buyinfo')}`}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/order')}`}
                     >
                       <ReceiptText width={16} />
                       <span>주문내역</span>
@@ -135,7 +135,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/recipe"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe')} ${isActive('/mypage/recipe/likerecipe')}`}
+                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
                     >
                       <BookOpen width={16} />
                       <span>레시피</span>
