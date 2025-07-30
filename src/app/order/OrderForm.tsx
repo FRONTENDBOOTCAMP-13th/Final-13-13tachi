@@ -17,6 +17,8 @@ import { createOrder, createShoppingOrder } from '@/data/actions/cart';
 import OrderList from '@/app/order/OrderList';
 import OrderTable from '@/app/order/OrderTable';
 import { useSearchParams } from 'next/navigation';
+// import Swal from 'sweetalert2';
+import Loading from '@/app/order/Loading';
 
 export default function OrderForm() {
   const { user } = useUserStore();
@@ -33,6 +35,7 @@ export default function OrderForm() {
   console.log(orderState, isOrdering);
   const id = useSearchParams().get('id');
   const quantity = useSearchParams().get('quantity');
+  // const router = useRouter();
 
   useEffect(() => {
     if (accessToken) {
@@ -43,6 +46,16 @@ export default function OrderForm() {
       }
     }
   }, [accessToken]);
+  // else {
+  //     Swal.fire({
+  //       icon: 'warning',
+  //       text: '로그인 후 이용해주세요',
+  //       confirmButtonText: '확인',
+  //     }).then(result => {
+  //       if (result.isConfirmed) router.replace('/login');
+  //     });
+  //   }
+
   const products =
     id && quantity
       ? shoppingRes?.ok
@@ -75,11 +88,11 @@ export default function OrderForm() {
 
   // id, quantity가 있을 때(단일 상품 주문)
   if (id && quantity) {
-    if (!shoppingRes) return <div>로딩 중...</div>;
+    if (!shoppingRes) return <Loading />;
     if (shoppingRes.ok === 0) return <div>{shoppingRes.message}</div>;
   } else {
     // 장바구니 주문
-    if (!res) return <div>로딩 중...</div>;
+    if (!res) return <Loading />;
     if (res.ok === 0) return <div>{res.message}</div>;
   }
 
@@ -149,15 +162,17 @@ export default function OrderForm() {
                 : 0
           }
         />
-        <div className="flex flex-col lg:flex-row justify-between gap-[2rem]">
-          <div className="flex flex-col gap-[0.625rem] w-[31.25rem]">
-            <h3 className="lg:text-xl font-bold mb-[0.75rem]">주문자 정보</h3>
-            <hr className="text-light-gray w-full mb-[1.5rem]" />
+        <div className="flex lg:flex-row flex-col justify-between gap-[2rem] w-full">
+          <div className="flex flex-col gap-[0.625rem] lg:w-full">
+            <h3 className="md:text-xl text-base font-bold mb-[0.75rem]">
+              주문자 정보
+            </h3>
+            <hr className="text-light-gray w-full md:mb-[1.5rem] mb-3" />
             <OrderUserForm onChangeUserData={setUserFormData} />
           </div>
           <div className="flex flex-col justify-between">
             <PayForm />
-            <p className="font-semibold text-lg">
+            <p className="font-semibold text-lg lg:mt-0 mt-15 text-right">
               총금액 :{' '}
               <span className="text-dark-red text-5xl font-bold">
                 {(id && quantity

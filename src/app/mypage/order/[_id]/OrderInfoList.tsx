@@ -43,7 +43,9 @@ export default function OrderInfoList({
       </div>
       <div className="lg:grid lg:grid-cols-2 lg:gap-[1.875rem] flex flex-col gap-5 lg:mt-9 mt-8 h-full">
         <div>
-          <p className="text-xl font-semibold text-dark-green mb-6">배송지</p>
+          <p className="text-xl font-semibold text-dark-green md:mb-6 mb-3">
+            배송지
+          </p>
           <div className="flex flex-col border-1 rounded-lg border-light-gray p-5 gap-1.5">
             <p>{item.user.name}</p>
             <p>{item.user.phone}</p>
@@ -54,7 +56,7 @@ export default function OrderInfoList({
           </div>
         </div>
         <div className="h-full">
-          <p className="text-xl font-semibold text-dark-green mb-6">
+          <p className="text-xl font-semibold text-dark-green md:mb-6 mb-3">
             결제 정보
           </p>
           <div className="flex flex-col border-1 rounded-lg border-light-gray px-5 py-8 gap-2">

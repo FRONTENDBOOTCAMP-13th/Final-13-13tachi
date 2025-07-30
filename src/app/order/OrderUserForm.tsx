@@ -50,9 +50,12 @@ export default function OrderUserForm({
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-[0.625rem]">
-        <div className="flex items-center">
-          <label className="block text-black lg:text-base" htmlFor="name1">
+      <div className="flex items-center lg:justify-between md:justify-center justify-between mb-[0.625rem]">
+        <div className="flex items-center md:w-38">
+          <label
+            className="block text-black md:text-base text-sm"
+            htmlFor="name1"
+          >
             주문자 이름
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
@@ -77,9 +80,12 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex items-center justify-between mb-[0.625rem]">
-        <div className="flex items-center">
-          <label className="block text-black lg:text-base" htmlFor="phone">
+      <div className="flex items-center lg:justify-between md:justify-center justify-between mb-[0.625rem]">
+        <div className="flex items-center md:w-38">
+          <label
+            className="block text-black md:text-base text-sm"
+            htmlFor="phone"
+          >
             주문자 연락처
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
@@ -113,16 +119,19 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex lg:gap-[1.25rem] w-full items-start">
-        <div className="flex items-center pt-[0.375rem] min-w-[9.35rem]">
-          <label className="block text-black lg:text-base" htmlFor="address">
+      <div className="flex lg:gap-[1.25rem] lg:justify-between md:justify-center justify-between items-start">
+        <div className="flex items-center pt-[0.375rem] md:w-38">
+          <label
+            className="block text-black md:text-base text-sm"
+            htmlFor="address"
+          >
             배송지 정보
           </label>
           <span className="text-light-red lg:text-sm lg:ml-1">*</span>
         </div>
 
-        <div className="flex flex-col lg:gap-[0.625rem] lg:w-[20.625rem] mb-[0.625rem]">
-          <div className="flex lg:gap-[0.625rem] items-center">
+        <div className="flex flex-col gap-[0.625rem] mb-[0.625rem]">
+          <div className="flex gap-[0.625rem] items-center">
             <Input
               width="xs"
               type="text"
@@ -146,7 +155,7 @@ export default function OrderUserForm({
 
             <button
               type="button"
-              className="lg:w-[4rem] lg:h-[1.875rem] lg:border-[0.0938rem] border-light-gray lg:rounded-[0.3125rem] lg:text-xs text-light-gray lg:hover:border-[.125rem]"
+              className="w-[4rem] h-[1.875rem] border-[0.0938rem] border-light-gray rounded-[0.3125rem] text-xs text-light-gray hover:border-[.125rem]"
               onClick={() => setIsOpen(true)}
             >
               우편번호
@@ -156,10 +165,10 @@ export default function OrderUserForm({
             width="md"
             type="text"
             id="addressdetail1"
-            placeholder="상세주소를 입력하세요"
+            placeholder="주소를 입력하세요"
             defaultValue={user?.addressDetail1 ?? ''}
             {...register('addressDetail1', {
-              required: '상세주소를 입력해주세요',
+              required: '주소를 입력해주세요',
             })}
           />
           {errors.addressDetail1 && (
@@ -172,6 +181,7 @@ export default function OrderUserForm({
             width="md"
             type="text"
             id="addressDetail2"
+            placeholder="상세주소를 입력하세요"
             defaultValue={user?.addressDetail2 ?? ''}
             {...register('addressDetail2', {
               required: '상세주소를 입력해주세요',
@@ -185,8 +195,11 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
-        <label className="block text-black lg:text-base" htmlFor="message">
+      <div className="flex items-center lg:justify-between md:justify-center justify-between">
+        <label
+          className="block text-black md:text-base text-sm md:w-38"
+          htmlFor="message"
+        >
           배송 메세지
         </label>
         <Input
