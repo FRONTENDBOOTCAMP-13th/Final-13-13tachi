@@ -66,7 +66,7 @@ export default function ProductInfo({
             <div className="relative aspect-square lg:w-[6.25rem]">
               <Image
                 src={`${API_URL}/${seller.item.image}`}
-                alt={`${productRes.item.name} 이미지`}
+                alt={`${seller.item.extra.farmName} 의 ${seller.item.name} 농부님 이미지`}
                 fill
               />
             </div>
