@@ -38,7 +38,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'seller',
         loginType: 'email',
-        image: `files/${clientId}/seller-1.jpg`,
+        image: `files/${clientId}/seller-2.jpg`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -62,7 +62,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'seller',
         loginType: 'email',
-        image: `files/${clientId}/seller-1.jpg`,
+        image: `files/${clientId}/seller-3.jpg`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -86,7 +86,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'seller',
         loginType: 'email',
-        image: `files/${clientId}/seller-1.jpg`,
+        image: `files/${clientId}/seller-4.jpg`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -110,7 +110,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'seller',
         loginType: 'email',
-        image: `files/${clientId}/seller-1.jpg`,
+        image: `files/${clientId}/seller-5.jpg`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -134,7 +134,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'seller',
         loginType: 'email',
-        image: `files/${clientId}/seller-1.jpg`,
+        image: `files/${clientId}/seller-6.jpg`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
