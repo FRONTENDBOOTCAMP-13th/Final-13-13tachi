@@ -27,8 +27,8 @@ export default function Loading() {
             </div>
           </div>
           <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
-            <div className="lg:w-[7.5rem] h-[1.5625rem] md:w-[6.0625rem] w-36 rounded-lg bg-gray-300" />
-            <div className="lg:w-[7.5rem] h-[1.5625rem] md:w-[6.0625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
           </div>
         </div>
         <div className="flex md:flex-row md:justify-between flex-col w-full gap-5">
@@ -52,8 +52,8 @@ export default function Loading() {
             </div>
           </div>
           <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
-            <div className="lg:w-[7.5rem] h-[1.5625rem] md:w-[6.0625rem] w-36 rounded-lg bg-gray-300" />
-            <div className="lg:w-[7.5rem] h-[1.5625rem] md:w-[6.0625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
           </div>
         </div>
         <div className="flex md:flex-row md:justify-between flex-col w-full gap-5">
@@ -77,8 +77,8 @@ export default function Loading() {
             </div>
           </div>
           <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2 ">
-            <div className="lg:w-[7.5rem] h-[1.5625rem] md:w-[6.0625rem] w-36 rounded-lg bg-gray-300" />
-            <div className="lg:w-[7.5rem] h-[1.5625rem] md:w-[6.0625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
           </div>
         </div>
       </div>
