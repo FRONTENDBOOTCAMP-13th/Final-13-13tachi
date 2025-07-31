@@ -115,7 +115,10 @@ export default function UserInfo() {
               <div className="border-l-2 border-light-gray h-4 mt-1"></div>
               <span>
                 {res.ok ? (
-                  <span>{`${res.item.addressDetail1 ?? ''} ${res.item.addressDetail2 ?? ''} (${res.item.postcode ?? ''})`}</span>
+                  <span>
+                    {`${res.item.addressDetail1 ?? ''} ${res.item.addressDetail2 ?? ''}`}
+                    {res.item.postcode ? ` (${res.item.postcode})` : ''}
+                  </span>
                 ) : (
                   <div className="lg:h-4 lg:w-10 rounded-lg bg-gray-200" />
                 )}
