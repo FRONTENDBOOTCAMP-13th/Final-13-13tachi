@@ -26,9 +26,9 @@ export default function RecipeWriteClient() {
   const ingredientList = [
     '당근',
     '감자',
-    '아스파라거스',
+    '고구마',
     '오이',
-    '피망',
+    '양송이',
     '사과',
     '바나나',
     '딸기',
