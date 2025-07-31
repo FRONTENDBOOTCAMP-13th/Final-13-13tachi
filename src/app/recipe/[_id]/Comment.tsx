@@ -1,20 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
 import CommentActionButton from './CommentActionButton';
 import Swal from 'sweetalert2';
+import { getUserByName } from '@/data/actions/post';
+import { PostReply } from '@/types/post';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface CommentProps {
-  comment: {
-    _id: number;
-    content: string;
-    name: string;
-    user: { _id: number; name: string };
-    createdAt: string;
+  comment: PostReply & {
+    name?: string; // 기존 코드와의 호환성을 위해 추가
   };
   currentUserId?: number | null;
   onDelete: (id: number) => void;
@@ -32,8 +30,58 @@ export default function Comment({
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
   const [loading, setLoading] = useState(false);
+  const [userImage, setUserImage] = useState<string | null>(null);
+  const [imageLoading, setImageLoading] = useState(true);
 
-  const profileSrc = '/images/front-end.png';
+  // 댓글 작성자 이름 (name 또는 user.name 사용)
+  const authorName = comment.name || comment.user?.name || '';
+
+  // 댓글 작성자의 이미지 정보 가져오기
+  useEffect(() => {
+    const fetchUserImage = async () => {
+      try {
+        setImageLoading(true);
+        
+        // 현재 로그인된 사용자가 댓글 작성자와 같은 경우 store의 이미지 사용
+        const isCurrentUser = user && authorName === user.name;
+        if (isCurrentUser && user.image) {
+          setUserImage(user.image);
+          setImageLoading(false);
+          return;
+        }
+
+        // 댓글 데이터에 이미지가 있는 경우 사용
+        if (comment.user?.image) {
+          setUserImage(comment.user.image);
+          setImageLoading(false);
+          return;
+        }
+
+        // Server Action을 통해 사용자 이미지 정보 조회
+        if (authorName) {
+          const response = await getUserByName(authorName);
+          
+          if (response.ok === 1 && response.item && response.item.length > 0) {
+            const userData = response.item[0];
+            if (userData.image) {
+              setUserImage(userData.image);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('사용자 이미지 조회 중 오류:', error);
+      } finally {
+        setImageLoading(false);
+      }
+    };
+
+    fetchUserImage();
+  }, [authorName, comment.user?.image, user]);
+
+  // 이미지 URL 처리
+  const profileSrc = userImage
+    ? `${API_URL}/${userImage}`
+    : '/images/front-end.png';
 
   const handleUpdate = async () => {
     if (!editedContent.trim()) {
@@ -84,7 +132,7 @@ export default function Comment({
         });
       }
     } catch (error) {
-      console.error('댓글 삭제 중 오류:', error);
+      console.error('댓글 수정 중 오류:', error);
       Swal.fire({
         icon: 'error',
         text: '수정 중 오류가 발생했습니다.',
@@ -163,19 +211,23 @@ export default function Comment({
   return (
     <div className="flex items-start py-5 border-b-2 border-[#DEDEDE]">
       <div className="relative w-[3.125rem] h-[3.125rem] shrink-0">
-        <Image
-          src={profileSrc}
-          alt={`${comment.user.name} 프로필 이미지`}
-          fill
-          className="rounded-full object-cover"
-        />
+        {imageLoading ? (
+          <div className="w-full h-full rounded-full bg-gray-200 animate-pulse" />
+        ) : (
+          <Image
+            src={profileSrc}
+            alt={`${authorName} 프로필 이미지`}
+            fill
+            className="rounded-full object-cover"
+          />
+        )}
       </div>
       <div className="ml-4 w-full">
         <div className="flex items-center justify-between">
           <p className="font-semibold text-dark-green mb-1">
-            {comment.name || comment.user?.name}
+            {authorName}
           </p>
-          {!isEditing && user && comment.name === user.name && (
+          {!isEditing && user && authorName === user.name && (
             <CommentActionButton
               authorId={comment.user._id}
               commentId={comment._id}

@@ -124,3 +124,18 @@ export interface RecipeDetailResponse {
   message?: string; // 실패 메시지 등
   item?: Post; // 성공 시 데이터
 }
+
+// 댓글 응답
+export interface ReplyApiResponse {
+  _id: number;
+  content: string;
+  name?: string;
+  like?: number;
+  createdAt: string;
+  updatedAt: string;
+  user?: {
+    _id: number;
+    name: string;
+    image?: string | null;
+  };
+}
