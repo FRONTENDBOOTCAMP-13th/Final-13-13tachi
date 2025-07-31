@@ -29,14 +29,14 @@ export default function WishItem({
           <div className="flex flex-row items-center gap-3.5 md:h-[6.25rem]">
             <Link
               href={`/shopping/${item._id}`}
-              className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20"
+              className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 overflow-hidden rounded-lg"
             >
               <Image
                 width={100}
                 height={100}
                 src={`${API_URL}/${item.mainImages[0]?.path}`}
                 alt={`${item.name} 이미지`}
-                className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image"
+                className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image transition-transform duration-300 hover:scale-110"
               ></Image>
             </Link>
             <div className="flex flex-col justufy-center gap-2">
