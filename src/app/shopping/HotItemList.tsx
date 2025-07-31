@@ -36,7 +36,7 @@ export default function HotItemList({ products }: { products: ProductType[] }) {
   const hotItemList = filteredItems.map((item, index) => (
     <SwiperSlide
       key={index}
-      className="lg:rounded-[3rem] lg:shadow-[3px_4px_4px_rgb(0,0,0,0.25)]"
+      className="shadow-image rounded-[1.5rem] lg:rounded-[3rem] "
     >
       <HotItem
         item={item}
@@ -48,14 +48,25 @@ export default function HotItemList({ products }: { products: ProductType[] }) {
   ));
 
   return (
-    <div className="lg:mt-4.5">
+    <div className="mt-2 md:mt-4.5">
       <Swiper
-        slidesPerView={4}
+        slidesPerView={1.5}
         spaceBetween={15}
         navigation={true}
         modules={[Navigation]}
         autoHeight={true}
         loop={true}
+        breakpoints={{
+          480: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+        }}
         className="hotitem-slide"
       >
         {hotItemList}

@@ -47,7 +47,7 @@ export default function HotItem({
     <>
       <Link
         href={`shopping/${item._id}`}
-        className="flex flex-col items-center lg:gap-2.5 lg:py-5.5 lg:px-6"
+        className="flex flex-col items-center gap-2.5 p-4 md:p-4.5  lg:py-5.5 lg:px-6"
       >
         <div className="relative w-full aspect-[18/17] rounded-[1.875rem] overflow-hidden">
           <Image
@@ -58,11 +58,11 @@ export default function HotItem({
           />
         </div>
         <div className="relative text-center w-full">
-          <h4 className="relative block w-full lg:px-2.5 lg:text-base truncate">
+          <h4 className="relative block w-full text-sm truncate md:text-base lg:px-2.5 ">
             {item.name}
           </h4>
-          <p className="text-gray lg:text-sm">{item.extra?.details}</p>
-          <strong className="text-orange font-semibold inline-block lg:mt-1 lg:text-xl">
+          <p className="text-gray text-xs md:text-sm">{item.extra?.details}</p>
+          <strong className="mt-1 inline-block text-orange font-semibold text-lg md:text-xl ">
             {item.price?.toLocaleString()}원
           </strong>
           <form
@@ -79,7 +79,7 @@ export default function HotItem({
                 handleLikeChange(true);
               }
             }}
-            className="absolute top-0.5 right-0 leading-1"
+            className="absolute leading-1 bottom-1 right-0 lg:bottom-0 lg:top-0.5 "
           >
             <input type="hidden" name="accessToken" value={accessToken ?? ''} />
             <input type="hidden" name="_id" value={item._id} />
@@ -103,9 +103,13 @@ export default function HotItem({
               className="cursor-pointer"
             >
               {isLike ? (
-                <Heart strokeWidth={1} fill="#000" className="w-5 h-5" />
+                <Heart
+                  strokeWidth={1}
+                  fill="#000"
+                  className="w-4.5 h-4.5 md:w-5 md:h-5"
+                />
               ) : (
-                <Heart strokeWidth={1} className="w-5 h-5" />
+                <Heart strokeWidth={1} className="w-4.5 h-4.5 md:w-5 md:h-5" />
               )}
             </button>
           </form>

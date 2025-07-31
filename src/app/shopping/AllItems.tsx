@@ -121,13 +121,13 @@ export default function AllItems({ products, searchKeyword }: AllItemsProps) {
 
   return (
     <>
-      <div className="lg:mt-[1.5625rem] lg:flex lg:justify-between lg:items-center">
-        <ul className="font-semibold text-dark-green lg:flex lg:gap-2.5">
+      <div className="mt-[1.5625rem] flex justify-between items-center">
+        <ul className="flex gap-2.5 font-semibold text-dark-green text-sm md:text-base">
           {AllItemCategory}
         </ul>
         <button
           type="button"
-          className="font-semibold text-dark-green cursor-pointer"
+          className="font-semibold text-dark-green cursor-pointer text-sm md:text-base"
         >
           정렬기준
         </button>
@@ -159,7 +159,7 @@ export default function AllItems({ products, searchKeyword }: AllItemsProps) {
       {hasNextPage ? (
         <p
           ref={ref}
-          className="w-full text-center text-dark-green font-semibold lg:mt-[4.026rem] lg:text-3xl"
+          className="mt-7.5 w-full text-center text-dark-green font-semibold text-lg md:mt-12.5 md:text-2xl lg:mt-[4.026rem] lg:text-3xl"
         >
           더보기
         </p>
