@@ -101,12 +101,28 @@ export default function RootLayout({
                         {user?.name}
                       </p>
                       {user?.loginType === 'kakao' && (
-                        <p className="text-xs text-[#ffcd00]">Kakao 로그인</p>
+                        <div className="flex">
+                          <Image
+                            src="/kakao_logo.png"
+                            width={20}
+                            height={20}
+                            alt="네이버 로고"
+                          />
+                          <span className="text-sm ml-2">카카오 로그인</span>
+                        </div>
                       )}
                       {user?.loginType === 'naver' && (
-                        <p className="text-xs text-[#2DB400]">Naver 로그인</p>
+                        <div className="flex">
+                          <Image
+                            src="/naver_logo.png"
+                            width={20}
+                            height={20}
+                            alt="네이버 로고"
+                          />
+                          <span className="text-sm ml-2">네이버 로그인</span>
+                        </div>
                       )}
-                      <p className="lg:text-sm md:text-sm">{user?.email}</p>
+                      <p className="text-sm">{user?.email}</p>
                     </div>
                   )}
                 </div>
