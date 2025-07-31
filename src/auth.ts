@@ -36,7 +36,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           id: profile.response.id,
           name: profile.response.name,
           email: profile.response.email,
-          image: profile.response.profile_image,
         };
       },
     }),
@@ -102,6 +101,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           user.id = String(userInfo._id);
           user.type = userInfo.type;
+          user.loginType = userInfo.loginType;
           user.accessToken = userInfo.token!.accessToken;
           user.refreshToken = userInfo.token!.refreshToken;
           break;
@@ -123,6 +123,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         token.id = user.id;
         token.type = user.type;
+        token.loginType = user.loginType;
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
       }
@@ -141,6 +142,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       session.user.id = token.id as string;
       session.user.type = token.type as string;
+      session.user.loginType = token.loginType as 'email' | 'kakao' | 'naver';
       session.user.accessToken = token.accessToken;
       session.user.refreshToken = token.refreshToken;
       return session;
