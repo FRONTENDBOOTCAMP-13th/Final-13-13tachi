@@ -16,7 +16,7 @@ export default async function ShoppingDetail({ params }: shoppingPageProps) {
 
   return (
     <>
-      <main>
+      <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
         <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
           {/* ST: Title */}
           <div>
