@@ -32,7 +32,7 @@
   --color-required-red: #e40000;
 
   /* breakpoint 설정*/
-  --breakpoint-md: 39.9375rem; /* 768px */
+  --breakpoint-md: 48rem; /* 768px */
   --breakpoint-lg: 80rem; /* 1280px */
 
   /* shadow 설정 */
