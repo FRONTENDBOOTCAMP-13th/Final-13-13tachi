@@ -1,19 +1,19 @@
 'use client';
 import Input from '@/components/common/Input';
 import PostCode from 'react-daum-postcode';
-import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserInfoType } from '@/types';
+import { MemberType, UserInfoType } from '@/types';
 
 type UserOrderFormProps = {
   onChangeUserData: (data: UserInfoType) => void;
+  user: MemberType;
 };
 
 export default function OrderUserForm({
   onChangeUserData,
+  user,
 }: UserOrderFormProps) {
-  const { user } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
 
   //받은 주소 결과(zonecode, address)를 setValue로 form에 입력
