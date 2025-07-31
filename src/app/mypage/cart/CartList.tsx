@@ -67,7 +67,7 @@ export default function CartList() {
     );
   }
   if (res.ok === 0) {
-    return <div>{res.message}</div>; // 실패 메시지 렌더링
+    router.replace('/error'); // 실패 메시지 렌더링
   }
 
   return (
@@ -96,9 +96,13 @@ export default function CartList() {
       )}
       <p className="text-right lg:mt-[1.875rem] md:mt-6 mt-4 text-lg font-semibold">
         총 상품 금액{' '}
-        <span className="text-[#8B0505]">
-          {res?.cost?.total.toLocaleString() ?? 0}
-        </span>
+        {res.ok ? (
+          <span className="text-[#8B0505]">
+            {res?.cost?.total.toLocaleString()}
+          </span>
+        ) : (
+          '0'
+        )}
         원
       </p>
       <div className="flex justify-center lg:mt-[4.0625rem] md:mt-8 mt-6">
