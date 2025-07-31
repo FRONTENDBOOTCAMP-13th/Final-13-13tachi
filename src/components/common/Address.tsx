@@ -81,7 +81,7 @@ export default function AddressForm({
           width="md"
           type="text"
           id="addressDetail1"
-          placeholder="상세주소를 입력하세요"
+          placeholder="주소를 입력하세요"
           className="w-[320px] md-[300px] lg-[330px] text-xs lg:text-sm px-[0.75rem]"
           {...register('addressDetail1', {
             required: '상세주소를 입력해주세요',
@@ -99,6 +99,7 @@ export default function AddressForm({
           type="text"
           id="addressDetail2"
           className="w-[320px] lg-[330px]"
+          placeholder="상세주소를 입력하세요"
           {...register('addressDetail2')}
         />
       </div>

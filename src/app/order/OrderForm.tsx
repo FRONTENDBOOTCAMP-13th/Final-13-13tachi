@@ -88,11 +88,13 @@ export default function OrderForm() {
   // id, quantity가 있을 때(단일 상품 주문)
   if (id && quantity) {
     if (!shoppingRes) return <Loading />;
-    if (shoppingRes.ok === 0) return <div>{shoppingRes.message}</div>;
+    if (shoppingRes.ok === 0) router.replace('/error');
   } else {
     // 장바구니 주문
     if (!res) return <Loading />;
-    if (res.ok === 0) return <div>{res.message}</div>;
+    if (res.ok === 0) {
+      router.replace('/error');
+    }
   }
 
   return (

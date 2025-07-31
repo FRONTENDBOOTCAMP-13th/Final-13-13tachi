@@ -189,6 +189,10 @@ export interface MemberType {
     info?: string[];
   };
   email?: string;
+  phone?: string;
+  postcode?: string;
+  addressDetail1?: string;
+  addressDetail2?: string;
 }
 
 // 메일 타입

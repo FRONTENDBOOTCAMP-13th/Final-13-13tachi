@@ -1,6 +1,6 @@
 'use client';
 
-import { startTransition, useActionState, useEffect } from 'react';
+import { startTransition, useActionState, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { updateUser } from '@/data/actions/user';
 import { useRouter } from 'next/navigation';
@@ -10,11 +10,19 @@ import useUserStore from '@/zustand/useStore';
 import AddressForm from '@/components/common/Address';
 import { SignupFormProps } from '@/app/(user)/signup/SignupForm';
 import Swal from 'sweetalert2';
+import { ApiRes, MemberType } from '@/types';
+import { getMember } from '@/data/functions/post';
 
-export default function EditForm() {
+export default function SocialEditForm() {
   const { user } = useUserStore();
   const [state, formAction, isLoading] = useActionState(updateUser, null);
   const router = useRouter();
+  const [res, setRes] = useState<ApiRes<MemberType> | null>(null);
+
+  useEffect(() => {
+    const user_id = Number(user?._id);
+    getMember(user_id).then(setRes);
+  }, [user]);
 
   const {
     register,
@@ -94,100 +102,16 @@ export default function EditForm() {
     }
   }, [state, router]);
 
+  if (!res) {
+    return <div>로딩중</div>;
+  }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       className="w-[320px] md:w-[428px] lg:w-[28.625rem] space-y-[0.625rem]"
     >
-      {/* 이메일 */}
-      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
-        <div className="flex items-start w-full">
-          <label
-            htmlFor="email"
-            className="block text-black text-sm md:text-base lg:text-base"
-          >
-            이메일
-          </label>
-        </div>
-        <div>
-          <Input
-            id="email"
-            type="email"
-            placeholder="이메일을 입력하세요"
-            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
-            defaultValue={user?.email ?? ''}
-            disabled
-            readOnly
-          />
-        </div>
-      </div>
-
-      {/* 비밀번호 */}
-      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
-        <div className="flex items-start w-full">
-          <label
-            htmlFor="password"
-            className="block text-black text-sm md:text-base lg:text-base"
-          >
-            새 비밀번호
-          </label>
-          <span className="text-light-red text-xs lg:text-sm ml-1">*</span>
-        </div>
-        <div>
-          <Input
-            id="password"
-            type="password"
-            placeholder="비밀번호를 입력하세요"
-            autoComplete="new-password"
-            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
-            {...register('password', {
-              required: '새 비밀번호를 입력해주세요',
-              pattern: {
-                value: /^(?=.*\d)(?=.*[!@#])[\dA-Za-z!@#]{6,}$/,
-                message: '숫자와 특수문자를 포함한 6자리 이상이어야 합니다.',
-              },
-            })}
-          />
-          {errors.password && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-              {errors.password.message}
-            </p>
-          )}
-        </div>
-      </div>
-
-      {/* 비밀번호 확인 */}
-      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
-        <div className="flex items-start w-full">
-          <label
-            htmlFor="passwordConfirm"
-            className="block text-black text-sm md:text-base lg:text-base"
-          >
-            새 비밀번호 확인
-          </label>
-          <span className="text-light-red text-xs lg:text-sm ml-1">*</span>
-        </div>
-        <div>
-          <Input
-            id="passwordConfirm"
-            type="password"
-            placeholder="비밀번호를 한번 더 입력하세요"
-            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
-            {...register('passwordConfirm', {
-              required: '새 비밀번호를 다시 입력해주세요',
-              validate: (value, formValues) =>
-                value === formValues.password || '비밀번호가 일치하지 않습니다',
-            })}
-          />
-          {errors.passwordConfirm && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-              {errors.passwordConfirm.message}
-            </p>
-          )}
-        </div>
-      </div>
-
       {/* 이름 */}
       <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
         <div className="flex items-start w-full">
@@ -218,6 +142,7 @@ export default function EditForm() {
           >
             전화번호
           </label>
+          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
@@ -226,7 +151,7 @@ export default function EditForm() {
             autoComplete="tel"
             placeholder="전화번호를 입력하세요"
             className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
-            defaultValue={user?.phone ?? ''}
+            defaultValue={res.ok ? res.item.phone : ''}
             {...register('phone', {
               required: '전화번호를 입력해주세요',
               pattern: {

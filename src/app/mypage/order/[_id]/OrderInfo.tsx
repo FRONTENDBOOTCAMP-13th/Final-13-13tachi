@@ -50,24 +50,34 @@ export default function OrderInfo({ orderId }: { orderId: number }) {
   if (!res) {
     return <Loading />;
   }
+  // if (res.ok === 0) {
+  //   return <div>{res.message}</div>; // 실패 메시지 렌더링
+  // }
+
   if (res.ok === 0) {
-    return <div>{res.message}</div>; // 실패 메시지 렌더링
+    router.replace('/error'); // 실패 메시지 렌더링
   }
 
   console.log('1번 호출');
   console.log(orderId);
 
   return (
-    <OrderInfoList
-      item={{
-        _id: res.item._id,
-        products: res.item.products,
-        createdAt: res.item.createdAt,
-        user: res.item.user,
-        cost: res.item.cost.total,
-        payment: res.item.payment,
-      }}
-      action={{ addAction: AddAction }}
-    />
+    <>
+      {res.ok ? (
+        <OrderInfoList
+          item={{
+            _id: res.item._id,
+            products: res.item.products,
+            createdAt: res.item.createdAt,
+            user: res.item.user,
+            cost: res.item.cost.total,
+            payment: res.item.payment,
+          }}
+          action={{ addAction: AddAction }}
+        />
+      ) : (
+        <p>{res.message}</p>
+      )}
+    </>
   );
 }

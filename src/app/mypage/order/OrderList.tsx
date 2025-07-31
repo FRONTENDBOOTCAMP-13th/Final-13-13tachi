@@ -59,6 +59,11 @@ export default function OrderList() {
       </div>
     );
   }
+
+  if (res.ok === 0) {
+    router.replace('/error'); // 실패 메시지 렌더링
+  }
+
   console.log('1번 호출');
   return (
     <div className="flex flex-col mb-9">

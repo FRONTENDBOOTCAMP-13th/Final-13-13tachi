@@ -1,18 +1,27 @@
 'use client';
-import Link from 'next/link';
-import Image from 'next/image';
 
-// 임시 이미지 불러오기
-import Button from '@/components/common/Button';
+import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getMember } from '@/data/functions/post';
+import { ApiRes, MemberType } from '@/types';
+import Loading from '@/app/mypage/user/Loading';
+import CustomLink from '@/components/common/CustomLink';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function UserInfo() {
   const { user } = useUserStore();
   const router = useRouter();
+  const [res, setRes] = useState<ApiRes<MemberType> | null>(null);
+
+  useEffect(() => {
+    const user_id = Number(user?._id);
+    getMember(user_id).then(setRes);
+  }, [user]);
+
+  // console.log(user?.phone);
 
   useEffect(() => {
     if (user === null || user === undefined) {
@@ -30,7 +39,27 @@ export default function UserInfo() {
     }
   }, [user]);
 
-  console.log('user in MyPage:', user);
+  if (!res) {
+    return <Loading />;
+  }
+
+  if (res.ok === 0) {
+    router.replace('/error'); // 실패 메시지 렌더링
+  }
+
+  let socialLogin = null;
+  let editPage = ``;
+
+  if (user?.loginType === 'kakao') {
+    socialLogin = <p className="text-[#ffcd00]">Kakao 로그인</p>;
+    editPage = `/socialedit`;
+  } else if (user?.loginType === 'naver') {
+    socialLogin = <p className="text-[#2DB400]">Naver 로그인</p>;
+    editPage = `/socialedit`;
+  } else {
+    editPage = `/edit`;
+  }
+
   return (
     <div className="lg:w-[49.875rem] md:w-[31.75rem] w-80 h-full">
       <div className="flex flex-col gap-2">
@@ -48,49 +77,57 @@ export default function UserInfo() {
           />
           {/* <div className="lg:h-20 lg:w-20 rounded-[50%] bg-gray-200" /> */}
           <div className="flex flex-col gap-4 text-base">
-            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+            <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">이름</span>
-              <div className="border-l-2 border-light-gray h-3 "></div>
+              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
               <span>
-                {user?.name ?? (
+                {res.ok ? (
+                  res.item.name
+                ) : (
                   <div className="lg:h-4 lg:w-10 rounded-lg bg-gray-200" />
                 )}
               </span>
             </div>
-            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+            <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">이메일</span>
-              <div className="border-l-2 border-light-gray h-3 "></div>
+              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
               <span>
-                {user?.email ?? (
+                {res.ok ? (
+                  (res.item.email ?? socialLogin)
+                ) : (
                   <div className="lg:h-4 lg:w-30 rounded-lg bg-gray-200" />
                 )}
               </span>
             </div>
-            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+            <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">전화번호</span>
-              <div className="border-l-2 border-light-gray h-3 "></div>
+              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
               <span>
-                {user?.phone ?? (
-                  <div className="lg:h-4 lg:w-25 rounded-lg bg-gray-200" />
+                {res.ok ? (
+                  res.item.phone
+                ) : (
+                  <div className="lg:h-4 lg:w-10 rounded-lg bg-gray-200" />
                 )}
               </span>
             </div>
-            <div className="grid grid-cols-[3.875rem_1.125rem_1fr] items-center">
+            <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">주소</span>
-              <div className="border-l-2 border-light-gray h-3 "></div>
+              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
               <span>
-                {`${user?.addressDetail1 ?? ''} ${user?.addressDetail2 ?? ''} (${user?.postcode ?? ''})`}
+                {res.ok ? (
+                  <span>{`${res.item.addressDetail1 ?? ''} ${res.item.addressDetail2 ?? ''} (${res.item.postcode ?? ''})`}</span>
+                ) : (
+                  <div className="lg:h-4 lg:w-10 rounded-lg bg-gray-200" />
+                )}
               </span>
             </div>
           </div>
         </div>
       </div>
       <div className="flex justify-end mt-[4.0625rem]">
-        <Link href="/edit">
-          <Button size="xxl" variant="green">
-            회원정보 수정하기
-          </Button>
-        </Link>
+        <CustomLink size="xxl" variant="green" href={editPage}>
+          회원정보 수정하기
+        </CustomLink>
       </div>
     </div>
   );
