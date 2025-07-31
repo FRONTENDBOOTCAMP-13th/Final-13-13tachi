@@ -146,6 +146,13 @@ body {
 }
 
 @layer components {
+  .mypage-dropdown-active {
+    @apply text-dark-green;
+    @apply font-semibold;
+  }
+}
+
+@layer components {
   .mypage-recipe-active {
     @apply text-black;
   }
