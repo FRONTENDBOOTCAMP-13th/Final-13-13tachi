@@ -119,7 +119,6 @@ export default function Dropdown() {
                 <button
                   type="submit"
                   className=" text-black hover:font-semibold "
-                  onClick={() => setOpen(false)}
                 >
                   로그아웃
                 </button>
