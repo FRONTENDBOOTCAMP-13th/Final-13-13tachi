@@ -40,9 +40,7 @@ export default function UserInfo() {
       <div className="flex flex-col">
         <div className="">
           <Image
-            src={
-              user?.image ? `${API_URL}/${user.image}` : '/images/front-end.png'
-            }
+            src={user?.image ? `${API_URL}/${user.image}` : '/profile.svg'}
             alt={`${user?.name} 프로필 이미지`}
             width={80}
             height={80}
