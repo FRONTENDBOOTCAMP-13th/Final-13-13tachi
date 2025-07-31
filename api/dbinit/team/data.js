@@ -21,7 +21,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 역삼동 123',
         type: 'admin',
         loginType: 'email',
-        image: `files/${clientId}/user-muzi.png`,
+        image: `files/${clientId}/profile-1.png`,
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         extra: {

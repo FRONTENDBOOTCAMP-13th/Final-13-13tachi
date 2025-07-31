@@ -33,18 +33,18 @@ export default function SignupForm() {
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
   const profileImages = [
-    'files/febc13-final13-emjf/profile1.jpg',
-    'files/febc13-final13-emjf/profile2.jpg',
-    'files/febc13-final13-emjf/profile3.jpg',
-    'files/febc13-final13-emjf/profile4.jpg',
-    'files/febc13-final13-emjf/profile5.jpg',
-    'files/febc13-final13-emjf/profile6.jpg',
-    'files/febc13-final13-emjf/profile7.jpg',
-    'files/febc13-final13-emjf/profile8.jpg',
-    'files/febc13-final13-emjf/profile9.jpg',
-    'files/febc13-final13-emjf/profile10.jpg',
-    'files/febc13-final13-emjf/profile11.jpg',
-    'files/febc13-final13-emjf/profile12.jpg',
+    'files/febc13-final13-emjf/profile-1.jpg',
+    'files/febc13-final13-emjf/profile-2.jpg',
+    'files/febc13-final13-emjf/profile-3.jpg',
+    'files/febc13-final13-emjf/profile-4.jpg',
+    'files/febc13-final13-emjf/profile-5.jpg',
+    'files/febc13-final13-emjf/profile-6.jpg',
+    'files/febc13-final13-emjf/profile-7.jpg',
+    'files/febc13-final13-emjf/profile-8.jpg',
+    'files/febc13-final13-emjf/profile-9.jpg',
+    'files/febc13-final13-emjf/profile-10.jpg',
+    'files/febc13-final13-emjf/profile-11.jpg',
+    'files/febc13-final13-emjf/profile-12.jpg',
   ];
 
   function getRandomImage() {
