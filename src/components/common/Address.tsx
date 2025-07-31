@@ -98,6 +98,7 @@ export default function AddressForm({
           width="md"
           type="text"
           id="addressDetail2"
+          className="w-[320px] lg-[330px]"
           placeholder="상세주소를 입력하세요"
           {...register('addressDetail2')}
         />
