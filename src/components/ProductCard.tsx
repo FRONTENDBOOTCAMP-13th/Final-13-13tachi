@@ -27,7 +27,7 @@ export default function ProductCard({
   ));
   return (
     <>
-      <ul className="grid lg:mt-5 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-15">
+      <ul className="grid mt-5 grid-cols-2 gap-5 md:grid-cols-3 md:gap-x-5 md:gap-y-15 lg:grid-cols-4 ">
         {ProductCardList}
       </ul>
     </>

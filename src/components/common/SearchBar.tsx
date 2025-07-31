@@ -46,7 +46,7 @@ export default function SearchBar({ handleType, placeholder }: SearchBarProps) {
 
   return (
     <div
-      className="flex items-center lg:w-[17.8125rem] lg:h-[2.5rem] bg-white border border-dark-green placeholder-gray lg:placeholder:text-sm rounded-3xl overflow-hidden"
+      className="flex items-center w-55 h-8 bg-white border border-dark-green placeholder-gray rounded-3xl overflow-hidden md:w-[17.8125rem] md:h-[2.5rem] "
       style={{ boxShadow: 'inset 1px 1px 4px rgba(0, 0, 0, 0.1)' }}
     >
       <input
@@ -55,7 +55,7 @@ export default function SearchBar({ handleType, placeholder }: SearchBarProps) {
         value={text}
         onChange={e => setText(e.target.value)}
         onKeyDown={e => handleKeyDown(e, handleType)}
-        className="flex-grow lg:px-3 lg:text-sm outline-none"
+        className="flex-grow text-xs outline-none md:text-sm indent-4"
       />
       <button
         type="button"
@@ -66,7 +66,7 @@ export default function SearchBar({ handleType, placeholder }: SearchBarProps) {
         }
         className="w-10 h-full flex justify-center items-center cursor-pointer"
       >
-        <Search className="text-dark-green w-4" strokeWidth={1} />
+        <Search className="text-dark-green w-3.5 md:w-4" strokeWidth={1} />
       </button>
     </div>
   );
