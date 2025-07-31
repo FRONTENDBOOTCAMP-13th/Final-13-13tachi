@@ -4,7 +4,7 @@ import { loginWithAuthjs } from '@/data/actions/user';
 
 export default async function LoginPage() {
   return (
-    <div className="relative flex items-center justify-center min-h-[calc(100dvh-25rem)] md:min-h-[calc(100dvh-20.185rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+    <main className="relative flex items-center justify-center min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
         style={{ backgroundImage: "url('/login-img.svg')" }}
@@ -63,6 +63,6 @@ export default async function LoginPage() {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -4,7 +4,7 @@ import CustomLink from '@/components/common/CustomLink';
 
 export default function NotFound() {
   return (
-    <main className="min-h-[calc(100dvh-20.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+    <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div className="flex flex-col w-full justify-center items-center gap-1 mt-4 mb-20">
         <Image
           src={vegboxImg}
