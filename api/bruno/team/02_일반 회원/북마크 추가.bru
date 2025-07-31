@@ -1,0 +1,22 @@
+meta {
+  name: 북마크 추가
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{url}}/bookmarks/post
+  body: json
+  auth: inherit
+}
+
+params:query {
+  : 
+}
+
+body:json {
+  {
+    "target_id": 3,
+    "type": "recipe"
+  }
+}

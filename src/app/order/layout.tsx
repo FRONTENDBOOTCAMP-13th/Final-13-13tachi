@@ -14,9 +14,9 @@ export default function RootLayout({
         <div className="flex flex-col mb-[1.875rem]">
           <h2 className="text-sm text-gray mt-[4.0625rem] mb-[1.25rem]">
             <Link href="/">HOME</Link>
-            <span>{' > '}</span>
+            &nbsp;&gt;&nbsp;
             <Link href="/cart">장바구니</Link>
-            <span>{' > '}</span>
+            &nbsp;&gt;&nbsp;
             <Link href="/order">주문 정보 입력</Link>
           </h2>
 

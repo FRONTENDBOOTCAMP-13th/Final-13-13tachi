@@ -1,0 +1,15 @@
+meta {
+  name: 게시글 조회
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{url}}/posts?type=recipe
+  body: none
+  auth: inherit
+}
+
+params:query {
+  type: recipe
+}

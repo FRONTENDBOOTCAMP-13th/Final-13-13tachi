@@ -44,7 +44,7 @@ export default function OrderInfoList({
       <div className="lg:grid lg:grid-cols-2 lg:gap-[1.875rem] flex flex-col gap-5 lg:mt-9 mt-8 h-full">
         <div>
           <p className="text-xl font-semibold text-dark-green lg:mb-6 mb-3">
-            배송지
+            배송 정보
           </p>
           <div className="flex flex-col border-1 rounded-lg border-light-gray p-4 gap-1.5">
             <p>{item.user.name}</p>
@@ -53,6 +53,11 @@ export default function OrderInfoList({
               {item.user.addressDetail1} {item.user.addressDetail2}{' '}
               <span>({item.user.postcode})</span>
             </p>
+            {item.user.message && (
+              <p className="text-gray text-sm">
+                배송 요청사항 : {item.user.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="h-full">

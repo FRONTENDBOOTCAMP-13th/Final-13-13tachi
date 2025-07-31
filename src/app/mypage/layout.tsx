@@ -64,7 +64,7 @@ export default function RootLayout({
           <div className="flex flex-col gap-[2.1875rem]">
             <h2 className="text-sm text-gray">
               <Link href="/">HOME</Link>
-              <span>{' > '}</span>
+              &nbsp;&gt;&nbsp;
               <Link href="/mypage">마이페이지</Link>
               <p className="mt-5 text-4xl font-semibold text-black">
                 마이페이지
@@ -100,6 +100,12 @@ export default function RootLayout({
                       <p className="lg:text-base md:text-base font-semibold">
                         {user?.name}
                       </p>
+                      {user?.loginType === 'kakao' && (
+                        <p className="text-xs text-[#ffcd00]">Kakao 로그인</p>
+                      )}
+                      {user?.loginType === 'naver' && (
+                        <p className="text-xs text-[#2DB400]">Naver 로그인</p>
+                      )}
                       <p className="lg:text-sm md:text-sm">{user?.email}</p>
                     </div>
                   )}

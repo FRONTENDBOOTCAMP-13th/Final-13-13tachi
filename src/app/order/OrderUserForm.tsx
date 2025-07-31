@@ -36,6 +36,7 @@ export default function OrderUserForm({
       setValue('postcode', user.postcode ?? '');
       setValue('addressDetail1', user.addressDetail1 ?? '');
       setValue('addressDetail2', user.addressDetail2 ?? '');
+      setValue('message', '');
     }
   }, [user, setValue]);
 
@@ -44,9 +45,25 @@ export default function OrderUserForm({
   const postcode = watch('postcode');
   const addressDetail1 = watch('addressDetail1');
   const addressDetail2 = watch('addressDetail2');
+  const message = watch('message');
   useEffect(() => {
-    onChangeUserData({ name, phone, postcode, addressDetail1, addressDetail2 });
-  }, [name, phone, postcode, addressDetail1, addressDetail2, onChangeUserData]);
+    onChangeUserData({
+      name,
+      phone,
+      postcode,
+      addressDetail1,
+      addressDetail2,
+      message,
+    });
+  }, [
+    name,
+    phone,
+    postcode,
+    addressDetail1,
+    addressDetail2,
+    message,
+    onChangeUserData,
+  ]);
 
   return (
     <div>
@@ -207,7 +224,7 @@ export default function OrderUserForm({
           type="text"
           id="message"
           placeholder="배송 전 연락주세요"
-          name="message"
+          {...register('message')}
         />
       </div>
       {/* 주소 검색 모달창 */}

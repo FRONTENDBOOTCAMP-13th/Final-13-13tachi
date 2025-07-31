@@ -39,7 +39,7 @@ export default function CartItemForm({
       <div className="flex flex-col  justify-center items-center">
         <div className="flex flex-col w-full lg:my-[30px] md:my-6 my-5">
           <div className="flex w-full justify-between">
-            <div className="relative mr-[1.5625rem] md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 flex-shrink-0">
+            <div className="relative mr-[1.5625rem] md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 overflow-hidden rounded-lg flex-shrink-0">
               <Link
                 href={`/shopping/${item._id}`}
                 className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20"
@@ -48,7 +48,7 @@ export default function CartItemForm({
                   fill
                   src={`${API_URL}/${item.image?.path}`}
                   alt={`${item.name} 이미지`}
-                  className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image"
+                  className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image transition-transform duration-300 hover:scale-110"
                 ></Image>
               </Link>
             </div>
