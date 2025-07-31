@@ -98,6 +98,7 @@ export default function AddressForm({
           width="md"
           type="text"
           id="addressDetail2"
+          className="w-[320px] lg-[330px]"
           {...register('addressDetail2')}
         />
       </div>

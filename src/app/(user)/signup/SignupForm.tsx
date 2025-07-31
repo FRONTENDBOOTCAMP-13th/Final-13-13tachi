@@ -141,11 +141,12 @@ export default function SignupForm() {
         </div>
         <div>
           <Input
+            width="md"
             id="password"
             type="password"
             placeholder="비밀번호를 입력하세요"
             autoComplete="new-password"
-            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('password', {
               required: '비밀번호를 입력해주세요',
               pattern: {
@@ -178,7 +179,7 @@ export default function SignupForm() {
             id="passwordConfirm"
             type="password"
             placeholder="비밀번호를 한번 더 입력하세요"
-            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('passwordConfirm', {
               required: '비밀번호를 확인해주세요',
               validate: (value, formValues) =>
@@ -210,7 +211,7 @@ export default function SignupForm() {
             type="text"
             autoComplete="name"
             placeholder="이름을 입력하세요"
-            className=" w-[20rem] text-xs lg:text-sm px-[0.75rem]"
+            className=" w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('name', {
               required: '이름를 입력해주세요',
             })}
@@ -240,7 +241,7 @@ export default function SignupForm() {
             type="text"
             autoComplete="tel"
             placeholder="000-0000-0000 형식으로 입력하세요"
-            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('phone', {
               required: '전화번호를 입력해주세요',
               validate: value => {
