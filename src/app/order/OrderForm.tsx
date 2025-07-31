@@ -16,8 +16,8 @@ import { getCartProducts, getShoppingOrder } from '@/data/functions/post';
 import { createOrder, createShoppingOrder } from '@/data/actions/cart';
 import OrderList from '@/app/order/OrderList';
 import OrderTable from '@/app/order/OrderTable';
-import { useSearchParams } from 'next/navigation';
-// import Swal from 'sweetalert2';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Swal from 'sweetalert2';
 import Loading from '@/app/order/Loading';
 
 export default function OrderForm() {
@@ -35,7 +35,7 @@ export default function OrderForm() {
   console.log(orderState, isOrdering);
   const id = useSearchParams().get('id');
   const quantity = useSearchParams().get('quantity');
-  // const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     if (accessToken) {
@@ -44,17 +44,16 @@ export default function OrderForm() {
       } else {
         getCartProducts(accessToken).then(setRes);
       }
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) router.replace('/login');
+      });
     }
   }, [accessToken]);
-  // else {
-  //     Swal.fire({
-  //       icon: 'warning',
-  //       text: '로그인 후 이용해주세요',
-  //       confirmButtonText: '확인',
-  //     }).then(result => {
-  //       if (result.isConfirmed) router.replace('/login');
-  //     });
-  //   }
 
   const products =
     id && quantity

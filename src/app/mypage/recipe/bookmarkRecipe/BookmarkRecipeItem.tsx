@@ -21,13 +21,13 @@ export default function BookmarkRecipeItem({
 
   return (
     <div className="flex flex-col">
-      <Link href={`/recipe/${item._id}`}>
+      <Link href={`/recipe/${item._id}`} className="overflow-hidden rounded-lg">
         <Image
           src={`${API_URL}/${item.image}`}
           alt={item.title}
           width={180}
           height={180}
-          className="lg:w-[11.25rem] lg:h-[11.25rem] md:w-36 md:h-36 w-34 h-34 object-cover rounded-lg shadow-image"
+          className="lg:w-[11.25rem] lg:h-[11.25rem] md:w-36 md:h-36 w-34 h-34 object-cover rounded-lg shadow-image transition-transform duration-300 hover:scale-110"
         />
       </Link>
       <div className="relative text-center mt-2.5">

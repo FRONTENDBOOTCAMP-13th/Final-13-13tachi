@@ -81,7 +81,7 @@ export default function UserInfo() {
               <span className="font-semibold">주소</span>
               <div className="border-l-2 border-light-gray h-3 "></div>
               <span>
-                {`${user?.postcode ?? ''} ${user?.addressDetail1 ?? ''} ${user?.addressDetail2 ?? ''}`}
+                {`${user?.addressDetail1 ?? ''} ${user?.addressDetail2 ?? ''} (${user?.postcode ?? ''})`}
               </span>
             </div>
           </div>
