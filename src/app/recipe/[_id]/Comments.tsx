@@ -5,14 +5,11 @@ import Button from '@/components/common/Button';
 import Comment from './Comment';
 import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
+import { PostReply, ReplyApiResponse } from '@/types/post';
 
-interface CommentType {
-  _id: number;
-  content: string;
-  name: string;
-  user: { _id: number; name: string };
-  createdAt: string;
-  updatedAt?: string;
+// PostReply 타입에 name 필드를 임시 추가한 타입 (기존 호환성 유지용)
+interface CommentType extends PostReply {
+  name?: string;
 }
 
 interface CommentsProps {
@@ -23,10 +20,32 @@ export default function Comments({ postId }: CommentsProps) {
   const { user } = useUserStore();
   const [comments, setComments] = useState<CommentType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [content, setContent] = useState('');
+
+  // 이미지 모두 로드될 때까지 대기하는 함수
+  const waitForImagesToLoad = (
+    imageUrls: (string | null | undefined)[],
+  ): Promise<void> => {
+    const validUrls = imageUrls.filter(url => url);
+    if (validUrls.length === 0) return Promise.resolve();
+
+    return Promise.all(
+      validUrls.map(
+        url =>
+          new Promise<void>(resolve => {
+            const img = new Image();
+            img.src = url!;
+            img.onload = () => resolve();
+            img.onerror = () => resolve(); // 에러 시에도 resolve해서 무한대기 방지
+          }),
+      ),
+    ).then(() => {});
+  };
 
   const fetchComments = async () => {
     setLoading(true);
+    setImagesLoaded(false);
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/replies?limit=10&page=1&sort={"_id":1}`,
@@ -36,8 +55,34 @@ export default function Comments({ postId }: CommentsProps) {
         },
       );
       if (!res.ok) throw new Error('Failed to fetch comments');
+
       const data = await res.json();
-      setComments(data.item || []);
+
+      const mappedComments = (data.item as ReplyApiResponse[]).map(
+        (item): CommentType => ({
+          _id: item._id,
+          content: item.content,
+          name: item.name || item.user?.name || '',
+          user: {
+            _id: item.user?._id ?? 0,
+            name: item.user?.name ?? '',
+            image: item.user?.image ?? undefined,
+          },
+          like: item.like ?? 0,
+          createdAt: item.createdAt ?? '',
+          updatedAt: item.updatedAt ?? '',
+        }),
+      );
+
+      setComments(mappedComments);
+
+      // 댓글 작성자 이미지 URL 리스트
+      const imageUrls = mappedComments.map(c => c.user.image);
+
+      // 모든 이미지가 로드될 때까지 기다림
+      await waitForImagesToLoad(imageUrls);
+
+      setImagesLoaded(true);
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -45,6 +90,7 @@ export default function Comments({ postId }: CommentsProps) {
         text: '댓글을 불러오는 데 실패했습니다.',
         confirmButtonText: '확인',
       });
+      setImagesLoaded(true); // 에러 시에도 로딩 상태 해제
     } finally {
       setLoading(false);
     }
@@ -131,6 +177,10 @@ export default function Comments({ postId }: CommentsProps) {
     );
   };
 
+  if (loading || !imagesLoaded) {
+    return <p>댓글 및 이미지 불러오는 중...</p>;
+  }
+
   return (
     <div className="p-15">
       <div className="flex items-center border-b-2 border-[#DEDEDE]">
@@ -139,8 +189,6 @@ export default function Comments({ postId }: CommentsProps) {
           {comments.length}
         </span>
       </div>
-
-      {loading && <p>댓글 불러오는 중...</p>}
 
       {comments.map(comment => (
         <Comment

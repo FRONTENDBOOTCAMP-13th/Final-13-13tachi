@@ -1,6 +1,6 @@
 'use server';
 
-import { ApiRes, ApiResPromise } from '@/types';
+import { ApiRes, ApiResPromise, User } from '@/types';
 import { LikePostType, Post, PostReply } from '@/types/post';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -136,6 +136,62 @@ export async function deleteBookmark(
 
   if (data.ok) {
     redirect(`/mypage/recipe/likerecipe`);
+  }
+
+  return data;
+}
+
+/**
+ * 사용자 목록을 조회하는 함수
+ * @param {string} name - 조회할 사용자 이름
+ * @returns {Promise<ApiRes<User[]>>} - 사용자 목록 응답 객체
+ * @description
+ * 이름으로 사용자를 검색하여 프로필 이미지 등의 정보를 가져옵니다.
+ */
+export async function getUserByName(name: string): Promise<ApiRes<User[]>> {
+  let res: Response;
+  let data: ApiRes<User[]>;
+
+  try {
+    res = await fetch(`${API_URL}/users?name=${encodeURIComponent(name)}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+
+    data = await res.json();
+  } catch (error) {
+    console.error('사용자 정보 조회 중 오류:', error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 사용자 정보를 가져올 수 없습니다.' };
+  }
+
+  return data;
+}
+
+/**
+ * 사용자 ID로 사용자 정보를 조회하는 함수
+ * @param {number} userId - 조회할 사용자 ID
+ * @returns {Promise<ApiRes<User[]>>} - 사용자 정보 응답 객체
+ */
+export async function getUserById(userId: number): Promise<ApiRes<User[]>> {
+  let res: Response;
+  let data: ApiRes<User[]>;
+
+  try {
+    res = await fetch(`${API_URL}/users?_id=${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+
+    data = await res.json();
+  } catch (error) {
+    console.error('사용자 정보 조회 중 오류:', error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 사용자 정보를 가져올 수 없습니다.' };
   }
 
   return data;
