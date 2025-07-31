@@ -100,6 +100,12 @@ export default function RootLayout({
                       <p className="lg:text-base md:text-base font-semibold">
                         {user?.name}
                       </p>
+                      {user?.loginType === 'kakao' && (
+                        <p className="text-xs text-[#ffcd00]">Kakao 로그인</p>
+                      )}
+                      {user?.loginType === 'naver' && (
+                        <p className="text-xs text-[#2DB400]">Naver 로그인</p>
+                      )}
                       <p className="lg:text-sm md:text-sm">{user?.email}</p>
                     </div>
                   )}
