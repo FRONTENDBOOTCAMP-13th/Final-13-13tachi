@@ -64,6 +64,10 @@ export default function BookmarkRecipeList() {
     return <EmptyLikeRecipe />;
   }
 
+  if (res.ok === 0) {
+    router.replace('/error'); // 실패 메시지 렌더링
+  }
+
   return (
     <>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 w-fit gap-x-6 gap-y-5 mx-auto">

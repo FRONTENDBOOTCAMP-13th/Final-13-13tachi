@@ -41,6 +41,10 @@ export default function MyRecipeList() {
     return <Loading />;
   }
 
+  if (res.ok === 0) {
+    router.replace('/error'); // 실패 메시지 렌더링
+  }
+
   if (res.ok && res.item.length === 0) {
     return <EmptyMyRecipe />;
   }
