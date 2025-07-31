@@ -1,0 +1,25 @@
+meta {
+  name: 회원 가입
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{url}}/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "qqqddq@market.com",
+    "password": "11111111",
+    "name": "aa",
+    "phone": "0118889999",
+    "type": "user",
+    "extra": {
+      "birthday": "10-23"
+    },
+    "image": "files/febc13-final13-emjf/profile5.jpg"
+  }
+}
