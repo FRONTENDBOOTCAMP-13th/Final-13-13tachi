@@ -25,12 +25,27 @@ export default function EditForm() {
 
   useEffect(() => {
     if (user) {
+      //소셜 로그인 사용자는 수정 불가
+      if (user.loginType === 'kakao' || user.loginType === 'naver') {
+        Swal.fire({
+          icon: 'warning',
+          title: '회원 정보 수정 불가',
+          text: `소셜로그인 계정은 수정이 불가합니다.`,
+          confirmButtonText: '돌아가기',
+        }).then(result => {
+          if (result.isConfirmed) {
+            router.replace('/mypage/user');
+          }
+        });
+        return;
+      }
+
       setValue('phone', user.phone ?? '');
       setValue('postcode', user.postcode ?? '');
       setValue('addressDetail1', user.addressDetail1 ?? '');
       setValue('addressDetail2', user.addressDetail2 ?? '');
     }
-  }, [user, setValue]);
+  }, [user, setValue, router]);
 
   const onSubmit = (data: SignupFormProps) => {
     if (!user) {
