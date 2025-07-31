@@ -133,15 +133,15 @@ export default function AllItems({ products, searchKeyword }: AllItemsProps) {
         </button>
       </div>
       {products && filteredItems.length === 0 ? (
-        <div className="text-center py-12">
-          <Search className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-          <p className="text-gray-600 mb-2">
+        <div className="text-center py-6 md:py-10 lg:py-12">
+          <Search className="mx-auto h-12 w-12 mb-4 text-gray-300 md:h-14 md:w-14 lg:h-16 lg:w-16" />
+          <p className="text-gray-600 mb-2 text-sm md:text-base">
             &quot;{searchKeyword}&quot;에 대한 검색 결과가 없습니다.
           </p>
-          <p className="text-gray-500">
+          <p className="text-gray-500 text-sm md:text-base">
             다른 검색어를 사용하거나 전체 레시피를 확인해보세요.
           </p>
-          <div className="lg:mt-[4.0625rem]">
+          <div className="mt-7.5 md:mt-12.5 lg:mt-[4.0625rem]">
             <CustomLink href="/shopping" variant="orange" size="xl">
               전체 레시피 보기
             </CustomLink>
@@ -156,7 +156,7 @@ export default function AllItems({ products, searchKeyword }: AllItemsProps) {
         />
       )}
 
-      {hasNextPage ? (
+      {hasNextPage && filteredItems.length !== 0 ? (
         <p
           ref={ref}
           className="mt-7.5 w-full text-center text-dark-green font-semibold text-lg md:mt-12.5 md:text-2xl lg:mt-[4.026rem] lg:text-3xl"
