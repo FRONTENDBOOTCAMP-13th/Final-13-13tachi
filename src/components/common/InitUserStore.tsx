@@ -15,6 +15,7 @@ export default function InitUserStore() {
         name: session.user.name ?? '',
         email: session.user.email ?? '',
         image: session.user.image ?? '',
+        loginType: session.user.loginType as 'email' | 'kakao' | 'naver',
         type: 'user',
         token: {
           accessToken: session.user.accessToken ?? '',
