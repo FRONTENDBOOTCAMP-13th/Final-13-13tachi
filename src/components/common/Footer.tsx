@@ -68,8 +68,9 @@ export default function Footer() {
         </ul>
         <div className="space-y-1.5 text-center md:text-left">
           <p className="text-xs md:text-sm">
-            이 웹 사이트는 멋쟁이사자처럼 부트캠프 13기 파이널 프로젝트로
-            제작되었습니다.
+            이 웹 사이트는 멋쟁이사자처럼 부트캠프 13기{' '}
+            <br className="md:hidden" />
+            파이널 프로젝트로 제작되었습니다.
           </p>
           <small className="mt-1 text-xs md:text-sm font-thin">
             Copyrightⓒ2025 Likelion 13-13.

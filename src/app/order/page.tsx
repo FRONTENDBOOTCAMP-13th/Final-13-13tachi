@@ -2,7 +2,7 @@ import OrderForm from '@/app/order/OrderForm';
 
 export default function Order() {
   return (
-    <main className="lg:w-[64rem] md:w-[44.25rem] w-80">
+    <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <OrderForm />
     </main>
   );
