@@ -81,7 +81,7 @@ export default function RecipeList({ post }: RecipeListProps) {
 
   // 카테고리별 재료 매핑
   const categoryMap = {
-    채소: ['당근', '감자', '아스파라거스', '오이', '피망'],
+    채소: ['당근', '감자', '고구마', '오이', '양송이'],
     과일: ['사과', '바나나', '딸기', '포도', '수박'],
   };
 

@@ -1,4 +1,3 @@
-// app/recipe/write/page.tsx (서버 컴포넌트)
 import Link from 'next/link';
 import RecipeWriteClient from './RecipeWriteClient';
 

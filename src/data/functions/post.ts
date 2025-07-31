@@ -389,6 +389,15 @@ export async function deleteBookmark(accessToken: string, bookmarkId: number) {
   return data;
 }
 
+// 태그와 일치하는 상품 필터링 함수
+export function getRelatedProducts(products: ProductType[], tags: string[]) {
+  return products.filter(product => {
+    const name = product.name ?? ''; // name이 undefined일 경우 빈 문자열로 처리
+    const category = product.extra?.category ?? '';
+    return tags.some(tag => name.includes(tag) || category.includes(tag));
+  });
+}
+
 // 단일 상품 구매 정보 불러오기
 export async function getShoppingOrder({
   id,
