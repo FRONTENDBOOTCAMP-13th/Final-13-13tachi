@@ -7,6 +7,7 @@ import CommentActionButton from './CommentActionButton';
 import Swal from 'sweetalert2';
 import { getUserByName } from '@/data/actions/post';
 import { PostReply } from '@/types/post';
+// import { cp } from 'fs';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -18,6 +19,7 @@ interface CommentProps {
   onDelete: (id: number) => void;
   onUpdate: (id: number, newContent: string) => void;
   postId: number;
+  user_img: string;
 }
 
 export default function Comment({
@@ -25,12 +27,13 @@ export default function Comment({
   onDelete,
   onUpdate,
   postId,
+  user_img,
 }: CommentProps) {
   const { user } = useUserStore();
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
   const [loading, setLoading] = useState(false);
-  const [userImage, setUserImage] = useState<string | null>(null);
+  // const [userImage, setUserImage] = useState<string | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
 
   // 댓글 작성자 이름 (name 또는 user.name 사용)
@@ -41,18 +44,18 @@ export default function Comment({
     const fetchUserImage = async () => {
       try {
         setImageLoading(true);
-        
+
         // 현재 로그인된 사용자가 댓글 작성자와 같은 경우 store의 이미지 사용
         const isCurrentUser = user && authorName === user.name;
         if (isCurrentUser && user.image) {
-          setUserImage(user.image);
+          // setUserImage(user.image);
           setImageLoading(false);
           return;
         }
 
         // 댓글 데이터에 이미지가 있는 경우 사용
         if (comment.user?.image) {
-          setUserImage(comment.user.image);
+          // setUserImage(comment.user.image);
           setImageLoading(false);
           return;
         }
@@ -60,11 +63,11 @@ export default function Comment({
         // Server Action을 통해 사용자 이미지 정보 조회
         if (authorName) {
           const response = await getUserByName(authorName);
-          
+
           if (response.ok === 1 && response.item && response.item.length > 0) {
             const userData = response.item[0];
             if (userData.image) {
-              setUserImage(userData.image);
+              // setUserImage(userData.image);
             }
           }
         }
@@ -79,9 +82,7 @@ export default function Comment({
   }, [authorName, comment.user?.image, user]);
 
   // 이미지 URL 처리
-  const profileSrc = userImage
-    ? `${API_URL}/${userImage}`
-    : '/images/front-end.png';
+  // const profileSrc = userImage ? `${userImage}` : '/images/front-end.png';
 
   const handleUpdate = async () => {
     if (!editedContent.trim()) {
@@ -215,7 +216,7 @@ export default function Comment({
           <div className="w-full h-full rounded-full bg-gray-200 animate-pulse" />
         ) : (
           <Image
-            src={profileSrc}
+            src={user_img}
             alt={`${authorName} 프로필 이미지`}
             fill
             className="rounded-full object-cover"
@@ -224,9 +225,7 @@ export default function Comment({
       </div>
       <div className="ml-4 w-full">
         <div className="flex items-center justify-between">
-          <p className="font-semibold text-dark-green mb-1">
-            {authorName}
-          </p>
+          <p className="font-semibold text-dark-green mb-1">{authorName}</p>
           {!isEditing && user && authorName === user.name && (
             <CommentActionButton
               authorId={comment.user._id}

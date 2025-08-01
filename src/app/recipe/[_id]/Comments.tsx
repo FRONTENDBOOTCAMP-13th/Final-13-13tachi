@@ -134,6 +134,7 @@ export default function Comments({ postId }: CommentsProps) {
           body: JSON.stringify({
             content,
             name: user.name,
+            user_image: user.image,
           }),
         },
       );
@@ -195,6 +196,7 @@ export default function Comments({ postId }: CommentsProps) {
           key={comment._id}
           postId={postId}
           comment={comment}
+          user_img={String(user?.image)}
           currentUserId={user?._id || null}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
