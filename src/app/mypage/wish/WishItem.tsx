@@ -6,8 +6,6 @@ import { LikeItemProps } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface LikeItemActionProps {
   addAction: (FormData: FormData) => void;
   deleteAction: (FormData: FormData) => void;
@@ -34,7 +32,7 @@ export default function WishItem({
               <Image
                 width={100}
                 height={100}
-                src={`${API_URL}/${item.mainImages[0]?.path}`}
+                src={item.mainImages[0]?.path}
                 alt={`${item.name} 이미지`}
                 className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image transition-transform duration-300 hover:scale-110"
               ></Image>

@@ -8,8 +8,6 @@ interface LikePostActionType {
   deleteAction: (FormData: FormData) => void;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function BookmarkRecipeItem({
   item,
   action,
@@ -23,7 +21,7 @@ export default function BookmarkRecipeItem({
     <div className="flex flex-col">
       <Link href={`/recipe/${item._id}`} className="overflow-hidden rounded-lg">
         <Image
-          src={`${API_URL}/${item.image}`}
+          src={item.image}
           alt={item.title}
           width={180}
           height={180}
