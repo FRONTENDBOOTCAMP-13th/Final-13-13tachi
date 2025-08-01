@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         pathname: '/market/files/febc13-final13-emjf/**',
       },
       {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '**',
+      },
+      {
         protocol: 'http',
         hostname: '*.kakaocdn.net',
         pathname: '**',
