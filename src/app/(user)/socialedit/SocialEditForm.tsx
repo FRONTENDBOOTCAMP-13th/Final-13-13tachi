@@ -125,7 +125,7 @@ export default function SocialEditForm() {
             type="text"
             autoComplete="name"
             placeholder="이름을 입력하세요"
-            className=" w-[20rem] text-xs lg:text-sm px-[0.75rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             defaultValue={user?.name ?? ''}
             disabled
             readOnly
@@ -150,7 +150,7 @@ export default function SocialEditForm() {
             type="text"
             autoComplete="tel"
             placeholder="전화번호를 입력하세요"
-            className="w-[20rem] text-xs lg:text-sm px-[0.75rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             defaultValue={res.ok ? res.item.phone : ''}
             {...register('phone', {
               required: '전화번호를 입력해주세요',
