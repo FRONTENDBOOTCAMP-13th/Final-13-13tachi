@@ -54,9 +54,9 @@ export default function OrderInfo({ orderId }: { orderId: number }) {
   //   return <div>{res.message}</div>; // 실패 메시지 렌더링
   // }
 
-  if (res.ok === 0) {
-    router.replace('/error'); // 실패 메시지 렌더링
-  }
+  // if (res.ok === 0) {
+  //   router.replace('/error'); // 실패 메시지 렌더링
+  // }
 
   console.log('1번 호출');
   console.log(orderId);

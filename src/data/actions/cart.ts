@@ -295,8 +295,6 @@ export async function createOrder(
       const sellerProducts = products.filter(
         product => product.seller_id === seller_id,
       );
-      // console.log(sellerProducts);
-      console.log(`seller_id ${seller_id}`);
       await sendEmail(
         Number(seller_id),
         sellerProducts,

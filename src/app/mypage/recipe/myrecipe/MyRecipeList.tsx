@@ -37,12 +37,14 @@ export default function MyRecipeList() {
     }
   }, [accessToken]);
 
+  // useEffect(() => {
+  //   if (res && res.ok === 0) {
+  //     router.replace('/error');
+  //   }
+  // }, [res, router]);
+
   if (!res) {
     return <Loading />;
-  }
-
-  if (res.ok === 0) {
-    router.replace('/error'); // 실패 메시지 렌더링
   }
 
   if (res.ok && res.item.length === 0) {

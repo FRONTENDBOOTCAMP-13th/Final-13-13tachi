@@ -39,22 +39,34 @@ export default function UserInfo() {
     }
   }, [user]);
 
+  // useEffect(() => {
+  //   if (res && res.ok === 0) {
+  //     router.replace('/error');
+  //   }
+  // }, [res, router]);
+
   if (!res) {
     return <Loading />;
-  }
-
-  if (res.ok === 0) {
-    router.replace('/error'); // 실패 메시지 렌더링
   }
 
   let socialLogin = null;
   let editPage = ``;
 
   if (user?.loginType === 'kakao') {
-    socialLogin = <p className="text-[#ffcd00]">Kakao 로그인</p>;
+    socialLogin = (
+      <div className="flex">
+        <Image src="/kakao_logo.png" width={20} height={20} alt="네이버 로고" />
+        <span className="text-sm ml-2">카카오 로그인</span>
+      </div>
+    );
     editPage = `/socialedit`;
   } else if (user?.loginType === 'naver') {
-    socialLogin = <p className="text-[#2DB400]">Naver 로그인</p>;
+    socialLogin = (
+      <div className="flex">
+        <Image src="/naver_logo.png" width={20} height={20} alt="네이버 로고" />
+        <span className="text-sm ml-2">네이버 로그인</span>
+      </div>
+    );
     editPage = `/socialedit`;
   } else {
     editPage = `/edit`;
@@ -115,7 +127,10 @@ export default function UserInfo() {
               <div className="border-l-2 border-light-gray h-4 mt-1"></div>
               <span>
                 {res.ok ? (
-                  <span>{`${res.item.addressDetail1 ?? ''} ${res.item.addressDetail2 ?? ''} (${res.item.postcode ?? ''})`}</span>
+                  <span>
+                    {`${res.item.addressDetail1 ?? ''} ${res.item.addressDetail2 ?? ''}`}
+                    {res.item.postcode ? ` (${res.item.postcode})` : ''}
+                  </span>
                 ) : (
                   <div className="lg:h-4 lg:w-10 rounded-lg bg-gray-200" />
                 )}

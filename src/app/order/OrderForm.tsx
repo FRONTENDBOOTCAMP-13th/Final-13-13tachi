@@ -9,10 +9,15 @@ import {
   ApiRes,
   ApiResCart,
   CartItemType,
+  MemberType,
   ShoppingOrderType,
   UserInfoType,
 } from '@/types';
-import { getCartProducts, getShoppingOrder } from '@/data/functions/post';
+import {
+  getCartProducts,
+  getMember,
+  getShoppingOrder,
+} from '@/data/functions/post';
 import { createOrder, createShoppingOrder } from '@/data/actions/cart';
 import OrderList from '@/app/order/OrderList';
 import OrderTable from '@/app/order/OrderTable';
@@ -36,6 +41,13 @@ export default function OrderForm() {
   const id = useSearchParams().get('id');
   const quantity = useSearchParams().get('quantity');
   const router = useRouter();
+
+  const [userRes, setUserRes] = useState<ApiRes<MemberType> | null>(null);
+
+  useEffect(() => {
+    const user_id = Number(user?._id);
+    getMember(user_id).then(setUserRes);
+  }, [user]);
 
   useEffect(() => {
     if (accessToken) {
@@ -91,10 +103,11 @@ export default function OrderForm() {
     if (shoppingRes.ok === 0) router.replace('/error');
   } else {
     // 장바구니 주문
-    if (!res) return <Loading />;
-    if (res.ok === 0) {
-      router.replace('/error');
-    }
+    if (!res || !userRes) return <Loading />;
+
+    // if (res.ok === 0 || userRes.ok === 0) {
+    //   router.replace('/error');
+    // }
   }
 
   return (
@@ -169,7 +182,14 @@ export default function OrderForm() {
               주문자 정보
             </h3>
             <hr className="text-light-gray w-full md:mb-[1.5rem] mb-3" />
-            <OrderUserForm onChangeUserData={setUserFormData} />
+            {userRes?.ok ? (
+              <OrderUserForm
+                onChangeUserData={setUserFormData}
+                user={userRes.item}
+              />
+            ) : (
+              <p>{userRes?.message}</p>
+            )}
           </div>
           <div className="flex flex-col justify-between">
             <PayForm />
