@@ -36,7 +36,7 @@ export interface ProductItemType {
   product_id?: number;
   price: number;
   name: string;
-  image?: {
+  image: {
     path: string;
     name?: string;
     originalname?: string;

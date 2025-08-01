@@ -5,8 +5,6 @@ import useUserStore from '@/zustand/useStore';
 import CustomLink from '@/components/common/CustomLink';
 import Link from 'next/link';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface BuyItemActionProps {
   addAction: (FormData: FormData) => void;
 }
@@ -30,7 +28,7 @@ export default function OrderItem({
           <Image
             width={100}
             height={100}
-            src={`${API_URL}/${item.image?.path}`}
+            src={item.image.path}
             alt={`${item.name} 이미지`}
             className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 object-cover rounded-lg shadow-image transition-transform duration-300 hover:scale-110"
           ></Image>

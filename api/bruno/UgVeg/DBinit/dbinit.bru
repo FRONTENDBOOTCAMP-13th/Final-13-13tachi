@@ -4,8 +4,13 @@ meta {
   seq: 1
 }
 
-get {
-  url: 
-  body: none
+post {
+  url: {{url}}/db/init
+  body: multipartForm
   auth: inherit
+}
+
+body:multipart-form {
+  initData: @file(/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/data.json)
+  attach: @file(/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/product-1.jpeg|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/product-2.jpeg|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/product-3.jpeg|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-1.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-2.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-3.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-4.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-5.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-6.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-7.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-8.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-9.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-10.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-11.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/profile-12.png|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/seller-2.jpg|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/seller-3.jpg|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/seller-4.jpg|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/seller-5.jpg|/Users/jhyun/likelion-script/04_final_project/Final-13-13tachi/api/dbinit/team/uploadFiles/seller-6.jpg)
 }

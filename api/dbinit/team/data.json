@@ -63,7 +63,7 @@
       "address": "서울시 강남구 삼성동 456",
       "type": "seller",
       "loginType": "email",
-      "image": "files/${clientId}/seller-4.jpg",
+      "image": "uploadFiles/seller-4.jpg",
       "extra": {
         "birthday": "11-23",
         "farmName": "흙내음터",
@@ -83,7 +83,7 @@
       "address": "서울시 강남구 삼성동 456",
       "type": "seller",
       "loginType": "email",
-      "image": "files/${clientId}/seller-5.jpg",
+      "image": "uploadFiles/seller-5.jpg",
       "extra": {
         "birthday": "11-23",
         "farmName": "바람골 농장",
@@ -103,7 +103,7 @@
       "address": "서울시 강남구 삼성동 456",
       "type": "seller",
       "loginType": "email",
-      "image": "files/${clientId}/seller-6.jpg",
+      "image": "uploadFiles/seller-6.jpg",
       "extra": {
         "birthday": "11-23",
         "farmName": "느린손 농장",
@@ -129,7 +129,7 @@
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "/uploadFiles/product-1.jpeg",
+          "path": "uploadFiles/product-1.jpeg",
           "name": "product-1.jpeg",
           "originalname": "product-1.jpeg"
         }
@@ -158,7 +158,7 @@
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "/uploadFiles/product-2.jpeg",
+          "path": "uploadFiles/product-2.jpeg",
           "name": "product-2.jpeg",
           "originalname": "product-2.jpeg"
         }
@@ -473,7 +473,7 @@
           "seller_id": 2,
           "name": "바니바니바니바니 당근당근1",
           "image": {
-            "path": "/files/febc13-final13-emjf/product-1.jpeg",
+            "path": "uploadFiles/product-1.jpeg",
             "name": "product-1.jpeg",
             "originalname": "product-1.jpeg"
           },
