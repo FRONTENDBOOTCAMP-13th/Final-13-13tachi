@@ -107,11 +107,10 @@ export default function AddressForm({
       {/* 주소 검색 모달창 */}
       {isOpen && (
         <div
+          className="w-[350px] md:w-[450px] h-[400px] md:h-[500px]"
           style={{
             position: 'fixed',
             top: '25%',
-            width: '450px',
-            height: '500px',
             zIndex: 100,
             boxShadow: '0 0 8px rgba(0,0,0,0.3)',
           }}
