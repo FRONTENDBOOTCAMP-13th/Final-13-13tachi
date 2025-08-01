@@ -9,7 +9,6 @@ import { getMember } from '@/data/functions/post';
 import { ApiRes, MemberType } from '@/types';
 import Loading from '@/app/mypage/user/Loading';
 import CustomLink from '@/components/common/CustomLink';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function UserInfo() {
   const { user } = useUserStore();
@@ -80,13 +79,17 @@ export default function UserInfo() {
       </div>
       <div className="flex flex-col">
         <div className="">
-          <Image
-            src={user?.image ? `${API_URL}/${user.image}` : '/profile.svg'}
-            alt={`${user?.name} 프로필 이미지`}
-            width={80}
-            height={80}
-            className="w-20 h-20 object-cover rounded-[50%] mb-6"
-          />
+          {res.ok ? (
+            <Image
+              src={res.item.image}
+              alt={`${res.item.name} 프로필 이미지`}
+              width={80}
+              height={80}
+              className="w-20 h-20 object-cover rounded-[50%] mb-6"
+            />
+          ) : (
+            <div className="w-20 h-20 mb-6 rounded-[50%] bg-gray-200" />
+          )}
           {/* <div className="lg:h-20 lg:w-20 rounded-[50%] bg-gray-200" /> */}
           <div className="flex flex-col gap-4 text-base">
             <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">

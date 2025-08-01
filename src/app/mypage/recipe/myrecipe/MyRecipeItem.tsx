@@ -3,12 +3,11 @@ import { MyPostType } from '@/types/post';
 import Link from 'next/link';
 
 export default function MyRecipeItem({ item }: { item: MyPostType }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   return (
     <div className="flex flex-col">
       <Link href={`/recipe/${item._id}`} className="overflow-hidden rounded-lg">
         <Image
-          src={`${API_URL}/${item.image}`}
+          src={item.image}
           alt={item.title}
           width={180}
           height={180}

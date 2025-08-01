@@ -17,8 +17,6 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function RootLayout({
   children,
 }: {
@@ -87,11 +85,7 @@ export default function RootLayout({
                   ) : (
                     <div className="flex flex-col items-center gap-1">
                       <Image
-                        src={
-                          user?.image
-                            ? `${API_URL}/${user.image}`
-                            : '/profile.svg'
-                        }
+                        src={user?.image ? `${user.image}` : '/profile.svg'}
                         alt={`${user?.name} 프로필 이미지`}
                         width={80}
                         height={80}
