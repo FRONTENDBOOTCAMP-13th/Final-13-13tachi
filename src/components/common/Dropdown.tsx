@@ -8,8 +8,6 @@ import Swal from 'sweetalert2';
 import { signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function Dropdown() {
   const { resetUser } = useUserStore();
   const [open, setOpen] = useState(false);
@@ -59,7 +57,7 @@ export default function Dropdown() {
       <button onClick={() => setOpen(prev => !prev)}>
         <Image
           className="w-8 h-8 object-cover rounded-full mr-2 cursor-pointer"
-          src={user?.image ? `${API_URL}/${user.image}` : '/profile.svg'}
+          src={user?.image ? user.image : '/profile.svg'}
           width="32"
           height="32"
           alt={`${user?.name} 프로필 이미지`}
