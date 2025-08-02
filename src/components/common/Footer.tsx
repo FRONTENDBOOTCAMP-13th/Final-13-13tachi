@@ -78,7 +78,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <nav className="fixed bottom-0 left-0 right-0 px-5 py-2.5 bg-white border-t border-light-gray shadow-[var(--shadow-image)] md:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 px-5 py-2.5 bg-white border-t border-light-gray shadow-[var(--shadow-image)] z-10 md:hidden">
         <ul className="flex justify-around">
           <li className="w-11.5">
             <Link

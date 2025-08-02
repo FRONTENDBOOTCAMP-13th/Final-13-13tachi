@@ -12,9 +12,55 @@
   right: 5%;
 }
 
+@media (max-width: 1279px) {
+  .main-slide .swiper-button-prev,
+  .main-slide .swiper-button-next {
+    width: 1.3125rem;
+    top: auto;
+    bottom: 30px;
+  }
+
+  .main-slide .swiper-button-prev {
+    left: 1.875rem;
+  }
+
+  .main-slide .swiper-button-next {
+    right: 0;
+    left: 4.75rem;
+  }
+
+  .main-slide .swiper-button-prev::after,
+  .main-slide .swiper-button-next::after {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-slide .swiper-button-prev,
+  .main-slide .swiper-button-next {
+    width: 0.75rem;
+    top: auto;
+    bottom: 30px;
+  }
+
+  .main-slide .swiper-button-prev {
+    left: 1.25rem;
+  }
+
+  .main-slide .swiper-button-next {
+    right: 0;
+    left: 3rem;
+  }
+
+  .main-slide .swiper-button-prev::after,
+  .main-slide .swiper-button-next::after {
+    font-size: 1.375rem;
+  }
+}
+
 /* 우리가 함께 만든 변화 */
 .value-slide .swiper-wrapper {
-  padding-top: 100px;
+  padding-top: 6.25rem;
 }
 
 .value-slide .swiper-slide {
@@ -41,4 +87,68 @@
 
 .value-slide .swiper-button-next {
   right: 13%;
+}
+
+@media (max-width: 1279px) {
+  .value-slide .swiper-wrapper {
+    padding-top: 5rem;
+  }
+
+  .value-slide .swiper-slide {
+    translate: 0 -45%;
+  }
+
+  .value-slide .swiper-slide-active {
+    translate: 0 0;
+  }
+
+  .value-slide .swiper-button-prev,
+  .value-slide .swiper-button-next {
+    width: 1.3125rem;
+  }
+
+  .value-slide .swiper-button-prev {
+    left: 1.875rem;
+  }
+  .value-slide .swiper-button-next {
+    right: 1.875rem;
+  }
+
+  .value-slide .swiper-button-prev::after,
+  .value-slide .swiper-button-next::after {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .value-slide .swiper-wrapper {
+    padding-top: 3.75rem;
+  }
+
+  .value-slide .swiper-slide {
+    scale: 0.4;
+    translate: 0 -40%;
+  }
+
+  .value-slide .swiper-slide-active {
+    scale: 1;
+    translate: 0 0;
+  }
+
+  .value-slide .swiper-button-prev,
+  .value-slide .swiper-button-next {
+    width: 1.3125rem;
+  }
+
+  .value-slide .swiper-button-prev {
+    left: 1.25rem;
+  }
+  .value-slide .swiper-button-next {
+    right: 1.25rem;
+  }
+
+  .value-slide .swiper-button-prev::after,
+  .value-slide .swiper-button-next::after {
+    font-size: 2.5rem;
+  }
 }
