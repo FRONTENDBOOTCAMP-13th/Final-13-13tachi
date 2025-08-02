@@ -32,13 +32,13 @@ export default function SocialEditForm() {
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
   useEffect(() => {
-    if (user) {
-      setValue('phone', user.phone ?? '');
-      setValue('postcode', user.postcode ?? '');
-      setValue('addressDetail1', user.addressDetail1 ?? '');
-      setValue('addressDetail2', user.addressDetail2 ?? '');
+    if (res?.ok && res.item) {
+      setValue('phone', res.item.phone ?? '');
+      setValue('postcode', res.item.postcode ?? '');
+      setValue('addressDetail1', res.item.addressDetail1 ?? '');
+      setValue('addressDetail2', res.item.addressDetail2 ?? '');
     }
-  }, [user, setValue, router]);
+  }, [res]);
 
   const onSubmit = (data: SignupFormProps) => {
     if (!user) {
@@ -90,7 +90,7 @@ export default function SocialEditForm() {
       Swal.fire({
         icon: 'success',
         title: '회원정보 수정 완료',
-        text: '수정이 완료되었습니다.',
+        text: '저장이 완료되었습니다.',
         confirmButtonText: '확인',
       }).then(result => {
         if (result.isConfirmed) {
@@ -168,11 +168,16 @@ export default function SocialEditForm() {
         </div>
       </div>
 
-      <AddressForm register={register} setValue={setValue} errors={errors} />
+      <AddressForm
+        register={register}
+        setValue={setValue}
+        errors={errors}
+        required
+      />
 
       <div className="flex justify-center items-center mb-[60px] mt-[50px] md:mb-[80px] lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
-          수정하기
+          저장하기
         </Button>
       </div>
     </form>
