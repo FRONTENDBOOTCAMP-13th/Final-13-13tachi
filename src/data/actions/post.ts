@@ -2,7 +2,7 @@
 
 import { ApiRes, ApiResPromise, User } from '@/types';
 import { LikePostType, Post, PostReply } from '@/types/post';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -68,9 +68,11 @@ export async function createReply(
   formData: FormData,
 ): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
+  console.log(body);
 
   let res: Response;
   let data: ApiRes<PostReply>;
+  const accessToken = formData.get('accessToken');
 
   try {
     res = await fetch(`${API_URL}/posts/${body._id}/replies`, {
@@ -78,6 +80,7 @@ export async function createReply(
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(body),
     });
@@ -91,6 +94,85 @@ export async function createReply(
 
   if (data.ok) {
     revalidatePath(`/${body.type}/${body._id}/replies`);
+  }
+
+  return data;
+}
+
+/**
+ * 댓글을 삭제하는 함수
+ * @param {ApiRes<PostReply> | null} state - 이전 상태(사용하지 않음)
+ * @param {FormData} formData - 삭제할 댓글 정보를 담은 FormData 객체
+ * @returns {Promise<ApiRes<PostReply>>} - 삭제 결과 응답 객체
+ * @description
+ * 댓글을 삭제하고, 성공 시 해당 게시글의 댓글 목록을 갱신합니다.
+ */
+export async function deleteReply(
+  state: ApiRes<PostReply> | null,
+  formData: FormData,
+): ApiResPromise<PostReply> {
+  const _id = formData.get('_id');
+  const replyId = formData.get('replyId');
+  const accessToken = formData.get('accessToken');
+
+  let res: Response;
+  let data: ApiRes<PostReply>;
+
+  try {
+    res = await fetch(`${API_URL}/posts/${_id}/replies/${replyId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`posts/${_id}/replies`);
+  }
+
+  return data;
+}
+
+// 댓글 수정
+export async function updateReply(
+  state: ApiRes<PostReply> | null,
+  formData: FormData,
+): ApiResPromise<PostReply> {
+  const _id = formData.get('_id');
+  const replyId = formData.get('replyId');
+  const accessToken = formData.get('accessToken');
+
+  let res: Response;
+  let data: ApiRes<PostReply>;
+
+  try {
+    res = await fetch(`${API_URL}/posts/${_id}/replies/${replyId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`posts/${_id}/replies`);
   }
 
   return data;
@@ -164,7 +246,10 @@ export async function getUserByName(name: string): Promise<ApiRes<User[]>> {
     data = await res.json();
   } catch (error) {
     console.error('사용자 정보 조회 중 오류:', error);
-    return { ok: 0, message: '일시적인 네트워크 문제로 사용자 정보를 가져올 수 없습니다.' };
+    return {
+      ok: 0,
+      message: '일시적인 네트워크 문제로 사용자 정보를 가져올 수 없습니다.',
+    };
   }
 
   return data;
@@ -191,7 +276,10 @@ export async function getUserById(userId: number): Promise<ApiRes<User[]>> {
     data = await res.json();
   } catch (error) {
     console.error('사용자 정보 조회 중 오류:', error);
-    return { ok: 0, message: '일시적인 네트워크 문제로 사용자 정보를 가져올 수 없습니다.' };
+    return {
+      ok: 0,
+      message: '일시적인 네트워크 문제로 사용자 정보를 가져올 수 없습니다.',
+    };
   }
 
   return data;

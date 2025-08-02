@@ -210,11 +210,17 @@ export async function getPost(_id: number): ApiResPromise<Post> {
  */
 export async function getReplies(_id: number): ApiResPromise<PostReply[]> {
   try {
-    const res = await fetch(`${API_URL}/posts/${_id}/replies`, {
-      headers: {
-        'Client-Id': CLIENT_ID,
+    const res = await fetch(
+      `${API_URL}/posts/${_id}/replies?limit=10&page=1&sort={"_id":1}`,
+      {
+        headers: {
+          'Client-Id': CLIENT_ID,
+        },
+        next: {
+          tags: [`posts/${_id}/replies`],
+        },
       },
-    });
+    );
     return res.json();
   } catch (error) {
     // 네트워크 오류 처리
