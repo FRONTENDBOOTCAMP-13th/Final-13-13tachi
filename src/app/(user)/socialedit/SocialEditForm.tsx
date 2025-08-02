@@ -32,13 +32,13 @@ export default function SocialEditForm() {
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
   useEffect(() => {
-    if (user) {
-      setValue('phone', user.phone ?? '');
-      setValue('postcode', user.postcode ?? '');
-      setValue('addressDetail1', user.addressDetail1 ?? '');
-      setValue('addressDetail2', user.addressDetail2 ?? '');
+    if (res?.ok && res.item) {
+      setValue('phone', res.item.phone ?? '');
+      setValue('postcode', res.item.postcode ?? '');
+      setValue('addressDetail1', res.item.addressDetail1 ?? '');
+      setValue('addressDetail2', res.item.addressDetail2 ?? '');
     }
-  }, [user, setValue, router]);
+  }, [res]);
 
   const onSubmit = (data: SignupFormProps) => {
     if (!user) {
