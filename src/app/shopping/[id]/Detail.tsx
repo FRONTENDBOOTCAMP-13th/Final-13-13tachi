@@ -58,8 +58,8 @@ export default function Detail({
   return (
     <>
       {/* ST: 상단 상품 정보*/}
-      <div className="mx-auto w-fit lg:mt-10">
-        <div className="relative w-[675px] aspect-[67.5/45] ">
+      <div className="mt-7.5 w-full md:mx-auto md:mt-7.5 md:w-fit lg:mt-10 ">
+        <div className="relative w-full aspect-[67.5/45] md:w-[675px]  ">
           <Image
             src={`${API_URL}/${productRes.item.mainImages![0].path}`}
             alt={`${productRes.item.name} 이미지`}
@@ -67,11 +67,11 @@ export default function Detail({
             className="rounded-lg object-cover"
           />
         </div>
-        <div className="lg:mt-10">
+        <div className="mt-7.4 md:mt-10">
           <div className="flex justify-between items-center">
-            <p className="flex items-center font-bold lg:gap-2.5 lg:text-4xl">
+            <p className="flex items-center gap-2.5 font-bold text-2xl md:text-3xl lg:text-4xl">
               {productRes.item.name}
-              <span className="text-gray font-normal lg:text-lg">
+              <span className="text-gray font-normal text-sm md:text:base lg:text-lg">
                 ({productRes.item.extra?.details})
               </span>
             </p>
@@ -86,27 +86,27 @@ export default function Detail({
             />
             {/* ED: 찜하기 */}
           </div>
-          <div className="flex justify-between items-center lg:mt-3">
-            <strong className="flex items-center font-semibold text-orange lg:gap-2.5 lg:text-2xl">
+          <div className="flex justify-between items-center mt-3">
+            <strong className="flex items-center gap-2.5 font-semibold text-orange text-lg md:text-xl lg:text-2xl">
               {productRes.item.price?.toLocaleString()}원
-              <span className="text-gray font-normal lg:text-base">
+              <span className="text-gray font-normal text-xs md:text-sm lg:text-base">
                 무료배송
               </span>
             </strong>
             {/* ST: 카운터 */}
-            <div className="flex flex-row justify-between items-center border-[0.0625rem] border-light-gray rounded-lg lg:w-20 lg:h-[1.875rem]">
+            <div className="flex flex-row justify-between items-center w-16 h-6 border-[0.0625rem] border-light-gray rounded-lg md:w-20 md:h-[1.875rem]">
               <button
                 type="button"
                 onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
-                className="lg:text-base lg:px-2 font-semibold hover:cursor-pointer"
+                className="px-1 lg:px-2 hover:cursor-pointer"
               >
                 <Minus strokeWidth={3} className="w-3.5 h-3.5" />
               </button>
-              <span className="lg:text-sm">{quantity}</span>
+              <span className="text-xs md:text-sm">{quantity}</span>
               <button
                 type="button"
                 onClick={() => setQuantity(quantity < 99 ? quantity + 1 : 99)}
-                className="lg:text-base lg:px-2 font-semibold hover:cursor-pointer"
+                className="px-1 lg:px-2 hover:cursor-pointer"
               >
                 <Plus strokeWidth={3} className="w-3.5 h-3.5" />
               </button>

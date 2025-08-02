@@ -73,9 +73,13 @@ export default function LikesForm({
           className="cursor-pointer"
         >
           {isLike ? (
-            <Heart strokeWidth={1} fill="#000" className="w-5 h-5" />
+            <Heart
+              strokeWidth={1}
+              fill="#000"
+              className="w-4.5 h-4.5 md:w-5 md:h-5"
+            />
           ) : (
-            <Heart strokeWidth={1} className="w-5 h-5" />
+            <Heart strokeWidth={1} className="w-4.5 h-4.5 md:w-5 md:h-5" />
           )}
         </button>
       </form>
