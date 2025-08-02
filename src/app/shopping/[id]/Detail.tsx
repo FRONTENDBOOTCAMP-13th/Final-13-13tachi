@@ -68,14 +68,16 @@ export default function Detail({
             className="rounded-lg object-cover"
           />
         </div>
-        <div className="mt-7.4 md:mt-10">
+        <div className="mt-7.5 md:mt-10">
           <div className="flex justify-between items-center">
-            <p className="flex items-center gap-2.5 font-bold text-2xl md:text-3xl lg:text-4xl">
-              {productRes.item.name}
+            <div className="flex items-center gap-2.5 w-[calc(100%-1.375rem)]">
+              <p className="font-bold text-2xl md:text-3xl lg:text-4xl truncate">
+                {productRes.item.name}
+              </p>
               <span className="text-gray font-normal text-sm md:text:base lg:text-lg">
                 ({productRes.item.extra?.details})
               </span>
-            </p>
+            </div>
             {/* ST: 찜하기 */}
             <LikesForm
               isLike={isLike}
@@ -115,7 +117,7 @@ export default function Detail({
             {/* ED: 카운터 */}
           </div>
         </div>
-        <div className="flex justify-between lg:mt-10">
+        <div className="flex justify-end flex-wrap gap-3 mt-7.5 md:mt-10 md:gap-4 lg:justify-between ">
           {/* ST: 레시피 보러가기 */}
           <CustomLink
             variant="white"

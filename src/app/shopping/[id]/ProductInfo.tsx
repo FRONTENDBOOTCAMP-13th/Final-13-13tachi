@@ -31,11 +31,13 @@ export default function ProductInfo({
   if (seller.ok === 0) return <div>{seller.message}</div>;
 
   return (
-    <div className="lg:mt-20 lg:space-y-[3.75rem]">
+    <div className="mt-12.5 space-y-12.5 md:mt-15 lg:mt-20 lg:space-y-[3.75rem]">
       {/* ST: 품목 요약 */}
       <div>
-        <h4 className="font-semibold text-dark-green lg:text-3xl">품목 요약</h4>
-        <ul className="lg:mt-4 lg:pt-6 lg:pl-6 leading-[1.7] border-t border-light-gray list-disc">
+        <h4 className="font-semibold text-dark-green text-lg md:text-2xl lg:text-3xl">
+          품목 요약
+        </h4>
+        <ul className="mt-3 pt-4 pl-4 leading-[1.7] border-t border-light-gray list-disc text-sm md:text-base md:mt-4 md:pt-5 md:pl-5 lg:pt-6 lg:pl-6">
           <li>{productRes.item.extra?.info![0]}</li>
           <li>{productRes.item.extra?.info![1]}</li>
           {productRes.item.extra?.info![2] ? (
@@ -47,8 +49,10 @@ export default function ProductInfo({
 
       {/* ST: 보관법*/}
       <div>
-        <h4 className="font-semibold text-dark-green lg:text-3xl">보관법</h4>
-        <ul className="lg:mt-4 lg:pt-6 lg:pl-6 leading-[1.7] border-t border-light-gray list-disc">
+        <h4 className="font-semibold text-dark-green text-lg md:text-2xl lg:text-3xl">
+          보관법
+        </h4>
+        <ul className="mt-3 pt-4 pl-4 leading-[1.7] border-t border-light-gray list-disc text-sm md:text-base md:mt-4 md:pt-5 md:pl-5 lg:pt-6 lg:pl-6">
           <li>{productRes.item.extra?.storage![0]}</li>
         </ul>
       </div>
@@ -56,25 +60,25 @@ export default function ProductInfo({
 
       {/* ST: 판매자 정보*/}
       <div>
-        <h4 className="font-semibold text-dark-green  lg:text-3xl">
+        <h4 className="font-semibold text-dark-green text-lg md:text-2xl lg:text-3xl">
           판매자 정보
         </h4>
-        <div className="flex items-center border-t border-light-gray lg:gap-16 lg:mt-4 lg:pt-6 lg:pl-6">
-          <div className="flex items-center lg:gap-4 lg:w-[15rem]">
-            <div className="relative aspect-square rounded-lg overflow-hidden lg:w-[6.25rem]">
+        <div className="flex flex-col items-start gap-6 mt-3 pt-4 pl-4 leading-[1.7] border-t border-light-gray list-disc text-sm md:flex-row md:gap-0 md:mt-4 md:pt-5 md:pl-5 md:text-base lg:pt-6 lg:pl-6">
+          <div className="flex items-center gap-4 w-60 md:mr-8 lg:mr-12">
+            <div className="relative w-20 aspect-square rounded-lg overflow-hidden md:w-25">
               <Image
                 src={seller.item.image}
                 alt={`${seller.item.extra.farmName} 의 ${seller.item.name} 농부님 이미지`}
                 fill
               />
             </div>
-            <strong className="leading-[1.7] font-semibold lg:text-lg">
+            <strong className="leading-[1.7] font-semibold text-base md:text-lg">
               {seller.item.extra.farmName}
               <br />
               {seller.item.name} 농부님
             </strong>
           </div>
-          <ul className="leading-[1.7] list-disc">
+          <ul className="leading-[1.7] list-disc flex-1">
             <li>{sellerInfo?.extra.info?.[0]}</li>
             <li>{sellerInfo?.extra.info?.[1]}</li>
             <li>{sellerInfo?.extra.info?.[2]}</li>
