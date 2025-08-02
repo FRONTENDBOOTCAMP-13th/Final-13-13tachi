@@ -90,7 +90,7 @@ export default function SocialEditForm() {
       Swal.fire({
         icon: 'success',
         title: '회원정보 수정 완료',
-        text: '수정이 완료되었습니다.',
+        text: '저장이 완료되었습니다.',
         confirmButtonText: '확인',
       }).then(result => {
         if (result.isConfirmed) {
