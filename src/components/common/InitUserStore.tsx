@@ -14,6 +14,7 @@ export default function InitUserStore() {
   useEffect(() => {
     const init = async () => {
       if (status === 'authenticated' && session?.user) {
+        //zustand에 로그인 유저 정보 저장
         setUser({
           _id: Number(session.user.id),
           name: session.user.name ?? '',
@@ -28,6 +29,7 @@ export default function InitUserStore() {
         });
 
         //서버 전화번호 유무 확인 getMember
+        //전화번호 없을 시 수정 페이지로 이동
         const res = await getMember(Number(session.user.id));
         if (res.ok && !res.item.phone) {
           router.replace('/socialedit');
