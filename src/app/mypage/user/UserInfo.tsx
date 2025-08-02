@@ -81,7 +81,7 @@ export default function UserInfo() {
         <div className="">
           {res.ok ? (
             <Image
-              src={res.item.image}
+              src={user?.image ? `${user.image}` : '/profile.svg'}
               alt={`${res.item.name} 프로필 이미지`}
               width={80}
               height={80}
