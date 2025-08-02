@@ -177,7 +177,7 @@ export default function SocialEditForm() {
 
       <div className="flex justify-center items-center mb-[60px] mt-[50px] md:mb-[80px] lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
-          수정하기
+          저장하기
         </Button>
       </div>
     </form>
