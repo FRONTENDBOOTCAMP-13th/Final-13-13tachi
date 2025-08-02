@@ -9,8 +9,6 @@ import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function ProductCardItem({
   item, // 현재 상품
   likeRes, // 찜한 목록 최신 상태
@@ -50,7 +48,7 @@ export default function ProductCardItem({
       <Link href={`shopping/${item._id}`}>
         <div className="relative aspect-square rounded-lg overflow-hidden">
           <Image
-            src={`${API_URL}/${item.mainImages![0].path}`}
+            src={item.mainImages![0].path}
             alt={`${item.name} 이미지`}
             fill
             className="object-cover shadow-image transition-transform duration-300 hover:scale-110"

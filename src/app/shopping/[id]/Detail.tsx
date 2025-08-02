@@ -9,9 +9,9 @@ import { ApiRes, LikeItemType, ProductTypeRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { Minus, Plus } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import Swal from 'sweetalert2';
 
 interface DetailProps {
   productRes: ProductTypeRes;
@@ -24,6 +24,7 @@ export default function Detail({
 }: DetailProps) {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
+  const router = useRouter();
 
   const [quantity, setQuantity] = useState(1); // 수량 상태
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
@@ -61,7 +62,7 @@ export default function Detail({
       <div className="mt-7.5 w-full md:mx-auto md:mt-7.5 md:w-fit lg:mt-10 ">
         <div className="relative w-full aspect-[67.5/45] md:w-[675px]  ">
           <Image
-            src={`${API_URL}/${productRes.item.mainImages![0].path}`}
+            src={productRes.item.mainImages![0].path}
             alt={`${productRes.item.name} 이미지`}
             fill
             className="rounded-lg object-cover"
@@ -131,6 +132,19 @@ export default function Detail({
             variant="green"
             size="xxl"
             href={`/order?id=${id}&quantity=${quantity}`}
+            onClick={e => {
+              e.stopPropagation();
+              if (!user) {
+                e.preventDefault();
+                Swal.fire({
+                  icon: 'warning',
+                  text: '로그인 후 이용해주세요',
+                  confirmButtonText: '확인',
+                }).then(result => {
+                  if (result.isConfirmed) router.replace('/login');
+                });
+              }
+            }}
           >
             구매하기
           </CustomLink>
