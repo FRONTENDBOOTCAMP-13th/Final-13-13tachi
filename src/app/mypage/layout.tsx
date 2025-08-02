@@ -60,7 +60,7 @@ export default function RootLayout({
       <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:px-[1.125rem]">
         <div className="flex flex-row lg:w-5xl md:w-[44.25rem] w-80">
           <div className="flex flex-col gap-[2.1875rem]">
-            <h2 className="text-sm text-gray">
+            <h2 className="text-xs md:text-sm lg:text-base text-gray">
               <Link href="/">HOME</Link>
               &nbsp;&gt;&nbsp;
               <Link href="/mypage">마이페이지</Link>
