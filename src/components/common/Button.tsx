@@ -1,13 +1,19 @@
+'use client';
+
+import useUserStore from '@/zustand/useStore';
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'green' | 'white';
   size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxlsm';
   type?: 'button' | 'submit';
+  ownerId?: number; // 특정 사용자에게만 노출할 경우 사용
 }
 
 export default function Button({
   children,
   variant = 'green',
   size = 'xl',
+  ownerId,
   ...rest
 }: ButtonProps) {
   const baseStyle = 'font-semibold rounded-lg shadow-[var(--btn-shadow)]';
@@ -16,6 +22,9 @@ export default function Button({
     green: 'bg-dark-green text-white hover:bg-hover-green',
     white: 'bg-bg-gray text-black border border-light-gray hover:bg-hover-gray',
   };
+  const { user } = useUserStore(); // 로그인 사용자 정보 가져오기
+  // ownerId가 전달될 때만 현재 로그인 사용자가 owner가 아니면 버튼 미노출
+  if (ownerId && user?._id !== ownerId) return null;
 
   const sizeStyle = {
     xxs: 'h-[1.5625rem] w-36 md:w-[6.0625rem] md:h-[25px] lg:w-[97px] lg:h-[25px] text-xs',
