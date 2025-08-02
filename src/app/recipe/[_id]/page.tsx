@@ -14,8 +14,6 @@ import {
 } from '@/data/functions/post';
 import RelationProducts from './RelationProducts';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
 }
@@ -29,7 +27,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
     return <div className="text-center mt-10">레시피를 찾을 수 없습니다.</div>;
   }
 
-  const imageUrl = recipe.item.image ? `${API_URL}/${recipe.item.image}` : '';
+  const imageUrl = recipe.item.image;
   const allProducts =
     productsRes.ok === 1 && productsRes.item ? productsRes.item : [];
 

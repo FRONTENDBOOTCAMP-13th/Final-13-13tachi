@@ -144,21 +144,21 @@ export default function RecipeList({ post }: RecipeListProps) {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl md:w-full md:gap-x-5 md:gap-y-15">
         {filteredRecipes.slice(0, visibleCount).map((item, index) =>
           item._id ? (
             <Link
               key={item._id}
               href={`/recipe/${item._id}`}
-              className={`w-[15rem] block ${
+              className={`lg:w-[15rem] block ${
                 index >= 4 ? 'mt-[60px]' : 'mt-[25px]'
               }`}
             >
-              <figure className="lg:w-[15rem]">
-                <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg bg-gray-100">
+              <figure className="lg:w-[15rem] lg:h-[15rem] md:w-full md:h-[25rem]">
+                <div className="relative lg:w-[15rem] lg:h-[15rem] md:w-full md:h-[23.75rem] overflow-hidden rounded-lg bg-gray-100">
                   {item.image ? (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
+                      src={item.image}
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-300 hover:scale-110"
