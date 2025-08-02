@@ -22,10 +22,10 @@ export default function PayForm() {
           결제 수단
         </h3>
         <hr className="text-light-gray w-full md:mb-[1.5rem] mb-3" />
-        <div className="flex md:justify-center justify-start lg:justify-start">
+        <div className="flex justify-start">
           <fieldset>
             <div className="flex flex-col gap-3 mb-4">
-              <div className="flex md:flex-row flex-col md:gap-8 gap-3">
+              <div className="flex md:flex-row flex-col md:flex-wrap md:gap-x-8 gap-3">
                 <label>
                   <input
                     type="radio"
@@ -67,7 +67,7 @@ export default function PayForm() {
                   <span>신용카드</span>
                 </label>
               </div>
-              <div className="flex md:flex-row flex-col gap-3 md:gap-8">
+              <div className="flex md:flex-row flex-col md:flex-wrap gap-3 md:gap-x-8">
                 <label className="flex flex-row items-center">
                   <input
                     type="radio"

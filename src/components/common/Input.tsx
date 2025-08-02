@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  width?: 'lg' | 'md' | 'sm' | 'xs';
+  width?: 'lg' | 'md' | 'sm' | 'xs' | 'md2';
   className?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -15,7 +15,8 @@ export default function Input({
 }: InputProps & { readOnly?: boolean }) {
   const widthClasses = {
     lg: 'lg:w-[48.75rem]',
-    md: 'lg:w-[20.625rem] md:w-[300px] w-[220px]',
+    md: 'lg:w-[20.625rem] md:w-[300px] w-full',
+    md2: 'w-full',
     sm: 'lg:w-[10.9375rem]',
     xs: 'lg:w-[7.4375rem] w-[100px]',
   };

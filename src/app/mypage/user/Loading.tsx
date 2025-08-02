@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="lg:w-[49.875rem] md:w-[31.75rem] w-80 h-full animate-pulse">
+    <div className="flex flex-col w-full h-full animate-pulse">
       <div className="flex flex-col gap-2">
         <h3 className="w-full text-xl font-semibold">회원정보</h3>
         <hr className="text-light-gray w-full mb-5" />
@@ -41,7 +41,7 @@ export default function Loading() {
           </div>
         </div>
       </div>
-      <div className="flex justify-end mt-[4.0625rem]">
+      <div className="flex justify-end mt-auto">
         <div className="w-[110px] h-[32px] md:w-[160px] md:h-[40px] lg:w-[200px] lg:h-[48px] bg-gray-300 rounded-lg" />
       </div>
     </div>

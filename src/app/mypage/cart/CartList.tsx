@@ -71,7 +71,7 @@ export default function CartList() {
   // }
 
   return (
-    <>
+    <div>
       {res.ok ? (
         res.item.map((item: CartItemType) => (
           <CartItemForm
@@ -110,6 +110,6 @@ export default function CartList() {
           <CustomLink href="/order">주문하기</CustomLink>
         </form>
       </div>
-    </>
+    </div>
   );
 }

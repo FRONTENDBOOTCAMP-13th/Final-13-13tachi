@@ -2,7 +2,7 @@ import BookmarkRecipeList from '@/app/mypage/recipe/bookmarkRecipe/BookmarkRecip
 
 export default function BookmarkRecipe() {
   return (
-    <div className="flex flex-col justify-between lg:w-[49.875rem] md:w-[31.75rem] w-80 h-full">
+    <div className="flex flex-col justify-between w-full h-full">
       <BookmarkRecipeList />
     </div>
   );

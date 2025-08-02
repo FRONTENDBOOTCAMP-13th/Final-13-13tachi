@@ -47,7 +47,7 @@ export default function OrderInfoItem({
           </p>
         </div>
       </div>
-      <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
+      <div className="md:flex md:flex-col md:justify-center md:items-end grid grid-cols-2 justify-around gap-2">
         <form>
           <input
             type="hidden"

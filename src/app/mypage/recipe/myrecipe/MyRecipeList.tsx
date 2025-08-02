@@ -55,7 +55,7 @@ export default function MyRecipeList() {
   console.log(res);
   return (
     <>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 w-fit gap-x-6 gap-y-5 mx-auto">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-6 gap-y-5 mx-auto">
         {res.ok ? (
           res.item.map((item: MyPostType) => (
             <MyRecipeItem

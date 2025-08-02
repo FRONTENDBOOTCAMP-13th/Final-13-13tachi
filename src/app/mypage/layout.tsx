@@ -58,8 +58,8 @@ export default function RootLayout({
   return (
     <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:px-[1.125rem]">
-        <div className="flex flex-row lg:w-5xl md:w-[44.25rem] w-80">
-          <div className="flex flex-col gap-[2.1875rem]">
+        <div className="flex flex-row lg:w-5xl w-full lg:px-0 md:px-[1.875rem] px-5">
+          <div className="flex flex-col gap-[2.1875rem] w-full">
             <h2 className="text-xs md:text-sm lg:text-base text-gray">
               <Link href="/">HOME</Link>
               &nbsp;&gt;&nbsp;
@@ -177,7 +177,7 @@ export default function RootLayout({
                   </li>
                 </ul>
               </aside>
-              <>{children}</>
+              <div className="w-full">{children}</div>
             </div>
           </div>
         </div>

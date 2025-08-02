@@ -9,9 +9,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <div className="mx-auto lg:w-5xl w-full lg:px-0 md:px-[1.875rem] px-5">
       <div className="flex flex-col min-h-screen items-center">
-        <div className="flex flex-col mb-[1.875rem]">
+        <div className="flex flex-col mb-[1.875rem] w-full">
           <h2 className="text-xs md:text-sm lg:text-base text-gray mt-[4.0625rem] mb-[1.25rem]">
             <Link href="/">HOME</Link>
             &nbsp;&gt;&nbsp;
@@ -26,6 +26,6 @@ export default function RootLayout({
           <div>{children}</div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
