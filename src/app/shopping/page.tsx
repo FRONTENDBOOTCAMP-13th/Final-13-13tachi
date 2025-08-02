@@ -12,7 +12,7 @@ export default async function ShoppingList() {
 
   return (
     <>
-      <main>
+      <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
         <div className="mx-auto px-5 pt-7.5 pb-15 md:px-7.5 md:pt-12.5 md:pb-20 lg:px-0 lg:max-w-5xl lg:pt-[4.0625rem] lg:pb-25">
           {/* ST: 오늘의 못난이는? */}
           <div>
@@ -35,7 +35,7 @@ export default async function ShoppingList() {
           {/* ST: 인기상품 */}
           <div className="mt-7.5">
             <h4 className="font-bold text-dark-green text-lg md:text-2xl lg:text-3xl">
-              인기 상품
+              인기 상품s
             </h4>
             <Suspense>
               <HotItemList products={products} />
