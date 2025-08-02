@@ -22,7 +22,7 @@ import { createOrder, createShoppingOrder } from '@/data/actions/cart';
 import OrderList from '@/app/order/OrderList';
 import OrderTable from '@/app/order/OrderTable';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import Loading from '@/app/order/Loading';
 
 export default function OrderForm() {
@@ -56,14 +56,6 @@ export default function OrderForm() {
       } else {
         getCartProducts(accessToken).then(setRes);
       }
-    } else {
-      Swal.fire({
-        icon: 'warning',
-        text: '로그인 후 이용해주세요',
-        confirmButtonText: '확인',
-      }).then(result => {
-        if (result.isConfirmed) router.replace('/login');
-      });
     }
   }, [accessToken]);
 
@@ -111,7 +103,7 @@ export default function OrderForm() {
   }
 
   return (
-    <div>
+    <div className="w-full">
       {id && quantity ? (
         shoppingRes?.ok ? (
           <div>
@@ -176,8 +168,8 @@ export default function OrderForm() {
                 : 0
           }
         />
-        <div className="flex lg:flex-row flex-col justify-between gap-[2rem] w-full">
-          <div className="flex flex-col gap-[0.625rem] lg:w-full">
+        <div className="flex md:flex-row flex-col justify-between gap-[2rem] w-full">
+          <div className="flex flex-col gap-[0.625rem] md:w-full">
             <h3 className="md:text-xl text-base font-bold mb-[0.75rem]">
               주문자 정보
             </h3>
@@ -191,7 +183,7 @@ export default function OrderForm() {
               <p>{userRes?.message}</p>
             )}
           </div>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between md:w-full">
             <PayForm />
             <p className="font-semibold text-lg lg:mt-0 mt-15 text-right">
               총금액 :{' '}

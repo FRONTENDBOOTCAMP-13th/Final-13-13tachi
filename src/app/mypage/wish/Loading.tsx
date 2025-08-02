@@ -16,8 +16,8 @@ export default function Loading() {
             </div>
           </div>
           <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@ export default function Loading() {
             </div>
           </div>
           <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
           </div>
         </div>
       </div>
@@ -56,8 +56,8 @@ export default function Loading() {
             </div>
           </div>
           <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
           </div>
         </div>
       </div>
@@ -76,8 +76,8 @@ export default function Loading() {
             </div>
           </div>
           <div className="flex md:flex-col md:justify-center md:items-end justify-around gap-2">
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
-            <div className="md:w-[6.0625rem] h-[1.5625rem] w-36 rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
+            <div className="md:w-[6.0625rem] h-[1.5625rem] w-full rounded-lg bg-gray-300" />
           </div>
         </div>
       </div>

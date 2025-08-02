@@ -14,7 +14,7 @@ export default function RootLayout({
     pathname === path ? 'mypage-recipe-active' : '';
 
   return (
-    <main className="flex flex-col justify-start lg:w-[49.875rem] md:w-[31.75rem] w-80 h-full">
+    <main className="flex flex-col justify-start w-full h-full">
       <aside className="flex flex-col gap-4 text-gray rounded-lg">
         <div className="w-full text-base font-semibold">
           <ul className="flex flex-row justify-evenly">

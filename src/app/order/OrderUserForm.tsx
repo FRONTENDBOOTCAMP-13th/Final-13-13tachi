@@ -68,18 +68,17 @@ export default function OrderUserForm({
   return (
     <div>
       <div className="flex items-center lg:justify-between md:justify-center justify-between mb-[0.625rem]">
-        <div className="flex items-center md:w-38">
+        <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center">
           <label
             className="block text-black md:text-base text-sm"
             htmlFor="name1"
           >
-            주문자 이름
+            주문자 이름<span className="text-light-red lg:text-sm ml-1">*</span>
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="name"
             autoComplete="name"
@@ -98,18 +97,18 @@ export default function OrderUserForm({
       </div>
 
       <div className="flex items-center lg:justify-between md:justify-center justify-between mb-[0.625rem]">
-        <div className="flex items-center md:w-38">
+        <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center">
           <label
             className="block text-black md:text-base text-sm"
             htmlFor="phone"
           >
             주문자 연락처
+            <span className="text-light-red lg:text-sm ml-1">*</span>
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="phone"
             autoComplete="tel"
@@ -136,19 +135,18 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex lg:gap-[1.25rem] lg:justify-between md:justify-center justify-between items-start">
-        <div className="flex items-center pt-[0.375rem] md:w-38">
+      <div className="flex items-start">
+        <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center pt-[0.375rem]">
           <label
             className="block text-black md:text-base text-sm"
             htmlFor="address"
           >
-            배송지 정보
+            배송지 정보<span className="text-light-red lg:text-sm ml-1">*</span>
           </label>
-          <span className="text-light-red lg:text-sm lg:ml-1">*</span>
         </div>
 
-        <div className="flex flex-col gap-[0.625rem] mb-[0.625rem]">
-          <div className="flex gap-[0.625rem] items-center">
+        <div className="flex flex-col gap-[0.625rem] mb-[0.625rem] w-full">
+          <div className="flex gap-[0.625rem] items-center w-full">
             <Input
               width="xs"
               type="text"
@@ -179,7 +177,7 @@ export default function OrderUserForm({
             </button>
           </div>
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="addressdetail1"
             placeholder="주소를 입력하세요"
@@ -195,7 +193,7 @@ export default function OrderUserForm({
           )}
 
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="addressDetail2"
             placeholder="상세주소를 입력하세요"
@@ -212,15 +210,15 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex items-center lg:justify-between md:justify-center justify-between">
+      <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center lg:justify-between md:justify-center justify-between">
         <label
-          className="block text-black md:text-base text-sm md:w-38"
+          className="block text-black md:text-base text-sm "
           htmlFor="message"
         >
           배송 메세지
         </label>
         <Input
-          width="md"
+          width="md2"
           type="text"
           id="message"
           placeholder="배송 전 연락주세요"

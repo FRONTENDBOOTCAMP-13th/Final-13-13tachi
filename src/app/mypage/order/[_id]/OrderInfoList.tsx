@@ -17,7 +17,7 @@ export default function OrderInfoList({
   action: BuyListActionProps;
 }) {
   return (
-    <div className="lg:w-[49.875rem] md:w-[31.75rem] w-80">
+    <div className="w-full">
       <div className="flex flex-row justify-between text-sm mb-2.5">
         <p>
           <span className="mr-4 text-dark-green">{item.createdAt}</span>
@@ -80,7 +80,10 @@ export default function OrderInfoList({
         <Button size="xxl" variant="white">
           주문 취소하기
         </Button>
-        <CustomLink href="/mypage/buylist">주문 내역으로 돌아가기</CustomLink>
+        <CustomLink href="/mypage/buylist" size="xxl">
+          <span className="hidden md:inline">주문 내역으로&nbsp;</span>
+          <span>돌아가기</span>
+        </CustomLink>
       </div>
     </div>
   );

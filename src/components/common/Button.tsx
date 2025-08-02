@@ -27,7 +27,7 @@ export default function Button({
   if (ownerId && user?._id !== ownerId) return null;
 
   const sizeStyle = {
-    xxs: 'h-[1.5625rem] w-36 md:w-[6.0625rem] md:h-[25px] lg:w-[97px] lg:h-[25px] text-xs',
+    xxs: 'h-[1.5625rem] w-full md:w-[6.0625rem] md:h-[25px] lg:w-[97px] lg:h-[25px] text-xs',
     xs: 'lg:w-[65px] lg:h-[30px] lg:text-sm',
     sm: 'w-[68px] h-[28px] md:w-[80px] md:h-[30px] lg:w-[80px] lg:h-[30px] lg:text-sm',
     md: 'w-[60px] h-[28px] md:w-[80px] md:h-[32px] lg:w-[100px] lg:h-[40px] lg:text-base md:text-sm text-xs',

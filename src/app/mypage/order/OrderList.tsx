@@ -66,7 +66,7 @@ export default function OrderList() {
 
   console.log('1번 호출');
   return (
-    <div className="flex flex-col mb-9">
+    <div className="flex flex-col mb-9 w-full">
       {res.ok ? (
         res.item.map((item: BuyListType) => (
           <OrderItemList
