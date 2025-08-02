@@ -11,8 +11,6 @@ import { Minus, Plus } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface DetailProps {
   productRes: ProductTypeRes;
   id: number;
@@ -61,7 +59,7 @@ export default function Detail({
       <div className="mt-7.5 w-full md:mx-auto md:mt-7.5 md:w-fit lg:mt-10 ">
         <div className="relative w-full aspect-[67.5/45] md:w-[675px]  ">
           <Image
-            src={`${API_URL}/${productRes.item.mainImages![0].path}`}
+            src={productRes.item.mainImages![0].path}
             alt={`${productRes.item.name} 이미지`}
             fill
             className="rounded-lg object-cover"

@@ -7,8 +7,6 @@ import { productAddLike, productDeleteLike } from '@/data/actions/product';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function HotItem({
   item, // 현재 상품
   likeRes, // 찜한 목록 최신 상태
@@ -51,7 +49,7 @@ export default function HotItem({
       >
         <div className="relative w-full aspect-[18/17] rounded-[1.875rem] overflow-hidden">
           <Image
-            src={`${API_URL}/${item.mainImages![0].path}`}
+            src={item.mainImages![0].path}
             alt={`${item.name} 이미지`}
             fill
             className=" object-cover transition-transform duration-300 hover:scale-110"

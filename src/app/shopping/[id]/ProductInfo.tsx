@@ -4,8 +4,6 @@ import { ApiRes, MemberType, ProductTypeRes } from '@/types';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function ProductInfo({
   productRes,
 }: {
@@ -65,7 +63,7 @@ export default function ProductInfo({
           <div className="flex items-center lg:gap-4 lg:w-[15rem]">
             <div className="relative aspect-square rounded-lg overflow-hidden lg:w-[6.25rem]">
               <Image
-                src={`${API_URL}/${seller.item.image}`}
+                src={seller.item.image}
                 alt={`${seller.item.extra.farmName} 의 ${seller.item.name} 농부님 이미지`}
                 fill
               />

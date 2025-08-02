@@ -26,7 +26,7 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
             <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg bg-gray-100">
               {item.image ? (
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
+                  src={item.image}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-300 hover:scale-110"
