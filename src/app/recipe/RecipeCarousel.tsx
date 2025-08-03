@@ -110,7 +110,7 @@ export default function RecipeCarousel({
     <SwiperSlide key={item._id}>
       <figure className="shadow-image rounded-4xl">
         <Link href={`/recipe/${item._id}`}>
-          <div className="relative lg:h-[9.375rem] md:h-[19.375rem] overflow-hidden rounded-t-4xl">
+          <div className="relative lg:h-[9.375rem] md:h-[11rem] h-[12.3rem] overflow-hidden rounded-t-4xl">
             {item.image ? (
               <Image
                 src={item.image}
@@ -186,8 +186,8 @@ export default function RecipeCarousel({
         loop={popularRecipes.length > 1}
         className="recipe-slide"
         breakpoints={{
-          480: {
-            slidesPerView: 2,
+          360: {
+            slidesPerView: 1,
           },
           768: {
             slidesPerView: 3,

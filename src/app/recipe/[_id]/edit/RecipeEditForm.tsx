@@ -129,7 +129,7 @@ export default function RecipeEditForm({
       </div>
 
       <div className="flex justify-end">
-        <Button type="submit" size="md" disabled={loading}>
+        <Button type="submit" size="xxl" disabled={loading}>
           {loading ? '수정 중...' : '수정 완료'}
         </Button>
       </div>
