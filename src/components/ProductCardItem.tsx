@@ -45,7 +45,7 @@ export default function ProductCardItem({
 
   return (
     <li>
-      <Link href={`shopping/${item._id}`}>
+      <Link href={`/shopping/${item._id}`}>
         <div className="relative aspect-square rounded-lg overflow-hidden">
           <Image
             src={item.mainImages![0].path}

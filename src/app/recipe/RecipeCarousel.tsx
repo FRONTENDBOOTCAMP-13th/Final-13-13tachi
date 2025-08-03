@@ -12,8 +12,8 @@ import type { Post } from '@/types/post';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
 import {
-  addBookmark,
-  deleteBookmark,
+  addRecipeBookmark,
+  deleteRecipeBookmark,
   getLikeRecipe,
 } from '@/data/functions/post';
 
@@ -21,8 +21,8 @@ import './recipe.css';
 
 interface RecipeCarouselProps {
   recipes: Post[];
-  maxCount?: number; // 최대 표시할 인기 레시피 개수
-  sortBy?: 'likes' | 'views' | 'bookmarks' | 'recent'; // 정렬 기준
+  maxCount?: number;
+  sortBy?: 'likes' | 'views' | 'bookmarks' | 'recent';
 }
 
 export default function RecipeCarousel({
@@ -44,45 +44,25 @@ export default function RecipeCarousel({
   const popularRecipes = useMemo(() => {
     if (!recipes || recipes.length === 0) return [];
 
-    // 유효한 레시피만 필터링
     const validRecipes = recipes.filter(recipe => recipe._id);
 
-    // 정렬 기준에 따른 정렬
     const sortedRecipes = validRecipes.sort((a, b) => {
       switch (sortBy) {
         case 'likes':
-          // 좋아요/북마크 수 기준 (likeMap에 있는 것들 우선)
           const aLiked = likeMap.has(a._id) ? 1 : 0;
           const bLiked = likeMap.has(b._id) ? 1 : 0;
           if (aLiked !== bLiked) return bLiked - aLiked;
-
-          // Post 타입에 실제 좋아요 수 필드가 있다면 사용
-          // return (b.likeCount || 0) - (a.likeCount || 0);
           break;
-
-        case 'views':
-          // 조회수 기준 (Post 타입에 viewCount 필드가 있다면)
-          // return (b.viewCount || 0) - (a.viewCount || 0);
-          break;
-
-        case 'bookmarks':
-          // 북마크 수 기준
-          // return (b.bookmarkCount || 0) - (a.bookmarkCount || 0);
-          break;
-
         case 'recent':
-          // 최신순
           const aDate = new Date(a.createdAt || 0).getTime();
           const bDate = new Date(b.createdAt || 0).getTime();
           return bDate - aDate;
-
         default:
           return 0;
       }
       return 0;
     });
 
-    // 상위 N개만 반환
     return sortedRecipes.slice(0, maxCount);
   }, [recipes, maxCount, sortBy, likeMap]);
 
@@ -113,11 +93,11 @@ export default function RecipeCarousel({
 
     try {
       if (isBookmarked) {
-        const res = await deleteBookmark(accessToken, bookmarkId);
+        const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) remove(postId);
         else alert(res.message || '삭제 중 오류가 발생했습니다.');
       } else {
-        const res = await addBookmark(accessToken, postId);
+        const res = await addRecipeBookmark(accessToken, postId);
         if (res.ok === 1 && res.item) add(postId, res.item._id);
       }
     } catch (error) {
@@ -153,8 +133,8 @@ export default function RecipeCarousel({
                 }`}
                 strokeWidth={1}
                 onClick={e => {
-                  e.preventDefault(); // 링크 이동 방지
-                  e.stopPropagation(); // 이벤트 버블링 방지
+                  e.preventDefault();
+                  e.stopPropagation();
                   toggleBookmark(item._id);
                 }}
                 aria-label={
@@ -187,7 +167,6 @@ export default function RecipeCarousel({
     </SwiperSlide>
   ));
 
-  // 인기 레시피가 없으면 빈 상태 표시
   if (!popularRecipes || popularRecipes.length === 0) {
     return (
       <div className="text-center text-gray-500 py-8">
@@ -204,7 +183,7 @@ export default function RecipeCarousel({
         navigation={true}
         modules={[Navigation]}
         autoHeight={true}
-        loop={popularRecipes.length > 1} // 1개 이하일 때는 loop 비활성화
+        loop={popularRecipes.length > 1}
         className="recipe-slide"
         breakpoints={{
           480: {

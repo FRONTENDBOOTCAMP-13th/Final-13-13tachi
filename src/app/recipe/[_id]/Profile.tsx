@@ -9,7 +9,7 @@ interface ProfileProps {
 
 export default function Profile({ username, imageUrl }: ProfileProps) {
   return (
-    <div className="flex flex-col items-center justify-center mt-[-4rem] relative z-10">
+    <div className="flex flex-col items-center justify-center mt-[-4rem] relative">
       <div className="lg:w-[7.5rem] lg:h-[7.5rem] overflow-hidden rounded-full ring-4 ring-white">
         <Image
           src={imageUrl ? `${imageUrl}` : '/images/front-end.png'}

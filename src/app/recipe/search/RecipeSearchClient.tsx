@@ -7,7 +7,7 @@ import { Search, Bookmark } from 'lucide-react';
 import { Post } from '@/types/post';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
-import { addBookmark, deleteBookmark, getRecipes } from '@/data/functions/post';
+import { addRecipeBookmark, deleteRecipeBookmark, getRecipes } from '@/data/functions/post';
 import SearchBar from '@/components/common/SearchBar';
 import CustomLink from '@/components/common/CustomLink';
 
@@ -73,10 +73,10 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
 
     try {
       if (isBookmarked) {
-        const res = await deleteBookmark(accessToken, bookmarkId);
+        const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) remove(postId);
       } else {
-        const res = await addBookmark(accessToken, postId);
+        const res = await addRecipeBookmark(accessToken, postId);
         if (res.ok === 1 && res.item) add(postId, res.item._id);
       }
     } catch (err) {
