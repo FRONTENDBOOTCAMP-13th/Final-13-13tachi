@@ -69,10 +69,10 @@ export default function RootLayout({
             </h2>
             <div className="lg:flex lg:flex-row md:flex md:flex-row flex flex-row">
               <aside
-                className="lg:w-[12.25rem] lg:p-[1.875rem]
-                  md:flex md:flex-col md:items-center md:gap-[2.125rem] md:w-[10.625rem] md:py-[1.875rem] md:px-5 md:mr-[1.875rem] 
-                  hidden mr-0
-                  h-full bg-bg-gray text-black rounded-lg"
+                className="hidden md:flex flex-shrink-0
+                  md:flex-col md:items-center lg:w-[12.25rem] lg:p-[1.875rem] md:gap-[2.125rem] md:w-[10.625rem] md:py-[1.875rem] md:px-5 md:mr-[1.875rem] 
+                  mr-0
+                  h-full bg-bg-gray text-black rounded-lg "
               >
                 <div>
                   {loading ? (
