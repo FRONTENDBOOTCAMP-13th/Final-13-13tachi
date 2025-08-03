@@ -339,9 +339,9 @@ export async function sendEmail(
   const content = `
   <div style="margin:0 auto; max-width:600px; font-family: Arial, sans-serif; ">
     <h1 style="font-size: xx-large; font-weight: 700; color: darkgreen; margin-bottom: 50px; text-align: center;">
-      UgVeg: 흙내음 상점
+      <a href='https://ugveg.vercel.app/' target="_blank" style='text-decoration: none; color: darkgreen;'>UgVeg: 흙내음 상점</a>
     </h1>
-    <h2 style="margin-bottom: 40px;">${sellerName} 농부님! 새 주문이 접수되었습니다!</h2>
+    <h2 style="margin-bottom: 40px; text-align: center">${sellerName} 농부님! 새 주문이 접수되었습니다!</h2>
     <p style="font-size: large; font-weight: 700; margin-bottom: 14px;">배송지 정보</p>
     <div style="display: flex; flex-direction: column; gap: 10px; border-radius: 20px; background-color: rgb(240, 240, 240); padding: 20px; margin-bottom: 40px;">
       <div style="display: flex;">
@@ -386,7 +386,7 @@ export async function sendEmail(
               <div style="display: flex;">
                 <div style="display: inline-block; width: 115px;"><b>상품명</b></div>
                 <span style="display: inline-block; width: 40px;">|</span>
-                <div style="display: flex; align-items: baseline;"><span>${product.name}</span><span style="font-size: small; margin-left: 10px;">(${product.extra?.details})</span></div>
+                <div style="display: flex; align-items: baseline;"><span>${product.name}</span><span style="font-size: small; margin-left: 8px;">(${product.extra?.details})</span></div>
               </div>
               <div style="display: flex;">
                 <div style="display: inline-block; width: 115px;"><b>주문 수량</b></div>
@@ -405,7 +405,7 @@ export async function sendEmail(
     </div>
     <hr style="margin-bottom: 40px;"/>
     <p style="font-size:large; text-align: right;">
-      <b>총 결제금액 <span style="font-size: x-large; margin-left: 20px;">${totalPrice.toLocaleString()}원</span> </b>
+      <b>총 결제금액 <span style="font-size: x-large; margin-left: 20px;"><span style='color: #8B0505;'>${totalPrice.toLocaleString()}</span>원</span> </b>
     </p>
     <p style="margin-top: 40px; text-align: center;">소중한 농작물이 신선하게 잘 도착할 수 있도록 안전하고 신속한 배송 부탁드립니다. 감사합니다.</p>
   </div>
