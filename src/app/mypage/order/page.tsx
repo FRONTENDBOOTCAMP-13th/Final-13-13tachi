@@ -1,4 +1,20 @@
 import OrderList from '@/app/mypage/order/OrderList';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `주문 내역 - UgVeg: 흙내음 상점`,
+    description: `내 주문 내역을 확인하세요.`,
+    openGraph: {
+      title: `주문 내역 - UgVeg: 흙내음 상점`,
+      description: `내 주문 내역을 확인하세요.`,
+      url: `/mypage/order`,
+      images: {
+        url: '/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default async function Order() {
   return (
