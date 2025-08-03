@@ -11,9 +11,9 @@ export default async function Comments({ postId }: CommentsProps) {
   const res = await getReplies(Number(postId));
 
   return (
-    <div className="p-15">
+    <div className="lg:p-15 md:p-15 p-10">
       <div className="flex items-center border-b-2 border-[#DEDEDE]">
-        <h3 className="text-xl font-semibold mb-2">댓글</h3>
+        <h3 className="lg:text-xl md:text-lg  font-semibold mb-2">댓글</h3>
         {res.ok ? (
           <span className="text-xl font-semibold text-[#67913C] ml-2 mb-2">
             {res.item.length}

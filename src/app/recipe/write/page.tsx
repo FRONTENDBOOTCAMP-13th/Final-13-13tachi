@@ -3,14 +3,19 @@ import RecipeWriteClient from './RecipeWriteClient';
 
 export default function RecipeWritePage() {
   return (
-    <main className="lg:max-w-5xl mx-auto pt-[4rem] pb-[6rem] px-4">
-      <h2 className="text-gray">
-        <Link href="/">HOME</Link> &gt; <Link href="/recipe">레시피</Link> &gt;
-        레시피 작성
-      </h2>
-      <h3 className="text-5xl font-bold mt-4 mb-6">레시피 작성</h3>
+    <div className="md:px-7.5 px-5">
+      <main className="lg:max-w-5xl mx-auto pt-[4rem] pb-[6rem] min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+        <h2 className="text-gray lg:text-base md:text-sm text-xs">
+          <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
+          <Link href="/recipe">레시피</Link>
+          &nbsp;&gt;&nbsp;레시피 작성
+        </h2>
+        <h3 className="lg:text-5xl md:text-4xl text-3xl font-bold mt-4 mb-6">
+          레시피 작성
+        </h3>
 
-      <RecipeWriteClient />
-    </main>
+        <RecipeWriteClient />
+      </main>
+    </div>
   );
 }

@@ -120,8 +120,8 @@ export default function RecipeList({ post }: RecipeListProps) {
 
   return (
     <>
-      <div className="flex justify-between mt-[1.5625rem]">
-        <div className="flex gap-2.5">
+      <div className="flex justify-between mt-[1.5625rem] mb-5">
+        <div className="flex gap-2.5 lg:text-base md:text-base text-sm">
           {['전체', '채소', '과일', '나의레시피'].map(tab => (
             <span
               key={tab}
@@ -138,24 +138,22 @@ export default function RecipeList({ post }: RecipeListProps) {
         </div>
         <Link
           href="/recipe/write"
-          className="text-orange font-semibold cursor-pointer"
+          className="text-orange font-semibold cursor-pointer lg:text-base md:text-base text-sm"
         >
           + 레시피 등록
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl md:w-full md:gap-x-5 md:gap-y-15">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl md:w-full md:gap-x-5 md:gap-y-15 lg:gap-x-5 lg:gap-y-15">
         {filteredRecipes.slice(0, visibleCount).map((item, index) =>
           item._id ? (
             <Link
               key={item._id}
               href={`/recipe/${item._id}`}
-              className={`lg:w-[15rem] block ${
-                index >= 4 ? 'mt-[60px]' : 'mt-[25px]'
-              }`}
+              className="lg:w-[15rem] block"
             >
-              <figure className="lg:w-[15rem] lg:h-[15rem] md:w-full md:h-[25rem]">
-                <div className="relative lg:w-[15rem] lg:h-[15rem] md:w-full md:h-[23.75rem] overflow-hidden rounded-lg bg-gray-100">
+              <figure className="lg:w-[15rem] md:w-full">
+                <div className="relative lg:w-[15rem] lg:h-[15rem] md:w-full md:h-60 h-[9.375rem] overflow-hidden rounded-lg bg-gray-100">
                   {item.image ? (
                     <Image
                       src={item.image}
@@ -171,7 +169,7 @@ export default function RecipeList({ post }: RecipeListProps) {
                     </div>
                   )}
                 </div>
-                <figcaption className="mt-[12px]">
+                <figcaption className="mt-3">
                   <div className="relative flex">
                     <span className="text-xl font-semibold max-w-[90%] truncate">
                       {item.title}
