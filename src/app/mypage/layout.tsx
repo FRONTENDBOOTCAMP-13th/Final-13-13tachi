@@ -23,7 +23,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  console.log(pathname);
   const isActive = (path: string) => (pathname === path ? 'mypage-active' : '');
   const { user } = useUserStore();
   const { resetUser } = useUserStore();

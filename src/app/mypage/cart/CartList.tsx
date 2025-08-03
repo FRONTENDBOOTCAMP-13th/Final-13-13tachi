@@ -37,16 +37,11 @@ export default function CartList() {
     }
   }, [accessToken]);
 
-  const [deleteState, deleteAction, isDeleting] = useActionState(
-    deleteCart,
-    null,
-  );
-  console.log(deleteState, isDeleting);
-  const [quantityState, quantityAction, isUpdating] = useActionState(
+  const [deleteState, deleteAction] = useActionState(deleteCart, null);
+  const [quantityState, quantityAction] = useActionState(
     updateCartQuantity,
     null,
   );
-  console.log(quantityState, isUpdating);
 
   useEffect(() => {
     if (quantityState?.ok || deleteState?.ok) {

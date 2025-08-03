@@ -43,13 +43,8 @@ export default function WishList() {
     }
   }, [accessToken]);
 
-  const [addState, addAction, isAdding] = useActionState(AddCart, null);
-  console.log(addState, isAdding);
-  const [deleteState, deleteAction, isDeleting] = useActionState(
-    deleteLike,
-    null,
-  );
-  console.log(deleteState, isDeleting);
+  const [addState, addAction] = useActionState(AddCart, null);
+  const [deleteState, deleteAction] = useActionState(deleteLike, null);
 
   useEffect(() => {
     if (deleteState?.ok) {

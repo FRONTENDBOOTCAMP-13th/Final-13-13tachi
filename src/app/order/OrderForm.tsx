@@ -32,12 +32,8 @@ export default function OrderForm() {
   const [shoppingRes, setShoppingRes] =
     useState<ApiRes<ShoppingOrderType> | null>(null);
   const [userFormData, setUserFormData] = useState<UserInfoType | null>(null);
-  const [orderState, orderAction, isOrdering] = useActionState(
-    createOrder,
-    null,
-  );
+  const [, orderAction] = useActionState(createOrder, null);
   const [, shoppingOrderAction] = useActionState(createShoppingOrder, null);
-  console.log(orderState, isOrdering);
   const id = useSearchParams().get('id');
   const quantity = useSearchParams().get('quantity');
   const router = useRouter();
