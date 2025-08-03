@@ -150,7 +150,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/recipe"
-                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipes')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
                     >
                       <BookOpen width={16} />
                       <span>레시피</span>

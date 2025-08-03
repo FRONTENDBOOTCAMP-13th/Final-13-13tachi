@@ -98,7 +98,7 @@ export default function Dropdown() {
               <li>
                 <Link
                   href="/mypage/recipe"
-                  className={`block text-black pb-[7px] hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
+                  className={`block text-black pb-[7px] hover:font-semibold ${isActive('/mypage/recipe/myRecipes')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
                   onClick={() => setOpen(false)}
                 >
                   레시피
