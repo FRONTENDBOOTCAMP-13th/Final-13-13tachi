@@ -62,6 +62,22 @@ export interface Post {
   };
 }
 
+export interface CreatePostData {
+  accessToken?: string;
+  type: string;
+  title: string;
+  content: string;
+  tag: string;
+  image?: string;
+}
+
+export interface ApiRes<T> {
+  ok: number;
+  message?: string;
+  data?: T;
+  errorName?: string;
+}
+
 /**
  * 게시글 작성/수정 폼에서 사용하는 타입
  * - Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>>: Post 타입에서 type, title, content, _id만 선택해 모두 옵셔널로 만듦
@@ -107,4 +123,19 @@ export interface RecipeDetailResponse {
   ok: number; // 성공 여부 (0 = 실패, 1 = 성공 같은 형식)
   message?: string; // 실패 메시지 등
   item?: Post; // 성공 시 데이터
+}
+
+// 댓글 응답
+export interface ReplyApiResponse {
+  _id: number;
+  content: string;
+  name?: string;
+  like?: number;
+  createdAt: string;
+  updatedAt: string;
+  user?: {
+    _id: number;
+    name: string;
+    image?: string | null;
+  };
 }

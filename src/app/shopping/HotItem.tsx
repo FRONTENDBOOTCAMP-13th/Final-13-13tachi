@@ -1,25 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
-import { ApiRes, LikeItemType, ProductType, User } from '@/types';
+import { LikeItemType, ProductCard } from '@/types';
 import { useActionState, useEffect, useState } from 'react';
 import { productAddLike, productDeleteLike } from '@/data/actions/product';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function HotItem({
   item, // 현재 상품
   likeRes, // 찜한 목록 최신 상태
   accessToken, // user의 accessToken
   user,
-}: {
-  item: ProductType;
-  likeRes: ApiRes<LikeItemType[] | null>;
-  accessToken: string;
-  user: User | null;
-}) {
+}: ProductCard) {
   const router = useRouter();
   const [isLike, setIsLike] = useState(false); // 현재 상품이 찜하기 상태인지 상태관리
 
@@ -52,22 +45,22 @@ export default function HotItem({
     <>
       <Link
         href={`shopping/${item._id}`}
-        className="flex flex-col items-center lg:gap-2.5 lg:py-5.5 lg:px-6"
+        className="flex flex-col items-center gap-2.5 p-4 md:p-4.5  lg:py-5.5 lg:px-6"
       >
-        <div className="relative w-full aspect-[18/17]">
+        <div className="relative w-full aspect-[18/17] rounded-[1.875rem] overflow-hidden">
           <Image
-            src={`${API_URL}/${item.mainImages![0].path}`}
+            src={item.mainImages![0].path}
             alt={`${item.name} 이미지`}
             fill
-            className="rounded-[1.875rem] object-cover"
+            className=" object-cover transition-transform duration-300 hover:scale-110"
           />
         </div>
         <div className="relative text-center w-full">
-          <h4 className="relative block w-full lg:px-2.5 lg:text-base truncate">
+          <h4 className="relative block w-full text-sm truncate md:text-base lg:px-2.5 ">
             {item.name}
           </h4>
-          <p className="text-gray lg:text-sm">{item.extra?.details}</p>
-          <strong className="text-orange font-semibold inline-block lg:mt-1 lg:text-xl">
+          <p className="text-gray text-xs md:text-sm">{item.extra?.details}</p>
+          <strong className="mt-1 inline-block text-orange font-semibold text-lg md:text-xl ">
             {item.price?.toLocaleString()}원
           </strong>
           <form
@@ -84,7 +77,7 @@ export default function HotItem({
                 handleLikeChange(true);
               }
             }}
-            className="absolute top-0.5 right-0 leading-1"
+            className="absolute leading-1 bottom-1 right-0 lg:bottom-0 lg:top-0.5 "
           >
             <input type="hidden" name="accessToken" value={accessToken ?? ''} />
             <input type="hidden" name="_id" value={item._id} />
@@ -108,9 +101,13 @@ export default function HotItem({
               className="cursor-pointer"
             >
               {isLike ? (
-                <Heart strokeWidth={1} fill="#000" className="w-5 h-5" />
+                <Heart
+                  strokeWidth={1}
+                  fill="#000"
+                  className="w-4.5 h-4.5 md:w-5 md:h-5"
+                />
               ) : (
-                <Heart strokeWidth={1} className="w-5 h-5" />
+                <Heart strokeWidth={1} className="w-4.5 h-4.5 md:w-5 md:h-5" />
               )}
             </button>
           </form>

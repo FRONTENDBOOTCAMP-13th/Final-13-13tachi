@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
+import { deleteRecipe } from '@/data/functions/post';
 
 interface RecipeActionButtonsProps {
   authorId: string;
@@ -48,20 +49,9 @@ export default function RecipeActionButtons({
     setLoading(true);
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
-            Authorization: `Bearer ${user.token.accessToken}`,
-          },
-        },
-      );
+      const result = await deleteRecipe(user.token.accessToken, Number(postId));
 
-      const data = await res.json();
-
-      if (res.ok && data.ok === 1) {
+      if (result.ok === 1) {
         await Swal.fire({
           icon: 'success',
           text: '게시글이 삭제되었습니다.',
@@ -71,7 +61,7 @@ export default function RecipeActionButtons({
       } else {
         Swal.fire({
           icon: 'error',
-          text: data.message || '삭제 실패',
+          text: result.message || '삭제 실패',
           confirmButtonText: '확인',
         });
       }

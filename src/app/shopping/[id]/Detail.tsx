@@ -2,26 +2,29 @@
 
 import AddCartForm from '@/app/shopping/[id]/AddCartForm';
 import LikesForm from '@/app/shopping/[id]/LikesForm';
-import Button from '@/components/common/Button';
+import ProductInfo from '@/app/shopping/[id]/ProductInfo';
 import CustomLink from '@/components/common/CustomLink';
 import { getLikeProducts } from '@/data/functions/post';
 import { ApiRes, LikeItemType, ProductTypeRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { Minus, Plus } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+interface DetailProps {
+  productRes: ProductTypeRes;
+  id: number;
+}
 
 export default function Detail({
   productRes, // 상품 상세 불러온 데이터
   id, // 현재 상품 번호
-}: {
-  productRes: ProductTypeRes;
-  id: number;
-}) {
+}: DetailProps) {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
+  const router = useRouter();
 
   const [quantity, setQuantity] = useState(1); // 수량 상태
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
@@ -32,10 +35,6 @@ export default function Detail({
     likeRes && likeRes.ok === 1 && Array.isArray(likeRes.item)
       ? likeRes.item.some((like: LikeItemType) => like.product?._id == id)
       : false;
-
-  console.log('likeRes', likeRes);
-  console.log('likeItems', likeItems);
-  console.log('id', id);
 
   useEffect(() => {
     //찜하기 데이터에 있는지 여부를 isLike/setIsLike로 상태관리
@@ -60,23 +59,25 @@ export default function Detail({
   return (
     <>
       {/* ST: 상단 상품 정보*/}
-      <div className="mx-auto w-fit lg:mt-10">
-        <div className="relative w-[675px] aspect-[67.5/45] ">
+      <div className="mt-7.5 w-full md:mx-auto md:mt-7.5 md:w-fit lg:mt-10 ">
+        <div className="relative w-full aspect-[67.5/45] md:w-[675px]  ">
           <Image
-            src={`${API_URL}/${productRes.item.mainImages![0].path}`}
+            src={productRes.item.mainImages![0].path}
             alt={`${productRes.item.name} 이미지`}
             fill
             className="rounded-lg object-cover"
           />
         </div>
-        <div className="lg:mt-10">
+        <div className="mt-7.5 md:mt-10">
           <div className="flex justify-between items-center">
-            <p className="flex items-center font-bold lg:gap-2.5 lg:text-4xl">
-              {productRes.item.name}
-              <span className="text-gray font-normal lg:text-lg">
+            <div className="flex items-center gap-2.5 w-[calc(100%-1.375rem)]">
+              <p className="font-bold text-2xl md:text-3xl lg:text-4xl truncate">
+                {productRes.item.name}
+              </p>
+              <span className="text-gray font-normal text-sm md:text:base lg:text-lg">
                 ({productRes.item.extra?.details})
               </span>
-            </p>
+            </div>
             {/* ST: 찜하기 */}
             <LikesForm
               isLike={isLike}
@@ -88,27 +89,27 @@ export default function Detail({
             />
             {/* ED: 찜하기 */}
           </div>
-          <div className="flex justify-between items-center lg:mt-3">
-            <strong className="flex items-center font-semibold text-orange lg:gap-2.5 lg:text-2xl">
+          <div className="flex justify-between items-center mt-3">
+            <strong className="flex items-center gap-2.5 font-semibold text-orange text-lg md:text-xl lg:text-2xl">
               {productRes.item.price?.toLocaleString()}원
-              <span className="text-gray font-normal lg:text-base">
+              <span className="text-gray font-normal text-xs md:text-sm lg:text-base">
                 무료배송
               </span>
             </strong>
             {/* ST: 카운터 */}
-            <div className="flex flex-row justify-between items-center border-[0.0625rem] border-light-gray rounded-lg lg:w-20 lg:h-[1.875rem]">
+            <div className="flex flex-row justify-between items-center w-16 h-6 border-[0.0625rem] border-light-gray rounded-lg md:w-20 md:h-[1.875rem]">
               <button
                 type="button"
                 onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
-                className="lg:text-base lg:px-2 font-semibold hover:cursor-pointer"
+                className="px-1 lg:px-2 hover:cursor-pointer"
               >
                 <Minus strokeWidth={3} className="w-3.5 h-3.5" />
               </button>
-              <span className="lg:text-sm">{quantity}</span>
+              <span className="text-xs md:text-sm">{quantity}</span>
               <button
                 type="button"
                 onClick={() => setQuantity(quantity < 99 ? quantity + 1 : 99)}
-                className="lg:text-base lg:px-2 font-semibold hover:cursor-pointer"
+                className="px-1 lg:px-2 hover:cursor-pointer"
               >
                 <Plus strokeWidth={3} className="w-3.5 h-3.5" />
               </button>
@@ -116,7 +117,7 @@ export default function Detail({
             {/* ED: 카운터 */}
           </div>
         </div>
-        <div className="flex justify-between lg:mt-10">
+        <div className="flex justify-end flex-wrap gap-3 mt-7.5 md:mt-10 md:gap-4 lg:justify-between ">
           {/* ST: 레시피 보러가기 */}
           <CustomLink
             variant="white"
@@ -129,11 +130,26 @@ export default function Detail({
           {/* ED: 레시피 보러가기 */}
 
           {/* ST: 구매하기 */}
-          <form>
-            <Button variant="green" size="xxl" type="button">
-              구매하기
-            </Button>
-          </form>
+          <CustomLink
+            variant="green"
+            size="xxl"
+            href={`/order?id=${id}&quantity=${quantity}`}
+            onClick={e => {
+              e.stopPropagation();
+              if (!user) {
+                e.preventDefault();
+                Swal.fire({
+                  icon: 'warning',
+                  text: '로그인 후 이용해주세요',
+                  confirmButtonText: '확인',
+                }).then(result => {
+                  if (result.isConfirmed) router.replace('/login');
+                });
+              }
+            }}
+          >
+            구매하기
+          </CustomLink>
           {/* ED: 구매하기 */}
 
           {/* ST: 장바구니 */}
@@ -143,35 +159,13 @@ export default function Detail({
             quantity={quantity}
             user={user}
           />
-
           {/* ED: 장바구니 */}
         </div>
       </div>
       {/* ED: 상단 상품 정보*/}
 
       {/* ST: 상품 정보*/}
-      <div className="lg:mt-20">
-        <h3 className="font-bold lg:text-3xl">상품 정보</h3>
-        <div className="border-t border-light-gray lg:mt-5 lg:pt-10">
-          <div>
-            <Image
-              src="/assets/shopping/details-2.png"
-              alt="판매자 사진"
-              width={964}
-              height={104}
-              className="mx-auto"
-            />
-          </div>
-          <div>
-            <Image
-              src="/assets/shopping/details-3.jpg"
-              alt="상품 상세 정보"
-              width={1024}
-              height={3899}
-            />
-          </div>
-        </div>
-      </div>
+      <ProductInfo productRes={productRes} />
       {/* ED: 상품 정보*/}
     </>
   );

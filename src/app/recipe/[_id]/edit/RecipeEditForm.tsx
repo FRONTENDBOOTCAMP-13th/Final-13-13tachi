@@ -7,6 +7,7 @@ import Button from '@/components/common/Button';
 import dynamic from 'next/dynamic';
 import 'react-quill-new/dist/quill.snow.css';
 import Swal from 'sweetalert2';
+import { updateRecipe } from '@/data/functions/post';
 
 const QuillNoSSRWrapper = dynamic(() => import('react-quill-new'), {
   ssr: false,
@@ -49,25 +50,12 @@ export default function RecipeEditForm({
     setLoading(true);
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            'client-id': process.env.NEXT_PUBLIC_CLIENT_ID || '',
-            Authorization: `Bearer ${user.token.accessToken}`,
-          },
-          body: JSON.stringify({
-            title,
-            content,
-          }),
-        },
-      );
+      const result = await updateRecipe(user.token.accessToken, postId, {
+        title,
+        content,
+      });
 
-      const data = await res.json();
-
-      if (res.ok && data.ok === 1) {
+      if (result.ok === 1) {
         Swal.fire({
           icon: 'success',
           text: '수정이 완료되었습니다.',
@@ -78,7 +66,7 @@ export default function RecipeEditForm({
       } else {
         Swal.fire({
           icon: 'error',
-          text: data.message || '수정에 실패했습니다.',
+          text: result.message || '수정에 실패했습니다.',
           confirmButtonText: '확인',
         });
       }
@@ -141,7 +129,7 @@ export default function RecipeEditForm({
       </div>
 
       <div className="flex justify-end">
-        <Button type="submit" size="md" disabled={loading}>
+        <Button type="submit" size="xxl" disabled={loading}>
           {loading ? '수정 중...' : '수정 완료'}
         </Button>
       </div>

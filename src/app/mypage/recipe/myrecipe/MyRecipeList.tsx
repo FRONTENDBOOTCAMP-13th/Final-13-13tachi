@@ -2,17 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import { getMyRecipe } from '@/data/functions/post';
-// import Button from '@/components/common/Button';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import MyRecipeItem from '@/app/mypage/recipe/myrecipe/MyRecipeItem';
+import MyRecipeItem from '@/app/mypage/recipe/myRecipe/MyRecipeItem';
 import { MyPostType } from '@/types/post';
-import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
+import EmptyMyRecipe from '@/app/mypage/recipe/myRecipe/EmptyMyRecipe';
 import CustomLink from '@/components/common/CustomLink';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import Loading from '@/app/mypage/recipe/myrecipe/Loading';
-// import { deletePost } from '@/data/actions/post';
+import Loading from '@/app/mypage/recipe/myRecipe/Loading';
 
 export default function MyRecipeList() {
   const { user } = useUserStore();
@@ -39,6 +37,12 @@ export default function MyRecipeList() {
     }
   }, [accessToken]);
 
+  // useEffect(() => {
+  //   if (res && res.ok === 0) {
+  //     router.replace('/error');
+  //   }
+  // }, [res, router]);
+
   if (!res) {
     return <Loading />;
   }
@@ -46,12 +50,9 @@ export default function MyRecipeList() {
   if (res.ok && res.item.length === 0) {
     return <EmptyMyRecipe />;
   }
-
-  console.log('1');
-  console.log(res);
   return (
     <>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 w-fit gap-x-6 gap-y-5 mx-auto">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-6 gap-y-5 mx-auto">
         {res.ok ? (
           res.item.map((item: MyPostType) => (
             <MyRecipeItem
@@ -68,11 +69,6 @@ export default function MyRecipeList() {
         )}
       </div>
       <div className="flex justify-end mt-4">
-        {/* <form>
-          <Button size="xxlsm" variant="white">
-            삭제
-          </Button>
-        </form> */}
         <CustomLink href={`/recipe/write`}>레시피 작성하기</CustomLink>
       </div>
     </>

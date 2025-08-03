@@ -1,14 +1,24 @@
-// import Image from 'next/image';
+import MyRecipeList from '@/app/mypage/recipe/myRecipe/MyRecipeList';
+import { Metadata } from 'next';
 
-// import EmptyMyRecipe from '@/app/mypage/recipe/myrecipe/EmptyMyRecipe';
-
-// 레시피 목록 불러오기
-
-import MyRecipeList from '@/app/mypage/recipe/myrecipe/MyRecipeList';
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `내 레시피 목록 - UgVeg: 흙내음 상점`,
+    description: `내가 작성한 레시피를 확인하세요.`,
+    openGraph: {
+      title: `내 레시피 목록 - UgVeg: 흙내음 상점`,
+      description: `내가 작성한 레시피를 확인하세요.`,
+      url: `/mypage/recipe/myRecipe`,
+      images: {
+        url: '/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default async function MyRecipe() {
   return (
-    <div className="flex flex-col justify-between lg:w-[49.875rem] md:w-[31.75rem] w-80 h-full">
+    <div className="flex flex-col justify-between h-full">
       <MyRecipeList />
     </div>
   );

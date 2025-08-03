@@ -12,9 +12,9 @@ export default function EmptyCart() {
         width={90}
         height={65}
         alt="장바구니 이미지"
-        className="mb-3.5"
+        className="mb-3.5 md:mt-0 mt-6"
       />
-      <span className="mb-10">
+      <span className="md:mb-10 mb-6">
         <p className="text-xl font-semibold text-center mb-3">
           장바구니가 비어있어요
         </p>

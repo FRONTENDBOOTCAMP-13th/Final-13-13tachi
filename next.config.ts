@@ -9,6 +9,22 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/market/files/febc13-final13-emjf/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '*.kakaocdn.net',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.pstatic.net',
+        pathname: '**',
+      },
     ],
     domains: ['fesp-api.koyeb.app'],
   },

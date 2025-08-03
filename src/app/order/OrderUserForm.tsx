@@ -1,19 +1,19 @@
 'use client';
 import Input from '@/components/common/Input';
 import PostCode from 'react-daum-postcode';
-import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserInfoType } from '@/types';
+import { MemberType, UserInfoType } from '@/types';
 
 type UserOrderFormProps = {
   onChangeUserData: (data: UserInfoType) => void;
+  user: MemberType;
 };
 
 export default function OrderUserForm({
   onChangeUserData,
+  user,
 }: UserOrderFormProps) {
-  const { user } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
 
   //받은 주소 결과(zonecode, address)를 setValue로 form에 입력
@@ -36,6 +36,7 @@ export default function OrderUserForm({
       setValue('postcode', user.postcode ?? '');
       setValue('addressDetail1', user.addressDetail1 ?? '');
       setValue('addressDetail2', user.addressDetail2 ?? '');
+      setValue('message', '');
     }
   }, [user, setValue]);
 
@@ -44,22 +45,41 @@ export default function OrderUserForm({
   const postcode = watch('postcode');
   const addressDetail1 = watch('addressDetail1');
   const addressDetail2 = watch('addressDetail2');
+  const message = watch('message');
+
   useEffect(() => {
-    onChangeUserData({ name, phone, postcode, addressDetail1, addressDetail2 });
-  }, [name, phone, postcode, addressDetail1, addressDetail2, onChangeUserData]);
+    onChangeUserData({
+      name,
+      phone,
+      postcode,
+      addressDetail1,
+      addressDetail2,
+      message,
+    });
+  }, [
+    name,
+    phone,
+    postcode,
+    addressDetail1,
+    addressDetail2,
+    message,
+    onChangeUserData,
+  ]);
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-[0.625rem]">
-        <div className="flex items-center">
-          <label className="block text-black lg:text-base" htmlFor="name1">
-            주문자 이름
+      <div className="flex items-center lg:justify-between md:justify-center justify-between mb-[0.625rem]">
+        <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center">
+          <label
+            className="block text-black md:text-base text-sm"
+            htmlFor="name1"
+          >
+            주문자 이름<span className="text-light-red lg:text-sm ml-1">*</span>
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="name"
             autoComplete="name"
@@ -77,16 +97,19 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex items-center justify-between mb-[0.625rem]">
-        <div className="flex items-center">
-          <label className="block text-black lg:text-base" htmlFor="phone">
+      <div className="flex items-center lg:justify-between md:justify-center justify-between mb-[0.625rem]">
+        <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center">
+          <label
+            className="block text-black md:text-base text-sm"
+            htmlFor="phone"
+          >
             주문자 연락처
+            <span className="text-light-red lg:text-sm ml-1">*</span>
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="phone"
             autoComplete="tel"
@@ -94,9 +117,14 @@ export default function OrderUserForm({
             defaultValue={user?.phone ?? ''}
             {...register('phone', {
               required: '전화번호를 입력해주세요',
-              pattern: {
-                value: /^[0-9-]+$/,
-                message: '숫자와 하이픈(-)만 입력 가능합니다',
+              validate: value => {
+                if (!/^[0-9-]+$/.test(value)) {
+                  return '숫자와 하이픈(-)만 입력 가능합니다';
+                }
+                if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(value)) {
+                  return '000-0000-0000 형식이어야 합니다';
+                }
+                return true;
               },
             })}
           />
@@ -108,16 +136,18 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex lg:gap-[1.25rem] w-full items-start">
-        <div className="flex items-center pt-[0.375rem] min-w-[9.35rem]">
-          <label className="block text-black lg:text-base" htmlFor="address">
-            배송지 정보
+      <div className="flex items-start">
+        <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center pt-[0.375rem]">
+          <label
+            className="block text-black md:text-base text-sm"
+            htmlFor="address"
+          >
+            배송지 정보<span className="text-light-red lg:text-sm ml-1">*</span>
           </label>
-          <span className="text-light-red lg:text-sm lg:ml-1">*</span>
         </div>
 
-        <div className="flex flex-col lg:gap-[0.625rem] lg:w-[20.625rem] mb-[0.625rem]">
-          <div className="flex lg:gap-[0.625rem] items-center">
+        <div className="flex flex-col gap-[0.625rem] mb-[0.625rem] w-full">
+          <div className="flex gap-[0.625rem] items-center w-full">
             <Input
               width="xs"
               type="text"
@@ -141,20 +171,20 @@ export default function OrderUserForm({
 
             <button
               type="button"
-              className="lg:w-[4rem] lg:h-[1.875rem] lg:border-[0.0938rem] border-light-gray lg:rounded-[0.3125rem] lg:text-xs text-light-gray lg:hover:border-[.125rem]"
+              className="w-[4rem] h-[1.875rem] border-[0.0938rem] border-light-gray rounded-[0.3125rem] text-xs text-light-gray hover:border-[.125rem]"
               onClick={() => setIsOpen(true)}
             >
               우편번호
             </button>
           </div>
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="addressdetail1"
-            placeholder="상세주소를 입력하세요"
+            placeholder="주소를 입력하세요"
             defaultValue={user?.addressDetail1 ?? ''}
             {...register('addressDetail1', {
-              required: '상세주소를 입력해주세요',
+              required: '주소를 입력해주세요',
             })}
           />
           {errors.addressDetail1 && (
@@ -164,9 +194,10 @@ export default function OrderUserForm({
           )}
 
           <Input
-            width="md"
+            width="md2"
             type="text"
             id="addressDetail2"
+            placeholder="상세주소를 입력하세요"
             defaultValue={user?.addressDetail2 ?? ''}
             {...register('addressDetail2', {
               required: '상세주소를 입력해주세요',
@@ -180,16 +211,19 @@ export default function OrderUserForm({
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
-        <label className="block text-black lg:text-base" htmlFor="message">
+      <div className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] items-center lg:justify-between md:justify-center justify-between">
+        <label
+          className="block text-black md:text-base text-sm "
+          htmlFor="message"
+        >
           배송 메세지
         </label>
         <Input
-          width="md"
+          width="md2"
           type="text"
           id="message"
           placeholder="배송 전 연락주세요"
-          name="message"
+          {...register('message')}
         />
       </div>
       {/* 주소 검색 모달창 */}

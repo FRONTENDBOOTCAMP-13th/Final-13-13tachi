@@ -1,6 +1,4 @@
 import Image from 'next/image';
-
-// 임시 이미지 불러오기
 import emptyPic from '../../../../images/recipe.png';
 import CustomLink from '@/components/common/CustomLink';
 

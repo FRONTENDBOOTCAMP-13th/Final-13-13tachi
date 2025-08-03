@@ -1,7 +1,6 @@
-import SearchBar from '@/components/common/SearchBar';
+import ShoppingSearchList from '@/app/shopping/search/[id]/ShoppingSearchList';
 import { getProducts } from '@/data/functions/post';
 import { ProductType } from '@/types';
-import SearchItemsList from '@/app/shopping/search/[id]/SearchItemsList';
 
 export default async function ShoppingSearch() {
   const res = await getProducts();
@@ -9,29 +8,8 @@ export default async function ShoppingSearch() {
 
   return (
     <>
-      <main>
-        <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
-          {/* ST: 오늘의 못난이는? */}
-          <div>
-            <p className="text-gray">HOME &gt; 장보기</p>
-            <h2 className="font-bold lg:mt-5 lg:text-center lg:text-5xl">
-              오늘의 못난이는?
-            </h2>
-          </div>
-          {/* ED: 오늘의 못난이는? */}
-
-          {/* ST: Search Bar */}
-          <div className="w-fit lg:mt-[1.5625rem] lg:mx-auto">
-            <SearchBar handleType="handleProductSearch" />
-          </div>
-          {/* ED: Search Bar */}
-
-          {/* ST: 전체 상품 */}
-          <div className="lg:mt-7">
-            <SearchItemsList products={products} />
-          </div>
-          {/* ED: 전체 상품 */}
-        </div>
+      <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+        <ShoppingSearchList products={products} />
       </main>
     </>
   );

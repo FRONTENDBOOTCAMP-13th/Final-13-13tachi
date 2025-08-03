@@ -4,6 +4,7 @@ import SearchBar from '@/components/common/SearchBar';
 import { Suspense } from 'react';
 import { getProducts } from '@/data/functions/post';
 import { ProductType } from '@/types';
+import Link from 'next/link';
 
 export default async function ShoppingList() {
   const res = await getProducts();
@@ -11,26 +12,31 @@ export default async function ShoppingList() {
 
   return (
     <>
-      <main>
-        <div className="mx-auto lg:max-w-5xl lg:pt-[4.0625rem] lg:py-25">
+      <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+        <div className="mx-auto px-5 pt-7.5 pb-15 md:px-7.5 md:pt-12.5 md:pb-20 lg:px-0 lg:max-w-5xl lg:pt-[4.0625rem] lg:pb-25">
           {/* ST: 오늘의 못난이는? */}
           <div>
-            <p className="text-gray">HOME &gt; 장보기</p>
-            <h2 className="font-bold lg:mt-5 lg:text-center lg:text-5xl">
-              오늘의 못난이는?
+            <h2 className="text-gray text-xs md:text-sm lg:text-base">
+              <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
+              <Link href="/shopping">장보기</Link>
             </h2>
+            <h3 className="mt-5 font-bold text-center text-3xl md:text-4xl lg:text-5xl">
+              오늘의 못난이는?
+            </h3>
           </div>
           {/* ED: 오늘의 못난이는? */}
 
           {/* ST: Search Bar */}
-          <div className="w-fit lg:mt-[1.5625rem] lg:mx-auto">
+          <div className="w-fit mx-auto mt-[1.5625rem]">
             <SearchBar handleType="handleProductSearch" />
           </div>
           {/* ED: Search Bar */}
 
           {/* ST: 인기상품 */}
-          <div className="lg:mt-7.5">
-            <h3 className="font-bold text-dark-green lg:text-3xl">인기 상품</h3>
+          <div className="mt-7.5">
+            <h4 className="font-bold text-dark-green text-lg md:text-2xl lg:text-3xl">
+              인기 상품
+            </h4>
             <Suspense>
               <HotItemList products={products} />
             </Suspense>
@@ -38,10 +44,12 @@ export default async function ShoppingList() {
           {/* ED: 인기상품 */}
 
           {/* ST: 전체 상품 */}
-          <div className="lg:mt-12">
-            <h3 className="font-bold text-dark-green lg:text-3xl">전체 상품</h3>
+          <div className="mt-9.5 lg:mt-12">
+            <h4 className="font-bold text-dark-green text-lg md:text-2xl lg:text-3xl">
+              전체 상품
+            </h4>
             <Suspense>
-              <AllItems products={products} />
+              <AllItems />
             </Suspense>
           </div>
           {/* ED: 전체 상품 */}

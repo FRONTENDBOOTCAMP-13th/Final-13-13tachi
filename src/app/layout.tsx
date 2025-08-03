@@ -3,6 +3,8 @@ import './globals.css';
 import { Providers } from './providers';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import InitUserStore from '@/components/common/InitUserStore';
+import { SessionProvider } from 'next-auth/react';
 
 export default function RootLayout({
   children,
@@ -13,11 +15,14 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <AuthInit />
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+        <SessionProvider>
+          <Providers>
+            <Header />
+            <InitUserStore />
+            {children}
+            <Footer />
+          </Providers>
+        </SessionProvider>
       </body>
     </html>
   );

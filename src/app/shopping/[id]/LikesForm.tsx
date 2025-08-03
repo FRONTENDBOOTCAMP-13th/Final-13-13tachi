@@ -5,6 +5,15 @@ import { useRouter } from 'next/navigation';
 import { useActionState } from 'react';
 import Swal from 'sweetalert2';
 
+interface LikeFormProps {
+  isLike: boolean;
+  accessToken: string;
+  likeRes: ApiRes<LikeItemType[] | null>;
+  productRes: ProductTypeRes;
+  handleLikeChange: (newIsLike: boolean) => void;
+  user: User | null;
+}
+
 export default function LikesForm({
   isLike,
   accessToken,
@@ -12,14 +21,7 @@ export default function LikesForm({
   productRes,
   handleLikeChange,
   user,
-}: {
-  isLike: boolean;
-  accessToken: string;
-  likeRes: ApiRes<LikeItemType[] | null>;
-  productRes: ProductTypeRes;
-  handleLikeChange: (newIsLike: boolean) => void;
-  user: User | null;
-}) {
+}: LikeFormProps) {
   const router = useRouter();
 
   const [, likeDeleteAction] = useActionState(productDeleteLike, null);
@@ -71,9 +73,13 @@ export default function LikesForm({
           className="cursor-pointer"
         >
           {isLike ? (
-            <Heart strokeWidth={1} fill="#000" className="w-5 h-5" />
+            <Heart
+              strokeWidth={1}
+              fill="#000"
+              className="w-4.5 h-4.5 md:w-5 md:h-5"
+            />
           ) : (
-            <Heart strokeWidth={1} className="w-5 h-5" />
+            <Heart strokeWidth={1} className="w-4.5 h-4.5 md:w-5 md:h-5" />
           )}
         </button>
       </form>

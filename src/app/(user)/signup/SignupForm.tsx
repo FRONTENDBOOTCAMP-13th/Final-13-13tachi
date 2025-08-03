@@ -7,9 +7,11 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import AddressForm from '@/components/common/Address';
+import Swal from 'sweetalert2';
 
 export interface SignupFormProps {
   email: string;
+  image: string;
   password: string;
   passwordConfirm: string;
   name: string;
@@ -30,12 +32,45 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
+  const profileImages = [
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754040777/febc13-final13-emjf/C2ssQdZje.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062245/febc13-final13-emjf/8S1ksbdF6.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062246/febc13-final13-emjf/3VDNxWTK6H.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062246/febc13-final13-emjf/uO8ej2ngy.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062247/febc13-final13-emjf/jETxp4Avv.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062247/febc13-final13-emjf/rFxxuMORoN.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062248/febc13-final13-emjf/njkgZAFITi.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062248/febc13-final13-emjf/52RBCi_zt.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062248/febc13-final13-emjf/WOrKaTGo9k.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062249/febc13-final13-emjf/OjH7glEMU.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062250/febc13-final13-emjf/yq45_-tYqE.png',
+    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062250/febc13-final13-emjf/7xxYjLjsa.png',
+  ];
+
+  function getRandomImage() {
+    const randomNum = Math.floor(Math.random() * profileImages.length);
+    return profileImages[randomNum];
+  }
+
   useEffect(() => {
     if (state?.ok) {
-      alert('회원 가입이 완료되었습니다');
-      router.replace('/login');
+      Swal.fire({
+        icon: 'success',
+        title: '회원가입 완료',
+        text: '회원 가입이 완료되었습니다.',
+        confirmButtonText: '확인',
+      }).then(result => {
+        if (result.isConfirmed) {
+          router.replace('/login');
+        }
+      });
     } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
+      Swal.fire({
+        icon: 'error',
+        title: '회원가입 실패',
+        text: state?.message || '문제가 발생했습니다. 다시 시도해주세요.',
+        confirmButtonText: '확인',
+      });
     }
   }, [state, router]);
 
@@ -44,6 +79,7 @@ export default function SignupForm() {
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value as string);
     });
+    formData.append('image', getRandomImage());
     startTransition(() => {
       formAction(formData);
     });
@@ -53,24 +89,28 @@ export default function SignupForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="lg:w-[28.625rem] space-y-[0.625rem]"
+      className="w-[320px] md:w-[428px] lg:w-[28.625rem] space-y-[0.625rem]"
     >
       <input type="hidden" name="type" value="user" />
 
       {/* 이메일 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="email" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="email"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             이메일
           </label>
-          <span className="text-light-red lg:text-sm ml-1">*</span>
+          <span className="text-light-red text-xs lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
+            width="md"
             id="email"
             type="email"
             placeholder="이메일을 입력하세요"
-            className="w-[20rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('email', {
               required: '이메일을 입력해주세요',
               pattern: {
@@ -89,20 +129,24 @@ export default function SignupForm() {
       </div>
 
       {/* 비밀번호 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="password" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="password"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             비밀번호
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div>
           <Input
+            width="md"
             id="password"
             type="password"
             placeholder="비밀번호를 입력하세요"
             autoComplete="new-password"
-            className="w-[20rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('password', {
               required: '비밀번호를 입력해주세요',
               pattern: {
@@ -112,7 +156,7 @@ export default function SignupForm() {
             })}
           />
           {errors.password && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400 break-words w-[20rem]">
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
               {errors.password.message}
             </p>
           )}
@@ -120,11 +164,11 @@ export default function SignupForm() {
       </div>
 
       {/* 비밀번호 확인 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[7rem]">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
           <label
             htmlFor="passwordConfirm"
-            className="block text-black lg:text-base"
+            className="block text-black text-sm md:text-base lg:text-base"
           >
             비밀번호 확인
           </label>
@@ -135,7 +179,7 @@ export default function SignupForm() {
             id="passwordConfirm"
             type="password"
             placeholder="비밀번호를 한번 더 입력하세요"
-            className="w-[20rem]"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('passwordConfirm', {
               required: '비밀번호를 확인해주세요',
               validate: (value, formValues) =>
@@ -151,9 +195,12 @@ export default function SignupForm() {
       </div>
 
       {/* 이름 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="name" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="name"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             이름
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
@@ -164,6 +211,7 @@ export default function SignupForm() {
             type="text"
             autoComplete="name"
             placeholder="이름을 입력하세요"
+            className=" w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('name', {
               required: '이름를 입력해주세요',
             })}
@@ -177,9 +225,12 @@ export default function SignupForm() {
       </div>
 
       {/* 전화번호 */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center w-[6rem]">
-          <label htmlFor="phone" className="block text-black lg:text-base">
+      <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
+        <div className="flex items-start w-full">
+          <label
+            htmlFor="phone"
+            className="block text-black text-sm md:text-base lg:text-base"
+          >
             전화번호
           </label>
           <span className="text-light-red lg:text-sm ml-1">*</span>
@@ -189,13 +240,18 @@ export default function SignupForm() {
             id="phone"
             type="text"
             autoComplete="tel"
-            placeholder="전화번호를 입력하세요"
-            className="w-[20rem]"
+            placeholder="000-0000-0000 형식으로 입력하세요"
+            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
             {...register('phone', {
               required: '전화번호를 입력해주세요',
-              pattern: {
-                value: /^[0-9-]+$/,
-                message: '숫자와 하이픈(-)만 입력 가능합니다',
+              validate: value => {
+                if (!/^[0-9-]+$/.test(value)) {
+                  return '숫자와 하이픈(-)만 입력 가능합니다';
+                }
+                if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(value)) {
+                  return '000-0000-0000 형식이어야 합니다';
+                }
+                return true;
               },
             })}
           />
@@ -214,7 +270,7 @@ export default function SignupForm() {
         required
       />
 
-      <div className="flex justify-center items-center lg:mt-[2rem] lg:mb-[6.25rem]">
+      <div className="flex justify-center items-center mb-[60px] mt-[50px] md:mb-[80px] lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
           가입하기
         </Button>

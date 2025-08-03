@@ -4,8 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-// 임시 이미지 불러오기
-
 import {
   BookOpen,
   Heart,
@@ -16,18 +14,21 @@ import {
 } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  console.log(pathname);
   const isActive = (path: string) => (pathname === path ? 'mypage-active' : '');
   const { user } = useUserStore();
+  const { resetUser } = useUserStore();
 
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
@@ -35,14 +36,32 @@ export default function RootLayout({
     }
   }, [user]);
 
+  //로그아웃 시 토큰 삭제
+  const handleLogout = () => {
+    resetUser();
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userInfo');
+    Swal.fire({
+      icon: 'info',
+      title: '로그아웃 완료',
+      text: '로그아웃이 완료 되었습니다.',
+      confirmButtonText: '확인',
+    }).then(result => {
+      if (result.isConfirmed) {
+        router.replace('/');
+      }
+    });
+  };
+
   return (
-    <>
-      <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:p-[1.125rem]">
-        <div className="flex flex-row lg:w-5xl md:w-[44.25rem] w-80">
-          <div className="flex flex-col gap-[2.1875rem]">
-            <h2 className="text-sm text-gray">
+    <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+      <div className="flex justify-center lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-[3.125rem] md:pb-20 pt-[1.875rem] pb-[3.75rem]">
+        <div className="flex flex-row lg:w-5xl w-full lg:px-0 md:px-[1.875rem] px-5">
+          <div className="flex flex-col gap-[2.1875rem] w-full">
+            <h2 className="text-xs md:text-sm lg:text-base text-gray">
               <Link href="/">HOME</Link>
-              <span>{' > '}</span>
+              &nbsp;&gt;&nbsp;
               <Link href="/mypage">마이페이지</Link>
               <p className="mt-5 text-4xl font-semibold text-black">
                 마이페이지
@@ -50,10 +69,10 @@ export default function RootLayout({
             </h2>
             <div className="lg:flex lg:flex-row md:flex md:flex-row flex flex-row">
               <aside
-                className="lg:flex lg:flex-col lg:items-center lg:gap-[2.125rem] lg:w-[12.25rem] lg:p-[1.875rem] lg:mr-[1.875rem] 
-                  md:flex md:flex-col md:items-center md:gap-[2.125rem] md:w-[10.625rem] md:py-[1.875rem] md:px-5 md:mr-[1.875rem] 
-                  hidden
-                  h-full bg-bg-gray text-black rounded-lg"
+                className="hidden md:flex flex-shrink-0
+                  md:flex-col md:items-center lg:w-[12.25rem] lg:p-[1.875rem] md:gap-[2.125rem] md:w-[10.625rem] md:py-[1.875rem] md:px-5 md:mr-[1.875rem] 
+                  mr-0
+                  h-full bg-bg-gray text-black rounded-lg "
               >
                 <div>
                   {loading ? (
@@ -65,11 +84,7 @@ export default function RootLayout({
                   ) : (
                     <div className="flex flex-col items-center gap-1">
                       <Image
-                        src={
-                          user?.image
-                            ? `${API_URL}/${user.image}`
-                            : '/profile.svg'
-                        }
+                        src={user?.image ? `${user.image}` : '/profile.svg'}
                         alt={`${user?.name} 프로필 이미지`}
                         width={80}
                         height={80}
@@ -78,7 +93,29 @@ export default function RootLayout({
                       <p className="lg:text-base md:text-base font-semibold">
                         {user?.name}
                       </p>
-                      <p className="lg:text-sm md:text-sm">{user?.email}</p>
+                      {user?.loginType === 'kakao' && (
+                        <div className="flex">
+                          <Image
+                            src="/kakao_logo.png"
+                            width={20}
+                            height={20}
+                            alt="네이버 로고"
+                          />
+                          <span className="text-sm ml-2">카카오 로그인</span>
+                        </div>
+                      )}
+                      {user?.loginType === 'naver' && (
+                        <div className="flex">
+                          <Image
+                            src="/naver_logo.png"
+                            width={20}
+                            height={20}
+                            alt="네이버 로고"
+                          />
+                          <span className="text-sm ml-2">네이버 로그인</span>
+                        </div>
+                      )}
+                      <p className="text-sm">{user?.email}</p>
                     </div>
                   )}
                 </div>
@@ -86,7 +123,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/cart"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/cart')}`}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/cart')}`}
                     >
                       <ShoppingCart width={16} />
                       <span>장바구니</span>
@@ -94,17 +131,17 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/likes"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/likes')} `}
+                      href="/mypage/wish"
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/wish')} `}
                     >
                       <Heart width={16} />
-                      <span>내가 찜한 상품</span>
+                      <span>찜한 상품</span>
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/mypage/buylist"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/buylist')} ${isActive('/mypage/buyinfo')}`}
+                      href="/mypage/order"
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/order')}`}
                     >
                       <ReceiptText width={16} />
                       <span>주문내역</span>
@@ -113,7 +150,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/recipe"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myrecipe')} ${isActive('/mypage/recipe/likerecipe')}`}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
                     >
                       <BookOpen width={16} />
                       <span>레시피</span>
@@ -121,29 +158,29 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
-                      href="/mypage/myuser"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/myuser')} `}
+                      href="/mypage/user"
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
                     >
                       <IdCard width={16} />
                       <span>회원정보</span>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href=""
-                      className="flex flex-row gap-2 hover:text-[var(--color-dark-green)] hover:font-semibold"
+                    <button
+                      onClick={handleLogout}
+                      className="flex flex-row gap-3 hover:text-[var(--color-dark-green)] hover:font-semibold"
                     >
                       <LogOut width={16} />
                       <span>로그아웃</span>
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </aside>
-              <main className="">{children}</main>
+              <div className="w-full">{children}</div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }

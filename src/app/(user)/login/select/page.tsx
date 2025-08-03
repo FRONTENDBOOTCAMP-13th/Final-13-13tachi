@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { loginWithAuthjs } from '@/data/actions/user';
 
 export default async function LoginPage() {
   return (
-    <div className="relative flex items-center justify-center min-h-[calc(100dvh-25rem)] md:min-h-[calc(100dvh-20.185rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+    <main className="relative flex items-center justify-center min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
         style={{ backgroundImage: "url('/login-img.svg')" }}
       />
       <div className="absolute inset-0 -z-10 bg-black opacity-50" />
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center mt-[210px] mb-[280px]  md:my-[0px]">
         <h2 className="text-base font-semibold md:text-lg md:font-semibold lg:text-xl lg:font-bold text-center text-white mb-[1.25rem]">
           흙내음 상점에서 <br /> 자연의 맛을 로그인하세요
         </h2>
@@ -22,35 +23,37 @@ export default async function LoginPage() {
           >
             이메일로 시작하기
           </Link>
+          <form>
+            {/* 카카오 로그인 */}
+            <button
+              type="submit"
+              formAction={loginWithAuthjs.bind(null, 'kakao')}
+              className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem]"
+            >
+              <Image
+                src="/kakao.svg"
+                alt="Kakao Login"
+                width={325}
+                height={55}
+                className="w-full h-auto"
+              />
+            </button>
 
-          {/* 카카오 로그인 */}
-          <Link
-            href="/api/auth/kakao"
-            className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem]"
-          >
-            <Image
-              src="/kakao.svg"
-              alt="Kakao Login"
-              width={325}
-              height={55}
-              className="w-full h-auto"
-            />
-          </Link>
-
-          {/* 네이버 로그인 */}
-          <Link
-            href="/api/auth/naver"
-            className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem]"
-          >
-            <Image
-              src="/naver.svg"
-              alt="Naver Login"
-              width={325}
-              height={55}
-              className="w-full h-auto"
-            />
-          </Link>
-
+            {/* 네이버 로그인 */}
+            <button
+              type="submit"
+              formAction={loginWithAuthjs.bind(null, 'naver')}
+              className="block text-sm w-[280px] h-[45px] md:w-[264px] md:h-[45px] lg:w-[20.3125rem] lg:h-[3.4375rem] mt-[0.625rem]"
+            >
+              <Image
+                src="/naver.svg"
+                alt="Naver Login"
+                width={325}
+                height={55}
+                className="w-full h-auto"
+              />
+            </button>
+          </form>
           {/* 회원가입 */}
           <Link
             href="/signup"
@@ -60,6 +63,6 @@ export default async function LoginPage() {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

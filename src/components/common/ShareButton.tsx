@@ -15,7 +15,7 @@ export default function ShareButton() {
   };
 
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <button
         onClick={handleShareClick}
         aria-label="공유하기"

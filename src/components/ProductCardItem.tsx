@@ -1,7 +1,7 @@
 'use client';
 
 import { productAddLike, productDeleteLike } from '@/data/actions/product';
-import { ApiRes, LikeItemType, ProductType, User } from '@/types';
+import { LikeItemType, ProductCard } from '@/types';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,20 +9,12 @@ import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-// const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
-
 export default function ProductCardItem({
   item, // 현재 상품
   likeRes, // 찜한 목록 최신 상태
   accessToken, // user의 accessToken
   user,
-}: {
-  item: ProductType;
-  likeRes: ApiRes<LikeItemType[] | null>;
-  accessToken: string;
-  user: User | null;
-}) {
+}: ProductCard) {
   const router = useRouter();
   const [isLike, setIsLike] = useState(false); // 현재 상품이 찜하기 상태인지 상태관리
 
@@ -53,23 +45,23 @@ export default function ProductCardItem({
 
   return (
     <li>
-      <Link href={`shopping/${item._id}`}>
-        <div className="relative aspect-square">
+      <Link href={`/shopping/${item._id}`}>
+        <div className="relative aspect-square rounded-lg overflow-hidden">
           <Image
-            src={`${API_URL}/${item.mainImages![0].path}`}
+            src={item.mainImages![0].path}
             alt={`${item.name} 이미지`}
             fill
-            className="rounded-lg object-cover shadow-image"
+            className="object-cover shadow-image transition-transform duration-300 hover:scale-110"
           />
         </div>
-        <div className="relative lg:mt-4 w-full">
-          <div className="flex gap-2 w-full lg:pr-6">
-            <h4 className="truncate lg:text-base">{item.name}</h4>
-            <span className="text-gray lg:mt-[0.0625rem] lg:text-sm">
+        <div className="relative mt-4 w-full">
+          <div className="flex gap-0.5 w-full flex-col pr-4 md:flex-row md:gap-2 md:pr-6">
+            <h4 className="truncate text-sm md:text-base">{item.name}</h4>
+            <span className="text-gray text-xs md:mt-[0.0625rem] md:text-sm">
               {item.extra?.details}
             </span>
           </div>
-          <strong className="inline-block text-orange lg:mt-1.5 lg:text-xl">
+          <strong className="mt-1 inline-block text-orange text-lg md:mt-1.5 md:text-xl">
             {item.price?.toLocaleString()}원
           </strong>
           <form
@@ -110,9 +102,13 @@ export default function ProductCardItem({
               className="cursor-pointer"
             >
               {isLike ? (
-                <Heart strokeWidth={1} fill="#000" className="w-5 h-5" />
+                <Heart
+                  strokeWidth={1}
+                  fill="#000"
+                  className="w-4.5 h-4.5 md:w-5 md:h-5"
+                />
               ) : (
-                <Heart strokeWidth={1} className="w-5 h-5" />
+                <Heart strokeWidth={1} className="w-4.5 h-4.5 md:w-5 md:h-5" />
               )}
             </button>
           </form>

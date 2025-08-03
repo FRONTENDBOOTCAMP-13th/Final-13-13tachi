@@ -4,16 +4,16 @@ import { Suspense } from 'react';
 
 export default async function LoginPage() {
   return (
-    <div className="relative lg:min-h-[calc(100dvh-21.625rem)]">
+    <main className="relative min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
         style={{ backgroundImage: "url('/login-img.svg')" }}
       />
       <div className="absolute inset-0 -z-10 bg-black opacity-50" />
 
-      <main className=" py-[110px] lg:py-[5.9375rem] flex justify-center items-center min-h-full">
+      <div className=" pt-[170px] pb-[260px] md:py-[107px]  flex justify-center items-center min-h-full">
         <div
-          className="pt-[30px] lg:py-[4.3125rem] rounded-[0.9375rem] w-[300px] h-[350px] md:w-[25rem] md:h-[31.25rem] lg:w-[25rem] lg:h-[31.25rem] max-w-md bg-white"
+          className="py-[30px] md:py-[73px] lg:py-[4.3125rem] rounded-[0.9375rem] w-[300px] h-[350px] md:w-[25rem] md:h-[31.25rem] lg:w-[25rem] lg:h-[31.25rem] max-w-md bg-white"
           style={{ boxShadow: '.375rem .375rem .25rem rgba(0, 0, 0, 0.25)' }}
         >
           <div className="flex flex-col items-center text-center ">
@@ -34,7 +34,7 @@ export default async function LoginPage() {
             <LoginForm />
           </Suspense>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
