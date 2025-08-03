@@ -10,13 +10,30 @@ import {
   House,
   ShoppingBasket,
 } from 'lucide-react';
+import useUserStore from '@/zustand/useStore';
 
 export default function Footer() {
+  const { user } = useUserStore();
+
   // 주소창의 path 값 추출
   const pathname = usePathname();
-  const isActive = (path: string) => (pathname === path ? 'ft-nav-active' : '');
 
-  const isFilled = (path: string) => (pathname === path ? 2 : 1);
+  // 주요 네비게이션 경로의 하위 경로까지 모두 활성화 처리
+  const navPaths = ['/', '/shopping', '/recipe', '/mypage'];
+
+  const isActive = (path: string) => {
+    if (navPaths.includes(path) && path !== '/') {
+      return pathname.startsWith(path) ? 'ft-nav-active' : '';
+    }
+    return pathname === path ? 'ft-nav-active' : '';
+  };
+
+  const isFilled = (path: string) => {
+    if (navPaths.includes(path) && path !== '/') {
+      return pathname.startsWith(path) ? 2 : 1;
+    }
+    return pathname === path ? 2 : 1;
+  };
 
   return (
     <footer className=" bg-dark-green w-full pt-7.5 pb-25 md:py-8.5">
@@ -25,15 +42,39 @@ export default function Footer() {
           <h2 className="font-bold text-lg md:text-3xl">흙내음 상점: UgVeg</h2>
           <ul className="flex gap-2 mt-1.5 font-thin text-xs md:text-sm ">
             <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              강석현
+              <Link
+                href="https://github.com/Kanghyeon00"
+                target="_blank"
+                title="강석현 깃허브 새창림으로 연결"
+              >
+                강석현
+              </Link>
             </li>
             <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              김혜민
+              <Link
+                href="https://github.com/minixzip"
+                target="_blank"
+                title="김혜민 깃허브 새창림으로 연결"
+              >
+                김혜민
+              </Link>
             </li>
             <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              이진현
+              <Link
+                href="https://github.com/imnotpossib1e"
+                target="_blank"
+                title="이진현 깃허브 새창림으로 연결"
+              >
+                이진현
+              </Link>
             </li>
-            <li>임한길</li>
+            <Link
+              href="https://github.com/onewayay"
+              target="_blank"
+              title="임한길 깃허브 새창림으로 연결"
+            >
+              <li>임한길</li>
+            </Link>
           </ul>
         </div>
         <ul className="flex items-center gap-4">
@@ -114,16 +155,29 @@ export default function Footer() {
             </Link>
           </li>
           <li className="w-11.5">
-            <Link
-              href="/mypage"
-              className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
-            >
-              <CircleUserRound
-                strokeWidth={`${isFilled(`/mypage`)}`}
-                className="w-auto h-6.5"
-              />
-              <span className="text-2xs">마이페이지</span>
-            </Link>
+            {user ? (
+              <Link
+                href="/mypage"
+                className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
+              >
+                <CircleUserRound
+                  strokeWidth={`${isFilled(`/mypage`)}`}
+                  className="w-auto h-6.5"
+                />
+                <span className="text-2xs">마이페이지</span>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
+              >
+                <CircleUserRound
+                  strokeWidth={`${isFilled(`/login`)}`}
+                  className="w-auto h-6.5"
+                />
+                <span className="text-2xs">로그인</span>
+              </Link>
+            )}
           </li>
         </ul>
       </nav>
