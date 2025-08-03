@@ -35,7 +35,7 @@ export default async function ShoppingList() {
           {/* ST: 인기상품 */}
           <div className="mt-7.5">
             <h4 className="font-bold text-dark-green text-lg md:text-2xl lg:text-3xl">
-              인기 상품s
+              인기 상품
             </h4>
             <Suspense>
               <HotItemList products={products} />

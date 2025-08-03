@@ -21,15 +21,31 @@ interface MainProductListsProps {
 }
 
 export default function MainProductLists({ products }: MainProductListsProps) {
-  const hotItems = products.filter(item => item.extra?.isBest).slice(0, 4);
+  const [itemCount, setItemCount] = useState(4);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width >= 768 && width < 1280) {
+        setItemCount(3);
+      } else {
+        setItemCount(4);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const hotItems = products
+    .filter(item => item.extra?.isBest)
+    .slice(0, itemCount);
   const vegeItems = products
     .filter(item => item.extra?.category?.includes('채소'))
-    .slice(0, 4);
-
+    .slice(0, itemCount);
   const fruitItems = products
     .filter(item => item.extra?.category?.includes('과일'))
-    .slice(0, 4);
+    .slice(0, itemCount);
 
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
@@ -101,12 +117,17 @@ export default function MainProductLists({ products }: MainProductListsProps) {
   };
 
   return (
-    <main className="mx-auto lg:space-y-15 lg:max-w-5xl lg:pt-15 lg:pb-25">
+    <main className="mx-auto px-5 pt-12.5 pb-15 space-y-15 md:px-7.5 md:pb-20 md:space-y-12.5 lg:px-0 lg:max-w-5xl lg:pt-[4.0625rem] lg:pb-25">
       {/* ST: 인기 상품 */}
       <section>
-        <div className="flex items-center lg:gap-8">
-          <h3 className="font-semibold lg:text-3xl">인기 상품</h3>
-          <Link href="/shopping" className="text-dark-green font-semibold">
+        <div className="flex items-center gap-3 md:gap-5 lg:gap-6">
+          <h3 className="font-semibold text-lg md:text-2xl lg:text-3xl">
+            인기 상품
+          </h3>
+          <Link
+            href="/shopping"
+            className="text-dark-green font-semibold text-xs md:text-sm lg:text-base"
+          >
             + 더보기
           </Link>
         </div>
@@ -121,11 +142,13 @@ export default function MainProductLists({ products }: MainProductListsProps) {
 
       {/* ST: 채소류 */}
       <section>
-        <div className="flex items-center lg:gap-8">
-          <h3 className="font-semibold lg:text-3xl">채소류</h3>
+        <div className="flex items-center gap-3 md:gap-5 lg:gap-6">
+          <h3 className="font-semibold text-lg md:text-2xl lg:text-3xl">
+            채소류
+          </h3>
           <Link
             href="/shopping?tab=채소"
-            className="text-dark-green font-semibold"
+            className="text-dark-green font-semibold text-xs md:text-sm lg:text-base"
           >
             + 더보기
           </Link>
@@ -141,11 +164,13 @@ export default function MainProductLists({ products }: MainProductListsProps) {
 
       {/* ST: 과일류 */}
       <section>
-        <div className="flex items-center lg:gap-8">
-          <h3 className="font-semibold lg:text-3xl">과일류</h3>
+        <div className="flex items-center gap-3 md:gap-5 lg:gap-6">
+          <h3 className="font-semibold text-lg md:text-2xl lg:text-3xl">
+            과일류
+          </h3>
           <Link
             href="/shopping?tab=과일"
-            className="text-dark-green font-semibold"
+            className="text-dark-green font-semibold text-xs md:text-sm lg:text-base"
           >
             + 더보기
           </Link>
@@ -161,21 +186,23 @@ export default function MainProductLists({ products }: MainProductListsProps) {
 
       {/* ST: 인기 레시피 */}
       <section>
-        <div className="flex items-center lg:gap-8">
-          <h3 className="font-semibold lg:text-3xl">인기 레시피</h3>
-          <Link href="/recipe" className="text-dark-green font-semibold">
+        <div className="flex items-center gap-3 md:gap-5 lg:gap-6">
+          <h3 className="font-semibold text-lg md:text-2xl lg:text-3xl">
+            인기 레시피
+          </h3>
+          <Link
+            href="/recipe"
+            className="text-dark-green font-semibold text-xs md:text-sm lg:text-base"
+          >
             + 더보기
           </Link>
         </div>
         <RecipeCard
-          posts={recipes.slice(0, 4)}
+          posts={recipes.slice(0, itemCount)}
           toggleBookmark={toggleBookmark}
         />
       </section>
       {/* ED: 인기 레시피 */}
-
-      {/* ST:  */}
-      {/* ED:  */}
     </main>
   );
 }
