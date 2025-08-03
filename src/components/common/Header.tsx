@@ -4,8 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 import './layout.css'; // nav 메뉴 해당 경로에서 active 시키는 css. header/footer 에서만 사용
 import useUserStore from '@/zustand/useStore';
 import Dropdown from '@/components/common/Dropdown';
@@ -18,13 +16,11 @@ export default function Header() {
   const isActive = (path: string) =>
     pathname.startsWith(path) ? 'nav-active' : '';
 
-  //TODO isLogin 확인해서 로그인 메뉴가 아이콘으로 바뀌도록
-  //TODO 로그인 상태에서 아이콘 클릭하면 마이페이지 하위 메뉴 바로가는 링크
   return (
     <header className="w-full bg-dark-green z-10 py-2.5 lg:py-[1.0938rem] sticky top-0">
       <div className="mx-auto flex justify-between items-center h-full px-5 md:px-7.5 lg:px-0 lg:max-w-5xl">
         <h1 className="relative w-13.5 h-[2.3125rem] lg:w-17 lg:h-[2.9375rem] lg:-mt-0.5">
-          <Link href="/" target="self" title="홈 바로 가기" className="block">
+          <Link href="/" target="_self" title="홈 바로 가기" className="block">
             <Image src="/logo-white.svg" alt="UgVeg 로고" fill></Image>
           </Link>
         </h1>
