@@ -29,6 +29,7 @@ export default function MainSlide() {
             muted
             playsInline
             className="w-full h-full object-cover"
+            poster="/poster.jpg"
           >
             <source src="/main-video-1.mp4" type="video/mp4" />
           </video>
