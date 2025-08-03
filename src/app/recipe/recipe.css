@@ -25,3 +25,10 @@
   right: 0;
   background: url('/ico-arrow-next.svg') no-repeat center;
 }
+
+@media (max-width: 767px) {
+  .recipe-slide .swiper-button-prev,
+  .recipe-slide .swiper-button-next {
+    display: none;
+  }
+}
