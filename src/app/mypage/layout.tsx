@@ -56,7 +56,7 @@ export default function RootLayout({
 
   return (
     <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
-      <div className="flex justify-center  mt-[4.0625rem] mb-[6.25rem] md:px-[1.125rem]">
+      <div className="flex justify-center lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-[3.125rem] md:pb-20 pt-[1.875rem] pb-[3.75rem]">
         <div className="flex flex-row lg:w-5xl w-full lg:px-0 md:px-[1.875rem] px-5">
           <div className="flex flex-col gap-[2.1875rem] w-full">
             <h2 className="text-xs md:text-sm lg:text-base text-gray">
@@ -69,9 +69,9 @@ export default function RootLayout({
             </h2>
             <div className="lg:flex lg:flex-row md:flex md:flex-row flex flex-row">
               <aside
-                className="lg:flex lg:flex-col lg:items-center lg:gap-[2.125rem] lg:w-[12.25rem] lg:p-[1.875rem] lg:mr-[1.875rem] 
+                className="lg:w-[12.25rem] lg:p-[1.875rem]
                   md:flex md:flex-col md:items-center md:gap-[2.125rem] md:w-[10.625rem] md:py-[1.875rem] md:px-5 md:mr-[1.875rem] 
-                  hidden
+                  hidden mr-0
                   h-full bg-bg-gray text-black rounded-lg"
               >
                 <div>
@@ -123,7 +123,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/cart"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/cart')}`}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/cart')}`}
                     >
                       <ShoppingCart width={16} />
                       <span>장바구니</span>
@@ -132,16 +132,16 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/wish"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/wish')} `}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/wish')} `}
                     >
                       <Heart width={16} />
-                      <span>내가 찜한 상품</span>
+                      <span>찜한 상품</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/mypage/order"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/order')}`}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/order')}`}
                     >
                       <ReceiptText width={16} />
                       <span>주문내역</span>
@@ -150,7 +150,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/recipe"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
                     >
                       <BookOpen width={16} />
                       <span>레시피</span>
@@ -159,7 +159,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/mypage/user"
-                      className={`flex flex-row gap-2 hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
+                      className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/user')} `}
                     >
                       <IdCard width={16} />
                       <span>회원정보</span>
@@ -168,7 +168,7 @@ export default function RootLayout({
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="flex flex-row gap-2 hover:text-[var(--color-dark-green)] hover:font-semibold"
+                      className="flex flex-row gap-3 hover:text-[var(--color-dark-green)] hover:font-semibold"
                     >
                       <LogOut width={16} />
                       <span>로그아웃</span>

@@ -142,7 +142,7 @@ export default function UserInfo() {
           </div>
         </div>
       </div>
-      <div className="flex justify-end mt-auto">
+      <div className="flex justify-end md:mt-auto mt-10">
         <CustomLink size="xxl" variant="green" href={editPage}>
           회원정보 수정하기
         </CustomLink>
