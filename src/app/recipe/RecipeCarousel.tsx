@@ -108,15 +108,16 @@ export default function RecipeCarousel({
   // 인기 레시피 리스트 렌더링
   const hotRecipeList = popularRecipes.map(item => (
     <SwiperSlide key={item._id}>
-      <figure className="shadow-image rounded-4xl">
+      <figure className="shadow-image rounded-4xl w-full">
         <Link href={`/recipe/${item._id}`}>
-          <div className="relative lg:h-[9.375rem] md:h-[11rem] h-[12.3rem] overflow-hidden rounded-t-4xl">
+          <div className="relative w-full aspect-[4/3] overflow-hidden rounded-t-4xl">
             {item.image ? (
               <Image
                 src={item.image}
                 alt="레시피 이미지"
                 fill
                 className="object-cover transition-transform duration-300 hover:scale-110 cursor-pointer"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 25vw"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400 select-none bg-gray-100">
@@ -124,7 +125,7 @@ export default function RecipeCarousel({
               </div>
             )}
           </div>
-          <figcaption className="pb-[0.9375rem] pt-[0.9375rem] pl-5 pr-5 text-center max-h-[9.375rem]">
+          <figcaption className="pb-[0.9375rem] pt-[0.9375rem] pl-5 pr-5 text-center">
             <div className="relative flex items-center justify-center">
               <p className="text-[#454545] text-xs">{item.user.name}</p>
               <Bookmark
@@ -150,7 +151,7 @@ export default function RecipeCarousel({
                 }}
               />
             </div>
-            <span className="text-orange text-sm mt-[0.5rem]">
+            <span className="text-orange text-sm mt-[0.5rem] block truncate">
               {item.tag
                 ? item.tag
                     .split(',')
@@ -158,7 +159,7 @@ export default function RecipeCarousel({
                     .join(' | ')
                 : '재료 없음'}
             </span>
-            <p className="lg:text-xl md:text-lg font-semibold mt-[0.5rem]">
+            <p className="lg:text-xl md:text-lg text-base font-semibold mt-[0.5rem] line-clamp-2">
               {item.title}
             </p>
           </figcaption>
@@ -178,22 +179,33 @@ export default function RecipeCarousel({
   return (
     <div className="relative w-full lg:max-w-[1024px] mx-auto lg:mt-4.5 lg:mb-12">
       <Swiper
-        slidesPerView={1.5}
+        slidesPerView={2.2}
         spaceBetween={15}
         navigation={true}
         modules={[Navigation]}
-        autoHeight={true}
+        autoHeight={false}
         loop={popularRecipes.length > 1}
         className="recipe-slide"
         breakpoints={{
           360: {
-            slidesPerView: 1,
+            slidesPerView: 1.5,
+            spaceBetween: 10,
+          },
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 12,
           },
           768: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          1024: {
             slidesPerView: 3,
+            spaceBetween: 20,
           },
           1280: {
             slidesPerView: 4,
+            spaceBetween: 20,
           },
         }}
       >

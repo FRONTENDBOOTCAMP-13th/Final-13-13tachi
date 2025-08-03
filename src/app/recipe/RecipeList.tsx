@@ -147,20 +147,20 @@ export default function RecipeList({ post }: RecipeListProps) {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl md:w-full md:gap-x-5 md:gap-y-15 lg:gap-x-5 lg:gap-y-15">
         {filteredRecipes.slice(0, visibleCount).map((item, index) =>
           item._id ? (
-            <Link
-              key={item._id}
-              href={`/recipe/${item._id}`}
-              className="lg:w-[15rem] block"
-            >
-              <figure className="lg:w-[15rem] md:w-full">
-                <div className="relative lg:w-[15rem] lg:h-[15rem] md:w-full md:h-60 h-[9.375rem] overflow-hidden rounded-lg bg-gray-100">
+            <Link key={item._id} href={`/recipe/${item._id}`}>
+              <figure className="w-full">
+                {' '}
+                {/* 기존 lg:w-[15rem] 제거하고 w-full 적용 */}
+                <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
+                  {' '}
+                  {/* aspect-square로 정사각형 비율 유지 */}
                   {item.image ? (
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-300 hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, 15rem"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       priority={index < 4}
                     />
                   ) : (

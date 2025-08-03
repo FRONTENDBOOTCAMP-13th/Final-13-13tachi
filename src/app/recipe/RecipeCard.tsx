@@ -15,30 +15,38 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
   const { likeMap } = useBookmarkStore();
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-[25px]">
+      {' '}
+      {/* mt를 컨테이너로 이동 */}
       {posts.slice(0, 4).map(item => (
         <Link
           key={item._id}
           href={`/recipe/${item._id}`}
-          className="w-[15rem] block mt-[25px]"
+          className="w-full block"
         >
-          <figure className="lg:w-[15rem]">
-            <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg bg-gray-100">
+          <figure className="w-full">
+            {' '}
+            {/* lg:w-[15rem] 제거하고 w-full 적용 */}
+            <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
+              {' '}
+              {/* 고정 크기 제거하고 aspect-square 적용 */}
               {item.image ? (
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-300 hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 15rem"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                <div className="w-full h-full flex items-center justify-center text-gray-400 select-none">
                   이미지 없음
                 </div>
               )}
             </div>
-            <figcaption className="mt-[12px]">
+            <figcaption className="mt-3">
+              {' '}
+              {/* mt-[12px]를 mt-3으로 변경 */}
               <div className="relative flex">
                 <span className="text-xl font-semibold max-w-[90%] truncate">
                   {item.title}
@@ -53,6 +61,17 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
                   onClick={e => {
                     e.preventDefault();
                     toggleBookmark(item._id);
+                  }}
+                  aria-label={
+                    likeMap.has(item._id) ? '북마크 해제' : '북마크 추가'
+                  }
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleBookmark(item._id);
+                    }
                   }}
                 />
               </div>
