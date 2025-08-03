@@ -19,8 +19,8 @@ export default function RootLayout({
           <ul className="flex flex-row justify-evenly">
             <li>
               <Link
-                href="/mypage/recipe/myRecipe"
-                className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipe')} `}
+                href="/mypage/recipe/myRecipes"
+                className={`block hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipes')} `}
               >
                 <h3>나의 레시피</h3>
               </Link>
