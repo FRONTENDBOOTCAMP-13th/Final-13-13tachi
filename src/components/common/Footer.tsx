@@ -42,15 +42,39 @@ export default function Footer() {
           <h2 className="font-bold text-lg md:text-3xl">흙내음 상점: UgVeg</h2>
           <ul className="flex gap-2 mt-1.5 font-thin text-xs md:text-sm ">
             <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              강석현
+              <Link
+                href="https://github.com/Kanghyeon00"
+                target="_blank"
+                title="강석현 깃허브 새창림으로 연결"
+              >
+                강석현
+              </Link>
             </li>
             <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              김혜민
+              <Link
+                href="https://github.com/minixzip"
+                target="_blank"
+                title="김혜민 깃허브 새창림으로 연결"
+              >
+                김혜민
+              </Link>
             </li>
             <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              이진현
+              <Link
+                href="https://github.com/imnotpossib1e"
+                target="_blank"
+                title="이진현 깃허브 새창림으로 연결"
+              >
+                이진현
+              </Link>
             </li>
-            <li>임한길</li>
+            <Link
+              href="https://github.com/onewayay"
+              target="_blank"
+              title="임한길 깃허브 새창림으로 연결"
+            >
+              <li>임한길</li>
+            </Link>
           </ul>
         </div>
         <ul className="flex items-center gap-4">
