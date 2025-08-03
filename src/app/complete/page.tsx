@@ -14,10 +14,13 @@ export default function Complete() {
           width={68}
           height={69}
         ></Image>
-        <h2 className="text-2xl font-bold ">결제가 완료되었습니다!</h2>
-        <p className="text-lg font-bold text-light-green ">
-          주문이 성공적으로 처리되었습니다. 약 2일 안에 배송이 시작될 것입니다.
-        </p>
+        <h2 className="md:text-2xl text-xl font-bold ">
+          결제가 완료되었습니다!
+        </h2>
+        <div className="flex flex-col md:flex-row md:text-lg text-base font-bold text-light-green ">
+          <span>주문이 성공적으로 처리되었습니다.&nbsp;</span>
+          <span>약 2일 안에 배송이 시작될 것입니다.</span>
+        </div>
         <p className="text-sm font-bold text-light-green ">
           주문번호: {orderNumber}
         </p>
