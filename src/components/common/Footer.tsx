@@ -10,13 +10,30 @@ import {
   House,
   ShoppingBasket,
 } from 'lucide-react';
+import useUserStore from '@/zustand/useStore';
 
 export default function Footer() {
+  const { user } = useUserStore();
+
   // 주소창의 path 값 추출
   const pathname = usePathname();
-  const isActive = (path: string) => (pathname === path ? 'ft-nav-active' : '');
 
-  const isFilled = (path: string) => (pathname === path ? 2 : 1);
+  // 주요 네비게이션 경로의 하위 경로까지 모두 활성화 처리
+  const navPaths = ['/', '/shopping', '/recipe', '/mypage'];
+
+  const isActive = (path: string) => {
+    if (navPaths.includes(path) && path !== '/') {
+      return pathname.startsWith(path) ? 'ft-nav-active' : '';
+    }
+    return pathname === path ? 'ft-nav-active' : '';
+  };
+
+  const isFilled = (path: string) => {
+    if (navPaths.includes(path) && path !== '/') {
+      return pathname.startsWith(path) ? 2 : 1;
+    }
+    return pathname === path ? 2 : 1;
+  };
 
   return (
     <footer className=" bg-dark-green w-full pt-7.5 pb-25 md:py-8.5">
@@ -114,16 +131,29 @@ export default function Footer() {
             </Link>
           </li>
           <li className="w-11.5">
-            <Link
-              href="/mypage"
-              className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
-            >
-              <CircleUserRound
-                strokeWidth={`${isFilled(`/mypage`)}`}
-                className="w-auto h-6.5"
-              />
-              <span className="text-2xs">마이페이지</span>
-            </Link>
+            {user ? (
+              <Link
+                href="/mypage"
+                className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
+              >
+                <CircleUserRound
+                  strokeWidth={`${isFilled(`/mypage`)}`}
+                  className="w-auto h-6.5"
+                />
+                <span className="text-2xs">마이페이지</span>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
+              >
+                <CircleUserRound
+                  strokeWidth={`${isFilled(`/login`)}`}
+                  className="w-auto h-6.5"
+                />
+                <span className="text-2xs">로그인</span>
+              </Link>
+            )}
           </li>
         </ul>
       </nav>
