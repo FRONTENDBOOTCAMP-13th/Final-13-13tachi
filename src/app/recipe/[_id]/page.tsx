@@ -64,7 +64,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
                   src={imageUrl}
                   alt={recipe.item.title}
                   fill
-                  className="lg:object-cover rounded-lg"
+                  className="object-cover rounded-lg"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 56.25rem"
                   priority
                 />
