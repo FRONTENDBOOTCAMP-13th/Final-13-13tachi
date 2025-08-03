@@ -9,10 +9,10 @@ export default function EmptyWish() {
         src={emptyPic}
         width={60}
         height={60}
-        alt="장바구니 이미지"
-        className="mb-3.5"
+        alt="하트 이미지"
+        className="mb-3.5 md:mt-0 mt-6"
       />
-      <span className="mb-10">
+      <span className="md:mb-10 mb-6">
         <p className="text-xl font-semibold text-center mb-3">
           찜한 상품이 없어요.
         </p>
