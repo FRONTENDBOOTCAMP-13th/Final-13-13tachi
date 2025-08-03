@@ -9,8 +9,8 @@ import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
 
 import {
-  addBookmark,
-  deleteBookmark,
+  addRecipeBookmark,
+  deleteRecipeBookmark,
   getLikeRecipe,
 } from '@/data/functions/post';
 
@@ -67,11 +67,11 @@ export default function RecipeList({ post }: RecipeListProps) {
 
     try {
       if (isBookmarked) {
-        const res = await deleteBookmark(accessToken, bookmarkId);
+        const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) remove(postId);
         else alert(res.message || '삭제 중 오류가 발생했습니다.');
       } else {
-        const res = await addBookmark(accessToken, postId);
+        const res = await addRecipeBookmark(accessToken, postId);
         if (res.ok === 1 && res.item) add(postId, res.item._id);
       }
     } catch (error) {
@@ -184,7 +184,7 @@ export default function RecipeList({ post }: RecipeListProps) {
                       }`}
                       strokeWidth={1}
                       onClick={e => {
-                        e.preventDefault(); // 링크 이동 방지
+                        e.preventDefault();
                         toggleBookmark(item._id);
                       }}
                       aria-label={

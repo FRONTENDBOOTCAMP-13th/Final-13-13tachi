@@ -2,7 +2,7 @@
 
 import { Bookmark } from 'lucide-react';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
-import { addBookmark, deleteBookmark } from '@/data/functions/post';
+import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/functions/post';
 import { useState } from 'react';
 import useUserStore from '@/zustand/useStore';
 
@@ -35,18 +35,16 @@ export default function BookmarkButton({ postId }: BookmarkButtonProps) {
 
     try {
       if (isBookmarked && bookmarkId) {
-        const res = await deleteBookmark(accessToken, bookmarkId);
+        const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) {
           remove(postId);
         } else {
           alert(res.message || '삭제 중 오류가 발생했습니다.');
         }
       } else {
-        const res = await addBookmark(accessToken, postId);
+        const res = await addRecipeBookmark(accessToken, postId);
         if (res.ok === 1 && res.item) {
           add(postId, res.item._id);
-        } else {
-          alert(res.message || '추가 중 오류가 발생했습니다.');
         }
       }
     } catch (error) {

@@ -55,7 +55,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
       <div className="lg:max-w-[56.25rem] mx-auto pb-[6.25rem]">
         <div className="px-15">
           {/* 대표 이미지 */}
-          <div className="flex justify-center mt-[4.0625rem] relative z-0">
+          <div className="flex justify-center mt-[4.0625rem] relative">
             <div className="lg:w-[56.25rem] lg:h-[31.25rem] relative">
               {imageUrl ? (
                 <Image
