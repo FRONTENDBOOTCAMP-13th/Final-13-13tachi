@@ -1,4 +1,4 @@
-import MyRecipeList from '@/app/mypage/recipe/myRecipe/MyRecipeList';
+import MyRecipeList from '@/app/mypage/recipe/myRecipes/MyRecipeList';
 import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {

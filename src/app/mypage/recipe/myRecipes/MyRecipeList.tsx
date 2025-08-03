@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 import { getMyRecipe } from '@/data/functions/post';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import MyRecipeItem from '@/app/mypage/recipe/myRecipe/MyRecipeItem';
+import MyRecipeItem from '@/app/mypage/recipe/myRecipes/MyRecipeItem';
 import { MyPostType } from '@/types/post';
-import EmptyMyRecipe from '@/app/mypage/recipe/myRecipe/EmptyMyRecipe';
+import EmptyMyRecipe from '@/app/mypage/recipe/myRecipes/EmptyMyRecipe';
 import CustomLink from '@/components/common/CustomLink';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import Loading from '@/app/mypage/recipe/myRecipe/Loading';
+import Loading from '@/app/mypage/recipe/myRecipes/Loading';
 
 export default function MyRecipeList() {
   const { user } = useUserStore();
