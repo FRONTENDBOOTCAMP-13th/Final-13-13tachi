@@ -9,7 +9,7 @@ export default function EmptyOrder() {
         src={emptyPic}
         width={60}
         height={60}
-        alt="장바구니 이미지"
+        alt="영수증 이미지"
         className="mb-3.5"
       />
       <span className="mb-10">

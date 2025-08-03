@@ -1,5 +1,20 @@
-// 비지 않은 경우
 import CartList from '@/app/mypage/cart/CartList';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `장바구니 - UgVeg: 흙내음 상점`,
+    description: `내 장바구니 목록을 확인하세요.`,
+    openGraph: {
+      title: `장바구니 - UgVeg: 흙내음 상점`,
+      description: `내 장바구니 목록을 확인하세요.`,
+      url: `/mypage/cart`,
+      images: {
+        url: '/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default async function Cart() {
   return (

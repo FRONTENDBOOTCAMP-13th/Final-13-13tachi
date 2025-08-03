@@ -107,16 +107,21 @@ export default function LoginForm() {
             </p>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-[5px] w-[250px] md:w-[290px] lg:w-[18.125rem] mx-auto ml-auto text-gray text-xs hover:underline">
+        <div className="flex justify-between items-center mt-[5px] w-[250px] md:w-[290px] lg:w-[18.125rem] mx-auto ml-auto text-gray text-xs">
           <div className="flex items-center gap-1">
             <Checkbox
               className="lg:w-[1.25rem] lg:h-[1.25rem]"
               checked={autoLogin}
               onChange={e => setAutoLogin(e.target.checked)}
             />
-            <p className="text-2xs md:text-xs">자동 로그인</p>
+            <p className="text-2xs md:text-xs hover:font-semibold">
+              자동 로그인
+            </p>
           </div>
-          <Link href="/signup" className="text-2xs md:text-xs">
+          <Link
+            href="/signup"
+            className="text-2xs md:text-xs hover:font-semibold"
+          >
             회원가입
           </Link>
         </div>

@@ -38,11 +38,10 @@ export default function BookmarkRecipeList() {
     } else {
       getLikeRecipe(accessToken)
         .then(res => {
-          console.log('찜 데이터:', res);
           setRes(res);
         })
         .catch(err => {
-          console.error('찜 가져오기 실패:', err);
+          console.error('레시피 북마크 가져오기 실패:', err);
           setRes({ ok: 0, message: '에러 발생!' });
         });
     }

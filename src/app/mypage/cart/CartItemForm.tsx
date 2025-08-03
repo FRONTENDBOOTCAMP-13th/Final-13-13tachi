@@ -19,7 +19,6 @@ export default function CartItemForm({
   item: ProductItemType;
   action: CartItemActionProps;
 }) {
-  // const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user } = useUserStore();
 
   const [quantity, setQuantity] = useState(item.quantity);

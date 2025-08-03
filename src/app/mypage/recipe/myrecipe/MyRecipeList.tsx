@@ -50,9 +50,6 @@ export default function MyRecipeList() {
   if (res.ok && res.item.length === 0) {
     return <EmptyMyRecipe />;
   }
-
-  console.log('1');
-  console.log(res);
   return (
     <>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-6 gap-y-5 mx-auto">
