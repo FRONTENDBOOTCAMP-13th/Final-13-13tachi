@@ -21,8 +21,6 @@ export default function CommentNew({ postId }: { postId: number }) {
         type="text"
         placeholder="댓글을 입력하세요"
         className="lg:w-full md:w-full w-full h-[2.5rem] border border-light-gray rounded-lg mr-5 px-5 text-sm"
-        // value={content}
-        // onChange={e => setContent(e.target.value)}
         name="content"
         disabled={isLoading}
       />
