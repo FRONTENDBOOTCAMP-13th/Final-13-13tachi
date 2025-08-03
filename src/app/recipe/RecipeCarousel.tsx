@@ -177,35 +177,24 @@ export default function RecipeCarousel({
   }
 
   return (
-    <div className="relative w-full lg:max-w-[1024px] mx-auto lg:mt-4.5 lg:mb-12">
+    <div className="mt-2 md:mt-4.5">
       <Swiper
-        slidesPerView={2.2}
+        slidesPerView={1.5}
         spaceBetween={15}
         navigation={true}
         modules={[Navigation]}
         autoHeight={false}
-        loop={popularRecipes.length > 1}
+        loop={true}
         className="recipe-slide"
         breakpoints={{
-          360: {
-            slidesPerView: 1.5,
-            spaceBetween: 10,
-          },
           480: {
             slidesPerView: 2,
-            spaceBetween: 12,
           },
           768: {
-            slidesPerView: 2,
-            spaceBetween: 15,
-          },
-          1024: {
             slidesPerView: 3,
-            spaceBetween: 20,
           },
           1280: {
             slidesPerView: 4,
-            spaceBetween: 20,
           },
         }}
       >

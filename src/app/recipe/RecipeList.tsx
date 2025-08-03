@@ -171,11 +171,11 @@ export default function RecipeList({ post }: RecipeListProps) {
                 </div>
                 <figcaption className="mt-3">
                   <div className="relative flex">
-                    <span className="text-xl font-semibold max-w-[90%] truncate">
+                    <span className="w-full pr-5.5 text-lg font-semibold truncate md:text-xl md:pr-6">
                       {item.title}
                     </span>
                     <Bookmark
-                      className={`absolute right-0 top-1 cursor-pointer ${
+                      className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] ${
                         likeMap.has(item._id)
                           ? 'fill-black text-black'
                           : 'text-black'
@@ -199,7 +199,7 @@ export default function RecipeList({ post }: RecipeListProps) {
                     />
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-orange text-sm truncate">
+                    <span className="text-orange text-xs md:text-sm truncate">
                       {item.tag
                         ? item.tag
                             .split(',')
@@ -207,7 +207,7 @@ export default function RecipeList({ post }: RecipeListProps) {
                             .join(' | ')
                         : '재료 없음'}
                     </span>
-                    <span className="text-gray text-sm truncate">
+                    <span className="text-gray text-xs md:text-sm truncate">
                       {item.user.name}
                     </span>
                   </div>
