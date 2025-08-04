@@ -19,7 +19,10 @@ export default function BookmarkRecipeItem({
 
   return (
     <div className="flex flex-col w-full">
-      <Link href={`/recipe/${item._id}`} className="overflow-hidden rounded-lg">
+      <Link
+        href={`/recipe/${item.post_id}`}
+        className="overflow-hidden rounded-lg"
+      >
         <Image
           src={item.image}
           alt={item.title}
@@ -42,8 +45,8 @@ export default function BookmarkRecipeItem({
             </button>
           </form>
         </div>
-        <Link href={`/recipe/${item._id}`}>
-          <span className="lg:ml-3.5 md:ml-6 ml-4 lg:w-36 md:w-36 w-40 block truncate">
+        <Link href={`/recipe/${item.post_id}`}>
+          <span className="lg:mx-3.5 md:mx-6 mx-4 lg:w-36 md:w-36 w-40 block truncate">
             {item.title}
           </span>
         </Link>
