@@ -8,7 +8,7 @@ import useBookmarkStore from '@/zustand/useBookmarkStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import RecipeCard from './recipe/RecipeCard';
-import { getLikeProducts } from '@/data/functions/product';
+import { getLikeProducts, getProducts } from '@/data/functions/product';
 import { getLikeRecipe, getRecipes } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 import Loading from '@/app/Loading';
