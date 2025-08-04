@@ -1,9 +1,7 @@
 import './main.css';
 import MainSlide from '@/app/MainSlide';
 import ValueSlide from '@/app/ValueSlide';
-import { ProductType } from '@/types';
 import MainProductLists from '@/app/MainProductLists';
-import { getProducts } from '@/data/functions/product';
 
 export default async function Home() {
   return (
