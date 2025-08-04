@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `흙내음 상점에 로그인하세요.`,
       url: `/login`,
       images: {
-        url: '/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };
