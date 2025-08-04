@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -37,11 +37,14 @@ export default function RecipeCarousel({
     setLikeMap,
   } = useBookmarkStore();
 
+  // 로딩 상태 관리 - HotItemList 패턴 사용
+  const [recipesData, setRecipesData] = useState<Post[] | null>(null);
+
   // 인기 레시피 필터링 및 정렬 로직
   const popularRecipes = useMemo(() => {
-    if (!recipes || recipes.length === 0) return [];
+    if (!recipesData || recipesData.length === 0) return [];
 
-    const validRecipes = recipes.filter(recipe => recipe._id);
+    const validRecipes = recipesData.filter(recipe => recipe._id);
 
     const sortedRecipes = validRecipes.sort((a, b) => {
       switch (sortBy) {
@@ -61,7 +64,14 @@ export default function RecipeCarousel({
     });
 
     return sortedRecipes.slice(0, maxCount);
-  }, [recipes, maxCount, sortBy, likeMap]);
+  }, [recipesData, maxCount, sortBy, likeMap]);
+
+  // recipes 데이터 설정 - HotItemList 패턴
+  useEffect(() => {
+    if (recipes && recipes.length > 0) {
+      setRecipesData(recipes);
+    }
+  }, [recipes]);
 
   // 북마크 상태 세팅
   useEffect(() => {
@@ -103,9 +113,9 @@ export default function RecipeCarousel({
   };
 
   // 인기 레시피 리스트 렌더링
-  const hotRecipeList = popularRecipes.map(item => (
-    <SwiperSlide key={item._id}>
-      <figure className="shadow-image rounded-4xl w-full">
+  const hotRecipeList = popularRecipes.map((item, index) => (
+    <SwiperSlide key={item._id || index} className="shadow-image rounded-4xl">
+      <figure className="w-full">
         <Link href={`/recipe/${item._id}`}>
           <div className="relative w-full aspect-[4/3] overflow-hidden rounded-t-4xl">
             {item.image ? (
@@ -165,16 +175,18 @@ export default function RecipeCarousel({
     </SwiperSlide>
   ));
 
+  // HotItemList와 동일한 로딩 처리 패턴
+  if (!recipesData) {
+    return <RecipeCarouselLoading />;
+  }
+
+  // 레시피가 없을 때
   if (!popularRecipes || popularRecipes.length === 0) {
     return (
       <div className="text-center text-gray-500 py-8">
         인기 레시피가 없습니다.
       </div>
     );
-  }
-
-  if (!popularRecipes) {
-    return <RecipeCarouselLoading />;
   }
 
   return (

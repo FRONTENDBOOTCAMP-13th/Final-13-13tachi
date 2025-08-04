@@ -115,12 +115,9 @@ export default function RecipeList({ post }: RecipeListProps) {
     setVisibleCount(8);
   }, [activeTab]);
 
-  if (!post) {
-    return <RecipeListLoading />;
-  }
-
   return (
     <>
+      {/* 탭과 등록 버튼 영역 - 항상 표시 */}
       <div className="flex justify-between mt-[1.5625rem] mb-5">
         <div className="flex gap-2.5 lg:text-base md:text-base text-sm">
           {['전체', '채소', '과일', '나의레시피'].map(tab => (
@@ -145,79 +142,80 @@ export default function RecipeList({ post }: RecipeListProps) {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl md:w-full md:gap-x-5 md:gap-y-15 lg:gap-x-5 lg:gap-y-15">
-        {filteredRecipes.slice(0, visibleCount).map((item, index) =>
-          item._id ? (
-            <Link key={item._id} href={`/recipe/${item._id}`}>
-              <figure className="w-full">
-                {' '}
-                {/* 기존 lg:w-[15rem] 제거하고 w-full 적용 */}
-                <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
-                  {' '}
-                  {/* aspect-square로 정사각형 비율 유지 */}
-                  {item.image ? (
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-300 hover:scale-110"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      priority={index < 4}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400 select-none">
-                      이미지 없음
-                    </div>
-                  )}
-                </div>
-                <figcaption className="mt-3">
-                  <div className="relative flex">
-                    <span className="w-full pr-5.5 text-lg font-semibold truncate md:text-xl md:pr-6">
-                      {item.title}
-                    </span>
-                    <Bookmark
-                      className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] ${
-                        likeMap.has(item._id)
-                          ? 'fill-black text-black'
-                          : 'text-black'
-                      }`}
-                      strokeWidth={1}
-                      onClick={e => {
-                        e.preventDefault();
-                        toggleBookmark(item._id);
-                      }}
-                      aria-label={
-                        likeMap.has(item._id) ? '북마크 해제' : '북마크 추가'
-                      }
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={e => {
-                        if (e.key === 'Enter' || e.key === ' ') {
+      {/* 레시피 리스트 or 로딩 */}
+      {recipeArr.length === 0 ? (
+        <RecipeListLoading />
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:max-w-5xl md:w-full md:gap-x-5 md:gap-y-15 lg:gap-x-5 lg:gap-y-15">
+          {filteredRecipes.slice(0, visibleCount).map((item, index) =>
+            item._id ? (
+              <Link key={item._id} href={`/recipe/${item._id}`}>
+                <figure className="w-full">
+                  <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
+                    {item.image ? (
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-110"
+                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        priority={index < 4}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400 select-none">
+                        이미지 없음
+                      </div>
+                    )}
+                  </div>
+                  <figcaption className="mt-3">
+                    <div className="relative flex">
+                      <span className="w-full pr-5.5 text-lg font-semibold truncate md:text-xl md:pr-6">
+                        {item.title}
+                      </span>
+                      <Bookmark
+                        className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] ${
+                          likeMap.has(item._id)
+                            ? 'fill-black text-black'
+                            : 'text-black'
+                        }`}
+                        strokeWidth={1}
+                        onClick={e => {
                           e.preventDefault();
                           toggleBookmark(item._id);
+                        }}
+                        aria-label={
+                          likeMap.has(item._id) ? '북마크 해제' : '북마크 추가'
                         }
-                      }}
-                    />
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-orange text-xs md:text-sm truncate">
-                      {item.tag
-                        ? item.tag
-                            .split(',')
-                            .map(s => s.trim())
-                            .join(' | ')
-                        : '재료 없음'}
-                    </span>
-                    <span className="text-gray text-xs md:text-sm truncate">
-                      {item.user.name}
-                    </span>
-                  </div>
-                </figcaption>
-              </figure>
-            </Link>
-          ) : null,
-        )}
-      </div>
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={e => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleBookmark(item._id);
+                          }
+                        }}
+                      />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-orange text-xs md:text-sm truncate">
+                        {item.tag
+                          ? item.tag
+                              .split(',')
+                              .map(s => s.trim())
+                              .join(' | ')
+                          : '재료 없음'}
+                      </span>
+                      <span className="text-gray text-xs md:text-sm truncate">
+                        {item.user.name}
+                      </span>
+                    </div>
+                  </figcaption>
+                </figure>
+              </Link>
+            ) : null,
+          )}
+        </div>
+      )}
     </>
   );
 }
