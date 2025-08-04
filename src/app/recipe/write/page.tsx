@@ -4,12 +4,13 @@ import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: '레시피 작성 | UgVeg',
+    title: '레시피 작성 - UgVeg',
     description: '나만의 레시피를 작성해보세요.',
     openGraph: {
-      title: '레시피 작성 | UgVeg',
+      title: '레시피 작성 - UgVeg',
       description: '나만의 레시피를 작성해보세요.',
-      url: 'https://ugveg.vercel.app/UgVeg.png',
+      url: '/recipe/write',
+      images: 'https://ugveg.vercel.app/UgVeg.png',
     },
   };
 }

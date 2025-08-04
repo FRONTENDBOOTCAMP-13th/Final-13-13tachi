@@ -14,12 +14,13 @@ export async function generateMetadata({
   const decodedQuery = decodeURIComponent(query);
 
   return {
-    title: `"${decodedQuery}" 검색 결과 | UgVeg 레시피`,
+    title: `"${decodedQuery}" 검색 결과 - UgVeg 레시피`,
     description: `"${decodedQuery}"에 대한 레시피 검색 결과를 확인하세요.`,
     openGraph: {
-      title: `"${decodedQuery}" 검색 결과 | UgVeg 레시피`,
+      title: `"${decodedQuery}" 검색 결과 - UgVeg 레시피`,
       description: `"${decodedQuery}"에 대한 레시피 검색 결과를 확인하세요.`,
-      url: 'https://ugveg.vercel.app/UgVeg.png',
+      url: `/recipe/search/${query}`,
+      images: 'https://ugveg.vercel.app/UgVeg.png',
     },
   };
 }

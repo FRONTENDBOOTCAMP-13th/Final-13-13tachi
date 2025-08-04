@@ -34,14 +34,14 @@ export async function generateMetadata({
   const title = recipe.item.title;
 
   return {
-    title: `${title} | UgVeg 레시피`,
+    title: `${title} - UgVeg 레시피`,
     description: `지금 "${title}" 레시피를 확인해보세요.`,
     openGraph: {
-      title: `${title} | UgVeg 레시피`,
+      title: `${title} - UgVeg 레시피`,
       description: `지금 "${title}" 레시피를 확인해보세요.`,
-      url: 'https://ugveg.vercel.app/UgVeg.png',
+      url: `/recipe/${_id}`,
       images: {
-        url: recipe.item.image || 'https://ugveg.vercel.app/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };
