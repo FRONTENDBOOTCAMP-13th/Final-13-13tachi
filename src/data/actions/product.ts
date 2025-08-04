@@ -132,7 +132,7 @@ export async function deleteLike(
   }
   if (data.ok) {
     revalidateTag(`bookmarks`);
-    revalidatePath(`/mypage/likes`);
+    revalidatePath(`/mypage/wish`);
   }
 
   return data;
@@ -168,7 +168,7 @@ export async function deleteLikeInWish(
   }
   if (data.ok) {
     revalidateTag(`bookmarks`);
-    revalidatePath(`/mypage/likes`);
+    revalidatePath(`/mypage/wish`);
   }
 
   return data;
