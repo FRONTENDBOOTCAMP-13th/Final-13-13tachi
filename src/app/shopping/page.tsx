@@ -2,14 +2,9 @@ import AllItems from '@/app/shopping/AllItems';
 import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
 import { Suspense } from 'react';
-import { getProducts } from '@/data/functions/post';
-import { ProductType } from '@/types';
 import Link from 'next/link';
 
-export default async function ShoppingList() {
-  const res = await getProducts();
-  const products: ProductType[] = res.ok === 1 ? res.item : [];
-
+export default function ShoppingList() {
   return (
     <>
       <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
@@ -38,7 +33,7 @@ export default async function ShoppingList() {
               인기 상품
             </h4>
             <Suspense>
-              <HotItemList products={products} />
+              <HotItemList />
             </Suspense>
           </div>
           {/* ED: 인기상품 */}
