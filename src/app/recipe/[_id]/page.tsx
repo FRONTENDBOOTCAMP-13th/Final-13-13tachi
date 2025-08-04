@@ -12,9 +12,39 @@ import RecipeDetailLoading from './RecipeDetailLoading';
 import ProfileLoading from './ProfileLoading';
 import { getRecipeDetail, getRelatedProducts } from '@/data/functions/recipe';
 import { getProducts } from '@/data/functions/product';
+import { Metadata } from 'next';
 
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
+}
+
+export async function generateMetadata({
+  params,
+}: InfoPageProps): Promise<Metadata> {
+  const { _id } = await params;
+  const recipe = await getRecipeDetail(Number(_id));
+
+  if (!recipe || recipe.ok === 0) {
+    return {
+      title: '레시피 상세 - 레시피를 찾을 수 없습니다',
+      description: '요청한 레시피 정보를 불러올 수 없습니다.',
+    };
+  }
+
+  const title = recipe.item.title;
+
+  return {
+    title: `${title} | UgVeg 레시피`,
+    description: `지금 "${title}" 레시피를 확인해보세요.`,
+    openGraph: {
+      title: `${title} | UgVeg 레시피`,
+      description: `지금 "${title}" 레시피를 확인해보세요.`,
+      url: 'https://ugveg.vercel.app/UgVeg.png',
+      images: {
+        url: recipe.item.image || 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
 }
 
 export default async function RecipeDetailPage({ params }: InfoPageProps) {
