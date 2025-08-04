@@ -44,12 +44,17 @@ export default function Dropdown() {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) //클릭한 요소가 드롭다운 내부가 아니면 닫도록
+        !dropdownRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside); //document에 마우스 클릭 이벤트 등록
+    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
   }, []);
 
   return (
@@ -116,6 +121,7 @@ export default function Dropdown() {
               <li>
                 <button
                   type="submit"
+                  onClick={e => e.stopPropagation()}
                   className=" text-black hover:font-semibold "
                 >
                   로그아웃
