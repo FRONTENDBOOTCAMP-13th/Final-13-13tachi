@@ -7,11 +7,12 @@ import Button from '@/components/common/Button';
 import dynamic from 'next/dynamic';
 import 'react-quill-new/dist/quill.snow.css';
 import Swal from 'sweetalert2';
+import RecipeEditLoading from './EditLoading';
 import { updateRecipe } from '@/data/actions/recipe';
 
 const QuillNoSSRWrapper = dynamic(() => import('react-quill-new'), {
   ssr: false,
-  loading: () => <p>Loading ...</p>,
+  loading: () => <RecipeEditLoading />,
 });
 
 interface RecipeEditFormProps {

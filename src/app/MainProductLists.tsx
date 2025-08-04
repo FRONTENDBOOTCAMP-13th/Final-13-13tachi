@@ -8,6 +8,7 @@ import useBookmarkStore from '@/zustand/useBookmarkStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import RecipeCard from './recipe/RecipeCard';
+import RecipeCardLoading from './recipe/CardLoading';
 import { getLikeProducts } from '@/data/functions/product';
 import { getLikeRecipe, getRecipes } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
@@ -216,10 +217,14 @@ export default function MainProductLists() {
             + 더보기
           </Link>
         </div>
-        <RecipeCard
-          posts={recipes.slice(0, itemCount)}
-          toggleBookmark={toggleBookmark}
-        />
+        {recipes.length === 0 ? (
+          <RecipeCardLoading />
+        ) : (
+          <RecipeCard
+            posts={recipes.slice(0, itemCount)}
+            toggleBookmark={toggleBookmark}
+          />
+        )}
       </section>
       {/* ED: 인기 레시피 */}
     </main>

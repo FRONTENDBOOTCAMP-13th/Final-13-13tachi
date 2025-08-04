@@ -12,6 +12,7 @@ import type { Post } from '@/types/recipe';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
 import './recipe.css';
+import RecipeCarouselLoading from './RecipeCarouselLoading';
 import { getLikeRecipe } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 
@@ -170,6 +171,10 @@ export default function RecipeCarousel({
         인기 레시피가 없습니다.
       </div>
     );
+  }
+
+  if (!popularRecipes) {
+    return <RecipeCarouselLoading />;
   }
 
   return (
