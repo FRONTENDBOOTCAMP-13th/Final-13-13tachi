@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/common/Button';
-import { createReply } from '@/data/actions/post';
+import { createReply } from '@/data/actions/recipe';
 import useUserStore from '@/zustand/useStore';
 import { useActionState } from 'react';
 

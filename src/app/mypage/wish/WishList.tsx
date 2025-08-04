@@ -2,8 +2,9 @@
 import EmptyWish from '@/app/mypage/wish/EmptyWish';
 import Loading from '@/app/mypage/wish/Loading';
 import WishItem from '@/app/mypage/wish/WishItem';
-import { AddCart, deleteLike } from '@/data/actions/cart';
-import { getLikeProducts } from '@/data/functions/post';
+import { AddCart } from '@/data/actions/cart';
+import { deleteLike } from '@/data/actions/product';
+import { getLikeProducts } from '@/data/functions/product';
 import { ApiRes, LikeItemType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useRouter } from 'next/navigation';

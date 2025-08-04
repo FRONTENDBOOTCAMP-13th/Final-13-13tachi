@@ -71,32 +71,21 @@ export interface CreatePostData {
   image?: string;
 }
 
-export interface ApiRes<T> {
-  ok: number;
-  message?: string;
-  data?: T;
-  errorName?: string;
-}
-
-/**
- * 게시글 작성/수정 폼에서 사용하는 타입
- * - Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>>: Post 타입에서 type, title, content, _id만 선택해 모두 옵셔널로 만듦
- * - image, tags는 옵션
- */
-export type PostForm = Partial<
-  Pick<Post, 'type' | 'title' | 'content' | '_id'>
-> & {
-  // 게시글 이미지
-  image?: string | string[];
-  // 게시글 태그(쉼표로 구분된 문자열)
-  tags?: string;
-};
-
 // 포스트 불러오기용
 export interface PostType {
   _id: number;
   title: string;
   image: string;
+}
+
+// 레시피
+export interface Recipe {
+  _id: string;
+  title: string;
+  author: string;
+  tag?: string;
+  image: string | null;
+  category: string;
 }
 
 // 레시피 북마크 리스트
@@ -116,26 +105,4 @@ export interface MyPostType {
   _id: number;
   title: string;
   image: string;
-}
-
-// API에서 받는 레시피 상세 응답 타입
-export interface RecipeDetailResponse {
-  ok: number; // 성공 여부 (0 = 실패, 1 = 성공 같은 형식)
-  message?: string; // 실패 메시지 등
-  item?: Post; // 성공 시 데이터
-}
-
-// 댓글 응답
-export interface ReplyApiResponse {
-  _id: number;
-  content: string;
-  name?: string;
-  like?: number;
-  createdAt: string;
-  updatedAt: string;
-  user?: {
-    _id: number;
-    name: string;
-    image?: string | null;
-  };
 }

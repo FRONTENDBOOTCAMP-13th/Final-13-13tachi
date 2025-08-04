@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MyPostType } from '@/types/post';
+import { MyPostType } from '@/types/recipe';
 import Link from 'next/link';
 
 export default function MyRecipeItem({ item }: { item: MyPostType }) {

@@ -8,17 +8,13 @@ import { Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import type { Post } from '@/types/post';
+import type { Post } from '@/types/recipe';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
-import {
-  addRecipeBookmark,
-  deleteRecipeBookmark,
-  getLikeRecipe,
-} from '@/data/functions/post';
-
 import './recipe.css';
 import RecipeCarouselLoading from './RecipeCarouselLoading';
+import { getLikeRecipe } from '@/data/functions/recipe';
+import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 
 interface RecipeCarouselProps {
   recipes: Post[];

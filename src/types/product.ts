@@ -1,6 +1,5 @@
 import { ApiRes } from '@/types/api';
 import { User, UserInfoType } from '@/types/user';
-// import { UserInfo } from 'os';
 
 // 상품
 export interface ProductType {
@@ -60,14 +59,6 @@ export interface CartItemType {
   product: ProductItemType;
 }
 
-// 장바구니 아이템
-export interface CartListProps {
-  _id: number;
-  quantity: number;
-  name: string;
-  price: number;
-}
-
 // 찜상품 리스트
 export interface LikeItemType {
   _id: number;
@@ -93,24 +84,13 @@ export interface LikeItemProps {
   };
 }
 
-// 찜상품
-// export interface LikeItemProps {
-//   _id: number;
-//   price: number;
-//   name: string;
-//   mainImages?: {
-//     path: string;
-//     name?: string;
-//     originalname?: string;
-//   };
-// }
-
 // 주문내역 리스트
 export interface BuyListType {
   _id: number;
   createdAt: string;
   products: ProductItemType[];
 }
+
 // 주문상세
 export interface OrderInfoType {
   _id: number;
@@ -146,23 +126,6 @@ export interface BuyItemListType {
   products: ProductItemType[];
 }
 
-// 주문내역 아이템
-export interface BuyItemProps {
-  _id: number;
-  quantity: number;
-  name: string;
-  price: number;
-}
-
-export interface Recipe {
-  _id: string;
-  title: string;
-  author: string;
-  tag?: string;
-  image: string | null;
-  category: string;
-}
-
 // 상품 카드 타입
 export interface ProductCard {
   item: ProductType;
@@ -177,22 +140,6 @@ export interface ShoppingOrderType {
   cost: {
     total?: number;
   };
-}
-
-// 단일 회원 정보 타입
-export interface MemberType {
-  _id: number;
-  name: string;
-  image: string;
-  extra: {
-    farmName?: string;
-    info?: string[];
-  };
-  email?: string;
-  phone?: string;
-  postcode?: string;
-  addressDetail1?: string;
-  addressDetail2?: string;
 }
 
 // 메일 타입

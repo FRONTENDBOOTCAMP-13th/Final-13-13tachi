@@ -1,7 +1,7 @@
 import Comment from './Comment';
-import { getReplies } from '@/data/functions/post';
+import { getReplies } from '@/data/functions/recipe';
 import CommentNew from '@/app/recipe/[_id]/CommentNew';
-import { PostReply } from '@/types/post';
+import { PostReply } from '@/types/recipe';
 
 interface CommentsProps {
   postId: number;

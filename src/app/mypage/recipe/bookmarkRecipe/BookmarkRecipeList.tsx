@@ -1,14 +1,14 @@
 'use client';
 
 import { useActionState, useEffect, useState } from 'react';
-import { getLikeRecipe } from '@/data/functions/post';
+import { getLikeRecipe } from '@/data/functions/recipe';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { LikePostType } from '@/types/post';
+import { LikePostType } from '@/types/recipe';
 import CustomLink from '@/components/common/CustomLink';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-import { deleteBookmark } from '@/data/actions/post';
+import { deleteBookmark } from '@/data/actions/recipe';
 import EmptyLikeRecipe from '@/app/mypage/recipe/bookmarkRecipe/EmptyBookmarkRecipe';
 import BookmarkRecipeItem from '@/app/mypage/recipe/bookmarkRecipe/BookmarkRecipeItem';
 import Loading from '@/app/mypage/recipe/bookmarkRecipe/Loading';

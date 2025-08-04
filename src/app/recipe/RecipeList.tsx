@@ -4,16 +4,12 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import type { Post } from '@/types/post';
+import type { Post } from '@/types/recipe';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
 import RecipeListLoading from './Loading';
-
-import {
-  addRecipeBookmark,
-  deleteRecipeBookmark,
-  getLikeRecipe,
-} from '@/data/functions/post';
+import { getLikeRecipe } from '@/data/functions/recipe';
+import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 
 interface RecipeListProps {
   post: Post[];

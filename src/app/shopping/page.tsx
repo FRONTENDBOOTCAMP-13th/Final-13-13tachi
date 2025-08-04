@@ -2,9 +2,9 @@ import AllItems from '@/app/shopping/AllItems';
 import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
 import { Suspense } from 'react';
-import { getProducts } from '@/data/functions/post';
 import { ProductType } from '@/types';
 import Link from 'next/link';
+import { getProducts } from '@/data/functions/product';
 
 export default async function ShoppingList() {
   const res = await getProducts();

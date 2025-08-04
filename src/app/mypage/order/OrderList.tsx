@@ -4,7 +4,7 @@ import EmptyOrder from '@/app/mypage/order/EmptyOrder';
 import Loading from '@/app/mypage/order/Loading';
 import OrderItemList from '@/app/mypage/order/OrderItemList';
 import { AddCart } from '@/data/actions/cart';
-import { BuyProducts } from '@/data/functions/post';
+import { BuyProducts } from '@/data/functions/order';
 import { ApiRes, BuyListType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useRouter } from 'next/navigation';
