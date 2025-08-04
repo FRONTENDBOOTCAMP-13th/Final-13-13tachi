@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { getLikeProducts } from '@/data/functions/post';
 import RelationProductsLoading from './edit/RelationProductsLoading';
+import { getLikeProducts } from '@/data/functions/product';
 
 interface RelationProductsProps {
   relatedProducts: ProductType[];
