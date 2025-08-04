@@ -37,12 +37,6 @@ export default function MyRecipeList() {
     }
   }, [accessToken]);
 
-  // useEffect(() => {
-  //   if (res && res.ok === 0) {
-  //     router.replace('/error');
-  //   }
-  // }, [res, router]);
-
   if (!res) {
     return <Loading />;
   }

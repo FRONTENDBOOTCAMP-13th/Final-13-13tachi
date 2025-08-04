@@ -19,7 +19,6 @@ export async function AddCart(
   formData: FormData,
 ): ApiResPromise<CartItemType> {
   const accessToken = formData.get('accessToken');
-  console.log('추가');
 
   const body = {
     product_id: Number(formData.get('product_id')),

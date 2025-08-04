@@ -60,10 +60,6 @@ export default function OrderList() {
     );
   }
 
-  // if (res.ok === 0) {
-  //   router.replace('/error'); // 실패 메시지 렌더링
-  // }
-
   return (
     <div className="flex flex-col mb-9 w-full">
       {res.ok ? (

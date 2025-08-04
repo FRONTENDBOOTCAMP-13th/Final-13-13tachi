@@ -1,7 +1,23 @@
 import OrderNum from '@/app/complete/OrderNum';
 import CustomLink from '@/components/common/CustomLink';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { Suspense } from 'react';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `주문 완료 - UgVeg: 흙내음 상점`,
+    description: `상품 주문이 완료되었습니다.`,
+    openGraph: {
+      title: `주문 완료 - UgVeg: 흙내음 상점`,
+      description: `상품 주문이 완료되었습니다.`,
+      url: `/complete`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default function Complete() {
   return (

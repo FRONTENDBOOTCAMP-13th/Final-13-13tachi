@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import emptyPic from '../../../images/emptylike.png';
 import CustomLink from '@/components/common/CustomLink';
 
 export default function EmptyWish() {
   return (
     <div className="h-full flex flex-col justify-center items-center">
       <Image
-        src={emptyPic}
+        src={'/emptylike.png'}
         width={60}
         height={60}
         alt="하트 이미지"
