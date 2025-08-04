@@ -103,7 +103,8 @@ export default function HotItem({
               {isLike ? (
                 <Heart
                   strokeWidth={1}
-                  fill="#000"
+                  fill="red"
+                  stroke="red"
                   className="w-4.5 h-4.5 md:w-5 md:h-5"
                 />
               ) : (
