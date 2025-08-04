@@ -12,7 +12,7 @@ export default function Profile({ username, imageUrl }: ProfileProps) {
     <div className="flex flex-col items-center justify-center lg:mt-[-4rem] md:mt-[-3rem] mt-[-2.5rem] relative">
       <div className="lg:w-[7.5rem] lg:h-[7.5rem] md:w-[6rem] md:h-[6rem] w-[5rem] h-[5rem] overflow-hidden rounded-full ring-4 ring-white relative">
         <Image
-          src={imageUrl ? `${imageUrl}` : '/images/front-end.png'}
+          src={imageUrl ? `${imageUrl}` : '/profile.svg'}
           alt={`${username} 프로필 이미지`}
           fill
           className="object-cover"

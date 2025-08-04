@@ -27,7 +27,7 @@ export default function Comment({ reply, loading = false }: CommentProps) {
       <div className="relative w-[3.125rem] h-[3.125rem] shrink-0">
         {reply?.user.image ? (
           <Image
-            src={reply.user.image}
+            src={reply.user.image ? reply.user.image : '/profile.svg'}
             alt={`${reply.user.name} 프로필 이미지`}
             fill
             className="rounded-full object-cover"
