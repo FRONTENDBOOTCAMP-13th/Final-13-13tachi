@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
 import Comments from './Comments';
 import Profile from './Profile';
@@ -11,6 +10,7 @@ import RelationProducts from './RelationProducts';
 import { getRecipeDetail, getRelatedProducts } from '@/data/functions/recipe';
 import { getProducts } from '@/data/functions/product';
 import { Metadata } from 'next';
+import CustomLink from '@/components/common/CustomLink';
 
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
@@ -148,9 +148,9 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
 
             {/* 목록으로 */}
             <div className="flex justify-center lg:mt-[1.875rem] md:mt-6 mt-4">
-              <Button size="xxl">
-                <Link href="/recipe">목록으로</Link>
-              </Button>
+              <CustomLink size="xxl" href="/recipe">
+                목록으로
+              </CustomLink>
             </div>
 
             {/* 연관상품 */}
