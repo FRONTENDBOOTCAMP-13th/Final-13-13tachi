@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { LikePostItemType } from '@/types/post';
+import { LikePostItemType } from '@/types/recipe';
 import { Bookmark } from 'lucide-react';
 import useUserStore from '@/zustand/useStore';
 import Link from 'next/link';

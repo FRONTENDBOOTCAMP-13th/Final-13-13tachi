@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `내가 찜한 상품 목록을 확인하세요.`,
       url: `/mypage/wish`,
       images: {
-        url: '/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };

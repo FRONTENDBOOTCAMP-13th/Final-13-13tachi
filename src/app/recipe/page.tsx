@@ -2,7 +2,7 @@ import Link from 'next/link';
 import RecipeCarousel from './RecipeCarousel';
 import SearchBar from '@/components/common/SearchBar';
 import RecipeList from './RecipeList';
-import { getRecipes } from '@/data/functions/post';
+import { getRecipes } from '@/data/functions/recipe';
 
 export default async function RecipeListPage() {
   const res = await getRecipes();

@@ -1,8 +1,8 @@
 'use client';
 
 import Button from '@/components/common/Button';
-import { deleteReply } from '@/data/actions/post';
-import { PostReply } from '@/types/post';
+import { deleteReply } from '@/data/actions/recipe';
+import { PostReply } from '@/types/recipe';
 import useUserStore from '@/zustand/useStore';
 import { useParams } from 'next/navigation';
 import { useActionState } from 'react';

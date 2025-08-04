@@ -5,12 +5,12 @@ import { useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { getLikeProducts } from '@/data/functions/post';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 import { Search } from 'lucide-react';
 import CustomLink from '@/components/common/CustomLink';
 import LoadingAll from '@/app/shopping/LoadingAll';
+import { getLikeProducts } from '@/data/functions/product';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';

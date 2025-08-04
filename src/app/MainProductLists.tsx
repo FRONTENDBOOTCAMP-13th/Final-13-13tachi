@@ -1,21 +1,17 @@
 'use client';
 
 import ProductCard from '@/components/ProductCard';
-import {
-  getLikeProducts,
-  getRecipes,
-  addBookmark,
-  deleteBookmark,
-  getLikeRecipe,
-  getProducts,
-} from '@/data/functions/post';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
-import { Post } from '@/types/post';
+import { Post } from '@/types/recipe';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import RecipeCard from './recipe/RecipeCard';
+import { getLikeProducts, getProducts } from '@/data/functions/product';
+import RecipeCardLoading from './recipe/CardLoading';
+import { getLikeRecipe, getRecipes } from '@/data/functions/recipe';
+import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 import Loading from '@/app/Loading';
 
 export default function MainProductLists() {
@@ -125,10 +121,10 @@ export default function MainProductLists() {
 
     try {
       if (isBookmarked) {
-        const res = await deleteBookmark(accessToken, bookmarkId);
+        const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) remove(postId);
       } else {
-        const res = await addBookmark(accessToken, postId);
+        const res = await addRecipeBookmark(accessToken, postId);
         if (res.ok === 1 && res.item) add(postId, res.item._id);
       }
     } catch (err) {
@@ -221,10 +217,14 @@ export default function MainProductLists() {
             + 더보기
           </Link>
         </div>
-        <RecipeCard
-          posts={recipes.slice(0, itemCount)}
-          toggleBookmark={toggleBookmark}
-        />
+        {recipes.length === 0 ? (
+          <RecipeCardLoading />
+        ) : (
+          <RecipeCard
+            posts={recipes.slice(0, itemCount)}
+            toggleBookmark={toggleBookmark}
+          />
+        )}
       </section>
       {/* ED: 인기 레시피 */}
     </main>

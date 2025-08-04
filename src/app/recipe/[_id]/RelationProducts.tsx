@@ -4,13 +4,16 @@ import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { getLikeProducts } from '@/data/functions/post';
+import RelationProductsLoading from './edit/RelationProductsLoading';
+import { getLikeProducts } from '@/data/functions/product';
 
 interface RelationProductsProps {
   relatedProducts: ProductType[];
 }
 
-export default function RelationProducts({ relatedProducts }: RelationProductsProps) {
+export default function RelationProducts({
+  relatedProducts,
+}: RelationProductsProps) {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken ?? '';
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[] | null>>({
@@ -29,13 +32,8 @@ export default function RelationProducts({ relatedProducts }: RelationProductsPr
     });
   }, [accessToken]);
 
-  if (!user) {
-    return (
-      <div className="mt-10 p-4 border rounded bg-yellow-50 text-center">
-        <p className="mb-2">로그인이 필요합니다.</p>
-        {/* 로그인 페이지 링크 등 추가 가능 */}
-      </div>
-    );
+  if (!relatedProducts) {
+    return <RelationProductsLoading />;
   }
 
   if (relatedProducts.length === 0) {

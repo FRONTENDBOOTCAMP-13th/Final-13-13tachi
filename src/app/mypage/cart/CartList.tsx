@@ -1,7 +1,6 @@
 'use client';
 
 import { useActionState, useEffect, useState } from 'react';
-import { getCartProducts } from '@/data/functions/post';
 import { CartItemType, ApiResCart } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import CartItemForm from '@/app/mypage/cart/CartItemForm';
@@ -11,6 +10,7 @@ import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import Loading from '@/app/mypage/cart/Loading';
+import { getCartProducts } from '@/data/functions/cart';
 
 export default function CartList() {
   const { user } = useUserStore();
@@ -61,9 +61,6 @@ export default function CartList() {
       </div>
     );
   }
-  // if (res.ok === 0) {
-  //   router.replace('/error'); // 실패 메시지 렌더링
-  // }
 
   return (
     <div>

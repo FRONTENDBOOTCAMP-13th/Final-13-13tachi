@@ -2,9 +2,9 @@
 
 import { Bookmark } from 'lucide-react';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
-import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/functions/post';
 import { useState } from 'react';
 import useUserStore from '@/zustand/useStore';
+import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 
 interface BookmarkButtonProps {
   postId: number;

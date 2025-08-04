@@ -5,10 +5,10 @@ import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getMember } from '@/data/functions/post';
 import { ApiRes, MemberType } from '@/types';
 import Loading from '@/app/mypage/user/Loading';
 import CustomLink from '@/components/common/CustomLink';
+import { getMember } from '@/data/functions/user';
 
 export default function UserInfo() {
   const { user } = useUserStore();
@@ -19,8 +19,6 @@ export default function UserInfo() {
     const user_id = Number(user?._id);
     getMember(user_id).then(setRes);
   }, [user]);
-
-  // console.log(user?.phone);
 
   useEffect(() => {
     if (user === null || user === undefined) {
@@ -37,12 +35,6 @@ export default function UserInfo() {
       });
     }
   }, [user]);
-
-  // useEffect(() => {
-  //   if (res && res.ok === 0) {
-  //     router.replace('/error');
-  //   }
-  // }, [res, router]);
 
   if (!res) {
     return <Loading />;

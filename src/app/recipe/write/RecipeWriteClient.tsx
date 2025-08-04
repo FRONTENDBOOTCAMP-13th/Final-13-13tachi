@@ -9,8 +9,8 @@ import FoodBtn from '@/components/common/FoodBtn';
 import Button from '@/components/common/Button';
 import TextEditor from './TextEditor';
 
-import { uploadFile, createPost } from '@/data/functions/post';
-import { CreatePostData } from '@/types/post';
+import { CreatePostData } from '@/types/recipe';
+import { createPost, uploadFile } from '@/data/actions/recipe';
 
 export default function RecipeWriteClient() {
   const { user } = useUserStore();

@@ -9,7 +9,7 @@ import './shopping.css';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
-import { getLikeProducts, getProducts } from '@/data/functions/post';
+import { getLikeProducts, getProducts } from '@/data/functions/product';
 import LoadingHot from '@/app/shopping/LoadingHot';
 
 export default function HotItemList() {
