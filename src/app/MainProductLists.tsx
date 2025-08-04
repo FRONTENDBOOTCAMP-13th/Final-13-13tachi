@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import RecipeCard from './recipe/RecipeCard';
 import { getLikeProducts, getProducts } from '@/data/functions/product';
+import RecipeCardLoading from './recipe/CardLoading';
 import { getLikeRecipe, getRecipes } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 import Loading from '@/app/Loading';
@@ -216,10 +217,14 @@ export default function MainProductLists() {
             + 더보기
           </Link>
         </div>
-        <RecipeCard
-          posts={recipes.slice(0, itemCount)}
-          toggleBookmark={toggleBookmark}
-        />
+        {recipes.length === 0 ? (
+          <RecipeCardLoading />
+        ) : (
+          <RecipeCard
+            posts={recipes.slice(0, itemCount)}
+            toggleBookmark={toggleBookmark}
+          />
+        )}
       </section>
       {/* ED: 인기 레시피 */}
     </main>
