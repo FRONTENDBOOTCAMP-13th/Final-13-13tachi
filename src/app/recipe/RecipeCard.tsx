@@ -41,7 +41,7 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
             <figcaption className="mt-3">
               <div className="relative flex">
                 <span className="w-full pr-5.5 text-lg font-semibold truncate md:text-xl md:pr-6">
-                  {item.title}asdf
+                  {item.title}
                 </span>
                 <Bookmark
                   className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] ${

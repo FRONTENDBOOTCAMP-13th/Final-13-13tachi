@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!recipe || recipe.ok === 0) {
     return {
       title: '레시피 상세 - 레시피를 찾을 수 없습니다',
-      description: '요청한 레시피 정보를 불러올 수 없습니다.',
+      description: '요청하신 레시피 정보를 불러올 수 없습니다.',
     };
   }
 
