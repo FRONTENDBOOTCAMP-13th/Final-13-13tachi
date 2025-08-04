@@ -113,7 +113,7 @@ export async function createOrder(
 
     await deleteAllCart(formData);
     revalidateTag(`orders`);
-    redirect(`/complete`); // 추후 주문 완료 페이지로 수정해야됨
+    redirect(`/complete?orderNum=${data.item.createdAt}`); // 추후 주문 완료 페이지로 수정해야됨
   }
 
   return data;
@@ -204,7 +204,7 @@ export async function createShoppingOrder(
     );
 
     revalidateTag(`orders`);
-    redirect(`/complete`); // 추후 주문 완료 페이지로 수정해야됨
+    redirect(`/complete?orderNum=${data.item.createdAt}`); // 추후 주문 완료 페이지로 수정해야됨
   }
 
   return data;
