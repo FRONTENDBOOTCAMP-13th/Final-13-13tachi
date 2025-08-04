@@ -7,6 +7,7 @@ import {
   addBookmark,
   deleteBookmark,
   getLikeRecipe,
+  getProducts,
 } from '@/data/functions/post';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import { Post } from '@/types/post';
@@ -16,11 +17,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import RecipeCard from './recipe/RecipeCard';
 
-interface MainProductListsProps {
-  products: ProductType[];
-}
-
-export default function MainProductLists({ products }: MainProductListsProps) {
+export default function MainProductLists() {
   const [itemCount, setItemCount] = useState(4);
 
   useEffect(() => {
@@ -37,15 +34,37 @@ export default function MainProductLists({ products }: MainProductListsProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const hotItems = products
-    .filter(item => item.extra?.isBest)
-    .slice(0, itemCount);
-  const vegeItems = products
-    .filter(item => item.extra?.category?.includes('채소'))
-    .slice(0, itemCount);
-  const fruitItems = products
-    .filter(item => item.extra?.category?.includes('과일'))
-    .slice(0, itemCount);
+  const [products, setProducts] = useState<ApiRes<ProductType[]> | null>(null);
+
+  useEffect(() => {
+    getProducts()
+      .then(res => {
+        setProducts(res);
+      })
+      .catch(err => {
+        console.error('찜 상품 가져오기 실패:', err);
+        setProducts({ ok: 0, message: '에러 발생!' });
+      });
+  });
+
+  const hotItems =
+    products?.ok === 1 && products.item
+      ? products.item
+          .filter((item: ProductType) => item.extra?.isBest)
+          .slice(0, itemCount)
+      : [];
+  const vegeItems =
+    products?.ok === 1 && products.item
+      ? products.item
+          .filter((item: ProductType) => item.extra?.category?.includes('채소'))
+          .slice(0, itemCount)
+      : [];
+  const fruitItems =
+    products?.ok === 1 && products.item
+      ? products.item
+          .filter((item: ProductType) => item.extra?.category?.includes('과일'))
+          .slice(0, itemCount)
+      : [];
 
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
