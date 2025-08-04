@@ -4,16 +4,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search, Bookmark } from 'lucide-react';
-import { Post } from '@/types/post';
+import { Post } from '@/types/recipe';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
-import {
-  addRecipeBookmark,
-  deleteRecipeBookmark,
-  getRecipes,
-} from '@/data/functions/post';
 import SearchBar from '@/components/common/SearchBar';
 import CustomLink from '@/components/common/CustomLink';
+import { getRecipes } from '@/data/functions/recipe';
+import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 
 interface Props {
   searchQuery: string;

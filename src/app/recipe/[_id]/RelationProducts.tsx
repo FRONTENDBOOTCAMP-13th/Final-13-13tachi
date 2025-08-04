@@ -4,13 +4,15 @@ import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import { getLikeProducts } from '@/data/functions/post';
+import { getLikeProducts } from '@/data/functions/product';
 
 interface RelationProductsProps {
   relatedProducts: ProductType[];
 }
 
-export default function RelationProducts({ relatedProducts }: RelationProductsProps) {
+export default function RelationProducts({
+  relatedProducts,
+}: RelationProductsProps) {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken ?? '';
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[] | null>>({

@@ -1,5 +1,5 @@
 import ShoppingSearchList from '@/app/shopping/search/[id]/ShoppingSearchList';
-import { getProducts } from '@/data/functions/post';
+import { getProducts } from '@/data/functions/product';
 import { ProductType } from '@/types';
 
 export default async function ShoppingSearch() {

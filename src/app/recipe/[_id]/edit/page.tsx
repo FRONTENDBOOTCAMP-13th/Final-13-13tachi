@@ -1,4 +1,4 @@
-import { getRecipeDetail } from '@/data/functions/post';
+import { getRecipeDetail } from '@/data/functions/recipe';
 import RecipeEditForm from './RecipeEditForm';
 import { Metadata } from 'next';
 import Link from 'next/link';

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
 import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
-import { deleteRecipe } from '@/data/functions/post';
+import { deleteRecipe } from '@/data/actions/recipe';
 
 interface RecipeActionButtonsProps {
   authorId: string;

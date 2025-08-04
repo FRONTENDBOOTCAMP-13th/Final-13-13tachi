@@ -13,17 +13,19 @@ import {
   ShoppingOrderType,
   UserInfoType,
 } from '@/types';
-import {
-  getCartProducts,
-  getMember,
-  getShoppingOrder,
-} from '@/data/functions/post';
-import { createOrder, createShoppingOrder } from '@/data/actions/cart';
+
 import OrderList from '@/app/order/OrderList';
 import OrderTable from '@/app/order/OrderTable';
 import { useRouter, useSearchParams } from 'next/navigation';
 // import Swal from 'sweetalert2';
 import Loading from '@/app/order/Loading';
+import {
+  createOrder,
+  createShoppingOrder,
+  getShoppingOrder,
+} from '@/data/actions/order';
+import { getMember } from '@/data/functions/user';
+import { getCartProducts } from '@/data/functions/cart';
 
 export default function OrderForm() {
   const { user } = useUserStore();

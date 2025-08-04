@@ -3,7 +3,7 @@
 import Loading from '@/app/mypage/order/[_id]/Loading';
 import OrderInfoList from '@/app/mypage/order/[_id]/OrderInfoList';
 import { AddCart } from '@/data/actions/cart';
-import { getOrderInfo } from '@/data/functions/post';
+import { getOrderInfo } from '@/data/functions/order';
 import { ApiRes, OrderInfoType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useRouter } from 'next/navigation';

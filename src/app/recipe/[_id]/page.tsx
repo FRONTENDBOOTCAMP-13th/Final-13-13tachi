@@ -7,12 +7,9 @@ import Profile from './Profile';
 import RecipeActionButtons from './RecipeActionButton';
 import ShareButton from '@/components/common/ShareButton';
 import BookmarkButton from './BookmarkButton';
-import {
-  getRecipeDetail,
-  getProducts,
-  getRelatedProducts,
-} from '@/data/functions/post';
 import RelationProducts from './RelationProducts';
+import { getRecipeDetail, getRelatedProducts } from '@/data/functions/recipe';
+import { getProducts } from '@/data/functions/product';
 
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
