@@ -3,6 +3,22 @@ import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
 import { Suspense } from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `장보기 - UgVeg: 흙내음 상점`,
+    description: `저렴한 가격, 빠른 배송, 신선한 품질. 지속 가능한 소비를 실천하는 UGVEG 장보기 페이지.`,
+    openGraph: {
+      title: `장보기 - UgVeg: 흙내음 상점`,
+      description: `저렴한 가격, 빠른 배송, 신선한 품질. 지속 가능한 소비를 실천하는 UGVEG 장보기 페이지.`,
+      url: `/shopping`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default function ShoppingList() {
   return (
