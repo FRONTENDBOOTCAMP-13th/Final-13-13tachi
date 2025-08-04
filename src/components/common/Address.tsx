@@ -69,10 +69,10 @@ export default function AddressForm({
           </div>
           <button
             type="button"
-            className="w-[4rem] h-[1.875rem] border-[0.0938rem] border-light-gray rounded-[0.3125rem] text-xs text-light-gray hover:border-[0.125rem]"
+            className="w-[4rem] h-[1.875rem] border-[0.0938rem] border-light-gray rounded-[0.3125rem] text-xs text-gray hover:border-[0.125rem]"
             onClick={() => setIsOpen(true)}
           >
-            우편번호
+            주소 검색
           </button>
         </div>
 
