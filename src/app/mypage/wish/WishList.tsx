@@ -2,7 +2,7 @@
 import EmptyWish from '@/app/mypage/wish/EmptyWish';
 import Loading from '@/app/mypage/wish/Loading';
 import WishItem from '@/app/mypage/wish/WishItem';
-import { AddCart } from '@/data/actions/cart';
+import { AddCartInWish } from '@/data/actions/cart';
 import { deleteLike } from '@/data/actions/product';
 import { getLikeProducts } from '@/data/functions/product';
 import { ApiRes, LikeItemType } from '@/types';
@@ -43,7 +43,7 @@ export default function WishList() {
     }
   }, [accessToken]);
 
-  const [addState, addAction] = useActionState(AddCart, null);
+  const [addState, addAction] = useActionState(AddCartInWish, null);
   const [deleteState, deleteAction] = useActionState(deleteLike, null);
 
   useEffect(() => {
@@ -62,6 +62,7 @@ export default function WishList() {
           text: '장바구니에 담겼습니다',
           confirmButtonText: '확인',
         });
+        getLikeProducts(accessToken).then(setRes);
       }
     }
   }, [addState]);
@@ -85,7 +86,8 @@ export default function WishList() {
           <WishItem
             key={item._id}
             item={{
-              _id: item.product?._id,
+              _id: item._id,
+              product_id: item.product?._id,
               price: item.product?.price,
               name: item.product?.name,
               mainImages: item.product?.mainImages,
