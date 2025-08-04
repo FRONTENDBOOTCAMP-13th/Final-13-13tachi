@@ -18,6 +18,7 @@ import {
 } from '@/data/functions/post';
 
 import './recipe.css';
+import RecipeCarouselLoading from './RecipeCarouselLoading';
 
 interface RecipeCarouselProps {
   recipes: Post[];
@@ -174,6 +175,10 @@ export default function RecipeCarousel({
         인기 레시피가 없습니다.
       </div>
     );
+  }
+
+  if (!popularRecipes) {
+    return <RecipeCarouselLoading />;
   }
 
   return (

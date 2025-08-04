@@ -7,6 +7,7 @@ import { Bookmark } from 'lucide-react';
 import type { Post } from '@/types/post';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
+import RecipeListLoading from './Loading';
 
 import {
   addRecipeBookmark,
@@ -117,6 +118,10 @@ export default function RecipeList({ post }: RecipeListProps) {
   useEffect(() => {
     setVisibleCount(8);
   }, [activeTab]);
+
+  if (!post) {
+    return <RecipeListLoading />;
+  }
 
   return (
     <>

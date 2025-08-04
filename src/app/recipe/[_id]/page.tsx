@@ -13,6 +13,8 @@ import {
   getRelatedProducts,
 } from '@/data/functions/post';
 import RelationProducts from './RelationProducts';
+import RecipeDetailLoading from './RecipeDetailLoading';
+import ProfileLoading from './ProfileLoading';
 
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
@@ -22,6 +24,10 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
   const { _id } = await params;
   const recipe = await getRecipeDetail(Number(_id));
   const productsRes = await getProducts();
+
+  if (!recipe) {
+    return <RecipeDetailLoading />;
+  }
 
   if (!recipe || recipe.ok === 0) {
     return (
@@ -77,10 +83,14 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
           </div>
 
           {/* 작성자 프로필 */}
-          <Profile
-            username={recipe.item.user.name}
-            imageUrl={`${recipe.item.user.image}`}
-          />
+          {recipe ? (
+            <Profile
+              username={recipe.item.user.name}
+              imageUrl={recipe.item.user.image}
+            />
+          ) : (
+            <ProfileLoading />
+          )}
 
           <main>
             <h1 className="lg:text-5xl md:text-4xl text-2xl font-bold lg:mt-6 md:mt-5 mt-4">
