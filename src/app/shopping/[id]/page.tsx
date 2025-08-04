@@ -1,8 +1,8 @@
 import CustomLink from '@/components/common/CustomLink';
-import { getProductDetails } from '@/data/functions/post';
 import { ProductTypeRes } from '@/types';
 import Detail from '@/app/shopping/[id]/Detail';
 import Link from 'next/link';
+import { getProductDetails } from '@/data/functions/product';
 
 interface shoppingPageProps {
   params: Promise<{

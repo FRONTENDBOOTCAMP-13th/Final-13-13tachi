@@ -1,5 +1,6 @@
 'use client';
-import { getMember } from '@/data/functions/post';
+
+import { getMember } from '@/data/functions/user';
 import { ApiRes, MemberType, ProductTypeRes } from '@/types';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';

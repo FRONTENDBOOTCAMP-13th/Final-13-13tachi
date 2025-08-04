@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { PostReply } from '@/types/post';
+import { PostReply } from '@/types/recipe';
 import CommentActionButton from '@/app/recipe/[_id]/CommentActionButton';
 
 export default function Comment({ reply }: { reply: PostReply }) {

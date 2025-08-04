@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import useUserStore from '@/zustand/useStore';
-import { getMember } from '@/data/functions/post';
+import { getMember } from '@/data/functions/user';
 
 export default function InitUserStore() {
   const { data: session, status } = useSession();

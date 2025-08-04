@@ -4,7 +4,7 @@ import AddCartForm from '@/app/shopping/[id]/AddCartForm';
 import LikesForm from '@/app/shopping/[id]/LikesForm';
 import ProductInfo from '@/app/shopping/[id]/ProductInfo';
 import CustomLink from '@/components/common/CustomLink';
-import { getLikeProducts } from '@/data/functions/post';
+import { getLikeProducts } from '@/data/functions/product';
 import { ApiRes, LikeItemType, ProductTypeRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { Minus, Plus } from 'lucide-react';

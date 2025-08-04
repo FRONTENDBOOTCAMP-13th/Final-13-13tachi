@@ -5,10 +5,10 @@ import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getMember } from '@/data/functions/post';
 import { ApiRes, MemberType } from '@/types';
 import Loading from '@/app/mypage/user/Loading';
 import CustomLink from '@/components/common/CustomLink';
+import { getMember } from '@/data/functions/user';
 
 export default function UserInfo() {
   const { user } = useUserStore();

@@ -9,7 +9,7 @@ import './shopping.css';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
-import { getLikeProducts } from '@/data/functions/post';
+import { getLikeProducts } from '@/data/functions/product';
 
 export default function HotItemList({ products }: { products: ProductType[] }) {
   const { user } = useUserStore(); // 로그인 정보
