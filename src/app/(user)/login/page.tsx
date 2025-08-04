@@ -1,6 +1,22 @@
 import LoginForm from '@/app/(user)/login/LoginForm';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { Suspense } from 'react';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `Login - UgVeg: 흙내음 상점`,
+    description: `흙내음 상점에 로그인하세요.`,
+    openGraph: {
+      title: `Login  - UgVeg: 흙내음 상점`,
+      description: `흙내음 상점에 로그인하세요.`,
+      url: `/login`,
+      images: {
+        url: '/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default async function LoginPage() {
   return (

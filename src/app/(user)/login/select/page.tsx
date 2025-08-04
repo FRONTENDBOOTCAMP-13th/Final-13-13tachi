@@ -1,8 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { loginWithAuthjs } from '@/data/actions/user';
+import { Metadata } from 'next';
 
-export default async function LoginPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `Login Select - UgVeg: 흙내음 상점`,
+    description: `흙내음 상점에 로그인하세요.`,
+    openGraph: {
+      title: `Login Select - UgVeg: 흙내음 상점`,
+      description: `흙내음 상점에 로그인하세요.`,
+      url: `/login/select`,
+      images: {
+        url: '/UgVeg.png',
+      },
+    },
+  };
+}
+
+export default async function LoginSelectPage() {
   return (
     <main className="flex items-center justify-center min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div
