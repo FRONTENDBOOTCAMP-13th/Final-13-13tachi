@@ -1,5 +1,6 @@
 'use server';
 
+import { deleteLikeInWish } from '@/data/actions/product';
 import { ApiRes, ApiResPromise, CartItemType } from '@/types';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
@@ -47,6 +48,48 @@ export async function AddCart(
   }
 
   if (data.ok) {
+    revalidateTag(`carts`);
+  }
+
+  return data;
+}
+
+// 찜 상품 용 장바구니 담기
+export async function AddCartInWish(
+  state: ApiRes<CartItemType> | null,
+  formData: FormData,
+): ApiResPromise<CartItemType> {
+  const accessToken = formData.get('accessToken');
+
+  const body = {
+    product_id: Number(formData.get('product_id')),
+    quantity: Number(formData.get('quantity')),
+  };
+
+  let res: Response;
+  let data: ApiRes<CartItemType>;
+
+  try {
+    res = await fetch(`${API_URL}/carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    const _id = Number(formData.get('_id'));
+    await deleteLikeInWish(_id, String(accessToken));
     revalidateTag(`carts`);
   }
 

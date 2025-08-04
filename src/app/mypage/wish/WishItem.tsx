@@ -26,7 +26,7 @@ export default function WishItem({
         <div className="flex flex-row items-center gap-[1.5625rem]">
           <div className="flex flex-row items-center gap-3.5 md:h-[6.25rem]">
             <Link
-              href={`/shopping/${item._id}`}
+              href={`/shopping/${item.product_id}`}
               className="md:w-[6.25rem] md:h-[6.25rem] h-20 w-20 overflow-hidden rounded-lg"
             >
               <Image
@@ -38,7 +38,7 @@ export default function WishItem({
               ></Image>
             </Link>
             <div className="flex flex-col justufy-center gap-2">
-              <Link href={`/shopping/${item._id}`}>
+              <Link href={`/shopping/${item.product_id}`}>
                 <span className="md:text-base text-sm font-semibold text-dark-green mr-2.5">
                   {item.name}
                 </span>
@@ -57,7 +57,8 @@ export default function WishItem({
               name="accessToken"
               value={user?.token?.accessToken ?? ''}
             />
-            <input type="hidden" name="product_id" value={item._id} />
+            <input type="hidden" name="product_id" value={item.product_id} />
+            <input type="hidden" name="_id" value={item._id} />
             <input type="hidden" name="quantity" value={+1} />
             <Button size="xxs" variant="green">
               장바구니 담기

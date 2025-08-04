@@ -130,7 +130,42 @@ export async function deleteLike(
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
+  if (data.ok) {
+    revalidateTag(`bookmarks`);
+    revalidatePath(`/mypage/likes`);
+  }
 
+  return data;
+}
+
+export async function deleteLikeInWish(
+  _id: number,
+  accessToken: string,
+): ApiResPromise<LikeItemType> {
+  let res: Response;
+  let data: ApiRes<LikeItemType>;
+
+  const body = {
+    target_id: 'any',
+  };
+
+  try {
+    res = await fetch(`${API_URL}/bookmarks/${_id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
   if (data.ok) {
     revalidateTag(`bookmarks`);
     revalidatePath(`/mypage/likes`);
