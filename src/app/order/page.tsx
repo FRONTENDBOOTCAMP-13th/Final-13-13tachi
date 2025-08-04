@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `결제 정보를 입력하여 주문을 완료하세요.`,
       url: `/order`,
       images: {
-        url: '/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };

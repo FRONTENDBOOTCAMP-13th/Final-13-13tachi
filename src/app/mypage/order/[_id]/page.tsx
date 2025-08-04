@@ -13,7 +13,7 @@ export async function generateMetadata({
       description: `주문번호 #${_id}의 상세 내역을 확인하세요.`,
       url: `/mypage/order/${_id}`,
       images: {
-        url: '/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };

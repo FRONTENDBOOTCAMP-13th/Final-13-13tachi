@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `내가 작성한 레시피를 확인하세요.`,
       url: `/mypage/recipe/myRecipes`,
       images: {
-        url: '/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };
