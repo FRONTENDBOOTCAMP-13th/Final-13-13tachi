@@ -3,9 +3,6 @@ import RecipeEditForm from './RecipeEditForm';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: '레시피 수정',
-};
 interface EditPageProps {
   params: Promise<{
     _id: number;
