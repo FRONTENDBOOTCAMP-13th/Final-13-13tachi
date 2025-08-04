@@ -24,7 +24,7 @@ export default async function RecipeListPage() {
   const hotRecipes =
     res.ok && res.item
       ? res.item
-          .filter(recipe => recipe._id && recipe.extra?.isBest === true)
+          .filter(recipe => recipe._id && (recipe.bookmarks ?? 0) >= 1)
           .slice(0, 8)
       : [];
 
@@ -57,7 +57,7 @@ export default async function RecipeListPage() {
 
           {/* 레시피 캐러셀 - 인기 레시피 표시 */}
           {hotRecipes.length > 0 ? (
-            <RecipeCarousel recipes={hotRecipes} />
+            <RecipeCarousel recipes={hotRecipes} sortBy="likes" />
           ) : (
             <div className="text-center text-gray-500 py-8">
               인기 레시피가 없습니다.
