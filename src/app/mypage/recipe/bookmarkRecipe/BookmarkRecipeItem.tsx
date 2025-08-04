@@ -42,7 +42,11 @@ export default function BookmarkRecipeItem({
             </button>
           </form>
         </div>
-        <Link href={`/recipe/${item._id}`}>{item.title}</Link>
+        <Link href={`/recipe/${item._id}`}>
+          <span className="lg:ml-3.5 md:ml-6 ml-4 lg:w-36 md:w-36 w-40 block truncate">
+            {item.title}
+          </span>
+        </Link>
       </div>
     </div>
   );
