@@ -1,6 +1,7 @@
 import OrderNum from '@/app/complete/OrderNum';
 import CustomLink from '@/components/common/CustomLink';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 export default function Complete() {
   return (
@@ -19,7 +20,9 @@ export default function Complete() {
           <span>주문이 성공적으로 처리되었습니다.&nbsp;</span>
           <span>약 2일 안에 배송이 시작될 것입니다.</span>
         </div>
-        <OrderNum />
+        <Suspense>
+          <OrderNum />
+        </Suspense>
         <CustomLink href="/" size="xxl">
           홈으로 돌아가기
         </CustomLink>
