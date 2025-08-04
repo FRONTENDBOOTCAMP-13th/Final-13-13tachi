@@ -14,6 +14,7 @@ import {
 } from '@/data/functions/post';
 import SearchBar from '@/components/common/SearchBar';
 import CustomLink from '@/components/common/CustomLink';
+import RecipeSearchLoading from './RecipeSearchLoading';
 
 interface Props {
   searchQuery: string;
@@ -34,7 +35,6 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
     removeBookmark: remove,
   } = useBookmarkStore();
 
-  // 레시피 데이터 가져오기
   useEffect(() => {
     const fetchRecipes = async () => {
       setLoading(true);
@@ -52,7 +52,6 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
     fetchRecipes();
   }, []);
 
-  // 검색어로 필터링
   useEffect(() => {
     const query = searchQuery.toLowerCase();
     const filtered = allRecipes.filter(recipe => {
@@ -65,7 +64,6 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
     setFilteredRecipes(filtered);
   }, [searchQuery, allRecipes]);
 
-  // 북마크 토글
   const toggleBookmark = async (postId: number) => {
     if (!accessToken) {
       alert('로그인이 필요합니다.');
@@ -88,7 +86,6 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
     }
   };
 
-  // 카테고리 필터링
   const categoryFiltered =
     activeTab === '전체'
       ? filteredRecipes
@@ -97,7 +94,6 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
   return (
     <div className="md:px-7.5 px-5 min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div className="lg:max-w-5xl mx-auto lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-12.5 md:pb-20 pt-[1.875rem] pb-15">
-        {/* 브레드크럼 */}
         <h2 className="text-gray lg:text-base md:text-sm text-xs">
           <Link href="/">HOME</Link>
           &nbsp;&gt;&nbsp;
@@ -106,7 +102,6 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
           <span>검색결과</span>
         </h2>
 
-        {/* 제목 */}
         <div className="text-center mt-5">
           <h3 className="lg:text-4xl md:text-3xl text-2xl font-bold mb-2">
             <span className="text-orange">{`"${searchQuery}"`}</span> 검색결과
@@ -118,12 +113,10 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
           </p>
         </div>
 
-        {/* 검색바 */}
         <div className="flex justify-center mt-6">
           <SearchBar handleType="handleRecipeSearch" />
         </div>
 
-        {/* 탭 */}
         <div className="flex justify-between mt-8">
           <div className="flex gap-2.5 lg:text-base md:text-base text-sm">
             {(['전체', '채소', '과일'] as const).map(tab => (
@@ -148,13 +141,9 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
           </Link>
         </div>
 
-        {/* 결과 */}
         <div className="mt-6">
           {loading ? (
-            <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange"></div>
-              <p className="mt-4 text-gray-600">검색 중입니다...</p>
-            </div>
+            <RecipeSearchLoading />
           ) : categoryFiltered.length === 0 ? (
             <div className="text-center py-12">
               <Search className="mx-auto h-16 w-16 text-gray-300 mb-4" />
@@ -179,17 +168,17 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
                 <Link
                   key={item._id}
                   href={`/recipe/${item._id}`}
-                  className="lg:w-[15rem] block"
+                  className="w-full block"
                 >
-                  <figure className="lg:w-[15rem] md:w-full">
-                    <div className="relative lg:w-[15rem] lg:h-[15rem] md:w-full md:h-60 h-[9.375rem] overflow-hidden rounded-lg bg-gray-100">
+                  <figure className="w-full">
+                    <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
                       {item.image ? (
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
                           className="object-cover transition-transform duration-300 hover:scale-110"
-                          sizes="(max-width: 768px) 100vw, 15rem"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           priority={index < 4}
                         />
                       ) : (
@@ -200,11 +189,11 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
                     </div>
                     <figcaption className="mt-3">
                       <div className="relative flex">
-                        <span className="w-full pr-5.5 text-lg font-semibold truncate md:text-xl md:pr-6">
+                        <span className="text-lg font-semibold truncate max-w-[85%] md:text-xl">
                           {item.title}
                         </span>
                         <Bookmark
-                          className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] ${
+                          className={`absolute right-0 top-0 cursor-pointer w-5 h-5 md:w-6 md:h-6 ${
                             likeMap.has(item._id)
                               ? 'fill-black text-black'
                               : 'text-black'
@@ -229,8 +218,8 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
                           }}
                         />
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-orange text-xs md:text-sm truncate">
+                      <div className="flex justify-between items-center mt-2">
+                        <span className="text-orange text-xs md:text-sm truncate flex-1 mr-2">
                           {item.tag
                             ? item.tag
                                 .split(',')
@@ -238,7 +227,7 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
                                 .join(' | ')
                             : '재료 없음'}
                         </span>
-                        <span className="text-gray text-xs md:text-sm truncate">
+                        <span className="text-gray text-xs md:text-sm truncate flex-shrink-0">
                           {item.user.name}
                         </span>
                       </div>
