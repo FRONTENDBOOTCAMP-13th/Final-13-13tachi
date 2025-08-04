@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `회원가입 후 흙내음 상점의 모든 서비스를 이용하세요.`,
       url: `/signup`,
       images: {
-        url: '/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };

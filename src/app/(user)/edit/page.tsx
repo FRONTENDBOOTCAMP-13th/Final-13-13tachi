@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: `회원 정보를 변경하고 관리할 수 있습니다.`,
       url: `/edit`,
       images: {
-        url: '/UgVeg.png',
+        url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };
