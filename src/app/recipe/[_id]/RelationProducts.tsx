@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
-import RelationProductsLoading from './edit/RelationProductsLoading';
 import { getLikeProducts } from '@/data/functions/product';
 
 interface RelationProductsProps {
@@ -31,10 +30,6 @@ export default function RelationProducts({
       setLikeRes(res);
     });
   }, [accessToken]);
-
-  if (!relatedProducts) {
-    return <RelationProductsLoading />;
-  }
 
   if (relatedProducts.length === 0) {
     return <p className="mt-10">관련된 상품이 없습니다.</p>;
