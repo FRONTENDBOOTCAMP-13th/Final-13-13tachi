@@ -1,4 +1,20 @@
 import SocialEditForm from '@/app/(user)/socialedit/SocialEditForm';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `회원수정 - UgVeg: 흙내음 상점`,
+    description: `회원 정보를 수정할 수 있습니다.`,
+    openGraph: {
+      title: `회원수정  - UgVeg: 흙내음 상점`,
+      description: `소셜 회원 정보를 변경하고 관리할 수 있습니다.`,
+      url: `/socialedit`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default async function SocialEditPage() {
   return (

@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import emptyPic from '../../../../images/recipe.png';
 import CustomLink from '@/components/common/CustomLink';
 
 export default function EmptyMyRecipe() {
   return (
     <div className="h-full flex flex-col justify-center items-center">
       <Image
-        src={emptyPic}
+        src={'/recipe.png'}
         width={60}
         height={60}
         alt="장바구니 이미지"

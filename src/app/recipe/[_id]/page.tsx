@@ -7,15 +7,42 @@ import Profile from './Profile';
 import RecipeActionButtons from './RecipeActionButton';
 import ShareButton from '@/components/common/ShareButton';
 import BookmarkButton from './BookmarkButton';
-import {
-  getRecipeDetail,
-  getProducts,
-  getRelatedProducts,
-} from '@/data/functions/post';
 import RelationProducts from './RelationProducts';
+import { getRecipeDetail, getRelatedProducts } from '@/data/functions/recipe';
+import { getProducts } from '@/data/functions/product';
+import { Metadata } from 'next';
 
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
+}
+
+export async function generateMetadata({
+  params,
+}: InfoPageProps): Promise<Metadata> {
+  const { _id } = await params;
+  const recipe = await getRecipeDetail(Number(_id));
+
+  if (!recipe || recipe.ok === 0) {
+    return {
+      title: '레시피 상세 - 레시피를 찾을 수 없습니다',
+      description: '요청하신 레시피 정보를 불러올 수 없습니다.',
+    };
+  }
+
+  const title = recipe.item.title;
+
+  return {
+    title: `${title} - UgVeg 레시피`,
+    description: `지금 "${title}" 레시피를 확인해보세요.`,
+    openGraph: {
+      title: `${title} - UgVeg 레시피`,
+      description: `지금 "${title}" 레시피를 확인해보세요.`,
+      url: `/recipe/${_id}`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
 }
 
 export default async function RecipeDetailPage({ params }: InfoPageProps) {
@@ -64,7 +91,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
                   src={imageUrl}
                   alt={recipe.item.title}
                   fill
-                  className="lg:object-cover rounded-lg"
+                  className="object-cover rounded-lg"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 56.25rem"
                   priority
                 />
@@ -79,7 +106,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
           {/* 작성자 프로필 */}
           <Profile
             username={recipe.item.user.name}
-            imageUrl={`${recipe.item.user.image}`}
+            imageUrl={recipe.item.user.image}
           />
 
           <main>

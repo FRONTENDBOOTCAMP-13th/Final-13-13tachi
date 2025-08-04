@@ -1,15 +1,41 @@
-import { getRecipeDetail } from '@/data/functions/post';
+import { getRecipeDetail } from '@/data/functions/recipe';
 import RecipeEditForm from './RecipeEditForm';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: '레시피 수정',
-};
 interface EditPageProps {
   params: Promise<{
     _id: number;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: EditPageProps): Promise<Metadata> {
+  const { _id } = await params;
+  const recipe = await getRecipeDetail(Number(_id));
+
+  if (!recipe || recipe.ok === 0) {
+    return {
+      title: '레시피 수정 - 레시피를 찾을 수 없습니다',
+      description: '요청한 레시피 정보를 불러올 수 없습니다.',
+    };
+  }
+
+  const title = recipe.item.title;
+
+  return {
+    title: `레시피 수정 - ${title} - UgVeg`,
+    description: `레시피 "${title}"을(를) 수정합니다.`,
+    openGraph: {
+      title: `레시피 수정 - ${title} - UgVeg`,
+      description: `레시피 "${title}"을(를) 수정합니다.`,
+      url: `/recipe/edit/${_id}`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
 }
 
 export default async function RecipeEditPage({ params }: EditPageProps) {

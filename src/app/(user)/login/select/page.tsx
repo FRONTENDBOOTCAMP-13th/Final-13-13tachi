@@ -1,16 +1,32 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { loginWithAuthjs } from '@/data/actions/user';
+import { Metadata } from 'next';
 
-export default async function LoginPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `Login Select - UgVeg: 흙내음 상점`,
+    description: `흙내음 상점에 로그인하세요.`,
+    openGraph: {
+      title: `Login Select - UgVeg: 흙내음 상점`,
+      description: `흙내음 상점에 로그인하세요.`,
+      url: `/login/select`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
+}
+
+export default async function LoginSelectPage() {
   return (
-    <main className="relative flex items-center justify-center min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+    <main className="flex items-center justify-center min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
         style={{ backgroundImage: "url('/login-img.svg')" }}
       />
       <div className="absolute inset-0 -z-10 bg-black opacity-50" />
-      <div className="flex flex-col items-center mt-[210px] mb-[280px]  md:my-[0px]">
+      <div className="flex flex-col items-center mt-[130px] mb-[200px]  lg:my-[0px]">
         <h2 className="text-base font-semibold md:text-lg md:font-semibold lg:text-xl lg:font-bold text-center text-white mb-[1.25rem]">
           흙내음 상점에서 <br /> 자연의 맛을 로그인하세요
         </h2>

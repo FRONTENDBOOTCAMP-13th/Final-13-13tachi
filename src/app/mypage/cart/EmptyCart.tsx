@@ -1,14 +1,11 @@
 import Image from 'next/image';
-
-// 임시 이미지 불러오기
-import emptyPic from '../../../images/emptycart.png';
 import CustomLink from '@/components/common/CustomLink';
 
 export default function EmptyCart() {
   return (
     <div className="h-full flex flex-col justify-center items-center">
       <Image
-        src={emptyPic}
+        src={'/emptycart.png'}
         width={90}
         height={65}
         alt="장바구니 이미지"

@@ -1,4 +1,20 @@
 import SignupForm from '@/app/(user)/signup/SignupForm';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `회원가입 - UgVeg: 흙내음 상점`,
+    description: ` 회원가입 후 흙내음 상점의 모든 서비스를 이용하세요.`,
+    openGraph: {
+      title: `회원가입  - UgVeg: 흙내음 상점`,
+      description: `회원가입 후 흙내음 상점의 모든 서비스를 이용하세요.`,
+      url: `/signup`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
+}
 
 export default async function SignupPage() {
   return (

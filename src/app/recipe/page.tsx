@@ -2,19 +2,30 @@ import Link from 'next/link';
 import RecipeCarousel from './RecipeCarousel';
 import SearchBar from '@/components/common/SearchBar';
 import RecipeList from './RecipeList';
-import { getRecipes } from '@/data/functions/post';
+import { getRecipes } from '@/data/functions/recipe';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: '레시피 목록 - UgVeg',
+    description: '다양한 요리 레시피를 확인해보세요.',
+    openGraph: {
+      title: '레시피 목록 - UgVeg',
+      description: '오늘의 요리를 위한 레시피를 만나보세요.',
+      url: '/recipe',
+      images: 'https://ugveg.vercel.app/UgVeg.png',
+    },
+  };
+}
 
 export default async function RecipeListPage() {
   const res = await getRecipes();
 
-  // 인기 레시피 데이터 생성 - extra.isBest가 true인 레시피들
   const hotRecipes =
     res.ok && res.item
       ? res.item
-          .filter(
-            recipe => recipe._id && recipe.extra?.isBest === true, // isBest가 true인 레시피만
-          )
-          .slice(0, 8) // 최대 8개까지 표시
+          .filter(recipe => recipe._id && (recipe.bookmarks ?? 0) >= 1)
+          .slice(0, 8)
       : [];
 
   return (
@@ -46,7 +57,7 @@ export default async function RecipeListPage() {
 
           {/* 레시피 캐러셀 - 인기 레시피 표시 */}
           {hotRecipes.length > 0 ? (
-            <RecipeCarousel recipes={hotRecipes} />
+            <RecipeCarousel recipes={hotRecipes} sortBy="likes" />
           ) : (
             <div className="text-center text-gray-500 py-8">
               인기 레시피가 없습니다.

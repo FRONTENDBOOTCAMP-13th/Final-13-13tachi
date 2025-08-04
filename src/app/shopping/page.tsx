@@ -2,14 +2,25 @@ import AllItems from '@/app/shopping/AllItems';
 import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
 import { Suspense } from 'react';
-import { getProducts } from '@/data/functions/post';
-import { ProductType } from '@/types';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
-export default async function ShoppingList() {
-  const res = await getProducts();
-  const products: ProductType[] = res.ok === 1 ? res.item : [];
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `장보기 - UgVeg: 흙내음 상점`,
+    description: `저렴한 가격, 빠른 배송, 신선한 품질. 지속 가능한 소비를 실천하는 UGVEG 장보기 페이지.`,
+    openGraph: {
+      title: `장보기 - UgVeg: 흙내음 상점`,
+      description: `저렴한 가격, 빠른 배송, 신선한 품질. 지속 가능한 소비를 실천하는 UGVEG 장보기 페이지.`,
+      url: `/shopping`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
+}
 
+export default function ShoppingList() {
   return (
     <>
       <main className="min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
@@ -38,7 +49,7 @@ export default async function ShoppingList() {
               인기 상품
             </h4>
             <Suspense>
-              <HotItemList products={products} />
+              <HotItemList />
             </Suspense>
           </div>
           {/* ED: 인기상품 */}

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MyPostType } from '@/types/post';
+import { MyPostType } from '@/types/recipe';
 import Link from 'next/link';
 
 export default function MyRecipeItem({ item }: { item: MyPostType }) {
@@ -15,7 +15,11 @@ export default function MyRecipeItem({ item }: { item: MyPostType }) {
         />
       </Link>
       <div className="relative text-center mt-2.5">
-        <Link href={`/recipe/${item._id}`}>{item.title}</Link>
+        <Link href={`/recipe/${item._id}`}>
+          <span className="w-full block truncate text-center">
+            {item.title}
+          </span>
+        </Link>
       </div>
     </div>
   );

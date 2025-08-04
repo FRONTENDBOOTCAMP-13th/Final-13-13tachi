@@ -15,7 +15,7 @@ export default function Input({
 }: InputProps & { readOnly?: boolean }) {
   const widthClasses = {
     lg: 'lg:w-[48.75rem]',
-    md: 'lg:w-[20.625rem] md:w-[300px] w-full',
+    md: 'lg:w-[20.625rem] md:w-[300px] w-[100px]',
     md2: 'w-full',
     sm: 'lg:w-[10.9375rem]',
     xs: 'lg:w-[7.4375rem] w-[100px]',

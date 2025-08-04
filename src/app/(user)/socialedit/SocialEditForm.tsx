@@ -11,7 +11,7 @@ import AddressForm from '@/components/common/Address';
 import { SignupFormProps } from '@/app/(user)/signup/SignupForm';
 import Swal from 'sweetalert2';
 import { ApiRes, MemberType } from '@/types';
-import { getMember } from '@/data/functions/post';
+import { getMember } from '@/data/functions/user';
 
 export default function SocialEditForm() {
   const { user } = useUserStore();

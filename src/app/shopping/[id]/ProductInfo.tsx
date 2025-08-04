@@ -1,5 +1,6 @@
 'use client';
-import { getMember } from '@/data/functions/post';
+
+import { getMember } from '@/data/functions/user';
 import { ApiRes, MemberType, ProductTypeRes } from '@/types';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -27,8 +28,8 @@ export default function ProductInfo({
     sellerInfo = seller.item;
   }
 
-  if (!seller) return <div>로딩 중...</div>;
-  if (seller.ok === 0) return <div>{seller.message}</div>;
+  if (!seller || seller.ok === 0) return;
+  // if (seller.ok === 0) return <div>{seller.message}</div>;
 
   return (
     <div className="mt-12.5 space-y-12.5 md:mt-15 lg:mt-20 lg:space-y-[3.75rem]">

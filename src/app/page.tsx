@@ -1,14 +1,25 @@
 import './main.css';
 import MainSlide from '@/app/MainSlide';
 import ValueSlide from '@/app/ValueSlide';
-import { getProducts } from '@/data/functions/post';
-import { ProductType } from '@/types';
 import MainProductLists from '@/app/MainProductLists';
+import { Metadata } from 'next';
 
-export default async function Home() {
-  const res = await getProducts();
-  const products: ProductType[] = res.ok === 1 ? res.item : [];
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `홈 - UgVeg: 흙내음 상점`,
+    description: `못난이 농산물을 구출하고, 더 착한 소비를 실천하세요. 신선한 농산물을 합리적인 가격에 만나보는 지속 가능한 푸드 플랫폼, UGVEG.`,
+    openGraph: {
+      title: `홈 - UgVeg: 흙내음 상점`,
+      description: `못난이 농산물을 구출하고, 더 착한 소비를 실천하세요. 신선한 농산물을 합리적인 가격에 만나보는 지속 가능한 푸드 플랫폼, UGVEG.`,
+      url: `/`,
+      images: {
+        url: 'https://ugveg.vercel.app/UgVeg.png',
+      },
+    },
+  };
+}
 
+export default function Home() {
   return (
     <main>
       <div>
@@ -32,7 +43,7 @@ export default async function Home() {
         {/* ED: 우리가 함께 만든 변화 */}
 
         {/* ST: 상품 리스트 */}
-        <MainProductLists products={products} />
+        <MainProductLists />
         {/* ED: 상품 리스트 */}
       </div>
     </main>

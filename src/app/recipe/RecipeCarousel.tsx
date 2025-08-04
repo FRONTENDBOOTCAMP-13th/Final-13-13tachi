@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,16 +8,13 @@ import { Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import type { Post } from '@/types/post';
+import type { Post } from '@/types/recipe';
 import useUserStore from '@/zustand/useStore';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
-import {
-  addRecipeBookmark,
-  deleteRecipeBookmark,
-  getLikeRecipe,
-} from '@/data/functions/post';
-
 import './recipe.css';
+import RecipeCarouselLoading from './RecipeCarouselLoading';
+import { getLikeRecipe } from '@/data/functions/recipe';
+import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 
 interface RecipeCarouselProps {
   recipes: Post[];
@@ -40,23 +37,28 @@ export default function RecipeCarousel({
     setLikeMap,
   } = useBookmarkStore();
 
+  // 로딩 상태 관리 - HotItemList 패턴 사용
+  const [recipesData, setRecipesData] = useState<Post[] | null>(null);
+
   // 인기 레시피 필터링 및 정렬 로직
   const popularRecipes = useMemo(() => {
-    if (!recipes || recipes.length === 0) return [];
+    if (!recipesData || recipesData.length === 0) return [];
 
-    const validRecipes = recipes.filter(recipe => recipe._id);
+    const validRecipes = recipesData.filter(recipe => recipe._id);
 
     const sortedRecipes = validRecipes.sort((a, b) => {
       switch (sortBy) {
-        case 'likes':
+        case 'bookmarks': {
           const aLiked = likeMap.has(a._id) ? 1 : 0;
           const bLiked = likeMap.has(b._id) ? 1 : 0;
           if (aLiked !== bLiked) return bLiked - aLiked;
           break;
-        case 'recent':
+        }
+        case 'recent': {
           const aDate = new Date(a.createdAt || 0).getTime();
           const bDate = new Date(b.createdAt || 0).getTime();
           return bDate - aDate;
+        }
         default:
           return 0;
       }
@@ -64,7 +66,14 @@ export default function RecipeCarousel({
     });
 
     return sortedRecipes.slice(0, maxCount);
-  }, [recipes, maxCount, sortBy, likeMap]);
+  }, [recipesData, maxCount, sortBy, likeMap]);
+
+  // recipes 데이터 설정 - HotItemList 패턴
+  useEffect(() => {
+    if (recipes && recipes.length > 0) {
+      setRecipesData(recipes);
+    }
+  }, [recipes]);
 
   // 북마크 상태 세팅
   useEffect(() => {
@@ -106,17 +115,18 @@ export default function RecipeCarousel({
   };
 
   // 인기 레시피 리스트 렌더링
-  const hotRecipeList = popularRecipes.map(item => (
-    <SwiperSlide key={item._id}>
-      <figure className="shadow-image rounded-4xl">
+  const hotRecipeList = popularRecipes.map((item, index) => (
+    <SwiperSlide key={item._id || index} className="shadow-image rounded-4xl">
+      <figure className="w-full">
         <Link href={`/recipe/${item._id}`}>
-          <div className="relative lg:h-[9.375rem] md:h-[11rem] h-[12.3rem] overflow-hidden rounded-t-4xl">
+          <div className="relative w-full aspect-[4/3] overflow-hidden rounded-t-4xl">
             {item.image ? (
               <Image
                 src={item.image}
                 alt="레시피 이미지"
                 fill
                 className="object-cover transition-transform duration-300 hover:scale-110 cursor-pointer"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 25vw"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400 select-none bg-gray-100">
@@ -124,7 +134,7 @@ export default function RecipeCarousel({
               </div>
             )}
           </div>
-          <figcaption className="pb-[0.9375rem] pt-[0.9375rem] pl-5 pr-5 text-center max-h-[9.375rem]">
+          <figcaption className="pb-[0.9375rem] pt-[0.9375rem] pl-5 pr-5 text-center">
             <div className="relative flex items-center justify-center">
               <p className="text-[#454545] text-xs">{item.user.name}</p>
               <Bookmark
@@ -150,7 +160,7 @@ export default function RecipeCarousel({
                 }}
               />
             </div>
-            <span className="text-orange text-sm mt-[0.5rem]">
+            <span className="text-orange text-sm mt-[0.5rem] block truncate">
               {item.tag
                 ? item.tag
                     .split(',')
@@ -158,7 +168,7 @@ export default function RecipeCarousel({
                     .join(' | ')
                 : '재료 없음'}
             </span>
-            <p className="lg:text-xl md:text-lg font-semibold mt-[0.5rem]">
+            <p className="lg:text-xl md:text-lg text-base font-semibold mt-[0.5rem] line-clamp-1">
               {item.title}
             </p>
           </figcaption>
@@ -167,6 +177,12 @@ export default function RecipeCarousel({
     </SwiperSlide>
   ));
 
+  // HotItemList와 동일한 로딩 처리 패턴
+  if (!recipesData) {
+    return <RecipeCarouselLoading />;
+  }
+
+  // 레시피가 없을 때
   if (!popularRecipes || popularRecipes.length === 0) {
     return (
       <div className="text-center text-gray-500 py-8">
@@ -176,18 +192,18 @@ export default function RecipeCarousel({
   }
 
   return (
-    <div className="relative w-full lg:max-w-[1024px] mx-auto lg:mt-4.5 lg:mb-12">
+    <div className="mt-2 md:mt-4.5">
       <Swiper
         slidesPerView={1.5}
         spaceBetween={15}
         navigation={true}
         modules={[Navigation]}
-        autoHeight={true}
-        loop={popularRecipes.length > 1}
+        autoHeight={false}
+        loop={true}
         className="recipe-slide"
         breakpoints={{
-          360: {
-            slidesPerView: 1,
+          480: {
+            slidesPerView: 2,
           },
           768: {
             slidesPerView: 3,

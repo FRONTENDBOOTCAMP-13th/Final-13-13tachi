@@ -33,6 +33,22 @@ export interface UserInfoType {
   message?: string;
 }
 
+// 단일 회원 정보 타입
+export interface MemberType {
+  _id: number;
+  name: string;
+  image: string;
+  extra: {
+    farmName?: string;
+    info?: string[];
+  };
+  email?: string;
+  phone?: string;
+  postcode?: string;
+  addressDetail1?: string;
+  addressDetail2?: string;
+}
+
 // auth provider 인증 후 자동 회원 가입에 사용되는 타입
 // 필수: type, loginType, extra.providerAccountId
 // 선택: name, email, image

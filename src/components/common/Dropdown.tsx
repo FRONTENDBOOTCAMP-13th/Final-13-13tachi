@@ -41,7 +41,7 @@ export default function Dropdown() {
   };
   // 바깥 아무곳이나 클릭 시 드롭다운 닫아짐
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutside(event: MouseEvent | TouchEvent) {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node) //클릭한 요소가 드롭다운 내부가 아니면 닫도록

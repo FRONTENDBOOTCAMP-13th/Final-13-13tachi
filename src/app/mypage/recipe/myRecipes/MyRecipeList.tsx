@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getMyRecipe } from '@/data/functions/post';
+import { getMyRecipe } from '@/data/functions/recipe';
 import { ApiRes } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import MyRecipeItem from '@/app/mypage/recipe/myRecipes/MyRecipeItem';
-import { MyPostType } from '@/types/post';
+import { MyPostType } from '@/types/recipe';
 import EmptyMyRecipe from '@/app/mypage/recipe/myRecipes/EmptyMyRecipe';
 import CustomLink from '@/components/common/CustomLink';
 import { useRouter } from 'next/navigation';
@@ -36,12 +36,6 @@ export default function MyRecipeList() {
       });
     }
   }, [accessToken]);
-
-  // useEffect(() => {
-  //   if (res && res.ok === 0) {
-  //     router.replace('/error');
-  //   }
-  // }, [res, router]);
 
   if (!res) {
     return <Loading />;

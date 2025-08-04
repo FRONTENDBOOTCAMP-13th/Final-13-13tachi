@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import { Post } from '@/types/post';
+import { Post } from '@/types/recipe';
 import useBookmarkStore from '@/zustand/useBookmarkStore';
 
 interface RecipeCardProps {
@@ -15,36 +15,36 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
   const { likeMap } = useBookmarkStore();
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-[25px]">
       {posts.slice(0, 4).map(item => (
         <Link
           key={item._id}
           href={`/recipe/${item._id}`}
-          className="w-[15rem] block mt-[25px]"
+          className="w-full block"
         >
-          <figure className="lg:w-[15rem]">
-            <div className="relative w-[15rem] h-[15rem] overflow-hidden rounded-lg bg-gray-100">
+          <figure className="w-full">
+            <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
               {item.image ? (
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-300 hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 15rem"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                <div className="w-full h-full flex items-center justify-center text-gray-400 select-none">
                   이미지 없음
                 </div>
               )}
             </div>
-            <figcaption className="mt-[12px]">
+            <figcaption className="mt-3">
               <div className="relative flex">
-                <span className="text-xl font-semibold max-w-[90%] truncate">
+                <span className="w-full pr-5.5 text-lg font-semibold truncate md:text-xl md:pr-6">
                   {item.title}
                 </span>
                 <Bookmark
-                  className={`absolute right-0 top-1 cursor-pointer ${
+                  className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] ${
                     likeMap.has(item._id)
                       ? 'fill-black text-black'
                       : 'text-black'
@@ -54,10 +54,21 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
                     e.preventDefault();
                     toggleBookmark(item._id);
                   }}
+                  aria-label={
+                    likeMap.has(item._id) ? '북마크 해제' : '북마크 추가'
+                  }
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleBookmark(item._id);
+                    }
+                  }}
                 />
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-orange text-sm truncate">
+                <span className="text-orange text-xs md:text-sm truncate">
                   {item.tag
                     ? item.tag
                         .split(',')
@@ -65,7 +76,7 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
                         .join(' | ')
                     : '재료 없음'}
                 </span>
-                <span className="text-gray text-sm truncate">
+                <span className="text-gray text-xs md:text-sm truncate">
                   {item.user.name}
                 </span>
               </div>
