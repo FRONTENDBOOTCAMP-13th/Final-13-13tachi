@@ -2,7 +2,7 @@ import { Heart } from 'lucide-react';
 
 export default function LoadingHot() {
   return (
-    <div className="mt-2 md:mt-4.5">
+    <div className="animate-pulse mt-2 md:mt-4.5">
       <div className="hotitem-slide flex justify-between">
         <div className="w-[calc((100%-15px)/2)] md:w-[calc((100%-30px)/3)] lg:w-[calc((100%-45px)/4)] shadow-image rounded-[1.5rem] lg:rounded-[3rem] ">
           <div className="flex flex-col items-center gap-2.5 p-4 md:p-4.5  lg:py-5.5 lg:px-6">
