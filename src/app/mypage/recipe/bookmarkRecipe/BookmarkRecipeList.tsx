@@ -78,6 +78,7 @@ export default function BookmarkRecipeList() {
               key={item._id}
               item={{
                 _id: item._id,
+                post_id: item.post._id,
                 title: item.post.title,
                 image: item.post.image,
               }}

@@ -97,6 +97,7 @@ export interface LikePostType {
 // 레시피 북마크 아이템
 export interface LikePostItemType {
   _id: number;
+  post_id: number;
   title: string;
   image: string;
 }
