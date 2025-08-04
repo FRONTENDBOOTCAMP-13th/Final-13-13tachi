@@ -48,15 +48,17 @@ export default function RecipeCarousel({
 
     const sortedRecipes = validRecipes.sort((a, b) => {
       switch (sortBy) {
-        case 'likes':
+        case 'bookmarks': {
           const aLiked = likeMap.has(a._id) ? 1 : 0;
           const bLiked = likeMap.has(b._id) ? 1 : 0;
           if (aLiked !== bLiked) return bLiked - aLiked;
           break;
-        case 'recent':
+        }
+        case 'recent': {
           const aDate = new Date(a.createdAt || 0).getTime();
           const bDate = new Date(b.createdAt || 0).getTime();
           return bDate - aDate;
+        }
         default:
           return 0;
       }
@@ -166,7 +168,7 @@ export default function RecipeCarousel({
                     .join(' | ')
                 : '재료 없음'}
             </span>
-            <p className="lg:text-xl md:text-lg text-base font-semibold mt-[0.5rem] line-clamp-2">
+            <p className="lg:text-xl md:text-lg text-base font-semibold mt-[0.5rem] line-clamp-1">
               {item.title}
             </p>
           </figcaption>

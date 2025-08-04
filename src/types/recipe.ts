@@ -60,6 +60,7 @@ export interface Post {
     image?: string;
     [key: string]: unknown;
   };
+  bookmarks?: number;
 }
 
 export interface CreatePostData {
