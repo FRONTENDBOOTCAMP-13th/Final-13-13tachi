@@ -6,9 +6,6 @@ import MainProductLists from '@/app/MainProductLists';
 import { getProducts } from '@/data/functions/product';
 
 export default async function Home() {
-  const res = await getProducts();
-  const products: ProductType[] = res.ok === 1 ? res.item : [];
-
   return (
     <main>
       <div>
@@ -32,7 +29,7 @@ export default async function Home() {
         {/* ED: 우리가 함께 만든 변화 */}
 
         {/* ST: 상품 리스트 */}
-        <MainProductLists products={products} />
+        <MainProductLists />
         {/* ED: 상품 리스트 */}
       </div>
     </main>
