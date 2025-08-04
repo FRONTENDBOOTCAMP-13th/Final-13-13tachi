@@ -16,6 +16,7 @@ import useBookmarkStore from '@/zustand/useBookmarkStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import RecipeCard from './recipe/RecipeCard';
+import Loading from '@/app/Loading';
 
 export default function MainProductLists() {
   const [itemCount, setItemCount] = useState(4);
@@ -134,6 +135,10 @@ export default function MainProductLists() {
       console.error('북마크 토글 실패:', err);
     }
   };
+
+  if (!products) {
+    return <Loading />;
+  }
 
   return (
     <main className="mx-auto px-5 pt-12.5 pb-15 space-y-15 md:px-7.5 md:pb-20 md:space-y-12.5 lg:px-0 lg:max-w-5xl lg:pt-[4.0625rem] lg:pb-25">
