@@ -9,6 +9,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 import { Search } from 'lucide-react';
 import CustomLink from '@/components/common/CustomLink';
+import LoadingAll from '@/app/shopping/LoadingAll';
 import { getLikeProducts } from '@/data/functions/product';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -119,18 +120,16 @@ export default function AllItems({ products, searchKeyword }: AllItemsProps) {
     </li>
   ));
 
+  if (!data) {
+    return <LoadingAll />;
+  }
+
   return (
     <>
-      <div className="mt-[1.5625rem] flex justify-between items-center">
+      <div className="mt-[1.5625rem]">
         <ul className="flex gap-2.5 font-semibold text-dark-green text-sm md:text-base">
           {AllItemCategory}
         </ul>
-        <button
-          type="button"
-          className="font-semibold text-dark-green cursor-pointer text-sm md:text-base"
-        >
-          정렬기준
-        </button>
       </div>
       {products && filteredItems.length === 0 ? (
         <div className="text-center py-6 md:py-10 lg:py-12">

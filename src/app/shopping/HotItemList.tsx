@@ -9,13 +9,26 @@ import './shopping.css';
 import { ApiRes, LikeItemType, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
-import { getLikeProducts } from '@/data/functions/product';
+import { getLikeProducts, getProducts } from '@/data/functions/product';
+import LoadingHot from '@/app/shopping/LoadingHot';
 
-export default function HotItemList({ products }: { products: ProductType[] }) {
+export default function HotItemList() {
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
 
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
+  const [products, setProducts] = useState<ApiRes<ProductType[]> | null>(null);
+
+  useEffect(() => {
+    getProducts()
+      .then(res => {
+        setProducts(res);
+      })
+      .catch(err => {
+        console.error('상품 가져오기 실패:', err);
+        setProducts({ ok: 0, message: '에러 발생!' });
+      });
+  }, []);
 
   useEffect(() => {
     // 현재 user의 좋아요 목록을 가져와서 likeRes에 넣어준다
@@ -31,9 +44,12 @@ export default function HotItemList({ products }: { products: ProductType[] }) {
       });
   }, [accessToken]);
 
-  const filteredItems = products.filter(item => item.extra?.isBest); // 인기 상품 전체
+  const filteredItems =
+    products?.ok === 1 && products.item
+      ? products.item.filter((item: ProductType) => item.extra?.isBest)
+      : [];
 
-  const hotItemList = filteredItems.map((item, index) => (
+  const hotItemList = filteredItems.map((item: ProductType, index: number) => (
     <SwiperSlide
       key={index}
       className="shadow-image rounded-[1.5rem] lg:rounded-[3rem] "
@@ -46,6 +62,10 @@ export default function HotItemList({ products }: { products: ProductType[] }) {
       />
     </SwiperSlide>
   ));
+
+  if (!products) {
+    return <LoadingHot />;
+  }
 
   return (
     <div className="mt-2 md:mt-4.5">
