@@ -1,10 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-// 임시 이미지 불러오기
-import kakaopay from '../../images/kakaopay.png';
-import naverpay from '../../images/naverpay.png';
-import tosspay from '../../images/tosspay.png';
 import { useState } from 'react';
 
 export default function PayForm() {
@@ -79,7 +75,7 @@ export default function PayForm() {
                     onChange={handleChange}
                   />
                   <Image
-                    src={kakaopay}
+                    src={'/kakaopay.svg'}
                     alt="카카오페이"
                     width={50}
                     height={29}
@@ -98,7 +94,7 @@ export default function PayForm() {
                     onChange={handleChange}
                   />
                   <Image
-                    src={naverpay}
+                    src={'/naverpay.svg'}
                     alt="카카오페이"
                     width={50}
                     height={27}
@@ -119,7 +115,7 @@ export default function PayForm() {
                     onChange={handleChange}
                   />
                   <Image
-                    src={tosspay}
+                    src={'/tosspay.svg'}
                     alt="토스페이"
                     width={20}
                     height={29}

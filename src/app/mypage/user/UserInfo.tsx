@@ -20,8 +20,6 @@ export default function UserInfo() {
     getMember(user_id).then(setRes);
   }, [user]);
 
-  // console.log(user?.phone);
-
   useEffect(() => {
     if (user === null || user === undefined) {
       // accessToken이 아직 로드 중이라면 아무것도 하지 않음
@@ -37,12 +35,6 @@ export default function UserInfo() {
       });
     }
   }, [user]);
-
-  // useEffect(() => {
-  //   if (res && res.ok === 0) {
-  //     router.replace('/error');
-  //   }
-  // }, [res, router]);
 
   if (!res) {
     return <Loading />;

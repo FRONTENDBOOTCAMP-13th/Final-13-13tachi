@@ -94,10 +94,6 @@ export default function OrderForm() {
   } else {
     // 장바구니 주문
     if (!res || !userRes) return <Loading />;
-
-    // if (res.ok === 0 || userRes.ok === 0) {
-    //   router.replace('/error');
-    // }
   }
 
   return (
