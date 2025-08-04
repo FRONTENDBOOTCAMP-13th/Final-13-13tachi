@@ -144,7 +144,7 @@ export default function ValueSlide() {
       </SwiperSlide>
 
       <div className="mt-5 text-center md:mt-7 lg:mt-9">
-        <CustomLink href="#" variant="green" size="xxl">
+        <CustomLink href="/about" variant="green" size="xxl">
           흙내음 알아보기
         </CustomLink>
       </div>
