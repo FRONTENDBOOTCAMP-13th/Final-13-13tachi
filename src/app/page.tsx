@@ -3,7 +3,7 @@ import MainSlide from '@/app/MainSlide';
 import ValueSlide from '@/app/ValueSlide';
 import MainProductLists from '@/app/MainProductLists';
 
-export default async function Home() {
+export default function Home() {
   return (
     <main>
       <div>
