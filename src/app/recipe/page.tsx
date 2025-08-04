@@ -21,14 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RecipeListPage() {
   const res = await getRecipes();
 
-  // 인기 레시피 데이터 생성 - extra.isBest가 true인 레시피들
   const hotRecipes =
     res.ok && res.item
       ? res.item
-          .filter(
-            recipe => recipe._id && recipe.extra?.isBest === true, // isBest가 true인 레시피만
-          )
-          .slice(0, 8) // 최대 8개까지 표시
+          .filter(recipe => recipe._id && recipe.extra?.isBest === true)
+          .slice(0, 8)
       : [];
 
   return (

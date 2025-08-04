@@ -16,8 +16,6 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-[25px]">
-      {' '}
-      {/* mt를 컨테이너로 이동 */}
       {posts.slice(0, 4).map(item => (
         <Link
           key={item._id}
@@ -25,11 +23,7 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
           className="w-full block"
         >
           <figure className="w-full">
-            {' '}
-            {/* lg:w-[15rem] 제거하고 w-full 적용 */}
             <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
-              {' '}
-              {/* 고정 크기 제거하고 aspect-square 적용 */}
               {item.image ? (
                 <Image
                   src={item.image}
@@ -45,8 +39,6 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
               )}
             </div>
             <figcaption className="mt-3">
-              {' '}
-              {/* mt-[12px]를 mt-3으로 변경 */}
               <div className="relative flex">
                 <span className="w-full pr-5.5 text-lg font-semibold truncate md:text-xl md:pr-6">
                   {item.title}asdf

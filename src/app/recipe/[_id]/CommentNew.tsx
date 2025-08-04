@@ -6,8 +6,7 @@ import useUserStore from '@/zustand/useStore';
 import { useActionState } from 'react';
 
 export default function CommentNew({ postId }: { postId: number }) {
-  const [state, formAction, isLoading] = useActionState(createReply, null);
-  console.log(isLoading, state);
+  const [, formAction, isLoading] = useActionState(createReply, null);
   const { user } = useUserStore();
   return (
     <form action={formAction} className="mt-9 flex items-center">
