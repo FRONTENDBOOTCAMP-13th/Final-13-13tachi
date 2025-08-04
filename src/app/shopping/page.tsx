@@ -2,9 +2,7 @@ import AllItems from '@/app/shopping/AllItems';
 import HotItemList from '@/app/shopping/HotItemList';
 import SearchBar from '@/components/common/SearchBar';
 import { Suspense } from 'react';
-import { ProductType } from '@/types';
 import Link from 'next/link';
-import { getProducts } from '@/data/functions/product';
 
 export default function ShoppingList() {
   return (

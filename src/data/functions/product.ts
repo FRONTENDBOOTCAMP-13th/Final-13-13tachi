@@ -1,8 +1,8 @@
 import {
   ApiResPromise,
   LikeItemType,
+  ProductItemType,
   ProductType,
-  ProductTypeRes,
 } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -26,7 +26,7 @@ export async function getProducts(): ApiResPromise<ProductType[]> {
 // 상품 상세 불러오기
 export async function getProductDetails(
   _id: number,
-): ApiResPromise<ProductTypeRes> {
+): ApiResPromise<ProductItemType> {
   try {
     const res = await fetch(`${API_URL}/products/${_id}`, {
       headers: {
