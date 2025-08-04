@@ -4,15 +4,15 @@ import { ProductType } from '@/types';
 import { Metadata } from 'next';
 
 interface SearchParams {
-  id: string;
+  params: Promise<{
+    id: string;
+  }>;
 }
 
 export async function generateMetadata({
   params,
-}: {
-  params: SearchParams;
-}): Promise<Metadata> {
-  const { id } = params;
+}: SearchParams): Promise<Metadata> {
+  const { id } = await params;
   const decodedQuery = decodeURIComponent(id);
 
   return {
