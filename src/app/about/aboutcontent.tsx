@@ -292,7 +292,7 @@ export default function AboutContent() {
           <h4 className="text-2xl font-bold mb-10 text-green-800">
             👨‍🌾 UgVeg 팀원 소개
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid  grid-cols-2 lg:grid-cols-4 gap-5">
             {members.map(member => (
               <motion.div
                 key={member.name}
