@@ -39,10 +39,10 @@ export default function MainProductLists() {
         setProducts(res);
       })
       .catch(err => {
-        console.error('찜 상품 가져오기 실패:', err);
+        console.error('상품 가져오기 실패:', err);
         setProducts({ ok: 0, message: '에러 발생!' });
       });
-  });
+  }, []);
 
   const hotItems =
     products?.ok === 1 && products.item
