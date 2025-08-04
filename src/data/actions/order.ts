@@ -29,7 +29,6 @@ export async function createOrder(
   state: ApiRes<OrderInfoType> | null,
   formData: FormData,
 ): ApiResPromise<OrderInfoType> {
-  console.log('추가');
   const accessToken = formData.get('accessToken');
   const productsStr = formData.get('products');
   const userStr = formData.get('user');
@@ -90,13 +89,11 @@ export async function createOrder(
   }
 
   if (data.ok) {
-    console.log(data);
     const products = data.item.products;
     const orderNum = data.item.createdAt;
     const sellerIds = Array.from(
       new Set(data.item.products.map(p => p.seller_id)),
     );
-    console.log(sellerIds);
 
     for (const seller_id of sellerIds) {
       const sellerProducts = products.filter(
@@ -131,7 +128,6 @@ export async function createShoppingOrder(
   state: ApiRes<OrderInfoType> | null,
   formData: FormData,
 ): ApiResPromise<OrderInfoType> {
-  console.log('추가');
   const accessToken = formData.get('accessToken');
   const productsStr = formData.get('products');
   const userStr = formData.get('user');
@@ -190,7 +186,6 @@ export async function createShoppingOrder(
   }
 
   if (data.ok) {
-    console.log(data);
     const products = data.item.products;
     const orderNum = data.item.createdAt;
     const seller_id = data.item.products[0].seller_id;
@@ -218,8 +213,6 @@ export async function sendEmail(
   orderNum: string,
   accessToken: string,
 ): ApiResPromise<EmailType> {
-  console.log('추가');
-
   let res: Response;
   let data: ApiRes<EmailType>;
 
@@ -332,10 +325,6 @@ export async function sendEmail(
     // 네트워크 오류 처리
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
-  }
-
-  if (data.ok) {
-    console.log('전송됨', sellerName);
   }
 
   return data;

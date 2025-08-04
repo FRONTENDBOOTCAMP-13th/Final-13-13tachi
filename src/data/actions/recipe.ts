@@ -125,7 +125,6 @@ export async function createReply(
   formData: FormData,
 ): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
-  console.log(body);
 
   let res: Response;
   let data: ApiRes<PostReply>;
