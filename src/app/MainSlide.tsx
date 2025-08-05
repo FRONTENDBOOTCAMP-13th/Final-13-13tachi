@@ -14,10 +14,10 @@ export default function MainSlide() {
       navigation={true}
       modules={[Navigation, Pagination, Autoplay]}
       loop={true}
-      // autoplay={{
-      //   delay: 7000,
-      //   disableOnInteraction: false,
-      // }}
+      autoplay={{
+        delay: 7000,
+        disableOnInteraction: false,
+      }}
       speed={1000}
       className="main-slide max-h-full h-[31.25rem] md:h-[42.5rem]"
     >
@@ -60,10 +60,10 @@ export default function MainSlide() {
           />
         </div>
         <div className="w-full max-w-[calc(100%-40px)] absolute top-1/2 left-5 -translate-y-1/2 md:left-7.5 md:max-w-[calc(100%-60px)] lg:max-w-5xl lg:left-1/2 lg:-translate-x-1/2">
-          <h2 className="text-white font-bold leading-[1.3] text-4xl md:text-[2.25rem] lg:text-[2.75rem]">
+          <h2 className="text-black font-bold leading-[1.3] text-4xl md:text-[2.25rem] lg:text-[2.75rem]">
             농부의 손에서 당신의 식탁까지
           </h2>
-          <p className="mt-3 text-white text-base md:text-lg lg:text-xl">
+          <p className="mt-3 text-black text-base md:text-lg lg:text-xl">
             함께하는 마음이 모여
             <br /> 못난이 채소에 생명을 불어넣습니다.
           </p>
