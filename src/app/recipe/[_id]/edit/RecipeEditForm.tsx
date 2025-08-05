@@ -99,10 +99,8 @@ export default function RecipeEditForm({
           modules={{
             toolbar: [
               [{ header: [1, 2, 3, false] }],
-              ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-              [{ list: 'ordered' }, { list: 'bullet' }],
-              [{ indent: '-1' }, { indent: '+1' }],
-              ['link', 'image', 'video'],
+              ['bold', 'italic', 'underline', 'strike'],
+              ['link'],
               ['clean'],
             ],
           }}
@@ -114,12 +112,7 @@ export default function RecipeEditForm({
             'italic',
             'underline',
             'strike',
-            'blockquote',
-            'list',
-            'indent',
             'link',
-            'image',
-            'video',
           ]}
           theme="snow"
           value={content}

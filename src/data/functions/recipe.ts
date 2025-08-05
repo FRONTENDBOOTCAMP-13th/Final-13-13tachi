@@ -15,6 +15,7 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-store',
     });
     return res.json();
   } catch (error) {
@@ -34,6 +35,7 @@ export async function getPost(_id: number): ApiResPromise<Post> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-store',
     });
     return res.json();
   } catch (error) {
@@ -55,6 +57,7 @@ export async function getReplies(_id: number): ApiResPromise<PostReply[]> {
         headers: {
           'Client-Id': CLIENT_ID,
         },
+        cache: 'no-store',
         next: {
           tags: [`posts/${_id}/replies`],
         },
@@ -81,6 +84,7 @@ export async function getMyRecipe(
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
+      cache: 'no-store',
     });
     return res.json();
   } catch (error) {
@@ -103,6 +107,7 @@ export async function getLikeRecipe(
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
+      cache: 'no-store',
     });
     return res.json();
   } catch (error) {
@@ -122,6 +127,7 @@ export async function getRecipeDetail(_id: number): ApiResPromise<Post> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-store',
     });
     return res.json();
   } catch (error) {
@@ -140,6 +146,7 @@ export async function getRecipes(): ApiResPromise<Post[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-store',
     });
     return res.json();
   } catch (error) {

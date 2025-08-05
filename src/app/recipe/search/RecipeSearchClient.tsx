@@ -12,6 +12,8 @@ import CustomLink from '@/components/common/CustomLink';
 import RecipeSearchLoading from './RecipeSearchLoading';
 import { getRecipes } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   searchQuery: string;
@@ -25,6 +27,7 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
 
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
+  const router = useRouter();
 
   const {
     likeMap,
@@ -63,7 +66,12 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
 
   const toggleBookmark = async (postId: number) => {
     if (!accessToken) {
-      alert('로그인이 필요합니다.');
+      await Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      });
+      router.replace('/');
       return;
     }
 
@@ -89,7 +97,7 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
       : filteredRecipes.filter(r => r.category === activeTab);
 
   return (
-    <div className="md:px-7.5 px-5 min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+    <div className="md:px-7.5 px-5 min-h-[calc(100dvh-26.125px)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <main className="lg:max-w-5xl mx-auto lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-12.5 md:pb-20 pt-[1.875rem] pb-15">
         <h2 className="text-gray lg:text-base md:text-sm text-xs">
           <Link href="/">HOME</Link>
