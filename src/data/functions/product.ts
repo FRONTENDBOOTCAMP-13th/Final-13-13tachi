@@ -32,6 +32,7 @@ export async function getProductDetails(
       headers: {
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-store',
       next: {
         tags: [`products/${_id}`],
       },

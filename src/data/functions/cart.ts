@@ -13,6 +13,7 @@ export async function getCartProducts(
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${accessToken}`,
       },
+      cache: 'no-store',
       next: {
         tags: [`carts`],
       },
