@@ -10,7 +10,7 @@
       "addressDetail2": "111동 111호",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/profile-1.png",
+      "image": "/profile-1.png",
       "extra": {
         "birthday": "03-23"
       }
