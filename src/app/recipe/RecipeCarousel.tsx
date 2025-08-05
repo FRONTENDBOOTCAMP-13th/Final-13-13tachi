@@ -15,6 +15,8 @@ import './recipe.css';
 import RecipeCarouselLoading from './RecipeCarouselLoading';
 import { getLikeRecipe } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 interface RecipeCarouselProps {
   recipes: Post[];
@@ -39,6 +41,7 @@ export default function RecipeCarousel({
 
   // 로딩 상태 관리 - HotItemList 패턴 사용
   const [recipesData, setRecipesData] = useState<Post[] | null>(null);
+  const router = useRouter();
 
   // 인기 레시피 필터링 및 정렬 로직
   const popularRecipes = useMemo(() => {
@@ -93,7 +96,12 @@ export default function RecipeCarousel({
   // 북마크 토글
   const toggleBookmark = async (postId: number) => {
     if (!accessToken) {
-      alert('로그인이 필요합니다.');
+      await Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      });
+      router.replace('/login');
       return;
     }
 
@@ -104,7 +112,14 @@ export default function RecipeCarousel({
       if (isBookmarked) {
         const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) remove(postId);
-        else alert(res.message || '삭제 중 오류가 발생했습니다.');
+        else {
+          await Swal.fire({
+            icon: 'error',
+            title: '삭제 실패',
+            text: res.message || '삭제 중 오류가 발생했습니다.',
+            confirmButtonText: '확인',
+          });
+        }
       } else {
         const res = await addRecipeBookmark(accessToken, postId);
         if (res.ok === 1 && res.item) add(postId, res.item._id);

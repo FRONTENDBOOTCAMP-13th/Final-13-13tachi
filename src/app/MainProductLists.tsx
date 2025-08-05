@@ -13,6 +13,8 @@ import RecipeCardLoading from './recipe/CardLoading';
 import { getLikeRecipe, getRecipes } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
 import Loading from '@/app/Loading';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 export default function MainProductLists() {
   const [itemCount, setItemCount] = useState(4);
@@ -65,6 +67,7 @@ export default function MainProductLists() {
 
   const { user } = useUserStore(); // 로그인 정보
   const accessToken = user?.token?.accessToken; // accessToken 값
+  const router = useRouter();
 
   const [likeRes, setLikeRes] = useState<ApiRes<LikeItemType[]> | null>(null); // 좋아요 목록 최신 상태 관리
   const [recipes, setRecipes] = useState<Post[]>([]); // 레시피 목록
@@ -112,7 +115,12 @@ export default function MainProductLists() {
 
   const toggleBookmark = async (postId: number) => {
     if (!accessToken) {
-      alert('로그인이 필요합니다.');
+      await Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      });
+      router.replace('/login');
       return;
     }
 
@@ -221,8 +229,10 @@ export default function MainProductLists() {
           <RecipeCardLoading />
         ) : (
           <RecipeCard
-            posts={recipes.slice(0, itemCount)}
+            posts={recipes}
             toggleBookmark={toggleBookmark}
+            maxCount={itemCount}
+            sortBy="bookmarks"
           />
         )}
       </section>

@@ -12,6 +12,8 @@ import CustomLink from '@/components/common/CustomLink';
 import RecipeSearchLoading from './RecipeSearchLoading';
 import { getRecipes } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   searchQuery: string;
@@ -25,6 +27,7 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
 
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
+  const router = useRouter();
 
   const {
     likeMap,
@@ -63,7 +66,12 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
 
   const toggleBookmark = async (postId: number) => {
     if (!accessToken) {
-      alert('로그인이 필요합니다.');
+      await Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      });
+      router.replace('/');
       return;
     }
 
