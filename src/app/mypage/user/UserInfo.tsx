@@ -134,7 +134,10 @@ export default function UserInfo() {
           </div>
         </div>
       </div>
-      <div className="flex justify-end md:mt-auto mt-10">
+      <div className="flex justify-between items-end md:mt-auto mt-10">
+        <p className="text-xs text-light-gray text-right">
+          프로필 이미지 출처 &quot;Designed by Freepik &quot;
+        </p>
         <CustomLink size="xxl" variant="green" href={editPage}>
           회원정보 수정하기
         </CustomLink>
