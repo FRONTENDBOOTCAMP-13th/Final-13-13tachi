@@ -33,18 +33,18 @@ export default function SignupForm() {
   } = useForm<SignupFormProps>({ mode: 'onChange' });
 
   const profileImages = [
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754040777/febc13-final13-emjf/C2ssQdZje.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062245/febc13-final13-emjf/8S1ksbdF6.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062246/febc13-final13-emjf/3VDNxWTK6H.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062246/febc13-final13-emjf/uO8ej2ngy.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062247/febc13-final13-emjf/jETxp4Avv.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062247/febc13-final13-emjf/rFxxuMORoN.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062248/febc13-final13-emjf/njkgZAFITi.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062248/febc13-final13-emjf/52RBCi_zt.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062248/febc13-final13-emjf/WOrKaTGo9k.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062249/febc13-final13-emjf/OjH7glEMU.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062250/febc13-final13-emjf/yq45_-tYqE.png',
-    'https://res.cloudinary.com/ddedslqvv/image/upload/v1754062250/febc13-final13-emjf/7xxYjLjsa.png',
+    '/profile-1.png',
+    '/profile-2.png',
+    '/profile-3.png',
+    '/profile-4.png',
+    '/profile-5.png',
+    '/profile-6.png',
+    '/profile-7.png',
+    '/profile-8.png',
+    '/profile-9.png',
+    '/profile-10.png',
+    '/profile-11.png',
+    '/profile-12.png',
   ];
 
   function getRandomImage() {
