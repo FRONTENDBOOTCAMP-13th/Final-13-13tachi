@@ -270,8 +270,9 @@ export async function sendEmail(
     </div>
     <p style="font-size: large; font-weight: 700; margin-bottom: 14px;">구매 정보</p>
     <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px;">
-      ${products.map(
-        product => `
+      ${products
+        .map(
+          product => `
           <div style="display: flex; flex-direction: column; gap: 10px; border-radius: 20px; background-color: rgb(240, 240, 240); padding: 20px;">
             <div style="display: flex; flex-direction: column; gap: 10px;">
               <div style="display: flex;">
@@ -292,7 +293,8 @@ export async function sendEmail(
             </div>
           </div>
         `,
-      )}
+        )
+        .join('')}
     </div>
     <hr style="margin-bottom: 40px;"/>
     <p style="font-size:large; text-align: right;">
