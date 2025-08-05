@@ -12,22 +12,26 @@
 <br/>
 <hr/>
 
-## 📢 프로젝트 소개
+## 📢 프로젝트 개요
+‘못난이 농산물’은 외형은 조금 부족하지만 신선도와 품질은 그대로인 농산물을 저렴하고 합리적인 가격에 제공하는 친환경 쇼핑몰 플랫폼입니다.
 
->
-- **못난이 농산물 전문 쇼핑몰** : 
-상품성은 부족하지만 신선도는 그대로인 농작물을
-저렴하고 합리적인 가격에 제공
+이 프로젝트는 단순한 쇼핑 기능을 넘어, 레시피 중심의 커뮤니티와 생산자 직거래 기반의 투명한 유통 구조를 함께 제공합니다. 
+
 <br/>
 
-- **레시피 중심 커뮤니티 구성** : 
-사용자들이 구매한 농산물로 직접 만든 요리를
-사진, 후기, 레시피 형태로 자유롭게 공유하고 피드백
-<br/>
+## 🌱 주요 기능
+ ### 못난이 농산물 전문 쇼핑몰 : <br/>
+- 상품성은 다소 떨어지지만 신선도는 그대로인 농산물을 합리적인 가격에 판매
+- 환경 보호와 식품 자원 절약에 기여하는 소비 문화 조성
 
-- **생산자 연계로 신뢰 강화** : 
-농가와 직접 연결된 유통 구조를 통해
-소비자는 더 신선하고 투명한 상품을 구매 가능
+###  레시피 중심 커뮤니티 구* :   <br/>
+- 소비자가 구매한 농산물로 만든 요리 사진, 레시피, 후기를 자유롭게 공유
+- 사용자 간 소통 및 피드백을 통해 요리 커뮤니티 형성
+
+### 생산자 연계로 신뢰 강화 :   <br/>
+- 농가와 직접 연결된 유통 구조로 신뢰도 높은 상품 제공
+- 소비자는 더욱 신선하고 투명한 상품을 경험 가능
+
 <br/>
 
 
@@ -63,6 +67,153 @@
 
 ## 🖥️ 서비스 소개
 
+<div align="center">
+  
+[♥배포주소♥](
+https://ugveg.vercel.app/)
+
+</div>
+
+---
+
+### 🔐 로그인 페이지
+- 이메일, 카카오, 네이버 로그인
+- 회원가입은 유효성 검사에 맞게 입력
+- 주소 api 사용 
+
+<table >
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/a59adf62-9545-45c2-a227-d3d2f763e4b6" alt="로그인 페이지" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/5098e224-ff2d-499f-a1eb-f673e7cc9d9f" alt="카카오톡 예시" height="400">
+    </td>
+  </tr>
+</table>
+
+
+---
+
+### 🏠 홈화면
+
+- 추천상품 , 상품 종류별 , 레시피를 홈 화면에서 확인 가능
+  
+<table >
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/63b4cde5-f97e-416f-8cad-3b41d9da1c02" alt="로그인 페이지" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/140043d4-2dd1-4303-9c2a-4cff82e9793d" alt="카카오톡 예시" height="400">
+    </td>
+  </tr>
+</table>
+
+
+
+
+---
+
+### 🛒 장보기 페이지
+
+- 판매물품 리스트를 보여주며 종류별 카테고리 이동 기능
+- 상품 검색 
+- 상품 리스트 무한스크롤
+- 상품 찜하기 
+
+
+<table >
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/2507d5ae-17d4-45cf-9cf6-f4e66c1e96e6" alt="로그인 페이지" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/bd69704d-d82b-44d2-8929-a06e6e5780f5" alt="카카오톡 예시" height="400">
+    </td>
+  </tr>
+</table>
+
+
+
+
+---
+
+### 🍳 레시피 페이지
+- 쇼핑몰에서 구매한 상품들로 다양한 레시피들을 직접 작성
+- 댓글 기능
+- 레시피 북마크
+- 레시피 연관 상품
+
+<table >
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/d06e8ac0-1e8e-4978-893c-a9268b9e9445" alt="로그인 페이지" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/9bbe741a-9b07-4ffc-a053-791492f467a6" alt="카카오톡 예시" height="400">
+    </td>
+  </tr>
+</table>
+
+
+
+---
+### 💡 상품 상세 페이지
+- 상품의 상세 설명을 보여주며 장바구니 담기, 주문하기, 상품 레시피 이동이 가능
+
+<table >
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/caddbba1-ac16-44a6-9849-d668c4ab2f9b" alt="로그인 페이지" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/baf4bc82-1d71-4737-9546-221d56bbe86a" alt="카카오톡 예시" height="400">
+    </td>
+  </tr>
+</table>
+
+---
+
+
+
+### 👤 마이페이지
+- 장바구니, 찜상품, 나의 레시피, 구매내역, 회원정보, 로그아웃이 가능한 페이지.
+- 장바구니에 담긴 상품 주문하기 가능
+- 회원정보 수정 
+
+<table >
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/2ec470c6-e841-491b-be5e-5de506882f46" alt="로그인 페이지" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/b0d766de-3685-42fd-aae8-ce52e5c7b1df" alt="카카오톡 예시" height="400">
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+---
+
+### ℹ️ About 페이지
+- 앱의 목적, 기능, 제작 배경, 팀원 소개
+
+
+<table >
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/39d133d6-8321-4790-804f-fc77bb95abaf" alt="로그인 페이지" height="400">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/e7e00af5-2be8-4860-a893-04ccb9fc4ba4" alt="카카오톡 예시" height="400">
+    </td>
+  </tr>
+</table>
 
 <br/>
 
