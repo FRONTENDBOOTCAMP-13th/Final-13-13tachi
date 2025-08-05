@@ -26,6 +26,7 @@ import {
 } from '@/data/actions/order';
 import { getMember } from '@/data/functions/user';
 import { getCartProducts } from '@/data/functions/cart';
+import Swal from 'sweetalert2';
 
 export default function OrderForm() {
   const { user } = useUserStore();
@@ -83,7 +84,12 @@ export default function OrderForm() {
       !userFormData?.addressDetail1
     ) {
       e.preventDefault();
-      alert('주문자 정보를 모두 입력해주세요.');
+      Swal.fire({
+        icon: 'warning',
+        title: '입력 오류',
+        text: '주문자 정보를 모두 입력해주세요.',
+        confirmButtonText: '확인',
+      });
     }
   };
 

@@ -98,7 +98,12 @@ export default function SocialEditForm() {
         }
       });
     } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
+      Swal.fire({
+        icon: 'error',
+        title: '오류',
+        text: state?.message,
+        confirmButtonText: '확인',
+      });
     }
   }, [state, router]);
 
