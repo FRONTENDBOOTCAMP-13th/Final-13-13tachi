@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function MyRecipeItem({ item }: { item: MyPostType }) {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full ">
       <Link href={`/recipe/${item._id}`} className="overflow-hidden rounded-lg">
         <Image
           src={item.image}
@@ -16,7 +16,7 @@ export default function MyRecipeItem({ item }: { item: MyPostType }) {
       </Link>
       <div className="relative text-center mt-2.5">
         <Link href={`/recipe/${item._id}`}>
-          <span className="w-full block truncate text-center">
+          <span className="w-full block truncate text-center md:text-base text-sm">
             {item.title}
           </span>
         </Link>

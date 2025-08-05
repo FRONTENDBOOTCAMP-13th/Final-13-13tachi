@@ -31,9 +31,14 @@ export default function BookmarkRecipeItem({
           className="lg:w-[11.25rem] lg:h-[11.25rem] w-full aspect-square object-cover rounded-lg shadow-image transition-transform duration-300 hover:scale-110"
         />
       </Link>
-      <div className="relative text-center mt-2.5">
-        <div className="absolute right-0">
-          <form action={action.deleteAction}>
+      <div className="grid grid-cols-[1fr_auto] mt-2.5 items-center">
+        <Link href={`/recipe/${item.post_id}`} className="flex justify-center">
+          <span className="w-fit line-clamp-1 gap-1 text-center md:text-base text-sm">
+            {item.title}
+          </span>
+        </Link>
+        <div className="h-fit">
+          <form action={action.deleteAction} className="leading-1">
             <input
               type="hidden"
               name="accessToken"
@@ -45,11 +50,6 @@ export default function BookmarkRecipeItem({
             </button>
           </form>
         </div>
-        <Link href={`/recipe/${item.post_id}`}>
-          <span className="lg:mx-3.5 md:mx-6 mx-4 lg:w-36 md:w-36 w-40 block truncate">
-            {item.title}
-          </span>
-        </Link>
       </div>
     </div>
   );
