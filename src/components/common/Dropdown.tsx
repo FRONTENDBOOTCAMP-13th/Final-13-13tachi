@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
-import { signOut } from 'next-auth/react';
+// import { signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function Dropdown() {
@@ -19,26 +19,45 @@ export default function Dropdown() {
     pathname === path ? 'mypage-dropdown-active' : '';
 
   //로그아웃 시 토큰 삭제
-  const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
 
-    await signOut({ redirect: false });
+  //   await signOut({ redirect: false });
 
+  //   resetUser();
+
+  //   localStorage.removeItem('accessToken');
+  //   localStorage.removeItem('refreshToken');
+  //   localStorage.removeItem('userInfo');
+
+  //   Swal.fire({
+  //     icon: 'info',
+  //     title: '로그아웃 완료',
+  //     text: '로그아웃이 완료 되었습니다.',
+  //     confirmButtonText: '확인',
+  //   });
+
+  //   router.push('/');
+  // };
+
+  //로그아웃 시 토큰 삭제
+  const handleLogout = () => {
     resetUser();
-
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
-
     Swal.fire({
       icon: 'info',
       title: '로그아웃 완료',
       text: '로그아웃이 완료 되었습니다.',
       confirmButtonText: '확인',
+    }).then(result => {
+      if (result.isConfirmed) {
+        router.replace('/');
+      }
     });
-
-    router.push('/');
   };
+
   // 바깥 아무곳이나 클릭 시 드롭다운 닫아짐
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
