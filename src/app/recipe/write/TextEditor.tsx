@@ -16,16 +16,10 @@ interface TextEditorProps {
 
 export default function TextEditor({ value, onChange }: TextEditorProps) {
   const modules = {
-    toolbar: [
-      [{ header: [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      ['link'],
-      ['clean'],
-    ],
+    toolbar: [['bold', 'italic', 'underline', 'strike'], ['link'], ['clean']],
   };
 
   const formats = [
-    'header',
     'font',
     'size',
     'bold',
