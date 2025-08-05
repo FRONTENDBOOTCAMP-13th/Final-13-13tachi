@@ -42,7 +42,7 @@ export default function AboutContent() {
   const selected = members.find(m => m.name === selectedMember);
 
   return (
-    <main className="min-h-[calc(100dvh-26.125px)] md:min-h-[calc(100dvh-20.1875rem)] bg-[#f8f8f0] ">
+    <main className="min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] bg-[#f8f8f0] ">
       <div className="lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-[3.125rem] md:pb-20 pt-[1.875rem] pb-[3.75rem] mx-auto py-16 px-[20px] md:px-[30px] lg:px-[0px]  lg:max-w-5xl">
         {/* Title */}
         <div className="mb-10">
