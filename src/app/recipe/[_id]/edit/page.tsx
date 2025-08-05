@@ -51,7 +51,7 @@ export default async function RecipeEditPage({ params }: EditPageProps) {
         <p>{recipe.message}</p>
       ) : (
         <div className="md:px-7.5 px-5 min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
-          <div className="lg:max-w-5xl mx-auto lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-12.5 md:pb-20 pt-[1.875rem] pb-15">
+          <main className="lg:max-w-5xl mx-auto lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-12.5 md:pb-20 pt-[1.875rem] pb-15">
             <h2 className="text-gray lg:text-base md:text-sm text-xs mb-[0.9375rem]">
               <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
               <Link href="/recipe">레시피</Link>
@@ -63,7 +63,7 @@ export default async function RecipeEditPage({ params }: EditPageProps) {
               initialContent={recipe.item.content}
               initialImage={recipe.item.extra?.image ?? ''}
             />
-          </div>
+          </main>
         </div>
       )}
     </>

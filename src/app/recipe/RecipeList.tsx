@@ -10,6 +10,8 @@ import useBookmarkStore from '@/zustand/useBookmarkStore';
 import RecipeListLoading from './Loading';
 import { getLikeRecipe } from '@/data/functions/recipe';
 import { addRecipeBookmark, deleteRecipeBookmark } from '@/data/actions/recipe';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 interface RecipeListProps {
   post: Post[];
@@ -24,6 +26,8 @@ export default function RecipeList({ post }: RecipeListProps) {
 
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
+
+  const router = useRouter();
 
   const {
     likeMap,
@@ -55,7 +59,12 @@ export default function RecipeList({ post }: RecipeListProps) {
   // 북마크 토글
   const toggleBookmark = async (postId: number) => {
     if (!accessToken) {
-      alert('로그인이 필요합니다.');
+      await Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      });
+      router.replace('/login');
       return;
     }
 
@@ -115,6 +124,20 @@ export default function RecipeList({ post }: RecipeListProps) {
     setVisibleCount(8);
   }, [activeTab]);
 
+  // 레시피등록 로그인 체크
+  const handleRegisterClick = async () => {
+    if (!user) {
+      await Swal.fire({
+        icon: 'warning',
+        text: '로그인 후 이용해주세요',
+        confirmButtonText: '확인',
+      });
+      router.push('/login');
+      return;
+    }
+    router.push('/recipe/write');
+  };
+
   return (
     <>
       {/* 탭과 등록 버튼 영역 - 항상 표시 */}
@@ -134,12 +157,13 @@ export default function RecipeList({ post }: RecipeListProps) {
             </span>
           ))}
         </div>
-        <Link
-          href="/recipe/write"
+        <button
+          type="button"
+          onClick={handleRegisterClick}
           className="text-orange font-semibold cursor-pointer lg:text-base md:text-base text-sm"
         >
           + 레시피 등록
-        </Link>
+        </button>
       </div>
 
       {/* 레시피 리스트 or 로딩 */}
