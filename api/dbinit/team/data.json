@@ -17,7 +17,7 @@
     },
     {
       "email": "habit2me@naver.com",
-      "password": "qwer1234!",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "이진현",
       "phone": "010-1234-5678",
       "postcode": "03666",
@@ -33,7 +33,7 @@
     },
     {
       "email": "mini@gmail.com",
-      "password": "qwer1234!",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "김혜민",
       "phone": "010-2222-2222",
       "postcode": "63534",
@@ -49,7 +49,7 @@
     },
     {
       "email": "tjrgus0419@gmail.com",
-      "password": "qwer1234!",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "강석현",
       "phone": "010-9393-0679",
       "postcode": "39324",
@@ -65,7 +65,7 @@
     },
     {
       "email": "oneway@13tachi.com",
-      "password": "qwer1234!",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "임한길",
       "phone": "010-1234-5678",
       "postcode": "03155",
