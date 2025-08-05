@@ -333,13 +333,13 @@ export default function AboutContent() {
           transition={{ duration: 0.4 }}
           className="  relative  -mb2 mx-auto max-w-3xl px-5 md:px-10 text-center"
         >
-          <div className="rounded-xl flex flex-row items-center gap-4">
+          <div className="rounded-xl lg:flex md:flex flex-row items-center gap-4">
             <Image
               src={selected.detailImage}
               alt={`${selected.name} 프로필`}
               width={200}
               height={200}
-              className="w-[150px] h-[150px] lg:w-[250px] lg:h-[250px]  "
+              className="w-[150px] h-[150px] lg:w-[250px] lg:h-[250px] mx-auto  "
             />
             <div className="text-left">
               <p className="text-xl font-bold text-green-800">

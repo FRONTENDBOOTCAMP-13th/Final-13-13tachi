@@ -229,8 +229,10 @@ export default function MainProductLists() {
           <RecipeCardLoading />
         ) : (
           <RecipeCard
-            posts={recipes.slice(0, itemCount)}
+            posts={recipes}
             toggleBookmark={toggleBookmark}
+            maxCount={itemCount}
+            sortBy="bookmarks"
           />
         )}
       </section>
