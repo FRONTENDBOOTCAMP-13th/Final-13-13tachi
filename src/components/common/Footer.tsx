@@ -38,44 +38,72 @@ export default function Footer() {
   return (
     <footer className=" bg-dark-green w-full pt-7.5 pb-25 md:py-8.5">
       <div className="mx-auto flex flex-col items-center md:items-start gap-6 h-full text-white px-5 md:px-7.5 lg:px-0 lg:max-w-5xl">
-        <div className="flex flex-col">
-          <h2 className="font-bold text-lg md:text-3xl">흙내음 상점: UgVeg</h2>
-          <ul className="flex gap-2 mt-1.5 font-thin text-xs md:text-sm ">
-            <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
+        <div className="flex flex-col justify-between items-center gap-4 md:flex-row md:items-start w-full">
+          <div className="flex flex-col">
+            <h2 className="font-bold text-lg md:text-3xl">
+              흙내음 상점: UgVeg
+            </h2>
+            <ul className="flex gap-2 mt-1.5 font-thin text-xs md:text-sm ">
+              <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
+                <Link
+                  href="https://github.com/Kanghyeon00"
+                  target="_blank"
+                  title="강석현 깃허브 새창림으로 연결"
+                >
+                  강석현
+                </Link>
+              </li>
+              <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
+                <Link
+                  href="https://github.com/minixzip"
+                  target="_blank"
+                  title="김혜민 깃허브 새창림으로 연결"
+                >
+                  김혜민
+                </Link>
+              </li>
+              <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
+                <Link
+                  href="https://github.com/imnotpossib1e"
+                  target="_blank"
+                  title="이진현 깃허브 새창림으로 연결"
+                >
+                  이진현
+                </Link>
+              </li>
               <Link
-                href="https://github.com/Kanghyeon00"
+                href="https://github.com/onewayay"
                 target="_blank"
-                title="강석현 깃허브 새창림으로 연결"
+                title="임한길 깃허브 새창림으로 연결"
               >
-                강석현
+                <li>임한길</li>
               </Link>
-            </li>
-            <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              <Link
-                href="https://github.com/minixzip"
-                target="_blank"
-                title="김혜민 깃허브 새창림으로 연결"
-              >
-                김혜민
-              </Link>
-            </li>
-            <li className="relative after:absolute after:right-[-0.3125rem] after:top-[0.25rem] lg:after:top-[0.3125rem] after:w-[0.0625rem] after:h-2.5 md:after:h-3 after:bg-white">
-              <Link
-                href="https://github.com/imnotpossib1e"
-                target="_blank"
-                title="이진현 깃허브 새창림으로 연결"
-              >
-                이진현
-              </Link>
-            </li>
-            <Link
-              href="https://github.com/onewayay"
-              target="_blank"
-              title="임한길 깃허브 새창림으로 연결"
+            </ul>
+          </div>
+          <div className="text-xs md:text-sm">
+            <label htmlFor="family-site" className="sr-only">
+              패밀리 사이트
+            </label>
+            <select
+              id="family-site"
+              className="w-40 px-2 py-1 border border-[#5e7f3a] bg-[#3c5524] text-[#f0f0f0] rounded hover:bg-[#4c6e2a] transition-all duration-200 md:w-45 md:px-3"
+              onChange={e => {
+                const url = e.target.value;
+                if (url && url !== '#') {
+                  window.open(url, '_blank');
+                  e.target.selectedIndex = 0; // 선택 초기화
+                }
+              }}
             >
-              <li>임한길</li>
-            </Link>
-          </ul>
+              <option value="">Family Site</option>
+              <option value="https://final-05-oguogu.vercel.app/">
+                오구텃밭
+              </option>
+              <option value="#">슬로우채소연구소</option>
+              <option value="#">산들산들 식탁</option>
+              <option value="#">오늘의 채소</option>
+            </select>
+          </div>
         </div>
         <ul className="flex items-center gap-4">
           <li className="relative w-6.5 h-6.5 md:w-9 md:h-9">

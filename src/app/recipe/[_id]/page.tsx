@@ -76,7 +76,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
 
   return (
     <>
-      <main className="lg:max-w-5xl mx-auto lg:pt-[4rem] lg:pb-[6rem] md:pt-12 md:pb-20 pt-8 pb-15 min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+      <main className="lg:max-w-5xl mx-auto lg:pt-[4rem] lg:pb-[6rem] md:pt-12 md:pb-20 pt-8 pb-15 min-h-[calc(100dvh-26.125px)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
         <h2 className="text-gray lg:text-base md:text-sm text-xs lg:px-0 md:px-7.5 px-4">
           <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
           <Link href="/recipe">레시피</Link>
