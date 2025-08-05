@@ -75,7 +75,14 @@ export default function RecipeList({ post }: RecipeListProps) {
       if (isBookmarked) {
         const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) remove(postId);
-        else alert(res.message || '삭제 중 오류가 발생했습니다.');
+        else {
+          await Swal.fire({
+            icon: 'error',
+            title: '삭제 실패',
+            text: res.message || '삭제 중 오류가 발생했습니다.',
+            confirmButtonText: '확인',
+          });
+        }
       } else {
         const res = await addRecipeBookmark(accessToken, postId);
         if (res.ok === 1 && res.item) add(postId, res.item._id);

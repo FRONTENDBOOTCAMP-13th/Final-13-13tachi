@@ -44,12 +44,9 @@ export default function RecipeCard({ posts, toggleBookmark }: RecipeCardProps) {
                   {item.title}
                 </span>
                 <Bookmark
-                  className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] ${
-                    likeMap.has(item._id)
-                      ? 'fill-black text-black'
-                      : 'text-black'
-                  }`}
                   strokeWidth={1}
+                  className={`absolute right-0 md:top-1 cursor-pointer w-[1.25rem] top-0 md:w-[1.5rem] 
+                  ${likeMap.has(item._id) ? 'fill-black text-black' : 'text-black'} focus:outline-none`}
                   onClick={e => {
                     e.preventDefault();
                     toggleBookmark(item._id);
