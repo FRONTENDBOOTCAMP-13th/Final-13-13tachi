@@ -97,7 +97,7 @@ export default function RecipeSearchClient({ searchQuery }: Props) {
       : filteredRecipes.filter(r => r.category === activeTab);
 
   return (
-    <div className="md:px-7.5 px-5 min-h-[calc(100dvh-26.125px)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+    <div className="md:px-7.5 px-5 min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <main className="lg:max-w-5xl mx-auto lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-12.5 md:pb-20 pt-[1.875rem] pb-15">
         <h2 className="text-gray lg:text-base md:text-sm text-xs">
           <Link href="/">HOME</Link>
