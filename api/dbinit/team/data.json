@@ -10,7 +10,7 @@
       "addressDetail2": "111동 111호",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/profile-1.png",
+      "image": "/profile-1.png",
       "extra": {
         "birthday": "03-23"
       }
@@ -25,7 +25,7 @@
       "addressDetail2": "길거리",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/profile-2.png",
+      "image": "/about-profile1.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -41,7 +41,7 @@
       "addressDetail2": "",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/profile-3.png",
+      "image": "/about-profile3.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -57,7 +57,7 @@
       "addressDetail2": "1234호",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/profile-4.png",
+      "image": "/about-profile4.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -73,7 +73,7 @@
       "addressDetail2": "16, 17층",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/profile-7.png",
+      "image": "/about-profile2.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -1326,7 +1326,7 @@
         "type": "user",
         "name": "강석현",
         "email": "tjrgus0419@gmail.com",
-        "image": "uploadFiles/profile-4.png"
+        "image": "/about-profile4.svg"
       },
       "createdAt": "2025.08.04 17:01:24",
       "updatedAt": "2025.08.04 17:01:24",
@@ -1340,7 +1340,7 @@
     {
       "type": "recipe",
       "title": "🍓 딸기모찌 (이치고다이후쿠) 레시피",
-      "content": "<h3>📌 재료</h3><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>생딸기 6개 (작고 예쁜 것으로)</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>팥앙금 200g (시판용 또는 직접 만든 것)</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>찹쌀가루(맵쌀가루) 100g</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>설탕 2큰술</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>물 150ml</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>감자전분(또는 옥수수전분) 약간 (반죽 손에 안 붙게 할 용도)</li></ol><p><br></p><h3>👩‍🍳 만드는 방법</h3><h4>1. 딸기 손질 &amp; 앙금 감싸기</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>딸기를 씻고 꼭지를 제거한 뒤 키친타월로 물기를 제거합니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>팥앙금을 6등분해 평평하게 펴고 딸기를 하나씩 넣어 감싸주세요.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 딸기 꼭지 부분이 아래로 가게 감싸면 모양이 예뻐요.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 냉장고에 살짝 넣어두면 작업하기 쉬워요.</li></ol><h4>2. 모찌 반죽 만들기 (전자레인지용)</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>큰 내열볼에 <strong>찹쌀가루 100g + 설탕 2큰술 + 물 150ml</strong>를 넣고 잘 섞습니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>랩을 씌워 전자레인지에 <strong>2분간</strong> 돌립니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>꺼내서 주걱으로 섞은 뒤, 다시 랩을 씌우고 <strong>1분 30초~2분</strong> 더 돌립니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 전체적으로 투명해지고 쫀득한 상태가 되면 OK!</li></ol><h4>3. 반죽 식히고 나누기</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>도마에 감자전분을 넉넉히 뿌리고, 반죽을 올려 살짝 식힙니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>뜨거울 땐 조심하세요!</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>반죽을 6등분해 밀대로 얇게 펴거나 손으로 넓게 눌러주세요.</li></ol><h4>4. 앙금 딸기를 반죽에 싸기</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>준비한 딸기+앙금을 반죽으로 감쌉니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 반죽이 쫀득해서 잘 붙어요. 바닥 부분을 꼬집어 마무리하세요.</li></ol><h4>5. 완성!</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>감자전분을 가볍게 털어내고, 접시에 담아 완성!</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>냉장보관하면 반죽이 딱딱해지니 <strong>당일 섭취 권장</strong>입니다.</li></ol><p><br></p><h3>✅ 팁</h3><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>팥앙금 대신 <strong>누텔라</strong>, <strong>크림치즈</strong>, <strong>말차앙금</strong>으로도 응용 가능해요!</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>전자레인지가 없으면 찜기에서 15~20분간 쪄서 반죽 만들 수도 있어요.</li></ol>",
+      "content": "<h3>📌 재료</h3><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>생딸기 6개 (작은것으로)</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>팥앙금 200g (시판용 또는 직접 만든 것)</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>찹쌀가루(맵쌀가루) 100g</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>설탕 2큰술</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>물 150ml</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>감자전분(또는 옥수수전분) 약간 (반죽 손에 안 붙게 할 용도)</li></ol><p><br></p><h3>👩‍🍳 만드는 방법</h3><h4>1. 딸기 손질 &amp; 앙금 감싸기</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>딸기를 씻고 꼭지를 제거한 뒤 키친타월로 물기를 제거합니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>팥앙금을 6등분해 평평하게 펴고 딸기를 하나씩 넣어 감싸주세요.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 딸기 꼭지 부분이 아래로 가게 감싸면 모양이 예뻐요.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 냉장고에 살짝 넣어두면 작업하기 쉬워요.</li></ol><h4>2. 모찌 반죽 만들기 (전자레인지용)</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>큰 내열볼에 <strong>찹쌀가루 100g + 설탕 2큰술 + 물 150ml</strong>를 넣고 잘 섞습니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>랩을 씌워 전자레인지에 <strong>2분간</strong> 돌립니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>꺼내서 주걱으로 섞은 뒤, 다시 랩을 씌우고 <strong>1분 30초~2분</strong> 더 돌립니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 전체적으로 투명해지고 쫀득한 상태가 되면 OK!</li></ol><h4>3. 반죽 식히고 나누기</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>도마에 감자전분을 넉넉히 뿌리고, 반죽을 올려 살짝 식힙니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>뜨거울 땐 조심하세요!</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>반죽을 6등분해 밀대로 얇게 펴거나 손으로 넓게 눌러주세요.</li></ol><h4>4. 앙금 딸기를 반죽에 싸기</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>준비한 딸기+앙금을 반죽으로 감쌉니다.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span> 👉 반죽이 쫀득해서 잘 붙어요. 바닥 부분을 꼬집어 마무리하세요.</li></ol><h4>5. 완성!</h4><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>감자전분을 가볍게 털어내고, 접시에 담아 완성!</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>냉장보관하면 반죽이 딱딱해지니 <strong>당일 섭취 권장</strong>입니다.</li></ol><p><br></p><h3>✅ 팁</h3><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>팥앙금 대신 <strong>누텔라</strong>, <strong>크림치즈</strong>, <strong>말차앙금</strong>으로도 응용 가능해요!</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>전자레인지가 없으면 찜기에서 15~20분간 쪄서 반죽 만들 수도 있어요.</li></ol>",
       "tag": "딸기",
       "image": "uploadFiles/recipe-7.jpg",
       "views": 0,
@@ -1349,7 +1349,7 @@
         "type": "user",
         "name": "김혜민",
         "email": "mini@gmail.com",
-        "image": "uploadFiles/profile-3.png"
+        "image": "/about-profile3.svg"
       },
       "createdAt": "2025.08.04 16:59:08",
       "updatedAt": "2025.08.04 18:17:40",
@@ -1372,7 +1372,7 @@
         "type": "user",
         "name": "이진현",
         "email": "habit2me@naver.com",
-        "image": "uploadFiles/profile-2.png"
+        "image": "/about-profile1.svg"
       },
       "createdAt": "2025.08.04 16:57:40",
       "updatedAt": "2025.08.04 16:57:40",
@@ -1395,7 +1395,7 @@
         "type": "user",
         "name": "임한길",
         "email": "oneway@13tachi.com",
-        "image": "uploadFiles/profile-7.png"
+        "image": "/about-profile2.svg"
       },
       "createdAt": "2025.08.04 16:55:50",
       "updatedAt": "2025.08.04 16:55:50",
@@ -1418,7 +1418,7 @@
         "type": "user",
         "name": "강석현",
         "email": "tjrgus0419@gmail.com",
-        "image": "uploadFiles/profile-4.png"
+        "image": "/about-profile4.svg"
       },
       "createdAt": "2025.08.04 16:34:26",
       "updatedAt": "2025.08.04 16:37:21",
@@ -1441,7 +1441,7 @@
         "type": "user",
         "name": "임한길",
         "email": "oneway@13tachi.com",
-        "image": "uploadFiles/profile-7.png"
+        "image": "/about-profile2.svg"
       },
       "createdAt": "2025.08.04 16:09:29",
       "updatedAt": "2025.08.04 16:09:29",
@@ -1465,7 +1465,7 @@
         "type": "user",
         "name": "이진현",
         "email": "habit2me@naver.com",
-        "image": "uploadFiles/profile-2.png"
+        "image": "/about-profile1.svg"
       },
       "createdAt": "2025.08.04 15:46:32",
       "updatedAt": "2025.08.04 15:46:32",
@@ -1479,7 +1479,7 @@
     {
       "type": "recipe",
       "title": "당근 라페",
-      "content": "<p><strong>당근 라페</strong>의 라페는 강판에 간다는 뜻의 프랑스어로, 당근을 잘게 썰어 소스에 절인 프렌치 샐러드라고 해요\r.</p><p>빵에 얹어 먹거나 고기와 함께 드시면 좋아요!</p><p><br></p><p>당근 라페 레시피</p><p><br></p><ol><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>껍질 벗긴 당근은 채칼을 이용해 잘게 썬다</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>소금 1 작은술에 절인다</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>절인 물은 꼭 짜서 버린다</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>올리브 오일 3 큰술, 머스터드 1/2 작은술, 식초 2~4 큰술을 넣어 버무린다</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>입맛에 따라 설탕을 넣어준다</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>보관 용기에 담아 냉장 보관한다</li></ol><p><br></p><p><br></p>",
+      "content": "<p><strong>당근 라페</strong>의 라페는 강판에 간다는 뜻의 프랑스어로, 당근을 잘게 썰어 소스에 절인 프렌치 샐러드라고 해요.</p><p>빵에 얹어 먹거나 고기와 함께 드시면 좋아요!</p><p><br></p><p><br></p><h2><strong>당근 라페 레시피 🥕</strong></h2><p><br></p><p>1. 껍질 벗긴 당근은 채칼을 이용해 잘게 썬다</p><p>2. 소금 1 작은술에 절인다</p><p>3. 절인 물은 꼭 짜서 버린다</p><p>4. 올리브 오일 3 큰술, 머스터드 1/2 작은술, 식초 2~4 큰술을 넣어 버무린다</p><p>5. 입맛에 따라 설탕을 넣어준다</p><p>6. 보관 용기에 담아 냉장 보관한다</p><p><br></p><p><br></p><p>너무 간단고 맛있는 당근 라페 꼭 도전해보세요 ~~</p>",
       "tag": "당근",
       "image": "uploadFiles/recipe-1.jpg",
       "views": 0,
@@ -1488,7 +1488,7 @@
         "type": "user",
         "name": "김혜민",
         "email": "mini@gmail.com",
-        "image": "uploadFiles/profile-3.png"
+        "image": "/about-profile3.svg"
       },
       "createdAt": "2025.08.04 15:29:33",
       "updatedAt": "2025.08.04 15:29:33",

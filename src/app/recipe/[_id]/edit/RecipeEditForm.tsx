@@ -98,14 +98,12 @@ export default function RecipeEditForm({
         <QuillNoSSRWrapper
           modules={{
             toolbar: [
-              [{ header: [1, 2, 3, false] }],
               ['bold', 'italic', 'underline', 'strike'],
               ['link'],
               ['clean'],
             ],
           }}
           formats={[
-            'header',
             'font',
             'size',
             'bold',

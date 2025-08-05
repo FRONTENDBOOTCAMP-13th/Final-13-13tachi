@@ -34,7 +34,23 @@ export default function RecipeWriteClient() {
     '딸기',
     '포도',
     '수박',
+    '고추',
+    '바질',
+    '시금치',
+    '토마토',
+    '콩나물',
+    '호박',
+    '멜론',
+    '양배추',
+    '느타리 버섯',
+    '복숭아',
+    '파프리카',
+    '옥수수',
+    '마늘',
   ];
+
+  const visibleIngredients = ingredientList.slice(0, 10);
+  const hiddenIngredients = ingredientList.slice(10);
 
   const handleClick = (ingredient: string) => {
     setSelectedIngredients(prev =>
@@ -132,19 +148,19 @@ export default function RecipeWriteClient() {
         type="text"
         name="title"
         placeholder="제목을 입력 해주세요."
-        className="w-full h-12 border border-light-gray rounded-lg pl-4 mb-4"
+        className="w-full h-12 lg:text-base md:text-base text-sm border border-light-gray rounded-lg pl-4 mb-4"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
 
-      <p className="mb-2">
+      <p className="mb-2 lg:text-base md:text-base text-sm">
         사용하신 재료를 선택해주세요 (최대 3개)
         <span className="text-required-red ml-1">*</span>
       </p>
 
-      <div className="flex justify-between items-center mb-5">
-        <div className="flex gap-4 flex-wrap">
-          {ingredientList.map((ingredient, idx) => (
+      <div className="flex justify-between items-start mb-5">
+        <div className="flex lg:gap-4 md:gap-4 gap-2 flex-wrap">
+          {visibleIngredients.map((ingredient, idx) => (
             <FoodBtn
               key={idx}
               label={ingredient}
@@ -152,32 +168,31 @@ export default function RecipeWriteClient() {
               onClick={() => handleClick(ingredient)}
             />
           ))}
+          {toggleOpen && (
+            <div className="flex lg:gap-4 md:gap-4 gap-2 flex-wrap border border-light-gray p-4 shadow-image rounded-md">
+              {hiddenIngredients.map((ingredient, idx) => (
+                <FoodBtn
+                  key={`hidden-${idx}`}
+                  label={ingredient}
+                  selected={selectedIngredients.includes(ingredient)}
+                  onClick={() => handleClick(ingredient)}
+                />
+              ))}
+            </div>
+          )}
         </div>
+
         <button
           type="button"
           onClick={() => setToggleOpen(!toggleOpen)}
           aria-label="재료 토글"
+          className="ml-2"
         >
           <ChevronDown
-            className={`${toggleOpen ? 'rotate-180' : ''} transition-transform`}
+            className={`transition-transform ${toggleOpen ? 'rotate-180' : ''}`}
           />
         </button>
       </div>
-
-      {toggleOpen && (
-        <div className="p-4 border rounded-lg mb-4">
-          <div className="flex gap-4 flex-wrap">
-            {ingredientList.map((ingredient, idx) => (
-              <FoodBtn
-                key={idx}
-                label={ingredient}
-                selected={selectedIngredients.includes(ingredient)}
-                onClick={() => handleClick(ingredient)}
-              />
-            ))}
-          </div>
-        </div>
-      )}
 
       <TextEditor value={content} onChange={setContent} />
 
@@ -193,7 +208,7 @@ export default function RecipeWriteClient() {
         />
         <label
           htmlFor="fileInput"
-          className="w-80 h-12 border border-light-gray rounded-lg pl-4 flex items-center cursor-pointer overflow-hidden"
+          className="w-80 h-12 lg:text-base md:text-base text-sm border border-light-gray rounded-lg pl-4 flex items-center cursor-pointer overflow-hidden"
         >
           {fileName}
         </label>

@@ -42,7 +42,7 @@ export default function AboutContent() {
   const selected = members.find(m => m.name === selectedMember);
 
   return (
-    <main className="min-h-[calc(100dvh-26.125px)] md:min-h-[calc(100dvh-20.1875rem)] bg-[#f8f8f0] ">
+    <main className="min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] bg-[#f8f8f0] ">
       <div className="lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-[3.125rem] md:pb-20 pt-[1.875rem] pb-[3.75rem] mx-auto py-16 px-[20px] md:px-[30px] lg:px-[0px]  lg:max-w-5xl">
         {/* Title */}
         <div className="mb-10">
@@ -75,7 +75,7 @@ export default function AboutContent() {
             <p className="text-2xl font-bold text-green-800 mb-4">
               🌿 UgVeg가 추구하는 것
             </p>
-            <p className="leading-relaxed text-[1.05rem]">
+            <p className="text-sm md:text-base leading-relaxed">
               흙내음 상점은 못난이 농작물, 즉 겉모습에 약간의 흠집이 있거나
               모양이 특이해도 품질과 맛에는 전혀 문제가 없는 농산물들을 판매하는
               곳입니다. 자연이 빚어낸, 각기 다른 모양과 색깔을 가진 농작물들은
@@ -110,7 +110,7 @@ export default function AboutContent() {
             <h4 className="text-2xl font-bold mb-6 text-green-800">
               🥕 왜 못난이 농산물인가요?
             </h4>
-            <div className="text-[1.05rem] leading-relaxed text-gray-800 space-y-6">
+            <div className="text-sm md:text-base ] leading-relaxed text-gray-800 space-y-6">
               <p>
                 자연이 만든 농작물은 똑같은 모양일 수 없습니다. 햇빛, 바람, 비,
                 흙 속의 영양소까지 — 수많은 자연 조건 속에서 농작물은 각자 다른
@@ -161,7 +161,7 @@ export default function AboutContent() {
           <p className="text-2xl font-bold text-green-800 mb-4">
             🚜 UgVeg의 유통 방식
           </p>
-          <p className="leading-relaxed text-[1.05rem] mt-8">
+          <p className="text-sm md:text-base leading-relaxed mt-8">
             흙내음 상점은 농부와 소비자 사이의 거리를 줄이는 새로운 유통 방식을
             지향합니다. 중간 유통 과정을 최소화하고,
             <strong>농가에서 직접 소비자에게 바로 배송</strong>하는 직송
@@ -240,7 +240,7 @@ export default function AboutContent() {
           <h4 className="text-2xl font-bold mb-8 text-green-800">
             ❓ 자주 묻는 질문
           </h4>
-          <div className="space-y-6 text-[1.05rem]">
+          <div className="space-y-6 text-sm md:text-base">
             <div>
               <p className="font-semibold text-gray-800">
                 Q. 못난이 농산물은 정말 괜찮은 건가요?
@@ -283,10 +283,7 @@ export default function AboutContent() {
             </div>
           </div>{' '}
         </motion.div>{' '}
-        <hr className="my-16 border-t border-gray-300 mb-1" />
-        <p className="text-xs text-light-gray text-right mb-[50px]">
-          프로필 이미지 출처 &quot;Designed by Freepik &quot;
-        </p>
+        <hr className="my-16 border-t border-gray-300" />
         {/* Team Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -315,7 +312,7 @@ export default function AboutContent() {
                   height={100}
                   className="rounded-full border border-gray-300"
                 />
-                <div className="text-lg font-semibold text-center">
+                <div className="text-base md:text-lg font-semibold text-center">
                   <span>{member.name}</span>
                 </div>
               </motion.div>
@@ -345,7 +342,9 @@ export default function AboutContent() {
               <p className="text-xl font-bold text-green-800">
                 {selected.name}
               </p>
-              <p className="text-base text-gray-700">{selected.intro}</p>
+              <p className="mt-2 text-sm md:text-base text-gray-700">
+                {selected.intro}
+              </p>
             </div>
           </div>
         </motion.div>
