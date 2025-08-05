@@ -4,6 +4,7 @@ import OrderInfoItem from '@/app/mypage/order/[_id]/OrderInfoItem';
 import Button from '@/components/common/Button';
 import CustomLink from '@/components/common/CustomLink';
 import { OrderInfoItemType, ProductItemType } from '@/types';
+import Swal from 'sweetalert2';
 
 interface BuyListActionProps {
   addAction: (FormData: FormData) => void;
@@ -16,6 +17,18 @@ export default function OrderInfoList({
   item: OrderInfoItemType;
   action: BuyListActionProps;
 }) {
+  const handleClick = () => {
+    Swal.fire({
+      icon: 'info',
+      text: '추후 제공될 기능힙니다.',
+      confirmButtonText: '확인',
+    }).then(result => {
+      if (result.isConfirmed) {
+        // 취소 확정 시 실행할 작업
+        console.log('주문이 취소되었습니다.');
+      }
+    });
+  };
   return (
     <div className="w-full">
       <div className="flex flex-row justify-between text-sm mb-2.5">
@@ -77,10 +90,10 @@ export default function OrderInfoList({
         </div>
       </div>
       <div className="flex flex-row justify-center gap-9 mt-[4.0625rem]">
-        <Button size="xxl" variant="white">
+        <Button size="xxl" variant="white" onClick={handleClick}>
           주문 취소하기
         </Button>
-        <CustomLink href="/mypage/buylist" size="xxl">
+        <CustomLink href="/mypage/order" size="xxl">
           <span className="hidden md:inline">주문 내역으로&nbsp;</span>
           <span>돌아가기</span>
         </CustomLink>
