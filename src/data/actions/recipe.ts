@@ -382,7 +382,7 @@ export async function deleteBookmark(
 }
 
 // 이미지 파일 업로드
-export async function uploadFile(file: File): ApiResPromise<string> {
+export async function uploadFile(file: File): Promise<string> {
   const formData = new FormData();
   formData.append('attach', file);
 
