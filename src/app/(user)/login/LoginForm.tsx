@@ -68,7 +68,12 @@ export default function LoginForm() {
     } else {
       if (!userState?.errors && userState?.message) {
         // 입력값 검증에러가 아닌 경우
-        alert(userState.message); // 로그인 실패 메세지
+        Swal.fire({
+          icon: 'error',
+          title: '로그인 실패',
+          text: userState.message,
+          confirmButtonText: '확인',
+        }); // 로그인 실패 메세지
       }
     }
   }, [userState]);
