@@ -11,6 +11,7 @@ import { getRecipeDetail, getRelatedProducts } from '@/data/functions/recipe';
 import { getProducts } from '@/data/functions/product';
 import { Metadata } from 'next';
 import CustomLink from '@/components/common/CustomLink';
+import { Eye } from 'lucide-react';
 
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
@@ -139,10 +140,19 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
             />
 
             {/* 공유 + 북마크 */}
-            <div className="flex justify-end lg:mt-3 md:mt-2 mt-2">
-              <ShareButton />
-              <div className="text-center ml-[0.4375rem] flex items-center">
-                <BookmarkButton postId={recipe.item._id} />
+            <div className="flex justify-end lg:mt-3 md:mt-2 mt-2 md:text-base text-sm ">
+              <div className="text-center flex gap-2 text-gray">
+                <div>
+                  <ShareButton />
+                </div>
+                <div className="flex flex-col">
+                  <BookmarkButton postId={recipe.item._id} />
+                  <span>{recipe.item.bookmarks}</span>
+                </div>
+                <div>
+                  <Eye strokeWidth={1} className="w-4 md:w-10" />
+                  <span>{recipe.item.views}</span>
+                </div>
               </div>
             </div>
 

@@ -91,7 +91,11 @@ export default function BookmarkButton({ postId }: BookmarkButtonProps) {
     >
       <Bookmark
         strokeWidth={1}
-        className={isBookmarked ? 'fill-black text-black' : 'text-black'}
+        className={
+          isBookmarked
+            ? 'fill-black text-black w-4 md:w-6'
+            : 'text-black w-4 md:w-6'
+        }
       />
     </button>
   );
