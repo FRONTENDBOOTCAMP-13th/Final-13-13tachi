@@ -46,7 +46,7 @@ export default function BookmarkRecipeItem({
             />
             <input type="hidden" name="_id" value={item._id} />
             <button className="hover:cursor-pointer">
-              <Bookmark fill="black" />
+              <Bookmark fill="black" className="w-4 md:w-6" />
             </button>
           </form>
         </div>

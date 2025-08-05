@@ -33,7 +33,7 @@ export default function ShareButton() {
         type="button"
         className="cursor-pointer"
       >
-        <Share2 strokeWidth={1} fill="true" />
+        <Share2 strokeWidth={1} fill="true" className="w-4 md:w-10" />
       </button>
     </div>
   );
