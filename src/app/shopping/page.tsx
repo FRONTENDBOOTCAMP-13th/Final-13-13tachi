@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ShoppingList() {
   return (
     <>
-      <main className="min-h-[calc(100dvh-26.125px)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+      <main className="min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
         <div className="mx-auto px-5 pt-7.5 pb-15 md:px-7.5 md:pt-12.5 md:pb-20 lg:px-0 lg:max-w-5xl lg:pt-[4.0625rem] lg:pb-25">
           {/* ST: 오늘의 못난이는? */}
           <div>

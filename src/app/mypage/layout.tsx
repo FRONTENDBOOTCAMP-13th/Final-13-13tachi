@@ -55,7 +55,7 @@ export default function RootLayout({
   };
 
   return (
-    <main className="min-h-[calc(100dvh-26.125px)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+    <main className="min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
       <div className="flex justify-center lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-[3.125rem] md:pb-20 pt-[1.875rem] pb-[3.75rem]">
         <div className="flex flex-row lg:w-5xl w-full lg:px-0 md:px-[1.875rem] px-5">
           <div className="flex flex-col gap-[2.1875rem] w-full">
