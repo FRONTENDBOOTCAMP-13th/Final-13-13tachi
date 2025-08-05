@@ -10,7 +10,7 @@
       "addressDetail2": "111동 111호",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/profile-1.png",
+      "image": "/profile-1.png",
       "extra": {
         "birthday": "03-23"
       }
@@ -25,7 +25,7 @@
       "addressDetail2": "길거리",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/about-profile-1.svg",
+      "image": "/about-profile1.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -41,7 +41,7 @@
       "addressDetail2": "",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/about-profile-3.svg",
+      "image": "/about-profile3.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -57,7 +57,7 @@
       "addressDetail2": "1234호",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/about-profile-4.svg",
+      "image": "/about-profile4.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -73,7 +73,7 @@
       "addressDetail2": "16, 17층",
       "type": "admin",
       "loginType": "email",
-      "image": "uploadFiles/about-profile-2.svg",
+      "image": "/about-profile2.svg",
       "extra": {
         "birthday": "03-23"
       },
@@ -1326,7 +1326,7 @@
         "type": "user",
         "name": "강석현",
         "email": "tjrgus0419@gmail.com",
-        "image": "uploadFiles/about-profile-4.svg"
+        "image": "/about-profile4.svg"
       },
       "createdAt": "2025.08.04 17:01:24",
       "updatedAt": "2025.08.04 17:01:24",
@@ -1349,7 +1349,7 @@
         "type": "user",
         "name": "김혜민",
         "email": "mini@gmail.com",
-        "image": "uploadFiles/about-profile-3.svg"
+        "image": "/about-profile3.svg"
       },
       "createdAt": "2025.08.04 16:59:08",
       "updatedAt": "2025.08.04 18:17:40",
@@ -1372,7 +1372,7 @@
         "type": "user",
         "name": "이진현",
         "email": "habit2me@naver.com",
-        "image": "uploadFiles/about-profile-1.svg"
+        "image": "/about-profile1.svg"
       },
       "createdAt": "2025.08.04 16:57:40",
       "updatedAt": "2025.08.04 16:57:40",
@@ -1395,7 +1395,7 @@
         "type": "user",
         "name": "임한길",
         "email": "oneway@13tachi.com",
-        "image": "uploadFiles/about-profile-2.svg"
+        "image": "/about-profile2.svg"
       },
       "createdAt": "2025.08.04 16:55:50",
       "updatedAt": "2025.08.04 16:55:50",
@@ -1418,7 +1418,7 @@
         "type": "user",
         "name": "강석현",
         "email": "tjrgus0419@gmail.com",
-        "image": "uploadFiles/about-profile-4.svg"
+        "image": "/about-profile4.svg"
       },
       "createdAt": "2025.08.04 16:34:26",
       "updatedAt": "2025.08.04 16:37:21",
@@ -1441,7 +1441,7 @@
         "type": "user",
         "name": "임한길",
         "email": "oneway@13tachi.com",
-        "image": "uploadFiles/about-profile-2.svg"
+        "image": "/about-profile2.svg"
       },
       "createdAt": "2025.08.04 16:09:29",
       "updatedAt": "2025.08.04 16:09:29",
@@ -1465,7 +1465,7 @@
         "type": "user",
         "name": "이진현",
         "email": "habit2me@naver.com",
-        "image": "uploadFiles/about-profile-1.svg"
+        "image": "/about-profile1.svg"
       },
       "createdAt": "2025.08.04 15:46:32",
       "updatedAt": "2025.08.04 15:46:32",
@@ -1488,7 +1488,7 @@
         "type": "user",
         "name": "김혜민",
         "email": "mini@gmail.com",
-        "image": "uploadFiles/about-profile-3.svg"
+        "image": "/about-profile3.svg"
       },
       "createdAt": "2025.08.04 15:29:33",
       "updatedAt": "2025.08.04 15:29:33",
