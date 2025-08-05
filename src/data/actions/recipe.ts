@@ -22,21 +22,26 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
  */
 export async function createPost(
   postData: CreatePostData,
-): Promise<ApiRes<unknown>> {
-  const res = await fetch(`${API_URL}/posts/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Client-Id': CLIENT_ID,
-      Authorization: `Bearer ${postData.accessToken ?? ''}`,
-    },
-    body: JSON.stringify(postData),
-  });
+): ApiResPromise<Post> {
+  let res: Response;
+  let data: ApiRes<Post>;
 
-  const data = await res.json();
+  try {
+    res = await fetch(`${API_URL}/posts/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${postData.accessToken ?? ''}`,
+      },
+      body: JSON.stringify(postData),
+    });
 
-  if (!res.ok || data.ok !== 1) {
-    return { ok: 0, message: data.message ?? '게시글 등록 실패' };
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
 
   if (data.ok) {
@@ -60,8 +65,11 @@ export async function updateRecipe(
   postId: number,
   updateData: { title: string; content: string },
 ): ApiResPromise<Post> {
+  let res: Response;
+  let data: ApiRes<Post>;
+
   try {
-    const res = await fetch(`${API_URL}/posts/${postId}`, {
+    res = await fetch(`${API_URL}/posts/${postId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -71,16 +79,22 @@ export async function updateRecipe(
       body: JSON.stringify(updateData),
     });
 
-    const data = await res.json();
+    data = await res.json();
 
-    if (!res.ok || data.ok !== 1) {
-      return { ok: 0, message: data.message || '수정에 실패했습니다.' };
-    }
-
-    return data;
+    // if (!res.ok || data.ok !== 1) {
+    //   return { ok: 0, message: data.message || '수정에 실패했습니다.' };
+    // }
   } catch (error) {
     console.error('레시피 수정 오류:', error);
     return { ok: 0, message: '수정 중 오류가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`recipe`); // 게시글 상세 페이지 갱신
+    revalidatePath(`/recipe`);
+    return data;
+  } else {
+    return data;
   }
 }
 
@@ -88,14 +102,17 @@ export async function updateRecipe(
  * 레시피 삭제
  * @param {string} accessToken - 인증 토큰
  * @param {number} postId - 게시글 ID
- * @returns {Promise<ApiRes<unknown>>} - 삭제 결과 응답 객체
+ * @returns {Promise<ApiRes<Post>>} - 삭제 결과 응답 객체
  */
 export async function deleteRecipe(
   accessToken: string,
   postId: number,
-): ApiResPromise<unknown> {
+): ApiResPromise<Post> {
+  let res: Response;
+  let data: ApiRes<Post>;
+
   try {
-    const res = await fetch(`${API_URL}/posts/${postId}`, {
+    res = await fetch(`${API_URL}/posts/${postId}`, {
       method: 'DELETE',
       headers: {
         'client-id': CLIENT_ID,
@@ -103,16 +120,22 @@ export async function deleteRecipe(
       },
     });
 
-    const data = await res.json();
+    data = await res.json();
 
-    if (!res.ok || data.ok !== 1) {
-      return { ok: 0, message: data.message || '삭제 실패' };
-    }
-
-    return data;
+    // if (!res.ok || data.ok !== 1) {
+    //   return { ok: 0, message: data.message || '삭제 실패' };
+    // }
   } catch (error) {
     console.error('레시피 삭제 오류:', error);
     return { ok: 0, message: '삭제 중 오류가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`recipe`); // 게시글 상세 페이지 갱신
+    revalidatePath(`/recipe`);
+    return data;
+  } else {
+    return data;
   }
 }
 
@@ -251,9 +274,11 @@ export async function deleteReply(
 export async function addRecipeBookmark(
   accessToken: string,
   postId: number,
-): ApiResPromise<{ _id: number }> {
+): ApiResPromise<LikePostType> {
+  let res: Response;
+  let data: ApiRes<LikePostType>;
   try {
-    const res = await fetch(`${API_URL}/bookmarks/post`, {
+    res = await fetch(`${API_URL}/bookmarks/post`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -263,16 +288,18 @@ export async function addRecipeBookmark(
       body: JSON.stringify({ target_id: postId }),
     });
 
-    const data = await res.json();
-
-    if (!res.ok || data.ok !== 1) {
-      return { ok: 0, message: data.message || '북마크 추가 실패' };
-    }
-
-    return data;
+    data = await res.json();
   } catch (error) {
     console.error('북마크 추가 오류:', error);
     return { ok: 0, message: '북마크 추가 중 오류가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`recipe`); // 게시글 상세 페이지 갱신
+    revalidatePath(`/recipe`);
+    return data;
+  } else {
+    return data;
   }
 }
 
@@ -285,9 +312,11 @@ export async function addRecipeBookmark(
 export async function deleteRecipeBookmark(
   accessToken: string,
   bookmarkId: number,
-): ApiResPromise<unknown> {
+): ApiResPromise<LikePostType> {
+  let res: Response;
+  let data: ApiRes<LikePostType>;
   try {
-    const res = await fetch(`${API_URL}/bookmarks/${bookmarkId}`, {
+    res = await fetch(`${API_URL}/bookmarks/${bookmarkId}`, {
       method: 'DELETE',
       headers: {
         'Client-Id': CLIENT_ID,
@@ -295,16 +324,18 @@ export async function deleteRecipeBookmark(
       },
     });
 
-    const data = await res.json();
-
-    if (!res.ok || data.ok !== 1) {
-      return { ok: 0, message: data.message || '북마크 삭제 실패' };
-    }
-
-    return data;
+    data = await res.json();
   } catch (error) {
     console.error('북마크 삭제 오류:', error);
     return { ok: 0, message: '북마크 삭제 중 오류가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`recipe`); // 게시글 상세 페이지 갱신
+    revalidatePath(`/recipe`);
+    return data;
+  } else {
+    return data;
   }
 }
 
@@ -351,7 +382,7 @@ export async function deleteBookmark(
 }
 
 // 이미지 파일 업로드
-export async function uploadFile(file: File): Promise<string> {
+export async function uploadFile(file: File): ApiResPromise<string> {
   const formData = new FormData();
   formData.append('attach', file);
 
