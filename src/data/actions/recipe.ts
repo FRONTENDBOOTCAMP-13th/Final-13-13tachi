@@ -39,7 +39,13 @@ export async function createPost(
     return { ok: 0, message: data.message ?? '게시글 등록 실패' };
   }
 
-  return data;
+  if (data.ok) {
+    revalidateTag(`recipe`); // 게시글 상세 페이지 갱신
+    revalidatePath(`/recipe`);
+    return data;
+  } else {
+    return data;
+  }
 }
 
 /**
