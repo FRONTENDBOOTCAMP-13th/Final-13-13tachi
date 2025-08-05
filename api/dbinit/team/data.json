@@ -183,13 +183,11 @@
 
   "product": [
     {
-      "seller_id": 2,
+      "seller_id": 6,
       "price": 1990,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근1",
-      "quantity": 320,
+      "name": "스낵당근",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
@@ -200,7 +198,7 @@
       ],
       "content": "",
       "extra": {
-        "isBest": true,
+        "isBest": false,
         "category": ["당근", "채소"],
         "details": "150g",
         "info": [
@@ -212,13 +210,11 @@
       }
     },
     {
-      "seller_id": 3,
-      "price": 2990,
+      "seller_id": 7,
+      "price": 3550,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이2",
-      "quantity": 200,
+      "name": "달수고구마",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
@@ -230,24 +226,22 @@
       "content": "",
       "extra": {
         "isBest": true,
-        "category": ["고구마", "과일"],
+        "category": ["달수고구마", "채소"],
         "details": "500g",
         "info": [
+          "유기농 고구마 표면에 검은 반점이나 무늬가 있어요. 토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요.",
           "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
+          "크기가 아담하거나 우람하고, 모양이 개성 있어요."
         ],
         "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
       }
     },
     {
-      "seller_id": 4,
-      "price": 2150,
+      "seller_id": 8,
+      "price": 1190,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯3",
-      "quantity": 200,
+      "name": "브라운양송이버섯",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
@@ -259,1389 +253,972 @@
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
+        "category": ["브라운양송이버섯", "채소"],
         "details": "150g",
         "info": [
           "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
+          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
           "크기가 아담하고 모양이 개성 있어요."
         ],
         "storage": ["습기없이 냉장보관 / 3일"]
       }
     },
     {
-      "seller_id": 5,
-      "price": 1990,
+      "seller_id": 9,
+      "price": 14900,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근4",
-      "quantity": 320,
+      "name": "샤인머스캣",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
+          "path": "uploadFiles/product-4.jpeg",
+          "name": "product-4.jpeg",
+          "originalname": "product-4.jpeg"
         }
       ],
       "content": "",
       "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
+        "isBest": false,
+        "category": ["샤인머스캣", "과일"],
+        "details": "1송이(600g 이상)",
         "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
+          "연둣빛 싱그러운 샤인머스캣은 아삭아삭, 씹는 맛이 일품이죠. 은은한 머스캣 향과 입안 가득 차오르는 달콤한 수분감을 함께 느껴보세요.",
+          "배송 중 충격이 있을 경우 가지에서 포도알이 후두둑 떨어질 수 있어요. 신선도에는 문제가 없으니 안심하고 드셔도 좋아요."
         ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
+        "storage": ["키친타월로 감싸 밀봉하여 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 10,
+      "price": 8990,
+      "shippingFees": 0,
+      "name": "머스크 멜론",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-5.jpeg",
+          "name": "product-5.jpeg",
+          "originalname": "product-5.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["머스크 멜론", "과일"],
+        "details": "1개",
+        "info": [
+          "가장 대중적인 머스크멜론은 촘촘한 그물무늬 속 달콤하고 부드러운 과육을 가졌어요. 1.2kg 내외 부담없는 사이즈예요.",
+          "후숙 정도를 직접 조정하실 수 있어요. 수령 후 3~4일 정도 충분히 후숙해주세요. 밑둥을 눌렀을 때 말랑하게 들어간 상태에서 드시길 추천해요.",
+          "먹기 전 냉장보관 후 시원하게 드시면 더 맛있게 즐기실 수 있어요."
+        ],
+        "storage": ["밀봉하여냉장보관 / 5일"]
       }
     },
     {
       "seller_id": 6,
-      "price": 2990,
+      "price": 7990,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이5",
-      "quantity": 200,
+      "name": "패션프루트",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯6",
-      "quantity": 200,
-      "buyQuantity": 198,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-6.jpeg",
+          "name": "product-6.jpeg",
+          "originalname": "product-6.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["패션프루트", "과일"],
+        "details": "300g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "백 가지 향이 난다는 뜻으로 백향과로도 불리는 패션프루트! 붉은 껍질 속 노랗고 새콤달콤한 과육과 오독오독 씹히는 까만 씨앗을 가진 매혹적인 과일이에요.",
+          "수령 후 3~4일 정도 후숙해 당도를 높여 맛있게 드셔보세요. 후숙할수록 겉면이 쭈글쭈글해지고 단맛이 올라가요.",
+          "크기로 선별하지 않고, 모양이 개성 있어요. 수확 과정에서 난 상처가 아문 자국이 있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["2~3일 상온보관 후 냉장보관"]
       }
     },
     {
-      "seller_id": 3,
-      "price": 1990,
+      "seller_id": 7,
+      "price": 3190,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근7",
-      "quantity": 320,
+      "name": "조각 브로콜리",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 4,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이8",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 5,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯9",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-7.jpeg",
+          "name": "product-7.jpeg",
+          "originalname": "product-7.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["조각 브로콜리", "채소"],
+        "details": "100g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "한 입에 쏘옥 별도의 손질 없이 그대로 활용하기 좋은 크기의 조각 브로콜리예요. 아이들도 부담없이 먹기 좋아요. 살짝 데쳐 초고추장에 곁들이거나 볶음밥, 카레, 샐러드 등에 넣어 맛과 영양, 색감까지 모두 살려 보세요.",
+          "수령 후 3~4일 정도 후숙해 당도를 높여 맛있게 드셔보세요. 후숙할수록 겉면이 쭈글쭈글해지고 단맛이 올라가요.",
+          "크기가 크거나 작고, 모양이 개성 있어요. 간혹 구멍난 잎, 벌레가 지나간 자리, 작은 벌레 등이 발견될 수 있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["밀봉하여 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 8,
+      "price": 3150,
+      "shippingFees": 0,
+      "name": "흰미니단호박",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-8.jpeg",
+          "name": "product-8.jpeg",
+          "originalname": "product-8.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": true,
+        "category": ["흰미니단호박", "채소"],
+        "details": "1개",
+        "info": [
+          "고소한 밤 맛이 나고 파근파근한 식감을 가졌어요. 찜, 구이 등으로 활용하기 좋아요.",
+          "농약없이 건강히 자라는 과정에서 생긴 영광의 상처와 딱지가 있어요."
+        ],
+        "storage": ["통풍 잘 되는 서늘한 곳에 보관 장기보관시 냉장보관 / 14일"]
+      }
+    },
+    {
+      "seller_id": 9,
+      "price": 1500,
+      "shippingFees": 0,
+      "name": "무농약 가지",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-9.jpg",
+          "name": "product-9.jpg",
+          "originalname": "product-9.jpg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["가지", "채소"],
+        "details": "1개",
+        "info": [
+          "보랏빛 옷 안에 수분을 머금고 있어 식감이 부드러워요. 가지밥, 볶음, 파스타, 튀김, 등 조리법에 따라 다른 매력을 뽐내니 다양하게 활용해 보세요.",
+          "길이가 짧거나 길고, 모양이 개성 있어요."
+        ],
+        "storage": ["밀봉하여 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 10,
+      "price": 1650,
+      "shippingFees": 0,
+      "name": "아담한 무",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-10.jpg",
+          "name": "product-10.jpg",
+          "originalname": "product-10.jpg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["무", "채소"],
+        "details": "1개",
+        "info": [
+          "아삭아삭하고 옹골차게 맛이 든 무예요. 크기도 아담해 무밥, 무국, 생채, 조림, 나물 등 다양하게 활용하기 좋아요. 무 상태에 따라 신선도와 품질을 위해 양끝을 절단해 보내드려요.",
+          "크기가 작거나, 모양이 개성 있어요.",
+          "수확 중에 난 상처가 있기도 해요."
+        ],
+        "storage": ["무청을 제거한 후 밀봉하여 냉장보관 / 7일"]
       }
     },
     {
       "seller_id": 6,
-      "price": 1990,
+      "price": 1650,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "아담한 깐마늘",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-11.jpg",
+          "name": "product-11.jpg",
+          "originalname": "product-11.jpg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["깐마늘", "채소"],
+        "details": "100g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "알싸한 맛과 향에 유용한 영양성분까지. 맛있는 요리에 빠질 수 없는 마늘을 먹기 딱 좋을 만큼 담았어요.",
+          "마늘알 크기가 작아요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["밀폐용기에 담아 습기없이 냉장보관 / 7일"]
+      }
+    },
+    {
+      "seller_id": 7,
+      "price": 2990,
+      "shippingFees": 0,
+      "name": "적양배추",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-12.jpg",
+          "name": "product-12.jpg",
+          "originalname": "product-12.jpg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["적양배추", "채소"],
+        "details": "1개",
+        "info": [
+          "부담없이 드실 수 있는 아담한 크기의 적양배추를 준비했어요. 진한 보랏빛 색감 덕에 조금만 넣어도 식탁을 훨씬 풍성하게 만들어 주죠. 샐러드나 피클뿐 아니라 샌드위치, 김밥의 속재료, 비빔밥의 고명, 볶음 등 다양하게 활용해 보세요.",
+          "간혹 구멍난 잎, 벌레가 지나간 자리, 작은 벌레 등이 발견될 수 있어요."
+        ],
+        "storage": ["밀봉하여 냉장보관"]
+      }
+    },
+    {
+      "seller_id": 8,
+      "price": 2890,
+      "shippingFees": 0,
+      "name": "고송버섯",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-13.jpeg",
+          "name": "product-13.jpeg",
+          "originalname": "product-13.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["고송버섯", "채소"],
+        "details": "120g",
+        "info": [
+          "표고버섯을 개량해 만든 새로운 품종의 버섯이에요. 갓에서는 표고의 맛을, 대에서는 송이버섯의 향과 식감을 느낄 수 있어요. 간편하게 굽기만 해도 맛이 뛰어나고 달걀물을 입혀 부쳐도 별미예요. 특히 쫄깃한 식감이 일품이니 대 부분까지 꼭 놓치지 말고 즐겨보세요.",
+          "크기가 다양해요. 갓 부분이 조금 깨지거나 피어있을 수 있어요."
+        ],
+        "storage": ["습기없이 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 9,
+      "price": 2350,
+      "shippingFees": 0,
+      "name": "대학찰옥수수",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-14.jpeg",
+          "name": "product-14.jpeg",
+          "originalname": "product-14.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["대학찰옥수수", "채소"],
+        "details": "2개",
+        "info": [
+          "충청북도 괴산에서 생산되는 대표 찰옥수수에요. 찰지고 쫀득쫀득한 식감에 담백하면서도 씹을수록 단맛이 느껴지는 것이 특징이에요.",
+          "다른 옥수수보다 가늘고 흰색에 가까운 미색을 띄어요."
+        ],
+        "storage": ["밀봉하여 냉장보관 장기보관시 쪄서 냉동보관"]
+      }
+    },
+    {
+      "seller_id": 10,
+      "price": 3690,
+      "shippingFees": 0,
+      "name": "홍감자",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-15.jpeg",
+          "name": "product-15.jpeg",
+          "originalname": "product-15.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["홍감자", "채소"],
+        "details": "400g",
+        "info": [
+          "붉은 껍질을 한 겹 벗기면 샛노란 속살을 만날 수 있어요. 하얀감자에 비해 당도가 높고 보슬보슬한 식감을 가지고 있어 카스테라 감자로도 불려요. 홍감자의 매력을 제대로 즐기려면 껍질째 쪄서 드셔보세요.",
+          "크기가 크거나 작고, 모양이 개성 있어요.",
+          "감자는 수령 후 서늘한 곳에서 보관해 주시거나 키친타월에 감싸 냉장고에 보관해주세요. 수확 당시 흙의 습기로 인해 감자 표면에 미세한 흔적이 남을 수 있으나, 세척 후 안심하고 섭취하실 수 있습니다."
+        ],
+        "storage": [
+          "서늘한 곳에서 습기 없이 보관 또는 신선칸에 냉장보관 / 14일"
+        ]
       }
     },
     {
       "seller_id": 6,
-      "price": 1990,
+      "price": 2090,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "콩나물",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
+          "path": "uploadFiles/product-16.jpeg",
+          "name": "product-16.jpeg",
+          "originalname": "product-16.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
+        "category": ["콩나물", "채소"],
+        "details": "300g",
         "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
+          "품질좋은 국산 무농약 콩으로 깨끗하게 키웠어요. 아삭한 식감이 살아 있으니 국이나 찜, 나물, 밥 등 두루 활용해 보세요.",
+          "크기가 크거나 작고, 모양이 개성 있어요."
         ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
+        "storage": ["세척 후 밀폐용기에 담아 물을 채워 냉장보관 / 3일"]
       }
     },
     {
-      "seller_id": 2,
-      "price": 2990,
+      "seller_id": 7,
+      "price": 3980,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
+      "name": "아스파라거스",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-17.jpg",
+          "name": "product-17.jpg",
+          "originalname": "product-17.jpg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["아스파라거스", "채소"],
+        "details": "100g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "구이나 볶음 요리에 더하면 식탁이 한층 근사해지는 재료죠. 상쾌한 맛에 익힘 정도에 따라 아삭하기도 하고, 부드럽기도한 식감을 갖고 있어 취향에 맞게 요리해먹는 재미가 있어요.",
+          "두께가 가늘거나 두꺼워요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["수분감 있게 밀봉하여 냉장보관 / 5일"]
       }
     },
     {
-      "seller_id": 6,
-      "price": 1990,
+      "seller_id": 8,
+      "price": 2490,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "레드비트",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-18.jpeg",
+          "name": "product-18.jpeg",
+          "originalname": "product-18.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["레드비트", "채소"],
+        "details": "1개",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "선명한 붉은 빛이 매혹적인 비트는 색상만큼이나 신비한 매력을 가진 채소예요. 생으로 먹으면 아삭하면서도 시원한 식감이 돋보이고, 오븐이나 에어프라이어에 천천히 익히면 특유의 흙내음은 사라지고 뭉근한 단맛이 깊이 올라와요.",
+          "오븐구이, 피클, 수프, 샐러드 외에도 ABC주스나 라떼, 전, 후무스 등 다양한 요리로 비트만의 색다른 매력을 만나보세요.",
+          "크기가 크거나 작고 모양이 개성있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["신문지로 감싸 냉장보관 / 14일"]
       }
     },
     {
-      "seller_id": 6,
-      "price": 1990,
+      "seller_id": 9,
+      "price": 5990,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "완숙토마토",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-19.jpeg",
+          "name": "product-19.jpeg",
+          "originalname": "product-19.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["완숙토마토", "채소"],
+        "details": "500g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "한 입 베어 물면 입안 가득 차오르는 과즙 사이로 은은한 단맛과 새콤함이 느껴져요. 식감 또한 단단하면서도 부드러워 다른 재료들과 조화가 좋아요. 부담없이 먹기 좋은 양으로 담았으니 다양하게 활용해 보세요.",
+          "크기에 따라 들어가는 개수는 달라질 수 있어요.",
+          "모양과 크기가 다양해요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": [
+          "꼭지 제거 및 세척 후 물기 없이 밀폐용기에 담아 냉장보관 / 5일"
+        ]
+      }
+    },
+    {
+      "seller_id": 10,
+      "price": 1090,
+      "shippingFees": 0,
+      "name": "대파",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-20.jpeg",
+          "name": "product-20.jpeg",
+          "originalname": "product-20.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["대파", "채소"],
+        "details": "200g",
+        "info": [
+          "알싸한 향과 은은한 단맛으로 다양한 요리에 빠질 수 없는 감초 역할을 하죠. 손쉽게 사용하실 수 있도록 잎에서부터 줄기까지 전체 대파를 비절단으로 보내드려요.",
+          "흰 줄기보다 초록잎 부분이 더 많아요.",
+          "시기에 따라 백납현상을 보이는 대파가 들어갈 수 있어요. 백납은 일교차가 커질 때 잎에 흰 점이 발생하는 현상을 말해요. 드시는 데에는 전혀 문제가 없으니 안심하고 사용하셔도 좋아요."
+        ],
+        "storage": ["손질 후 밀폐용기에 담아 습기없이 냉장보관 / 10일"]
       }
     },
     {
       "seller_id": 6,
       "price": 1990,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "아담한 미니단호박",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
+          "path": "uploadFiles/product-21.jpg",
+          "name": "product-21.jpg",
+          "originalname": "product-21.jpg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["미니단호박", "채소"],
+        "details": "1개(200~300g)",
+        "info": [
+          "껍질에 상처가 아문 흔적과 노란자국이 있어요. 무농약으로 자라는 과정에서 벌레가 지나간 자국이나 나뭇가지에 스친 상처가 있기도 해요. 노란 부분은 땅에 누워 자라면서 생긴 자국이랍니다. 드시는 데에는 문제가 없으니 안심하셔도 좋아요.",
+          "제철을 맞아 수확한 제주 미니밤호박이에요. 달콤한 고소한 맛과 포슬포슬한 식감을 가졌어요. 찜, 구이 등으로 활용하기 좋아요.",
+          "농약없이 건강히 자라는 과정에서 생긴 영광의 상처와 딱지가 있어요."
+        ],
+        "storage": ["통풍 잘 되는 서늘한 곳에 보관 장기보관시 냉장보관 / 14일"]
+      }
+    },
+    {
+      "seller_id": 7,
+      "price": 1990,
+      "shippingFees": 0,
+      "name": "무농약 당근",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-22.jpg",
+          "name": "product-22.jpg",
+          "originalname": "product-22.jpg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": true,
         "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
         "details": "500g",
         "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
+          "은은한 단맛과 아삭한 식감을 지닌 당근을 부담 없이 한 끼 요리에 사용하기 좋은 양으로 보내드려요.",
+          "크기가 아담하고, 모양이 개성 있어요."
         ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
+        "storage": ["습기 없이 냉장보관 / 14일"]
       }
     },
     {
-      "seller_id": 3,
-      "price": 2150,
+      "seller_id": 8,
+      "price": 2990,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
+      "name": "(구)양배추 (현)조세호",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-23.jpg",
+          "name": "product-23.jpg",
+          "originalname": "product-23.jpg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
+        "category": ["양배추", "채소"],
+        "details": "1개",
+        "info": [
+          "한두 번 나눠 먹기 좋은 아담한 크기의 양배추를 보내드려요. 샐러드, 피클, 쌈밥, 볶음, 전 등 무궁무진한 활용도를 자랑해요.",
+          "간혹 구멍난 잎, 벌레가 지나간 자리, 작은 벌레 등이 발견될 수 있어요. 생각보다 우람한 양배추를 받아보실 수도 있어요."
+        ],
+        "storage": ["밀봉하여 냉장보관 / 10일"]
+      }
+    },
+    {
+      "seller_id": 9,
+      "price": 1990,
+      "shippingFees": 0,
+      "name": "미나리",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-24.jpg",
+          "name": "product-24.jpg",
+          "originalname": "product-24.jpg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["미나리", "채소"],
         "details": "150g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "약용채소로 불리는 미나리는 '물에서 자라는 나리'에서 유래한 만큼 생명력이 강해요. 특유의 향긋함과 부드러운 식감으로 잃어버린 입맛을 찾아주곤 해요. 샐러드나 쌈채소, 녹즙처럼 생으로 즐겨도 좋고 무침, 전, 샤브샤브 등 요리에 활용해도 좋아요.",
+          "크기가 다양하고 모양이 개성 있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["밀봉하여 냉장보관 / 10일"]
+      }
+    },
+    {
+      "seller_id": 10,
+      "price": 2550,
+      "shippingFees": 0,
+      "name": "아담한 감자",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-25.jpg",
+          "name": "product-25.jpg",
+          "originalname": "product-25.jpg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["감자", "채소"],
+        "details": "500g",
+        "info": [
+          "통째로 먹기 딱 좋은 크기의 아담한 감자예요. 친환경으로 기른 만큼 잘 씻어 껍질째 드시길 추천해요.",
+          "크기가 아담하고, 모양이 개성 있어요."
+        ],
+        "storage": [
+          "서늘한 곳에서 습기 없이 보관 또는 신선칸에 냉장보관 / 14일"
+        ]
       }
     },
     {
       "seller_id": 6,
-      "price": 1990,
+      "price": 1390,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "느타리버섯",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-26.jpeg",
+          "name": "product-26.jpeg",
+          "originalname": "product-26.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
+        "category": ["느타리버섯", "채소"],
         "details": "150g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "쫄깃쫄깃한 식감과 씹으면 씹을수록 고유의 단맛, 감칠맛을 느낄 수 있어요.",
+          "갓이 조금 깨지거나, 크고 작게 피었어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["습기 없이 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 7,
+      "price": 5990,
+      "shippingFees": 0,
+      "name": "시금치",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-27.jpeg",
+          "name": "product-27.jpeg",
+          "originalname": "product-27.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": true,
+        "category": ["시금치", "채소"],
+        "details": "150g",
+        "info": [
+          "잎이 시들어 보인다면 찬물에 10~15분 정도 담가주세요. 저온건조한 겨울 날씨에 수분이 증발해 시들어 보일 수 있지만, 물에 담그면 금방 싱싱하게 살아나요.",
+          "날씨에 따라 수분이 부족할 경우 시금치는 스스로를 보호하기 위해 하얀 빛의 알갱이를 만들어요. 자연이 만들어낸 보호물질로 한 번 데쳐 사용하면 오히려 건강하고 맛이 좋은 시금치를 만날 수 있어요.",
+          "잎끝에 간혹 구멍 난 잎, 벌레가 지나간 자리, 작은 벌레 등이 발견될 수 있어요."
+        ],
+        "storage": ["밀봉하여 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 8,
+      "price": 9900,
+      "shippingFees": 0,
+      "name": "통마늘",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-28.jpeg",
+          "name": "product-28.jpeg",
+          "originalname": "product-28.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["통마늘", "채소"],
+        "details": "1kg",
+        "info": [
+          "햇마늘이 나올 때만 만날 수 있는 통마늘이에요. 깐마늘보다 알싸한 맛과 향이 진해요. 직접 까서 요리에 활용하거나, 반을 갈라 올리브유를 두르고 에어프라이어에 구워보세요. 깊은 풍미를 느낄 수 있어요.",
+          "마늘이 날씨에 따라 빠르게 자라면서 내부가 살짝 벌어졌어요. 드시는 데에는 문제가 없으니 안심하셔도 좋아요."
+        ],
+        "storage": ["알알이 분리한 후 밀폐용기에 담아 습기없이 냉장보관 / 14일"]
+      }
+    },
+    {
+      "seller_id": 9,
+      "price": 2280,
+      "shippingFees": 0,
+      "name": "표고버섯",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-29.jpeg",
+          "name": "product-29.jpeg",
+          "originalname": "product-29.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["표고버섯", "채소"],
+        "details": "150g",
+        "info": [
+          "쫄깃쫄깃한 식감과 짙은 향으로 국, 솥밥, 볶음 등에 더해주면 한층 고급스러운 요리로 변신해요.",
+          "자라는 과정에서 배지에 눌려 자국이 남았어요. 드시는 데에는 전혀 문제가 없으니 안심하고 사용하셔도 좋아요.",
+          "갓이 조금 깨지거나, 크고 작게 피었어요."
+        ],
+        "storage": ["습기없이 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 10,
+      "price": 5990,
+      "shippingFees": 0,
+      "name": "흑대추방울토마토",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-30.jpeg",
+          "name": "product-30.jpeg",
+          "originalname": "product-30.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["흑대추방울토마토", "채소"],
+        "details": "450g",
+        "info": [
+          "짙은 흑색과 은은한 붉은빛이 어우러져 오묘한 매력을 뽐내는 흑대추방울토마토. 빛깔만큼 맛 또한 매력적인데요, 꽉 찬 과육 속에 담긴 아삭한 식감과 진한 토마토의 향미를 느껴보세요.",
+          "모양과 크기가 다양해요."
+        ],
+        "storage": [
+          "꼭지 제거 및 세척 후 물기 없이 밀폐용기에 담아 냉장보관 / 5일"
+        ]
       }
     },
     {
       "seller_id": 6,
-      "price": 1990,
+      "price": 2200,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "목이버섯",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-31.jpeg",
+          "name": "product-31.jpeg",
+          "originalname": "product-31.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["목이버섯", "채소"],
+        "details": "100g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "건조가 아닌 생버섯이라 더욱 부드럽고 꼬들해요. 탱글탱글한 식감 덕에 볶음, 샤부샤부, 잡채, 탕 등에 넣으면 요리의 매력을 한층 살려줘요. 한 번 사용하기 좋은 양으로 담아드려요.",
+          "모양과 크기가 다양해요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["습기없이 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 7,
+      "price": 2450,
+      "shippingFees": 0,
+      "name": "꽈리고추",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-32.jpeg",
+          "name": "product-32.jpeg",
+          "originalname": "product-32.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["꽈리고추", "채소"],
+        "details": "100g",
+        "info": [
+          "쭈글쭈글 물결치는 모습이 매력인 꽈리고추는 조림이나 찜, 볶음, 파스타 등 요리에 활용하기 좋은 채소예요. 입맛 없을 때 멸치와 함께 볶거나, 살짝 쪄 양념장에 무쳐내면 밥 한 공기 뚝딱이랍니다.",
+          "개성있는 모양과 농약, 살충제 없이 병/해충을 견디어낸 기특한 상처가 있어요."
+        ],
+        "storage": ["꼭지 제거 후 밀폐용기에 담아 냉장보관 / 4일"]
+      }
+    },
+    {
+      "seller_id": 8,
+      "price": 4990,
+      "shippingFees": 0,
+      "name": "미니파프리카",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-33.jpeg",
+          "name": "product-33.jpeg",
+          "originalname": "product-33.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": true,
+        "category": ["미니파프리카", "채소"],
+        "details": "200g",
+        "info": [
+          "아담한 크기에 시원 달콤한 수분감으로 가득 차 있어요. 샐러드로 먹어도 좋고, 통째로 익히면 단맛과 감칠맛이 진해져 요리에도 잘 어울려요.",
+          "빨강, 노랑, 주황 색상 중 무선별로 보내드려요."
+        ],
+        "storage": ["꼭지와 씨 제거 후 밀폐용기에 담아 냉장보관 / 5일"]
+      }
+    },
+    {
+      "seller_id": 9,
+      "price": 15200,
+      "shippingFees": 0,
+      "name": "송이/어글리바나나",
+      "quantity": 999,
+      "buyQuantity": 0,
+      "mainImages": [
+        {
+          "path": "uploadFiles/product-34.jpeg",
+          "name": "product-34.jpeg",
+          "originalname": "product-34.jpeg"
+        }
+      ],
+      "content": "",
+      "extra": {
+        "isBest": false,
+        "category": ["바나나", "과일"],
+        "details": "1.5kg",
+        "info": [
+          "어글리 바나나는 맛과 선도는 동일하지만 크기, 모양 때문에 선별되는 낱개 바나나들입니다.",
+          "약간 멍이들고 반점이 있을 수 있습니다. 바나나는 생물이기에 배송 과정에서 후숙이 되어 반점이 생기거나 외부 충격으로 약간의 멍이 들 수 있습니다. 이 반점과 멍은 당도를 높이는 역할을 하기 때문에 안심하고 드셔도 괜찮습니다."
+        ],
+        "storage": ["상온 및 냉장보관 / 7일"]
       }
     },
     {
       "seller_id": 6,
-      "price": 1990,
+      "price": 7900,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "말랑이 복숭아",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-36.jpeg",
+          "name": "product-36.jpeg",
+          "originalname": "product-36.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["복숭아", "과일"],
+        "details": "550g(3~4개)",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "부드럽고 과즙 가득한 말랑이 복숭아에요. 제철 복숭아의 풍부한 과즙과 달콤함으로 상큼한 기운을 충전해 보세요.",
+          "지금 이 시기에 가장 잘 익은 품종으로 보내드려요.",
+          "상온에서 1~2일 후숙해서 냉장보관 하시면 더욱 맛있게 드실 수 있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["상온 후숙 시 1~2일, 냉장보관 후 빠른 섭취 / 3일"]
       }
     },
     {
-      "seller_id": 6,
-      "price": 1990,
+      "seller_id": 7,
+      "price": 7900,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "아삭이 복숭아",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-37.jpeg",
+          "name": "product-37.jpeg",
+          "originalname": "product-37.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["복숭아", "과일"],
+        "details": "550g(3~4개)",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "아삭한 식감과 달큰한 향이 매력적인 백도 복숭아에요. 처음에는 아삭단단하지만, 후숙할수록 과즙이 늘어나고 쫀쫀하고 말랑한 식감을 느낄 수 있어요. 지금 이 시기에 가장 잘 익은 품종으로 보내드려요. 제철 복숭아의 풍부한 과즙과 달콤함으로 상큼한 기운을 충전해 보세요.",
+          "크기가 크거나 작고, 마른 상처가 있을 수 있어요.",
+          "배송과정에서 다치지 않도록 단단한 복숭아를 보내드려요. 상온에서 1~2일 후숙해서 냉장보관 하시면 더욱 맛있게 드실 수 있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["상온 후숙 시 1~2일, 냉장보관 후 빠른 섭취 / 3일"]
       }
     },
     {
-      "seller_id": 6,
-      "price": 1990,
+      "seller_id": 8,
+      "price": 3990,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "땅콩호박",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-38.jpg",
+          "name": "product-38.jpg",
+          "originalname": "product-38.jpg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["땅콩호박", "과일"],
+        "details": "550g(3~4개)",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "땅콩과 비슷한 모양을 가졌다 해서 땅콩호박, 버터넛 스쿼시로 불려요. 씨방이 작고 껍질이 얇아 먹을 수 있는 부위가 많고 진하고 부드러우면서 은은한 단맛을 가졌답니다. 수프, 파이, 튀김, 전, 카레 등 다양한 요리에 활용해 보세요.",
+          "크기가 크거나 작고, 마른 상처가 있을 수 있어요.",
+          "자라면서 생긴 상처가 아문 자국이 여기저기 남아있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["통풍 잘 되는 서늘한 곳에 습기 없이 보관 / 14일"]
       }
     },
     {
-      "seller_id": 6,
-      "price": 1990,
+      "seller_id": 9,
+      "price": 1790,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "스위트 바질",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
+          "path": "uploadFiles/product-39.jpeg",
+          "name": "product-39.jpeg",
+          "originalname": "product-39.jpeg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
+        "category": ["스위트 바질", "채소"],
+        "details": "10g",
         "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
+          "이탈리아 허브를 대표하는 바질은 산뜻한 향과 진한 풍미로 여러 요리에 활용되어 키친 허브라는 애칭이 있어요. 부담 없는 소용량으로 담았으니 요리에 새로운 향미를 더해보세요.",
+          "간혹 구멍난 잎, 벌레가 지나간 자리, 작은 벌레 등이 발견될 수 있어요."
         ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["밀봉하여 냉장고 신선칸 보관"]
       }
     },
     {
-      "seller_id": 6,
+      "seller_id": 10,
       "price": 1990,
       "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
+      "name": "청양고추",
+      "quantity": 999,
       "buyQuantity": 0,
       "mainImages": [
         {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
+          "path": "uploadFiles/product-40.jpg",
+          "name": "product-40.jpg",
+          "originalname": "product-40.jpg"
         }
       ],
       "content": "",
       "extra": {
         "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
+        "category": ["청양고추", "채소"],
+        "details": "100g",
         "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
+          "특유의 매운맛으로 찌개, 무침, 조림 등 요리에 넣으면 감칠맛이 살아나요. 입안을 개운하게 만들어 주기도 해요. 요리에 쓰고 남은 양은 냉동 보관해 그때그때 활용해 보세요.",
+          "개성있는 모양과 농약, 살충제 없이 병/해충을 견디어낸 기특한 상처가 있어요."
         ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
-        "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기없이 냉장보관 / 3일"]
-      }
-    },
-    {
-      "seller_id": 6,
-      "price": 1990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
-        "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기없이 냉장보관 / 3일"]
-      }
-    },
-    {
-      "seller_id": 6,
-      "price": 1990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "바니바니바니바니 당근당근10",
-      "quantity": 320,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-1.jpeg",
-          "name": "product-1.jpeg",
-          "originalname": "product-1.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["당근", "채소"],
-        "details": "150g",
-        "info": [
-          "큰 당근을 깎거나 수확시기를 앞당겨 작게 만든 당근이 아니에요. 품종부터 아담한 스낵당근은 아삭한 식감과 은은한 단맛을 가지고 있어요. 한 손에 쏘옥 들어오는 크기로 간식처럼 즐기기 좋아요.",
-          "당근이 자라면서 상대적으로 햇빛에 많이 노출될 경우 윗부분이 초록빛을 띌 수 있어요. 드시는 데에는 문제가 없으니 안심하고 이용하셔도 좋아요.",
-          "크기가 다양하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기 없이 냉장보관 / 5일"]
-      }
-    },
-    {
-      "seller_id": 2,
-      "price": 2990,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "고구마 답답이11",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-2.jpeg",
-          "name": "product-2.jpeg",
-          "originalname": "product-2.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": true,
-        "category": ["고구마", "과일"],
-        "details": "500g",
-        "info": [
-          "언제 먹어도 맛있는 건강간식이죠. 굽거나 쪄 고구마의 달콤함과 포슬함을 입안 가득 느껴보세요.",
-          "크기가 아담하거나 우람하고, 모양이 개성 있어요.",
-          "토양 및 재배 환경에 따라 자라는 과정에서 표면에 검은 무늬가 생기기도 해요. 인체에 무해하기 때문에 안심하고 드셔도 좋아요."
-        ],
-        "storage": ["12-15도의 서늘하고 통풍이 잘 되는 곳에서 보관 / 7일"]
-      }
-    },
-    {
-      "seller_id": 3,
-      "price": 2150,
-      "shippingFees": 0,
-      "show": true,
-      "active": true,
-      "name": "브라운 양송이버섯12",
-      "quantity": 200,
-      "buyQuantity": 0,
-      "mainImages": [
-        {
-          "path": "uploadFiles/product-3.jpeg",
-          "name": "product-3.jpeg",
-          "originalname": "product-3.jpeg"
-        }
-      ],
-      "content": "",
-      "extra": {
-        "isBest": false,
-        "category": ["양송이버섯", "채소"],
-        "details": "150g",
-        "info": [
-          "구이에 빠질 수 없는 버섯이죠. 하얀 양송이버섯보다 맛과 향이 진하고 쫄깃한 식감을 느낄 수 있어요. 볶음, 파스타, 수프, 등 한식과 양식 모두 잘 어울려요.",
-          "크기가 아담하고 모양이 개성 있어요."
-        ],
-        "storage": ["습기없이 냉장보관 / 3일"]
+        "storage": ["꼭지 제거 후 세워서 밀폐용기에 담아 냉장보관 / 4일"]
       }
     }
   ],
