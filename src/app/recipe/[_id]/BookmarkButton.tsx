@@ -46,7 +46,7 @@ export default function BookmarkButton({ postId }: BookmarkButtonProps) {
         const res = await deleteRecipeBookmark(accessToken, bookmarkId);
         if (res.ok === 1) {
           remove(postId);
-        } else {
+        } else if (res.ok === 0) {
           await Swal.fire({
             icon: 'error',
             title: '오류',
