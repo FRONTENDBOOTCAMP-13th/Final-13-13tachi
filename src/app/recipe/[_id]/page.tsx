@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '@/components/common/Button';
 import FoodBtn from '@/components/common/FoodBtn';
 import Comments from './Comments';
 import Profile from './Profile';
@@ -11,6 +10,7 @@ import RelationProducts from './RelationProducts';
 import { getRecipeDetail, getRelatedProducts } from '@/data/functions/recipe';
 import { getProducts } from '@/data/functions/product';
 import { Metadata } from 'next';
+import CustomLink from '@/components/common/CustomLink';
 
 interface InfoPageProps {
   params: Promise<{ _id: number }>;
@@ -76,7 +76,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
 
   return (
     <>
-      <div className="lg:max-w-5xl mx-auto lg:pt-[4rem] lg:pb-[6rem] md:pt-12 md:pb-20 pt-8 pb-15 min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
+      <main className="lg:max-w-5xl mx-auto lg:pt-[4rem] lg:pb-[6rem] md:pt-12 md:pb-20 pt-8 pb-15 min-h-[calc(100dvh-23.625rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
         <h2 className="text-gray lg:text-base md:text-sm text-xs lg:px-0 md:px-7.5 px-4">
           <Link href="/">HOME</Link>&nbsp;&gt;&nbsp;
           <Link href="/recipe">레시피</Link>
@@ -148,9 +148,9 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
 
             {/* 목록으로 */}
             <div className="flex justify-center lg:mt-[1.875rem] md:mt-6 mt-4">
-              <Button size="xxl">
-                <Link href="/recipe">목록으로</Link>
-              </Button>
+              <CustomLink size="xxl" href="/recipe">
+                목록으로
+              </CustomLink>
             </div>
 
             {/* 연관상품 */}
@@ -160,7 +160,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
             <Comments postId={_id} />
           </main>
         </div>
-      </div>
+      </main>
     </>
   );
 }

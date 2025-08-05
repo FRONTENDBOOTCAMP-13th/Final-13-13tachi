@@ -338,7 +338,7 @@ export async function deleteBookmark(
   }
 
   if (data.ok) {
-    redirect(`/mypage/recipe/likerecipe`);
+    redirect(`/mypage/recipe/bookmarkRecipe`);
   }
 
   return data;

@@ -19,7 +19,7 @@ export default function Footer() {
   const pathname = usePathname();
 
   // 주요 네비게이션 경로의 하위 경로까지 모두 활성화 처리
-  const navPaths = ['/', '/shopping', '/recipe', '/mypage'];
+  const navPaths = ['/', '/shopping', '/recipe', '/mypage', '/login'];
 
   const isActive = (path: string) => {
     if (navPaths.includes(path) && path !== '/') {
@@ -168,8 +168,8 @@ export default function Footer() {
               </Link>
             ) : (
               <Link
-                href="/login"
-                className={`${isActive('/mypage')} flex flex-col items-center gap-1`}
+                href="/login/select"
+                className={`${isActive('/login')} flex flex-col items-center gap-1`}
               >
                 <CircleUserRound
                   strokeWidth={`${isFilled(`/login`)}`}
