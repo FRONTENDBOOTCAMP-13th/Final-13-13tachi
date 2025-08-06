@@ -1,7 +1,7 @@
 'use client';
 
 import { startTransition, useActionState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { updateUser } from '@/data/actions/user';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
@@ -17,6 +17,7 @@ export default function EditForm() {
   const router = useRouter();
 
   const {
+    control,
     register,
     handleSubmit,
     setValue,
@@ -99,6 +100,13 @@ export default function EditForm() {
     }
   }, [state, router]);
 
+  function formatPhoneNum(raw: string) {
+    const cleaned = raw.replace(/\D/g, '').slice(0, 11);
+    if (cleaned.length < 4) return cleaned;
+    if (cleaned.length < 8) return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+    return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7)}`;
+  }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -127,7 +135,6 @@ export default function EditForm() {
           />
         </div>
       </div>
-
       {/* 비밀번호 */}
       <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
         <div className="flex items-start w-full">
@@ -161,7 +168,6 @@ export default function EditForm() {
           )}
         </div>
       </div>
-
       {/* 비밀번호 확인 */}
       <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
         <div className="flex items-start w-full">
@@ -192,7 +198,6 @@ export default function EditForm() {
           )}
         </div>
       </div>
-
       {/* 이름 */}
       <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
         <div className="flex items-start w-full">
@@ -213,7 +218,6 @@ export default function EditForm() {
           />
         </div>
       </div>
-
       {/* 전화번호 */}
       <div className="flex items-center flex-col md:justify-between md:flex-row lg:justify-between">
         <div className="flex items-start w-full">
@@ -225,31 +229,43 @@ export default function EditForm() {
           </label>
         </div>
         <div>
-          <Input
-            id="phone"
-            type="text"
-            autoComplete="tel"
-            placeholder="전화번호를 입력하세요"
-            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
-            defaultValue={user?.phone ?? ''}
-            {...register('phone', {
+          <Controller
+            name="phone"
+            control={control}
+            defaultValue=""
+            rules={{
               required: '전화번호를 입력해주세요',
-              pattern: {
-                value: /^[0-9-]+$/,
-                message: '숫자와 하이픈(-)만 입력 가능합니다',
+              validate: value => {
+                if (!/^[0-9-]+$/.test(value))
+                  return '숫자와 하이픈만 입력 가능합니다';
+                return true;
               },
-            })}
+            }}
+            render={({ field: { value, onChange } }) => (
+              <>
+                <Input
+                  type="text"
+                  placeholder="전화번호를 입력하세요"
+                  value={value}
+                  onChange={e => {
+                    // 하이픈 자동 붙이기
+                    const formatted = formatPhoneNum(e.target.value);
+                    onChange(formatted);
+                  }}
+                  maxLength={13}
+                  className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
+                />
+                {errors.phone && (
+                  <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </>
+            )}
           />
-          {errors.phone && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-              {errors.phone.message}
-            </p>
-          )}
         </div>
       </div>
-
       <AddressForm register={register} setValue={setValue} errors={errors} />
-
       <div className="flex justify-center items-center mb-[60px] mt-[50px] md:mb-[80px] lg:mt-[2rem] lg:mb-[6.25rem]">
         <Button size="xxl" type="submit" disabled={isLoading}>
           수정하기

@@ -1,7 +1,7 @@
 'use client';
 
 import { startTransition, useActionState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { createUser } from '@/data/actions/user';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/common/Button';
@@ -26,6 +26,7 @@ export default function SignupForm() {
   const router = useRouter();
 
   const {
+    control,
     register,
     handleSubmit,
     setValue,
@@ -84,6 +85,13 @@ export default function SignupForm() {
       formAction(formData);
     });
   };
+
+  function formatPhoneNum(raw: string) {
+    const cleaned = raw.replace(/\D/g, '').slice(0, 11);
+    if (cleaned.length < 4) return cleaned;
+    if (cleaned.length < 8) return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+    return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7)}`;
+  }
 
   return (
     <form
@@ -236,30 +244,40 @@ export default function SignupForm() {
           <span className="text-light-red lg:text-sm ml-1">*</span>
         </div>
         <div>
-          <Input
-            id="phone"
-            type="text"
-            autoComplete="tel"
-            placeholder="000-0000-0000 형식으로 입력하세요"
-            className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
-            {...register('phone', {
+          <Controller
+            name="phone"
+            control={control}
+            defaultValue=""
+            rules={{
               required: '전화번호를 입력해주세요',
               validate: value => {
-                if (!/^[0-9-]+$/.test(value)) {
-                  return '숫자와 하이픈(-)만 입력 가능합니다';
-                }
-                if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(value)) {
-                  return '000-0000-0000 형식이어야 합니다';
-                }
+                if (!/^[0-9-]+$/.test(value))
+                  return '숫자와 하이픈만 입력 가능합니다';
                 return true;
               },
-            })}
+            }}
+            render={({ field: { value, onChange } }) => (
+              <>
+                <Input
+                  type="text"
+                  placeholder="전화번호를 입력하세요"
+                  value={value}
+                  onChange={e => {
+                    // 하이픈 자동 붙이기
+                    const formatted = formatPhoneNum(e.target.value);
+                    onChange(formatted);
+                  }}
+                  maxLength={13}
+                  className="w-[320px] text-xs lg:text-sm px-[0.75rem]"
+                />
+                {errors.phone && (
+                  <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </>
+            )}
           />
-          {errors.phone && (
-            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-              {errors.phone.message}
-            </p>
-          )}
         </div>
       </div>
 
