@@ -11,8 +11,7 @@ import Swal from 'sweetalert2';
 
 export default function LoginForm() {
   const router = useRouter();
-  const [userState, formAction, isLoading] = useActionState(login, null);
-  console.log(isLoading, userState);
+  const [userState, formAction] = useActionState(login, null);
   const { setUser } = useUserStore(state => state);
 
   const [autoLogin, setAutoLogin] = useState(false);

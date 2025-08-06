@@ -70,7 +70,7 @@ export default function UserInfo() {
         <hr className="text-light-gray w-full mb-5" />
       </div>
       <div className="flex flex-col">
-        <div className="">
+        <div className="md:text-base text-sm">
           {res.ok ? (
             <Image
               src={user?.image ? `${user.image}` : '/profile.svg'}
@@ -83,10 +83,10 @@ export default function UserInfo() {
             <div className="w-20 h-20 mb-6 rounded-[50%] bg-gray-200" />
           )}
           {/* <div className="lg:h-20 lg:w-20 rounded-[50%] bg-gray-200" /> */}
-          <div className="flex flex-col gap-4 text-base">
+          <div className="flex flex-col gap-4">
             <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">이름</span>
-              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
+              <div className="border-l-2 border-light-gray md:h-4 h-3 mt-1"></div>
               <span>
                 {res.ok ? (
                   res.item.name
@@ -97,7 +97,7 @@ export default function UserInfo() {
             </div>
             <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">이메일</span>
-              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
+              <div className="border-l-2 border-light-gray md:h-4 h-3 mt-1"></div>
               <span>
                 {res.ok ? (
                   (res.item.email ?? socialLogin)
@@ -108,7 +108,7 @@ export default function UserInfo() {
             </div>
             <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">전화번호</span>
-              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
+              <div className="border-l-2 border-light-gray md:h-4 h-3 mt-1 "></div>
               <span>
                 {res.ok ? (
                   res.item.phone
@@ -119,7 +119,7 @@ export default function UserInfo() {
             </div>
             <div className="grid grid-cols-[4.5rem_1.125rem_1fr] items-start">
               <span className="font-semibold">주소</span>
-              <div className="border-l-2 border-light-gray h-4 mt-1"></div>
+              <div className="border-l-2 border-light-gray md:h-4 h-3 mt-1"></div>
               <span>
                 {res.ok ? (
                   <span>

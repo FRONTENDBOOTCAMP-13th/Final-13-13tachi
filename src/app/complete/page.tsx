@@ -21,8 +21,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Complete() {
   return (
-    <main className="min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
-      <div className="flex flex-col items-center gap-[1.5625rem] mt-[10.9375rem] mb-[13.6875rem]">
+    <main className="flex flex-col justify-center min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)] lg:px-0 md:px-[1.875rem] px-5 lg:pt-[4.0625rem] lg:pb-[6.25rem] md:pt-[3.125rem] md:pb-20 pt-[1.875rem] pb-[3.75rem]">
+      <div className="flex flex-col items-center gap-4">
         <Image
           src="/check-circle.svg"
           alt="원형체크"

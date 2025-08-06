@@ -75,7 +75,7 @@ export default function Detail({
                 {productRes.item.name}
               </p>
               <span className="text-gray font-normal text-sm md:text:base lg:text-lg">
-                ({productRes.item.extra?.details})
+                {productRes.item.extra?.details}
               </span>
             </div>
             {/* ST: 찜하기 */}
