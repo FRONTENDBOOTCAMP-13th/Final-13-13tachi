@@ -26,7 +26,6 @@ export default async function LoginPage() {
         style={{ backgroundImage: "url('/login-img.svg')" }}
       />
       <div className="absolute inset-0 -z-10 bg-black opacity-50" />
-
       <div className=" pt-[100px] pb-[100px] md:py-[107px]  flex justify-center items-center min-h-full">
         <div
           className="py-[30px] md:py-[73px] lg:py-[4.3125rem] rounded-[0.9375rem] w-[300px] h-[350px] md:w-[25rem] md:h-[31.25rem] lg:w-[25rem] lg:h-[31.25rem] max-w-md bg-white"
@@ -45,7 +44,6 @@ export default async function LoginPage() {
               로그인
             </h2>
           </div>
-
           <Suspense fallback={<div>Loading...</div>}>
             <LoginForm />
           </Suspense>
