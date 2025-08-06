@@ -22,11 +22,6 @@ export default function OrderInfoList({
       icon: 'info',
       text: '추후 제공될 기능힙니다.',
       confirmButtonText: '확인',
-    }).then(result => {
-      if (result.isConfirmed) {
-        // 취소 확정 시 실행할 작업
-        console.log('주문이 취소되었습니다.');
-      }
     });
   };
   return (
