@@ -1,0 +1,21 @@
+meta {
+  name: 후기 수정
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{url}}/replies/3
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "rating": 5,
+      "content": "하루만에 고장났지만 다시 보내줬어요",
+      "extra": {
+        "title": "고객응대가 좋아요"
+      }
+  }
+}

@@ -1,0 +1,17 @@
+meta {
+  name: 판매 통계 조회(판매자별)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/admin/statistics/orders?start=2024.10.01&finish=2025.01.10&by=seller
+  body: none
+  auth: inherit
+}
+
+params:query {
+  start: 2024.10.01
+  finish: 2025.01.10
+  by: seller
+}
