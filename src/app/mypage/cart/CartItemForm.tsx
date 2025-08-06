@@ -87,11 +87,7 @@ export default function CartItemForm({
                       value={user?.token?.accessToken ?? ''}
                     />
                     <input type="hidden" name="_id" value={item._id} />
-                    <input
-                      type="hidden"
-                      name="quantity"
-                      value={item.quantity - 1}
-                    />
+                    <input type="hidden" name="quantity" value={quantity} />
                     <button
                       type="submit"
                       onClick={() => handleDown()}
@@ -108,11 +104,7 @@ export default function CartItemForm({
                       value={user?.token?.accessToken ?? ''}
                     />
                     <input type="hidden" name="_id" value={item._id} />
-                    <input
-                      type="hidden"
-                      name="quantity"
-                      value={item.quantity + 1}
-                    />
+                    <input type="hidden" name="quantity" value={quantity} />
                     <button
                       type="submit"
                       onClick={() => handleUp()}
@@ -123,7 +115,7 @@ export default function CartItemForm({
                   </form>
                 </div>
                 <span className="md:text-base text-sm font-semibold">
-                  {(item.price * item.quantity).toLocaleString()}원
+                  {(item.price * quantity).toLocaleString()}원
                 </span>
               </div>
             </div>
