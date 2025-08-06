@@ -1,0 +1,30 @@
+meta {
+  name: 상품구매
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{url}}/orders
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "products": [
+      {
+        "_id": 10,
+        "quantity": 3
+      },
+      {
+        "_id": 12,
+        "quantity": 2
+      }
+    ],
+    "address": {
+      "name": "학교",
+      "value": "서울시 강남구 역삼동 234"
+    }
+  }
+}
