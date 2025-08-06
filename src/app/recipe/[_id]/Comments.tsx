@@ -13,9 +13,9 @@ export default async function Comments({ postId }: CommentsProps) {
   return (
     <div className="mt-15">
       <div className="flex items-center border-b-2 border-[#DEDEDE]">
-        <h3 className="lg:text-xl md:text-lg  font-semibold mb-2">댓글</h3>
+        <h3 className="lg:text-xl md:text-lg font-semibold mb-2">댓글</h3>
         {res.ok ? (
-          <span className="text-xl font-semibold text-[#67913C] ml-2 mb-2">
+          <span className="lg:text-xl md:text-lg font-semibold text-[#67913C] ml-2 mb-2">
             {res.item.length}
           </span>
         ) : (

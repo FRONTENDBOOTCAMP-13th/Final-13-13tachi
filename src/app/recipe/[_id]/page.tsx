@@ -133,7 +133,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
 
             {/* 본문 */}
             <div
-              className="bg-[#f4f4f4] lg:px-9 lg:py-6 md:px-6 md:py-4 px-4 py-3 rounded-lg lg:mt-5 md:mt-4 mt-3 lg:text-base md:text-sm text-xs"
+              className="bg-[#f4f4f4] lg:px-9 lg:py-6 md:px-6 md:py-4 px-4 py-3 rounded-lg lg:mt-5 md:mt-4 mt-3 lg:text-base md:text-base text-sm"
               dangerouslySetInnerHTML={{
                 __html: recipe.item.content || '내용 없음',
               }}
@@ -150,7 +150,7 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
                   <span>{recipe.item.bookmarks}</span>
                 </div>
                 <div>
-                  <Eye strokeWidth={1} className="w-4 md:w-10" />
+                  <Eye strokeWidth={1} className="w-4.5 md:w-10" />
                   <span>{recipe.item.views}</span>
                 </div>
               </div>
