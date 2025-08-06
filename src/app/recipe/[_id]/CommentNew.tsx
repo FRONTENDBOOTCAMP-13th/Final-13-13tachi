@@ -40,7 +40,7 @@ export default function CommentNew({ postId }: { postId: number }) {
       <input
         type="text"
         placeholder="댓글을 입력하세요"
-        className="lg:w-full md:w-full w-full h-[2.5rem] border border-light-gray rounded-lg mr-5 px-5 text-sm"
+        className="w-full h-9 md:h-10 border border-light-gray rounded-lg mr-5 px-5 text-xs md:text-sm"
         name="content"
         disabled={isLoading}
       />

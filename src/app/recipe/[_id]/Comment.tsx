@@ -23,8 +23,8 @@ export default function Comment({ reply, loading = false }: CommentProps) {
   }
 
   return (
-    <div className="flex items-start py-5 border-b-2 border-[#DEDEDE]">
-      <div className="relative w-[3.125rem] h-[3.125rem] shrink-0">
+    <div className="flex items-start py-3 md:py-5 border-b-2 border-[#DEDEDE]">
+      <div className="relative w-11 md:w-12.5 aspect-square shrink-0">
         {reply?.user.image ? (
           <Image
             src={reply.user.image ? reply.user.image : '/profile.svg'}
@@ -43,12 +43,12 @@ export default function Comment({ reply, loading = false }: CommentProps) {
       </div>
       <div className="ml-4 w-full">
         <div className="flex items-center justify-between">
-          <p className="font-semibold text-dark-green mb-1">
+          <p className="text-sm md:text-base font-semibold text-dark-green mb-1">
             {reply?.user.name ?? '익명'}
           </p>
           {reply && <CommentActionButton reply={reply} />}
         </div>
-        <p className="text-sm">{reply?.content ?? ''}</p>
+        <p className="text-xs md:text-sm">{reply?.content ?? ''}</p>
       </div>
     </div>
   );
