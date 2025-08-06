@@ -37,7 +37,7 @@ export default function RelationProducts({
 
   return (
     <div className="mt-10">
-      <h3 className="text-2xl font-bold">연관상품</h3>
+      <h3 className="text-lg md:text-2xl font-bold">연관상품</h3>
       <div className="mt-5">
         <ProductCard
           filteredItems={relatedProducts.slice(0, 4)}

@@ -178,6 +178,21 @@
           "그 어떤 작물도 서두르지 않고 기다려주는 마음, 그것이 이 농장을 특별하게 만드는 가장 큰 이유입니다."
         ]
       }
+    },
+    {
+      "email": "ugveg@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+      "name": "김감자",
+      "phone": "010-1111-2222",
+      "postcode": "03045",
+      "addressDetail1": "서울 종로구 사직로 161",
+      "addressDetail2": "광화문",
+      "type": "admin",
+      "loginType": "email",
+      "image": "/profile-8.png",
+      "extra": {
+        "birthday": "01-01"
+      }
     }
   ],
 

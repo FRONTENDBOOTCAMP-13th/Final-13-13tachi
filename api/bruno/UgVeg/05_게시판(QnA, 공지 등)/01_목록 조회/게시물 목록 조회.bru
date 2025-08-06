@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{url}}/posts?type=community
+  url: {{url}}/posts
   body: none
   auth: inherit
 }
 
 params:query {
-  type: community
+  ~type: community
   ~type: info
   ~type: music
   ~type: qna

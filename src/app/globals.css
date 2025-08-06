@@ -157,3 +157,13 @@ body {
     @apply text-black;
   }
 }
+
+.ql-editor {
+  font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .ql-editor {
+    font-size: 0.875rem;
+  }
+}

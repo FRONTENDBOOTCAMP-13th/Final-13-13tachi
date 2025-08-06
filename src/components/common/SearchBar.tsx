@@ -55,7 +55,7 @@ export default function SearchBar({ handleType, placeholder }: SearchBarProps) {
         value={text}
         onChange={e => setText(e.target.value)}
         onKeyDown={e => handleKeyDown(e, handleType)}
-        className="flex-grow text-xs outline-none md:text-sm indent-4"
+        className="flex-grow text-xs outline-none md:text-sm indent-4 md:w-full w-[11.5625rem]"
       />
       <button
         type="button"
@@ -64,7 +64,7 @@ export default function SearchBar({ handleType, placeholder }: SearchBarProps) {
             ? handleRecipeSearch
             : handleProductSearch
         }
-        className="w-10 h-full flex justify-center items-center cursor-pointer"
+        className="w-10 h-full flex justify-center items-center cursor-pointer "
       >
         <Search className="text-dark-green w-3.5 md:w-4" strokeWidth={1} />
       </button>

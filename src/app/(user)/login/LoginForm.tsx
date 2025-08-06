@@ -91,6 +91,7 @@ export default function LoginForm() {
               placeholder="이메일을 입력하세요"
               className="w-[250px] h-[40px] text-xs md:w-[290px] md:h-[45px] md:text-sm md lg:w-[18.125rem] lg:h-[2.8125rem] px-[0.75rem] lg:py-[0.5rem] border border-light-gray rounded-lg focus:outline-none focus:border-gray "
               name="email"
+              defaultValue={'ugveg@market.com'}
             />
             <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
               {userState?.ok === 0 && userState.errors?.email?.msg}
@@ -106,6 +107,7 @@ export default function LoginForm() {
               placeholder="비밀번호를 입력하세요"
               className="w-[250px] h-[40px] text-xs md:w-[290px] md:h-[45px] md:text-sm lg:w-[18.125rem] lg:h-[2.8125rem] px-[0.75rem] lg:py-[0.5rem] border border-light-gray rounded-lg focus:outline-none focus:border-gray"
               name="password"
+              defaultValue={'11111111'}
             />
             <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
               {userState?.ok === 0 && userState.errors?.password?.msg}
