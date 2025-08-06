@@ -138,11 +138,11 @@ export default function AllItems({ products, searchKeyword }: AllItemsProps) {
             &quot;{searchKeyword}&quot;에 대한 검색 결과가 없습니다.
           </p>
           <p className="text-gray-500 text-sm md:text-base">
-            다른 검색어를 사용하거나 전체 레시피를 확인해보세요.
+            다른 검색어를 사용하거나 전체 상품을 확인해보세요.
           </p>
           <div className="mt-7.5 md:mt-12.5 lg:mt-[4.0625rem]">
             <CustomLink href="/shopping" variant="orange" size="xl">
-              전체 레시피 보기
+              전체 상품 보기
             </CustomLink>
           </div>
         </div>
