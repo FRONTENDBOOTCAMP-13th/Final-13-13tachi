@@ -148,12 +148,12 @@ export default function RecipeWriteClient() {
         type="text"
         name="title"
         placeholder="제목을 입력 해주세요."
-        className="w-full h-12 lg:text-base md:text-base text-sm border border-light-gray rounded-lg pl-4 mb-4"
+        className="w-full h-10 px-4 mb-4 text-sm border border-light-gray rounded-lg md:h-12 md:text-base"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
 
-      <p className="mb-2 lg:text-base md:text-base text-sm">
+      <p className="mb-3 lg:text-base md:text-base text-sm">
         사용하신 재료를 선택해주세요 (최대 3개)
         <span className="text-required-red ml-1">*</span>
       </p>
@@ -189,7 +189,7 @@ export default function RecipeWriteClient() {
           className="ml-2"
         >
           <ChevronDown
-            className={`transition-transform ${toggleOpen ? 'rotate-180' : ''}`}
+            className={`w-5 h-5 md:w-6 md:h-6 transition-transform ${toggleOpen ? 'rotate-180' : ''}`}
           />
         </button>
       </div>
@@ -208,7 +208,7 @@ export default function RecipeWriteClient() {
         />
         <label
           htmlFor="fileInput"
-          className="w-80 h-12 lg:text-base md:text-base text-sm border border-light-gray rounded-lg pl-4 flex items-center cursor-pointer overflow-hidden"
+          className="w-80 h-10 md:h-12 lg:text-base md:text-base text-sm border border-light-gray rounded-lg px-4 flex items-center cursor-pointer overflow-hidden"
         >
           {fileName}
         </label>
