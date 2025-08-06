@@ -57,8 +57,8 @@ export default function CartItemForm({
                   <Link href={`/shopping/${item._id}`}>
                     <span className="md:text-base text-sm font-semibold text-dark-green line-clamp-1">
                       {item.name}
-                      <span className="ml-2.5 text-xs">
-                        ({item.extra?.details})
+                      <span className="ml-2.5 text-xs text-gray">
+                        {item.extra?.details}
                       </span>
                     </span>
                   </Link>

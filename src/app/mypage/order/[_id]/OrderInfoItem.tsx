@@ -37,7 +37,7 @@ export default function OrderInfoItem({
             <span className="md:text-base text-sm font-semibold text-dark-green mr-2.5">
               {item.name}
             </span>
-            <span className="text-xs">({item.extra?.details})</span>
+            <span className="text-xs text-gray">{item.extra?.details}</span>
           </Link>
           <p className="flex gap-2.5 items-center">
             <span className="md:text-base text-sm">
