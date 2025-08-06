@@ -31,7 +31,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
      */
     NaverProvider({
       profile(profile) {
-        console.log('네이버 profile', profile);
         return {
           id: profile.response.id,
           name: profile.response.name,
@@ -57,15 +56,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
      * 로그인 처리를 계속 할지 여부 결정. OAuth 로그인시 자동 회원가입 및 로그인 처리를 수행.
      * true를 반환하면 로그인 처리를 계속하고, false를 반환하거나 오류를 던지면 로그인 흐름을 중단.
      */
-    async signIn({ user, account, profile, credentials }) {
-      console.log(user, account, profile, credentials);
+    async signIn({ user, account, profile }) {
       switch (account?.provider) {
         case 'credentials':
-          console.log('id/pwd 로그인', user);
           break;
         case 'kakao':
         case 'naver':
-          console.log('OAuth 로그인', user);
           let userInfo: User | null = null;
           try {
             // 자동 회원 가입
@@ -89,7 +85,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const resData = await loginWithOAuth(account.providerAccountId);
             if (resData.ok) {
               userInfo = resData.item;
-              console.log(userInfo);
             } else {
               // API 서버의 에러 메시지 처리
               throw new Error(resData.message);

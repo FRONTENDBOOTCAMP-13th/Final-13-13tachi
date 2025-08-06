@@ -28,7 +28,7 @@ export default function CommentNew({ postId }: { postId: number }) {
   return (
     <form
       action={formAction}
-      className="mt-9 flex items-center"
+      className="md:mt-9 mt-6 flex items-center"
       onSubmit={handleSubmit}
     >
       <input type="hidden" name="_id" value={postId} />

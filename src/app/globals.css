@@ -167,3 +167,10 @@ body {
     font-size: 0.875rem;
   }
 }
+
+@media (max-width: 767px) {
+  .swal2-popup {
+    width: 65% !important;
+    font-size: small !important;
+  }
+}
