@@ -5,13 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
-// import { signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 // import { Logout } from '@/data/actions/user';
 import { signOut } from 'next-auth/react';
 
 export default function Dropdown() {
-  // const { resetUser } = useUserStore();
+  const { resetUser } = useUserStore();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user } = useUserStore();
@@ -23,6 +22,8 @@ export default function Dropdown() {
   //로그아웃 시 토큰 삭제
   const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    resetUser();
 
     await signOut({ redirect: false });
     localStorage.removeItem('accessToken');

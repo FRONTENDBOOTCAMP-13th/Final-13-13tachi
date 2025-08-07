@@ -27,7 +27,7 @@ export default function RootLayout({
   const pathname = usePathname();
   const isActive = (path: string) => (pathname === path ? 'mypage-active' : '');
   const { user } = useUserStore();
-  // const { resetUser } = useUserStore();
+  const { resetUser } = useUserStore();
 
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -60,6 +60,7 @@ export default function RootLayout({
 
   //로그아웃 시 토큰 삭제
   const handleLogout = async () => {
+    resetUser();
     await signOut({ redirect: false });
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
