@@ -7,10 +7,11 @@ import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
 // import { signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Logout } from '@/data/actions/user';
+// import { Logout } from '@/data/actions/user';
+import { signOut } from 'next-auth/react';
 
 export default function Dropdown() {
-  const { resetUser } = useUserStore();
+  // const { resetUser } = useUserStore();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user } = useUserStore();
@@ -20,13 +21,15 @@ export default function Dropdown() {
     pathname === path ? 'mypage-dropdown-active' : '';
 
   //로그아웃 시 토큰 삭제
-  const handleLogout = async () => {
-    resetUser();
+  const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    await signOut({ redirect: false });
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
 
-    Logout();
+    // Logout();
 
     Swal.fire({
       icon: 'info',
