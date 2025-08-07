@@ -4,6 +4,7 @@ import { signIn } from '@/auth';
 import { ApiRes, ApiResPromise, User } from '@/types';
 import { OAuthUser } from '@/types';
 import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
@@ -189,6 +190,23 @@ export async function loginWithAuthjs(provider: string, formData: FormData) {
 export async function Logout() {
   (await cookies()).delete('authjs.session-token');
   (await cookies()).delete('authjs.callback-url');
-  (await cookies()).delete('__Secure-authjs.session-token');
-  (await cookies()).delete('__Secure-authjs.callback-url');
+
+  // 배포용 쿠키 삭제
+  const response = NextResponse.json({ ok: true });
+
+  response.cookies.set('__Secure-authjs.session-token', '', {
+    maxAge: 0,
+    path: '/',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+  });
+
+  response.cookies.set('__Secure-authjs.callback-url', '', {
+    maxAge: 0,
+    path: '/',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+  });
 }
