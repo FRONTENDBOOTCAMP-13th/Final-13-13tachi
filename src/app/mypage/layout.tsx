@@ -16,7 +16,6 @@ import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-import { Logout } from '@/data/actions/user';
 
 export default function RootLayout({
   children,
@@ -38,12 +37,16 @@ export default function RootLayout({
   }, [user]);
 
   //로그아웃 시 토큰 삭제
-  const handleLogout = () => {
+  const handleLogout = async () => {
     resetUser();
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
-    Logout();
+
+    await fetch('/api/logout', {
+      method: 'POST',
+      credentials: 'include', // 쿠키 포함 요청 (필요 시)
+    });
 
     Swal.fire({
       icon: 'info',
