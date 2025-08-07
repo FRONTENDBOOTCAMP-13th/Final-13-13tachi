@@ -140,18 +140,21 @@ export default async function RecipeDetailPage({ params }: InfoPageProps) {
             />
 
             {/* 공유 + 북마크 */}
-            <div className="flex justify-end lg:mt-3 md:mt-2 mt-2 md:text-base text-sm ">
+            <div className="flex justify-between lg:mt-3 md:mt-2 mt-2 md:text-base text-sm ">
+              <span className="text-gray font-light">
+                {recipe.item.createdAt}
+              </span>
               <div className="text-center flex gap-2 text-gray">
                 <div>
                   <ShareButton />
                 </div>
                 <div className="flex flex-col">
                   <BookmarkButton postId={recipe.item._id} />
-                  <span>{recipe.item.bookmarks}</span>
+                  <span className="font-light">{recipe.item.bookmarks}</span>
                 </div>
                 <div>
                   <Eye strokeWidth={1} className="w-4.5 md:w-10" />
-                  <span>{recipe.item.views}</span>
+                  <span className="font-light">{recipe.item.views}</span>
                 </div>
               </div>
             </div>
