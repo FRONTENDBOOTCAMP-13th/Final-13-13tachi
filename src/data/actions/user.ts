@@ -3,6 +3,7 @@
 import { signIn } from '@/auth';
 import { ApiRes, ApiResPromise, User } from '@/types';
 import { OAuthUser } from '@/types';
+import { cookies } from 'next/headers';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
@@ -182,4 +183,10 @@ export async function loginWithAuthjs(provider: string, formData: FormData) {
   const redirectTo = (formData.get('redirect') as string) || '/';
 
   await signIn(provider, { redirectTo });
+}
+
+// 로그아웃
+export async function Logout() {
+  (await cookies()).delete('authjs.session-token');
+  (await cookies()).delete('authjs.callback-url');
 }
