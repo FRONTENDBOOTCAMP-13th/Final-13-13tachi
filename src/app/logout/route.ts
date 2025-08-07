@@ -11,7 +11,7 @@ export async function POST() {
     httpOnly: true,
     secure: true,
     sameSite: 'lax',
-    domain: 'https://ug-veg.vercel.app/',
+    domain: 'ug-veg.vercel.app/',
   });
 
   response.cookies.set('__Secure-authjs.callback-url', '', {
@@ -20,6 +20,6 @@ export async function POST() {
     httpOnly: true,
     secure: true,
     sameSite: 'lax',
-    domain: 'https://ug-veg.vercel.app/',
+    domain: 'ug-veg.vercel.app/',
   });
 }
