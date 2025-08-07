@@ -189,4 +189,6 @@ export async function loginWithAuthjs(provider: string, formData: FormData) {
 export async function Logout() {
   (await cookies()).delete('authjs.session-token');
   (await cookies()).delete('authjs.callback-url');
+  (await cookies()).delete('__Secure-authjs.session-token');
+  (await cookies()).delete('__Secure-authjs.callback-url');
 }
