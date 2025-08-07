@@ -1,11 +1,7 @@
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 // 로그아웃
-export async function Logout() {
-  (await cookies()).delete('authjs.session-token');
-  (await cookies()).delete('authjs.callback-url');
-
+export async function POST() {
   // 배포용 쿠키 삭제
   const response = NextResponse.json({ ok: true });
 

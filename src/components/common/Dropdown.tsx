@@ -7,6 +7,7 @@ import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
 // import { signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
+import { Logout } from '@/data/actions/user';
 
 export default function Dropdown() {
   const { resetUser } = useUserStore();
@@ -24,6 +25,8 @@ export default function Dropdown() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
+
+    Logout();
 
     await fetch('/api/logout', {
       method: 'POST',
