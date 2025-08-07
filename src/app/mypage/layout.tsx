@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import {
-  BookOpen,
+  CookingPot,
   Heart,
   IdCard,
   LogOut,
@@ -16,6 +16,7 @@ import useUserStore from '@/zustand/useStore';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
+import { Logout } from '@/data/actions/user';
 
 export default function RootLayout({
   children,
@@ -42,6 +43,8 @@ export default function RootLayout({
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
+    Logout();
+
     Swal.fire({
       icon: 'info',
       title: '로그아웃 완료',
@@ -152,7 +155,7 @@ export default function RootLayout({
                       href="/mypage/recipe"
                       className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/recipe/myRecipes')} ${isActive('/mypage/recipe/bookmarkRecipe')}`}
                     >
-                      <BookOpen width={16} />
+                      <CookingPot width={16} />
                       <span>레시피</span>
                     </Link>
                   </li>

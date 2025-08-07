@@ -45,6 +45,12 @@ export default function Comment({ reply, loading = false }: CommentProps) {
         <div className="flex items-center justify-between">
           <p className="text-sm md:text-base font-semibold text-dark-green mb-1">
             {reply?.user.name ?? '익명'}
+            <span
+              className="ml-3 text-xs
+             text-gray font-light"
+            >
+              {reply?.createdAt}
+            </span>
           </p>
           {reply && <CommentActionButton reply={reply} />}
         </div>

@@ -7,6 +7,7 @@ import useUserStore from '@/zustand/useStore';
 import Swal from 'sweetalert2';
 // import { signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
+import { Logout } from '@/data/actions/user';
 
 export default function Dropdown() {
   const { resetUser } = useUserStore();
@@ -19,33 +20,13 @@ export default function Dropdown() {
     pathname === path ? 'mypage-dropdown-active' : '';
 
   //로그아웃 시 토큰 삭제
-  // const handleLogout = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   await signOut({ redirect: false });
-
-  //   resetUser();
-
-  //   localStorage.removeItem('accessToken');
-  //   localStorage.removeItem('refreshToken');
-  //   localStorage.removeItem('userInfo');
-
-  //   Swal.fire({
-  //     icon: 'info',
-  //     title: '로그아웃 완료',
-  //     text: '로그아웃이 완료 되었습니다.',
-  //     confirmButtonText: '확인',
-  //   });
-
-  //   router.push('/');
-  // };
-
-  //로그아웃 시 토큰 삭제
   const handleLogout = () => {
     resetUser();
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
+    Logout();
+
     Swal.fire({
       icon: 'info',
       title: '로그아웃 완료',
