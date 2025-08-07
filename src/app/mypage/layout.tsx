@@ -45,11 +45,6 @@ export default function RootLayout({
     localStorage.removeItem('userInfo');
     Logout();
 
-    await fetch('/api/logout', {
-      method: 'POST',
-      credentials: 'include', // 쿠키 포함 요청 (필요 시)
-    });
-
     Swal.fire({
       icon: 'info',
       title: '로그아웃 완료',
