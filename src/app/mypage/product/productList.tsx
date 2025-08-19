@@ -10,7 +10,7 @@ import Loading from '@/app/mypage/cart/Loading';
 import EmptyProduct from '@/app/mypage/product/EmptyProduct';
 import { getSellerProducts } from '@/data/functions/product';
 import { deleteProduct } from '@/data/actions/product';
-import ProductItem from '@/app/mypage/product/ProductItem';
+import ProductItem from '@/app/mypage/product/productItem';
 
 export default function ProductsList() {
   const { user } = useUserStore();

@@ -2,25 +2,28 @@ import ProductEditForm from '@/app/editProduct/[_id]/editForm/ProductEditForm';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
-export async function generateMetadata(): Promise<Metadata> {
+interface EditPageProps {
+  params: Promise<{
+    _id: number;
+  }>;
+}
+
+export async function generateMetadata({
+  params,
+}: EditPageProps): Promise<Metadata> {
+  const { _id } = await params;
   return {
-    title: `상품 주문 - UgVeg: 흙내음 상점`,
-    description: `결제 정보를 입력하여 주문을 완료하세요.`,
+    title: `상품 정보 수정 - UgVeg: 흙내음 상점`,
+    description: `상품 정보 수정을 완료하세요.`,
     openGraph: {
-      title: `상품 주문 - UgVeg: 흙내음 상점`,
-      description: `결제 정보를 입력하여 주문을 완료하세요.`,
-      url: `/order`,
+      title: `상품 정보 수정 - UgVeg: 흙내음 상점`,
+      description: `상품 정보 수정을 완료하세요..`,
+      url: `/editProduct/${_id}/editForm`,
       images: {
         url: 'https://ugveg.vercel.app/UgVeg.png',
       },
     },
   };
-}
-
-interface EditPageProps {
-  params: Promise<{
-    _id: number;
-  }>;
 }
 
 export default async function EidtProduct({ params }: EditPageProps) {
