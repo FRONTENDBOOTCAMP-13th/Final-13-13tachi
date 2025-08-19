@@ -3,11 +3,11 @@ import { User, UserInfoType } from '@/types/user';
 
 // 상품
 export interface ProductType {
-  _id?: number;
-  seller_id?: number;
-  price?: number;
-  name?: string;
-  mainImages?: {
+  _id: number;
+  seller_id: number;
+  price: number;
+  name: string;
+  mainImages: {
     path: string;
     name?: string;
     originalname?: string;
@@ -21,6 +21,11 @@ export interface ProductType {
     storage?: string[];
     sellerEmail?: string;
   };
+  quantity: number;
+  buyQuantity: number;
+  show: boolean;
+  active: boolean;
+  bookmarks: number;
 }
 
 // 상품 조회
