@@ -1,0 +1,36 @@
+meta {
+  name: 상품 등록
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/seller/products
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "seller_id": "6",
+    "price": "asdf",
+    "quantity": "sdf",
+    "name": "sdf",
+    "content": "",
+    "category": [ "asdf" ],
+    "extra": {
+      "category": [ "asdf" ],
+      "details": "sdf",
+      "info": [ "asdf" ],
+      "storage": [ "asdf" ]
+    },
+    "show": true,
+    "mainimages": [
+      {
+        "path": 'https://res.cloudinary.com/ddedslqvv/image/upload/v1754374106/febc13-final13-emjf/0JLZuGqz5m.jpg',
+        "name": 'recipe-8.jpg',
+        "originalname": 'recipe-8.jpg'
+      }
+    ]
+  }
+}
