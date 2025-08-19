@@ -27,11 +27,36 @@ export interface ProductType {
   active: boolean;
   bookmarks: number;
 }
+export interface ProductTypeForRes {
+  _id?: number;
+  seller_id?: number;
+  price?: number;
+  name?: string;
+  mainImages?: {
+    path: string;
+    name?: string;
+    originalname?: string;
+  }[];
+  extra?: {
+    category?: string[];
+    sort?: number;
+    details?: string;
+    isBest?: boolean;
+    info?: string[];
+    storage?: string[];
+    sellerEmail?: string;
+  };
+  quantity?: number;
+  buyQuantity?: number;
+  show?: boolean;
+  active?: boolean;
+  bookmarks?: number;
+}
 
 // 상품 조회
 export interface ProductTypeRes {
   ok: 0 | 1;
-  item: ProductType;
+  item: ProductTypeForRes;
 }
 
 // 상품 가져오기용 리스트
