@@ -1,4 +1,4 @@
-import ProductList from '@/app/mypage/product/productList';
+import ProductList from '@/app/mypage/product/ProductList';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -24,7 +24,7 @@ export default async function Product() {
         <div className="flex justify-between items-center w-full">
           <h3 className="text-xl font-semibold">상품 관리</h3>
           <Link
-            href="/shopping"
+            href="/registProduct"
             className="text-dark-green font-semibold text-xs md:text-sm lg:text-base"
           >
             + 상품 등록하기

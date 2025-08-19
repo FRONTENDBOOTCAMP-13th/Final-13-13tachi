@@ -1,6 +1,6 @@
 'use server';
 
-import { ApiRes, ApiResPromise, LikeItemType } from '@/types';
+import { ApiRes, ApiResPromise, LikeItemType, ProductType } from '@/types';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -169,6 +169,47 @@ export async function deleteLikeInWish(
   if (data.ok) {
     revalidateTag(`bookmarks`);
     revalidatePath(`/mypage/wish`);
+  }
+
+  return data;
+}
+
+// 판매자 상품 관리
+
+// 판매자 상품 삭제
+export async function deleteProduct(
+  state: ApiRes<ProductType> | null,
+  formData: FormData,
+): ApiResPromise<ProductType> {
+  let res: Response;
+  let data: ApiRes<ProductType>;
+
+  const _id = formData.get('_id');
+  const accessToken = formData.get('accessToken');
+  const body = {
+    _id,
+  };
+
+  try {
+    res = await fetch(`${API_URL}/seller/products/${_id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+  if (data.ok) {
+    revalidateTag(`bookmarks`);
+    revalidatePath(`/mypage/product`);
   }
 
   return data;

@@ -9,7 +9,6 @@ import CustomLink from '@/components/common/CustomLink';
 
 interface CartItemActionProps {
   deleteAction: (FormData: FormData) => void;
-  quantityAction: (FormData: FormData) => void;
 }
 
 export default function ProductItem({

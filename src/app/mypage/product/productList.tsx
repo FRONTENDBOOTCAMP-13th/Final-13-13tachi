@@ -4,13 +4,13 @@ import { useActionState, useEffect, useState } from 'react';
 import { ApiRes, ProductType } from '@/types';
 import useUserStore from '@/zustand/useStore';
 import CustomLink from '@/components/common/CustomLink';
-import { deleteCart, updateCartQuantity } from '@/data/actions/cart';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import Loading from '@/app/mypage/cart/Loading';
 import EmptyProduct from '@/app/mypage/product/EmptyProduct';
 import { getSellerProducts } from '@/data/functions/product';
-import ProductItem from '@/app/mypage/product/productItem';
+import { deleteProduct } from '@/data/actions/product';
+import ProductItem from '@/app/mypage/product/ProductItem';
 
 export default function ProductList() {
   const { user } = useUserStore();
@@ -37,19 +37,15 @@ export default function ProductList() {
     }
   }, [accessToken]);
 
-  const [deleteState, deleteAction] = useActionState(deleteCart, null);
-  const [quantityState, quantityAction] = useActionState(
-    updateCartQuantity,
-    null,
-  );
+  const [deleteState, deleteAction] = useActionState(deleteProduct, null);
 
   useEffect(() => {
-    if (quantityState?.ok || deleteState?.ok) {
+    if (deleteState?.ok) {
       if (accessToken) {
         getSellerProducts(accessToken).then(setRes);
       }
     }
-  }, [quantityState, deleteState]);
+  }, [deleteState]);
 
   if (!res) {
     return <Loading />;
@@ -83,7 +79,6 @@ export default function ProductList() {
             }}
             action={{
               deleteAction: deleteAction,
-              quantityAction: quantityAction,
             }}
           />
         ))
@@ -92,7 +87,7 @@ export default function ProductList() {
       )}
       <div className="flex justify-center lg:mt-[4.0625rem] md:mt-8 mt-6">
         <form>
-          <CustomLink href="/order">상품 등록하기</CustomLink>
+          <CustomLink href="/registProduct">상품 등록하기</CustomLink>
         </form>
       </div>
     </div>
