@@ -75,9 +75,20 @@ export default function Dropdown() {
       </button>
 
       {open && (
-        <div className="absolute lg:translate-x-[-35%] translate-x-[-60%] translate-y-[20%] w-[6.875rem] h-[185px]  bg-white border border-light-gray shadow-[var(--btn-shadow)] rounded-lg z-50 text-sm">
+        <div className="absolute lg:translate-x-[-35%] translate-x-[-60%] translate-y-[20%] w-[6.875rem]   bg-white border border-light-gray shadow-[var(--btn-shadow)] rounded-lg z-50 text-sm">
           <form onSubmit={handleLogout}>
             <ul className="py-[12px] flex flex-col items-center ">
+              {user?.type === 'seller' && (
+                <li>
+                  <Link
+                    href="/mypage/product"
+                    className={`block text-black pb-[7px] hover:font-semibold ${isActive('/mypage/product')}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    상품 관리
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="/mypage/cart"

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import {
+  Carrot,
   CookingPot,
   Heart,
   IdCard,
@@ -146,6 +147,17 @@ export default function RootLayout({
                   )}
                 </div>
                 <ul className="flex flex-col space-y-4 lg:text-base md:text-base">
+                  {user?.type === 'seller' && (
+                    <li>
+                      <Link
+                        href="/mypage/product"
+                        className={`flex flex-row gap-3 hover:text-dark-green hover:font-semibold ${isActive('/mypage/product')}`}
+                      >
+                        <Carrot width={16} />
+                        <span>상품 관리</span>
+                      </Link>
+                    </li>
+                  )}
                   <li>
                     <Link
                       href="/mypage/cart"
