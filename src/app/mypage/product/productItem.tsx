@@ -66,21 +66,13 @@ export default function ProductItem({
                     <input type="hidden" name="_id" value={item._id} />
                     <Button size="xxs">삭제</Button>
                   </form>
-                  <form action={action.deleteAction} className="w-full">
-                    <input
-                      type="hidden"
-                      name="accessToken"
-                      value={user?.token?.accessToken ?? ''}
-                    />
-                    <input type="hidden" name="_id" value={item._id} />
-                    <CustomLink
-                      href="/registProduct"
-                      size="xxs"
-                      variant="white"
-                    >
-                      수정
-                    </CustomLink>
-                  </form>
+                  <CustomLink
+                    href={`/editProduct/${item._id}/editForm`}
+                    size="xxs"
+                    variant="white"
+                  >
+                    수정
+                  </CustomLink>
                 </div>
               </div>
             </div>

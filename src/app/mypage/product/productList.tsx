@@ -12,7 +12,7 @@ import { getSellerProducts } from '@/data/functions/product';
 import { deleteProduct } from '@/data/actions/product';
 import ProductItem from '@/app/mypage/product/ProductItem';
 
-export default function ProductList() {
+export default function ProductsList() {
   const { user } = useUserStore();
   const accessToken = user?.token?.accessToken;
   const router = useRouter();

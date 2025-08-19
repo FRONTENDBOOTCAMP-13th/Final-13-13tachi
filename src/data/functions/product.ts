@@ -106,3 +106,22 @@ export async function getSellerProducts(
     return { ok: 0, message: '일시적인 네트워크 문제로 불러오기 실패' };
   }
 }
+
+// 판매자 상품 상세 정보 불러오기
+export async function getSellerProduct(
+  _id: number,
+  accessToken: string,
+): ApiResPromise<ProductType> {
+  try {
+    const res = await fetch(`${API_URL}/seller/products/${_id}`, {
+      headers: {
+        'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 불러오기 실패' };
+  }
+}

@@ -1,4 +1,4 @@
-import ProductList from '@/app/mypage/product/ProductList';
+import ProductsList from '@/app/mypage/product/ProductList';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -32,7 +32,7 @@ export default async function Product() {
         </div>
         <hr className="text-light-gray" />
       </div>
-      <ProductList />
+      <ProductsList />
     </div>
   );
 }

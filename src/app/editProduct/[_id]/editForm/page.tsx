@@ -1,4 +1,4 @@
-import ProductForm from '@/app/registProduct/ProductForm';
+import ProductEditForm from '@/app/editProduct/[_id]/editForm/ProductEditForm';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
@@ -17,11 +17,19 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RegistProduct() {
+interface EditPageProps {
+  params: Promise<{
+    _id: number;
+  }>;
+}
+
+export default async function EidtProduct({ params }: EditPageProps) {
+  const { _id } = await params;
+  // const res = await getSellerProduct(Number(_id));
   return (
     <Suspense>
       <main className="min-h-[calc(100dvh-26.125rem)] md:min-h-[calc(100dvh-20.1875rem)] lg:min-h-[calc(100dvh-21.625rem)]">
-        <ProductForm />
+        <ProductEditForm key={_id} item={_id} />
       </main>
     </Suspense>
   );
