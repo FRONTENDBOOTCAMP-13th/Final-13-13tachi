@@ -18,6 +18,16 @@ export default function LoginForm() {
 
   const redirect = useSearchParams().get('redirect');
 
+  const [defaultId, setDefaultId] = useState('ugveg@market.com');
+
+  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setDefaultId('ugvegsell@ugveg.com');
+    } else {
+      setDefaultId('ugveg@market.com');
+    }
+  };
+
   // setUser는 상태를 변경하는 함수이므로 useEffect에서 호출해야 한다.
   useEffect(() => {
     if (userState?.ok) {
@@ -90,7 +100,7 @@ export default function LoginForm() {
               placeholder="이메일을 입력하세요"
               className="w-[250px] h-[40px] text-xs md:w-[290px] md:h-[45px] md:text-sm md lg:w-[18.125rem] lg:h-[2.8125rem] px-[0.75rem] lg:py-[0.5rem] border border-light-gray rounded-lg focus:outline-none focus:border-gray "
               name="email"
-              defaultValue={'ugveg@market.com'}
+              defaultValue={defaultId}
             />
             <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
               {userState?.ok === 0 && userState.errors?.email?.msg}
@@ -114,15 +124,26 @@ export default function LoginForm() {
           </div>
         </div>
         <div className="flex justify-between items-center mt-[5px] w-[250px] md:w-[290px] lg:w-[18.125rem] mx-auto ml-auto text-gray text-xs">
-          <div className="flex items-center gap-1">
-            <Checkbox
-              className="lg:w-[1.25rem] lg:h-[1.25rem]"
-              checked={autoLogin}
-              onChange={e => setAutoLogin(e.target.checked)}
-            />
-            <p className="text-2xs md:text-xs hover:font-semibold">
-              자동 로그인
-            </p>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Checkbox
+                className="lg:w-[1.25rem] lg:h-[1.25rem]"
+                checked={autoLogin}
+                onChange={e => setAutoLogin(e.target.checked)}
+              />
+              <p className="text-2xs md:text-xs hover:font-semibold">
+                자동 로그인
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Checkbox
+                className="lg:w-[1.25rem] lg:h-[1.25rem]"
+                onChange={handleIdChange}
+              />
+              <p className="text-2xs md:text-xs hover:font-semibold">
+                판매자 아이디
+              </p>
+            </div>
           </div>
           <Link
             href="/signup"
